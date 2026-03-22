@@ -1,61 +1,51 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+function rate(stars){
 
-import {
-getFirestore,
-collection,
-addDoc,
-getDocs
+alert("You rated " + stars + " stars ⭐");
+
 }
 
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-
-const firebaseConfig = {
-
-apiKey: "YOUR_KEY",
-authDomain: "YOUR_DOMAIN",
-projectId: "YOUR_PROJECT_ID"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-
-window.addReview = async function(){
+function addReview(){
 
 const name = document.getElementById("name").value;
+
 const review = document.getElementById("review").value;
 
-await addDoc(collection(db,"reviews"),{
+if(name === "" || review === ""){
 
-name:name,
-review:review
+alert("Please fill all fields");
 
-});
+return;
 
-loadReviews();
+}
+
+const reviewList = document.getElementById("reviewList");
+
+const newReview = document.createElement("p");
+
+newReview.innerHTML = "<b>" + name + ":</b> " + review;
+
+reviewList.appendChild(newReview);
+
+document.getElementById("name").value = "";
+
+document.getElementById("review").value = "";
 
 }
 
 
-async function loadReviews(){
+function openPDF(file){
 
-const querySnapshot = await getDocs(collection(db,"reviews"));
+document.getElementById("pdfViewer").style.display="block";
 
-let html="";
+document.getElementById("pdfFrame").src=file;
 
-querySnapshot.forEach((doc)=>{
+window.scrollTo({
 
-const data = doc.data();
+top: document.getElementById("pdfViewer").offsetTop,
 
-html += `<p><b>${data.name}</b>: ${data.review}</p>`;
+behavior: "smooth"
 
 });
 
-document.getElementById("reviewList").innerHTML = html;
-
 }
-
-loadReviews();
