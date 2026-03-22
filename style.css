@@ -1,7 +1,7 @@
 body{
 
-font-family: Arial;
 margin:0;
+font-family:Arial;
 background: linear-gradient(135deg,#4facfe,#00f2fe);
 
 }
@@ -14,66 +14,45 @@ padding:40px;
 
 }
 
-.notes{
+.subjects{
 
+display:grid;
+grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
 padding:40px;
-display:flex;
-gap:20px;
-justify-content:center;
 
 }
 
-.card{
+.subject{
 
 background:white;
-padding:20px;
-border-radius:10px;
-width:200px;
+padding:25px;
+border-radius:12px;
 text-align:center;
 box-shadow:0 10px 20px rgba(0,0,0,0.2);
 
 }
 
-.card a{
+.subject h2{
 
-display:inline-block;
-margin-top:10px;
+margin-bottom:15px;
+
+}
+
+.subject a{
+
+display:block;
+margin:8px 0;
 background:#4facfe;
 color:white;
-padding:10px 15px;
-text-decoration:none;
-border-radius:5px;
-
-}
-
-.reviews{
-
-background:white;
-padding:40px;
-text-align:center;
-
-}
-
-input, textarea{
-
-width:60%;
 padding:10px;
-margin:10px;
+border-radius:6px;
+text-decoration:none;
 
 }
 
-button{
+.subject a:hover{
 
-padding:10px 20px;
-background:#4facfe;
-border:none;
-color:white;
-cursor:pointer;
-
-}
-
-#reviewList{
-
-margin-top:20px;
+background:#2d8cf0;
 
 }
