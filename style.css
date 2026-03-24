@@ -8,7 +8,7 @@ body{
 
 font-family:'Poppins',sans-serif;
 
-background:linear-gradient(120deg,#0f2027,#203a43,#2c5364);
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
 
 color:white;
 
@@ -16,44 +16,114 @@ min-height:100vh;
 
 }
 
+
+
 .navbar{
 
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 50px;
+
+padding:20px 40px;
+
 background:rgba(255,255,255,0.05);
+
 backdrop-filter:blur(10px);
 
 }
+
+
 
 .navbar ul{
 
 display:flex;
 gap:20px;
+
 list-style:none;
 
 }
 
+
+
 .hero{
 
 text-align:center;
+
 padding:80px 20px;
 
 }
 
+
+
 .hero h1{
 
-font-size:40px;
+font-size:42px;
+
 margin-bottom:10px;
 
 }
+
+
+
+.hero p{
+
+opacity:0.9;
+
+}
+
+
+
+.about{
+
+background:rgba(255,255,255,0.08);
+
+margin:40px;
+
+padding:40px;
+
+border-radius:15px;
+
+text-align:center;
+
+backdrop-filter:blur(10px);
+
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+}
+
+
+
+.about h2{
+
+font-size:32px;
+
+margin-bottom:20px;
+
+}
+
+
+
+.about p{
+
+max-width:900px;
+
+margin:auto;
+
+margin-bottom:15px;
+
+line-height:1.6;
+
+opacity:0.9;
+
+}
+
+
 
 .subjects{
 
 display:grid;
 
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 
 gap:25px;
 
@@ -61,23 +131,27 @@ padding:40px;
 
 }
 
+
+
 .subject{
 
 background:rgba(255,255,255,0.08);
 
-backdrop-filter:blur(10px);
+padding:25px;
 
 border-radius:15px;
 
-padding:25px;
-
 text-align:center;
+
+backdrop-filter:blur(10px);
 
 transition:0.3s;
 
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
 
 }
+
+
 
 .subject:hover{
 
@@ -87,15 +161,19 @@ background:rgba(255,255,255,0.15);
 
 }
 
+
+
 .subject h2{
 
 margin-bottom:15px;
 
 }
 
+
+
 button{
 
-margin:6px;
+margin:5px;
 
 padding:10px 16px;
 
@@ -111,11 +189,15 @@ cursor:pointer;
 
 }
 
+
+
 button:hover{
 
 background:linear-gradient(45deg,#ff9966,#ff5e62);
 
 }
+
+
 
 #pdfViewer{
 
@@ -131,6 +213,8 @@ padding-bottom:40px;
 
 }
 
+
+
 #pdfFrame{
 
 width:100%;
@@ -140,20 +224,29 @@ border-radius:10px;
 
 }
 
+
+
 .reviews{
 
 text-align:center;
+
 padding:50px;
 
 }
 
+
+
 .stars span{
 
 font-size:35px;
+
 cursor:pointer;
+
 color:gray;
 
 }
+
+
 
 .stars span:hover{
 
@@ -161,15 +254,23 @@ color:gold;
 
 }
 
+
+
 input,textarea{
 
 width:60%;
+
 padding:10px;
+
 margin:10px;
+
 border-radius:6px;
+
 border:none;
 
 }
+
+
 
 #reviewList{
 
@@ -177,25 +278,31 @@ margin-top:20px;
 
 }
 
+
+
 footer{
 
 text-align:center;
+
 padding:20px;
+
 opacity:0.7;
 
 }
 
+
+
 @media(max-width:700px){
-
-input,textarea{
-
-width:90%;
-
-}
 
 .hero h1{
 
 font-size:28px;
+
+}
+
+input,textarea{
+
+width:90%;
 
 }
 
