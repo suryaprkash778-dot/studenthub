@@ -1,8 +1,20 @@
+/* Smooth Scroll */
+
+html{
+scroll-behavior:smooth;
+}
+
+
+/* Reset */
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 }
+
+
+/* Body */
 
 body{
 
@@ -17,6 +29,7 @@ min-height:100vh;
 }
 
 
+/* Navbar */
 
 .navbar{
 
@@ -30,20 +43,54 @@ background:rgba(255,255,255,0.05);
 
 backdrop-filter:blur(10px);
 
+position:sticky;
+
+top:0;
+
+z-index:100;
+
 }
 
+
+.navbar h2{
+
+font-weight:600;
+
+}
 
 
 .navbar ul{
 
 display:flex;
-gap:20px;
+
+gap:25px;
 
 list-style:none;
 
 }
 
 
+.navbar a{
+
+color:white;
+
+text-decoration:none;
+
+font-weight:500;
+
+transition:0.3s;
+
+}
+
+
+.navbar a:hover{
+
+color:#00c6ff;
+
+}
+
+
+/* Hero Section */
 
 .hero{
 
@@ -52,7 +99,6 @@ text-align:center;
 padding:80px 20px;
 
 }
-
 
 
 .hero h1{
@@ -64,14 +110,16 @@ margin-bottom:10px;
 }
 
 
-
 .hero p{
 
 opacity:0.9;
 
+font-size:18px;
+
 }
 
 
+/* About Section */
 
 .about{
 
@@ -92,7 +140,6 @@ box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
 
-
 .about h2{
 
 font-size:32px;
@@ -100,7 +147,6 @@ font-size:32px;
 margin-bottom:20px;
 
 }
-
 
 
 .about p{
@@ -111,13 +157,14 @@ margin:auto;
 
 margin-bottom:15px;
 
-line-height:1.6;
+line-height:1.7;
 
 opacity:0.9;
 
 }
 
 
+/* Subjects Grid */
 
 .subjects{
 
@@ -132,6 +179,7 @@ padding:40px;
 }
 
 
+/* Subject Card */
 
 .subject{
 
@@ -152,7 +200,6 @@ box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
 
-
 .subject:hover{
 
 transform:translateY(-10px);
@@ -162,7 +209,6 @@ background:rgba(255,255,255,0.15);
 }
 
 
-
 .subject h2{
 
 margin-bottom:15px;
@@ -170,6 +216,7 @@ margin-bottom:15px;
 }
 
 
+/* Buttons */
 
 button{
 
@@ -187,8 +234,9 @@ color:white;
 
 cursor:pointer;
 
-}
+transition:0.3s;
 
+}
 
 
 button:hover{
@@ -198,6 +246,7 @@ background:linear-gradient(45deg,#ff9966,#ff5e62);
 }
 
 
+/* PDF Viewer */
 
 #pdfViewer{
 
@@ -214,17 +263,20 @@ padding-bottom:40px;
 }
 
 
-
 #pdfFrame{
 
 width:100%;
+
 height:100%;
+
 border:none;
+
 border-radius:10px;
 
 }
 
 
+/* Reviews Section */
 
 .reviews{
 
@@ -235,6 +287,14 @@ padding:50px;
 }
 
 
+.reviews h2{
+
+margin-bottom:15px;
+
+}
+
+
+/* Stars */
 
 .stars span{
 
@@ -244,8 +304,9 @@ cursor:pointer;
 
 color:gray;
 
-}
+transition:0.3s;
 
+}
 
 
 .stars span:hover{
@@ -255,6 +316,7 @@ color:gold;
 }
 
 
+/* Inputs */
 
 input,textarea{
 
@@ -268,9 +330,21 @@ border-radius:6px;
 
 border:none;
 
+font-family:'Poppins',sans-serif;
+
 }
 
 
+textarea{
+
+height:80px;
+
+resize:none;
+
+}
+
+
+/* Review List */
 
 #reviewList{
 
@@ -279,6 +353,22 @@ margin-top:20px;
 }
 
 
+#reviewList p{
+
+background:rgba(255,255,255,0.08);
+
+padding:10px;
+
+margin:10px auto;
+
+border-radius:6px;
+
+width:60%;
+
+}
+
+
+/* Footer */
 
 footer{
 
@@ -291,8 +381,9 @@ opacity:0.7;
 }
 
 
+/* Mobile Responsive */
 
-@media(max-width:700px){
+@media(max-width:768px){
 
 .hero h1{
 
@@ -303,6 +394,26 @@ font-size:28px;
 input,textarea{
 
 width:90%;
+
+}
+
+#reviewList p{
+
+width:90%;
+
+}
+
+.navbar{
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.navbar ul{
+
+gap:15px;
 
 }
 
