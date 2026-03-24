@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,17 +9,25 @@
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<header>
+<nav class="navbar">
+<h2>🚀 NoteVerse</h2>
+<ul>
+<li>Home</li>
+<li>Subjects</li>
+<li>Reviews</li>
+</ul>
+</nav>
 
-<h1>🚀 NoteVerse</h1>
+<header class="hero">
 
-<p>Your Ultimate Library for Notes & Previous Year Questions</p>
+<h1>All Your Notes & PYQs in One Place</h1>
+<p>Free resources for students to learn faster</p>
 
 </header>
 
@@ -28,60 +35,60 @@
 <section class="subjects">
 
 <div class="subject">
-<h2>DSA</h2>
-<a onclick="openPDF('notes/dsa.pdf')">Notes</a>
-<a href="#">PYQ</a>
+<h2>📊 DSA</h2>
+<button onclick="openPDF('notes/dsa.pdf')">Notes</button>
+<button onclick="openPDF('pyq/dsa2023.pdf')">PYQ</button>
 </div>
 
 <div class="subject">
-<h2>AIML</h2>
-<a href="#">Notes</a>
-<a href="#">PYQ</a>
+<h2>🤖 AIML</h2>
+<button>Notes</button>
+<button>PYQ</button>
 </div>
 
 <div class="subject">
-<h2>AEM 1</h2>
-<a href="#">Notes</a>
-<a href="#">PYQ</a>
+<h2>⚡ AEM 1</h2>
+<button>Notes</button>
+<button>PYQ</button>
 </div>
 
 <div class="subject">
-<h2>AEM 2</h2>
-<a href="#">Notes</a>
-<a href="#">PYQ</a>
+<h2>⚡ AEM 2</h2>
+<button>Notes</button>
+<button>PYQ</button>
 </div>
 
 <div class="subject">
-<h2>Python</h2>
-<a href="#">Notes</a>
-<a href="#">PYQ</a>
+<h2>🐍 Python</h2>
+<button>Notes</button>
+<button>PYQ</button>
 </div>
 
 <div class="subject">
-<h2>Physics</h2>
-<a href="#">Notes</a>
-<a href="#">PYQ</a>
+<h2>🔬 Physics</h2>
+<button>Notes</button>
+<button>PYQ</button>
 </div>
 
 <div class="subject">
-<h2>Digital Electronics</h2>
-<a href="#">Notes</a>
-<a href="#">PYQ</a>
+<h2>💡 Digital Electronics</h2>
+<button>Notes</button>
+<button>PYQ</button>
 </div>
 
 <div class="subject">
-<h2>C Programming</h2>
-<a href="#">Notes</a>
+<h2>💻 C Programming</h2>
+<button>Notes</button>
 </div>
 
 <div class="subject">
-<h2>Problem Solving</h2>
-<a href="#">Notes</a>
+<h2>🧠 Problem Solving</h2>
+<button>Notes</button>
 </div>
 
 <div class="subject">
-<h2>EVS</h2>
-<a href="#">Notes</a>
+<h2>🌍 EVS</h2>
+<button>Notes</button>
 </div>
 
 </section>
@@ -96,22 +103,21 @@
 
 <section class="reviews">
 
-<h2>⭐ Rate Our Website</h2>
+<h2>⭐ Rate NoteVerse</h2>
 
-<div class="rating">
+<div class="stars">
 
-<span class="star" onclick="rate(1)">★</span>
-<span class="star" onclick="rate(2)">★</span>
-<span class="star" onclick="rate(3)">★</span>
-<span class="star" onclick="rate(4)">★</span>
-<span class="star" onclick="rate(5)">★</span>
+<span onclick="rate(1)">★</span>
+<span onclick="rate(2)">★</span>
+<span onclick="rate(3)">★</span>
+<span onclick="rate(4)">★</span>
+<span onclick="rate(5)">★</span>
 
 </div>
 
-
 <h3>Leave a Review</h3>
 
-<input id="name" placeholder="Your name">
+<input id="name" placeholder="Your Name">
 
 <textarea id="review" placeholder="Write your review"></textarea>
 
@@ -127,7 +133,6 @@
 <p>© 2026 NoteVerse | Built for Students</p>
 
 </footer>
-
 
 <script src="script.js"></script>
 
