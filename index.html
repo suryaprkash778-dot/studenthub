@@ -10,15 +10,22 @@
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <!-- Google Analytics -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KFSS5R66X9"></script>
+
 <script>
+
 window.dataLayer = window.dataLayer || [];
+
 function gtag(){dataLayer.push(arguments);}
+
 gtag('js', new Date());
+
 gtag('config', 'G-KFSS5R66X9');
+
 </script>
 
 </head>
@@ -30,44 +37,25 @@ gtag('config', 'G-KFSS5R66X9');
 <h2>📚 NoteVerse</h2>
 
 <ul>
+
 <li><a href="#">Home</a></li>
 <li><a href="#subjects">Subjects</a></li>
-<li><a href="#about">About</a></li>
+<li><a href="#" onclick="openAbout()">About</a></li>
 <li><a href="#reviews">Reviews</a></li>
+
 </ul>
 
 </nav>
 
 
+
 <header class="hero">
 
 <h1>All Your Notes & PYQs in One Place</h1>
+
 <p>Free academic resources for students</p>
 
 </header>
-
-
-<section id="about" class="about">
-
-<h2>About NoteVerse</h2>
-
-<p>
-NoteVerse is a student-focused platform designed to make studying easier by providing
-organized notes and previous year question papers in one place.
-</p>
-
-<p>
-Students can quickly access materials for subjects like DSA, AIML, Python,
-Physics, Digital Electronics and many more.
-</p>
-
-<p>
-Our mission is to simplify studying by giving students a clean,
-fast and easy-to-use platform where they can preview notes,
-read reviews and access academic resources anytime.
-</p>
-
-</section>
 
 
 
@@ -135,7 +123,9 @@ read reviews and access academic resources anytime.
 
 
 <section id="pdfViewer">
+
 <iframe id="pdfFrame"></iframe>
+
 </section>
 
 
@@ -145,16 +135,20 @@ read reviews and access academic resources anytime.
 <h2>⭐ Rate NoteVerse</h2>
 
 <div class="stars">
+
 <span onclick="rate(1)">★</span>
 <span onclick="rate(2)">★</span>
 <span onclick="rate(3)">★</span>
 <span onclick="rate(4)">★</span>
 <span onclick="rate(5)">★</span>
+
 </div>
+
 
 <h3>Leave a Review</h3>
 
 <input id="name" placeholder="Your Name">
+
 <textarea id="review" placeholder="Write your review"></textarea>
 
 <button onclick="addReview()">Submit</button>
@@ -166,8 +160,44 @@ read reviews and access academic resources anytime.
 
 
 <footer>
+
 <p>© 2026 NoteVerse | Built for Students</p>
+
 </footer>
+
+
+
+<!-- About Side Panel -->
+
+<div id="aboutPanel" class="about-panel">
+
+<span class="close-btn" onclick="closeAbout()">✖</span>
+
+<h2>About NoteVerse</h2>
+
+<p>
+
+NoteVerse is a student-focused platform designed to make studying easier by
+providing organized notes and previous year question papers in one place.
+
+</p>
+
+<p>
+
+Students can easily access subjects like DSA, AIML, Python, Physics,
+Digital Electronics and more without searching multiple websites.
+
+</p>
+
+<p>
+
+Our mission is to simplify studying and help students learn faster
+through accessible academic resources.
+
+</p>
+
+</div>
+
 
 
 <script src="script.js"></script>
