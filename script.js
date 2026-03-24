@@ -6,20 +6,22 @@ document.getElementById("pdfFrame").src=file;
 
 window.scrollTo({
 
-top: document.getElementById("pdfViewer").offsetTop,
+top:document.getElementById("pdfViewer").offsetTop,
 
-behavior: "smooth"
+behavior:"smooth"
 
 });
 
 }
 
 
+
 function rate(stars){
 
-alert("You rated " + stars + " stars ⭐");
+alert("You rated "+stars+" stars ⭐");
 
 }
+
 
 
 function addReview(){
@@ -28,7 +30,7 @@ const name=document.getElementById("name").value;
 
 const review=document.getElementById("review").value;
 
-if(name==="" || review===""){
+if(name=="" || review==""){
 
 alert("Please fill all fields");
 
@@ -46,5 +48,21 @@ reviewList.appendChild(newReview);
 
 document.getElementById("name").value="";
 document.getElementById("review").value="";
+
+}
+
+
+
+/* About Panel */
+
+function openAbout(){
+
+document.getElementById("aboutPanel").style.right="0";
+
+}
+
+function closeAbout(){
+
+document.getElementById("aboutPanel").style.right="-400px";
 
 }
