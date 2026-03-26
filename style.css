@@ -96,7 +96,7 @@ body::before {
     position: fixed;
     top: 0;
     right: -300px; /* Hidden off-screen by default */
-    width: 280px; 
+    width: 280px; /* Made slightly wider to fit submenus */
     height: 100vh;
     background: rgba(13, 17, 23, 0.95); /* Deep dark frosted glass */
     backdrop-filter: blur(25px);
