@@ -96,7 +96,7 @@ body::before {
     position: fixed;
     top: 0;
     right: -300px; /* Hidden off-screen by default */
-    width: 280px; /* Made slightly wider to fit submenus */
+    width: 280px; 
     height: 100vh;
     background: rgba(13, 17, 23, 0.95); /* Deep dark frosted glass */
     backdrop-filter: blur(25px);
@@ -205,7 +205,7 @@ body::before {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* --- Subject Cards Grid --- */
+/* --- Subject Cards Grid (Kept for future use) --- */
 .subjects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
