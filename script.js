@@ -57,3 +57,13 @@ function toggleMenu() {
     const navLinks = document.getElementById("navLinks");
     navLinks.classList.toggle("active");
 }
+
+/* --- Submenu Toggle (For Notes & PYQs) --- */
+function toggleSubMenu(menuId, event) {
+    // Stop the link from jumping to the top of the page
+    event.preventDefault(); 
+    
+    // Find the submenu we clicked and toggle its visibility
+    const submenu = document.getElementById(menuId);
+    submenu.classList.toggle("active");
+}
