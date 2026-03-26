@@ -6,58 +6,150 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* Deep, modern dark gradient */
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    /* Main Background Color (Navy Blue) */
+    background: #0d1117;
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
 }
 
-/* Custom Scrollbar for a premium feel */
+/* --- The Ambient Light Effects --- */
+/* This adds the large, soft background glows */
+body::after, body::before {
+    content: '';
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(100px); /* This creates the gradient fade */
+    opacity: 0.6;
+    z-index: -1; /* Puts glows behind the content */
+    pointer-events: none;
+}
+
+/* Light 1: Top Right (Blue Flame) */
+body::after {
+    background: radial-gradient(circle, #00d4ff 0%, #005ae0 100%);
+    top: 10%;
+    right: 10%;
+}
+
+/* Light 2: Middle Left (Slightly purpler blue) */
+body::before {
+    background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%);
+    top: 40%;
+    left: 5%;
+    width: 250px;
+    height: 250px;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #0f2027;
+    background: #0d1117;
 }
 ::-webkit-scrollbar-thumb {
-    background: #0072ff;
+    background: #00d4ff; /* Blue flame accent */
     border-radius: 10px;
 }
 
-/* Navbar - Refined Glassmorphism */
+/* --- Refined Frosted Glass Elements --- */
+/* Navbar - Full Frosted Glass */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Frosted Glass Core */
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    
+    /* Slight blue tint border */
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
+/* --- Hamburger Icon --- */
+.menu-icon {
+    font-size: 28px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease;
+    user-select: none;
+}
+
+.menu-icon:hover {
+    color: #00d4ff; /* Blue flame hover */
+}
+
+/* --- Navigation Menu Drawer --- */
 .navbar ul {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Hidden off-screen by default */
+    width: 250px;
+    height: 100vh;
+    background: rgba(13, 17, 23, 0.95); /* Deep dark frosted glass */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-left: 1px solid rgba(0, 212, 255, 0.2);
+    
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 100px;
     gap: 30px;
     list-style: none;
+    
+    transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1001; /* Stays above everything */
+    box-shadow: -10px 0 40px rgba(0,0,0,0.7);
+}
+
+/* The class we will trigger with JavaScript to slide it in */
+.navbar ul.active {
+    right: 0;
 }
 
 .navbar a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
+    font-size: 18px;
     font-weight: 500;
+    margin-left: 30px;
     transition: color 0.3s;
 }
 
 .navbar a:hover {
-    color: #00c6ff;
+    color: #00d4ff;
 }
 
-/* Hero Section */
+/* Close button inside the menu */
+.close-menu {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    font-size: 24px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
+}
+
+.close-menu:hover {
+    color: #00d4ff;
+    transform: rotate(90deg);
+}
+
+/* --- Hero Section --- */
 .hero {
     text-align: center;
     padding: 100px 20px 60px;
@@ -67,8 +159,8 @@ body {
     font-size: 48px;
     font-weight: 600;
     margin-bottom: 15px;
-    /* Gradient text effect */
-    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    /* Blue Flame Gradient Text */
+    background: linear-gradient(90deg, #00d4ff, #005ae0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -78,7 +170,7 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Subjects Grid */
+/* --- Subject Cards Grid --- */
 .subjects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -86,15 +178,22 @@ body {
     padding: 40px 10%;
 }
 
+/* Frosted Glass Cards with Hover Glow */
 .subject {
+    /* Very sheer background for the glass body */
     background: rgba(255, 255, 255, 0.03);
     padding: 30px 20px;
-    border-radius: 20px;
+    border-radius: 16px;
     text-align: center;
-    backdrop-filter: blur(10px);
-    /* Modern trick: Add a subtle border to glass elements */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    
+    /* The Blur */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* The Glass Edge and Shadow */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Light hitting the top edge */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     transition: all 0.4s ease;
 }
 
@@ -102,37 +201,40 @@ body {
     margin-bottom: 20px;
     font-size: 22px;
     font-weight: 500;
+    color: #e6f1ff; /* Light, bright blue-white */
 }
 
 .subject:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.4);
+    /* Border lights up blue flame on hover */
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    /* Soft blue glow effect around the card */
+    box-shadow: 0 12px 40px 0 rgba(0, 212, 255, 0.15); 
 }
 
-/* Buttons */
+/* --- Buttons - Blue Flame --- */
 button {
     margin: 5px;
     padding: 10px 20px;
     border: none;
     border-radius: 8px;
-    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    background: linear-gradient(45deg, #00d4ff, #005ae0);
     color: white;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
 }
 
 button:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.5);
+    box-shadow: 0 6px 25px rgba(0, 212, 255, 0.6); /* Flame glows brighter */
     filter: brightness(1.1);
 }
 
-/* PDF Viewer */
+/* --- PDF Viewer --- */
 #pdfViewer {
     width: 80%;
     max-width: 1000px;
@@ -141,18 +243,18 @@ button:hover {
     display: none;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.2);
 }
 
 #pdfFrame {
     width: 100%;
     height: 100%;
     border: none;
-    background: white; /* Keeps PDF backgrounds readable */
+    background: white; 
 }
 
-/* Reviews & Inputs */
+/* --- Reviews & Inputs --- */
 .reviews {
     text-align: center;
     padding: 60px 20px;
@@ -165,12 +267,12 @@ button:hover {
 .stars span {
     font-size: 40px;
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.1);
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .stars span:hover {
-    color: #ffcc00;
+    color: #00d4ff; /* Stars turn blue to match theme */
     transform: scale(1.1);
 }
 
@@ -181,22 +283,23 @@ input, textarea {
     margin: 10px auto;
     display: block;
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(10, 25, 47, 0.4); /* Inset frosted glass */
+    backdrop-filter: blur(10px);
     color: white;
     font-family: 'Poppins', sans-serif;
     transition: all 0.3s;
 }
 
 input::placeholder, textarea::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 input:focus, textarea:focus {
     outline: none;
-    border: 1px solid #00c6ff;
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 10px rgba(0, 198, 255, 0.2);
+    border: 1px solid #00d4ff;
+    background: rgba(10, 25, 47, 0.7);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
 }
 
 #reviewList {
@@ -206,47 +309,51 @@ input:focus, textarea:focus {
 }
 
 #reviewList p {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 10px;
-    border-left: 4px solid #0072ff;
+    border-left: 4px solid #00d4ff;
 }
 
-/* Footer */
+/* --- Footer --- */
 footer {
     text-align: center;
     padding: 30px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
     font-size: 14px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* About Side Panel */
+/* --- About Side Panel - Frosted Glass --- */
 .about-panel {
     position: fixed;
     top: 0;
     right: -400px;
     width: 350px;
     height: 100%;
-    background: rgba(15, 32, 39, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Heavier blur for the overlay panel */
+    background: rgba(13, 17, 23, 0.85); 
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    
+    border-left: 1px solid rgba(0, 212, 255, 0.2);
     padding: 40px 30px;
     transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 1000;
     overflow-y: auto;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.7);
 }
 
 .about-panel h2 {
     margin-bottom: 20px;
-    color: #00c6ff;
+    color: #00d4ff;
 }
 
 .about-panel p {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
     margin-bottom: 15px;
 }
@@ -262,24 +369,21 @@ footer {
 }
 
 .close-btn:hover {
-    color: white;
+    color: #00d4ff;
     transform: rotate(90deg);
 }
 
-/* Mobile */
+/* --- Mobile --- */
 @media(max-width: 768px) {
     .navbar {
         padding: 15px 20px;
     }
-    
     .hero h1 {
         font-size: 32px;
     }
-    
     .subjects {
         padding: 20px;
     }
-    
     #pdfViewer {
         width: 95%;
         height: 500px;
