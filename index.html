@@ -21,13 +21,11 @@
 
     <nav class="navbar">
         <h2>📚 NoteVerse</h2>
-        
         <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
         <ul id="navLinks">
             <span class="close-menu" onclick="toggleMenu()">✖</span>
-            <li><a href="#" onclick="toggleMenu()">Home</a></li>
-            <li><a href="#subjects" onclick="toggleMenu()">Subjects</a></li>
+            <li><a href="#" onclick="toggleMenu(); location.reload();">Home</a></li>
             
             <li class="dropdown">
                 <a href="#" class="dropdown-btn" onclick="toggleSubMenu('notesSubmenu', event)">Notes ▼</a>
@@ -62,60 +60,10 @@
         </ul>
     </nav>
 
-    <header class="hero">
+    <header class="hero" id="heroSection">
         <h1>All Your Notes & PYQs in One Place</h1>
         <p>Free academic resources for students</p>
     </header>
-
-    <section id="subjects" class="subjects">
-        <div class="subject">
-            <h2>📊 DSA</h2>
-            <button onclick="openPDF('notes/dsa.pdf')">Notes</button>
-            <button onclick="openPDF('pyq/dsa2023.pdf')">PYQ</button>
-        </div>
-        <div class="subject">
-            <h2>🤖 AIML</h2>
-            <button>Notes</button>
-            <button>PYQ</button>
-        </div>
-        <div class="subject">
-            <h2>⚡ AEM 1</h2>
-            <button>Notes</button>
-            <button>PYQ</button>
-        </div>
-        <div class="subject">
-            <h2>⚡ AEM 2</h2>
-            <button>Notes</button>
-            <button>PYQ</button>
-        </div>
-        <div class="subject">
-            <h2>🐍 Python</h2>
-            <button>Notes</button>
-            <button>PYQ</button>
-        </div>
-        <div class="subject">
-            <h2>🔬 Physics</h2>
-            <button>Notes</button>
-            <button>PYQ</button>
-        </div>
-        <div class="subject">
-            <h2>💡 Digital Electronics</h2>
-            <button>Notes</button>
-            <button>PYQ</button>
-        </div>
-        <div class="subject">
-            <h2>💻 C Programming</h2>
-            <button>Notes</button>
-        </div>
-        <div class="subject">
-            <h2>🧠 Problem Solving</h2>
-            <button>Notes</button>
-        </div>
-        <div class="subject">
-            <h2>🌍 EVS</h2>
-            <button>Notes</button>
-        </div>
-    </section>
 
     <section id="pdfViewer">
         <iframe id="pdfFrame"></iframe>
@@ -143,5 +91,15 @@
         <p>© 2026 NoteVerse | Built for Students</p>
     </footer>
 
-    <div id="aboutPanel" class
-        
+    <div id="aboutPanel" class="about-panel">
+        <span class="close-btn" onclick="closeAbout()">✖</span>
+        <h2>About NoteVerse</h2>
+        <p>NoteVerse is a student-focused platform designed to make studying easier by providing organized notes and previous year question papers in one place.</p>
+        <p>Students can easily access subjects like DSA, AIML, Python, Physics, Digital Electronics and more without searching multiple websites.</p>
+        <p>Our mission is to simplify studying and help students learn faster through accessible academic resources.</p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
