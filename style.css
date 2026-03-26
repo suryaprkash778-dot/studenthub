@@ -6,8 +6,11 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* Main Background Color (Navy Blue) */
-    background: #0d1117;
+    
+    /* Cosmic Background using your uploaded Gargantua image */
+    background: #0d1117 url('27496.jpg') no-repeat center center fixed;
+    background-size: cover;
+    
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
@@ -15,16 +18,16 @@ body {
 }
 
 /* --- The Ambient Light Effects --- */
-/* This adds the large, soft background glows */
+/* This adds the large, soft background glows behind the content */
 body::after, body::before {
     content: '';
     position: fixed;
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    filter: blur(100px); /* This creates the gradient fade */
+    filter: blur(100px);
     opacity: 0.6;
-    z-index: -1; /* Puts glows behind the content */
+    z-index: -1; 
     pointer-events: none;
 }
 
@@ -49,7 +52,7 @@ body::before {
     width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #0d1117;
+    background: rgba(13, 17, 23, 0.8);
 }
 ::-webkit-scrollbar-thumb {
     background: #00d4ff; /* Blue flame accent */
@@ -65,12 +68,12 @@ body::before {
     padding: 20px 40px;
     
     /* Frosted Glass Core */
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(13, 17, 23, 0.4);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     
     /* Slight blue tint border */
-    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     
     position: sticky;
@@ -78,25 +81,30 @@ body::before {
     z-index: 100;
 }
 
+.navbar h2 {
+    color: #00d4ff;
+    letter-spacing: 1px;
+}
+
 /* --- Hamburger Icon --- */
 .menu-icon {
     font-size: 28px;
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.8);
+    color: #00d4ff;
     transition: color 0.3s ease;
     user-select: none;
 }
 
 .menu-icon:hover {
-    color: #00d4ff; /* Blue flame hover */
+    color: #e6f1ff; 
 }
 
 /* --- Navigation Menu Drawer --- */
 .navbar ul {
     position: fixed;
     top: 0;
-    right: -300px; /* Hidden off-screen by default */
-    width: 280px; /* Made slightly wider to fit submenus */
+    right: -300px; 
+    width: 280px; 
     height: 100vh;
     background: rgba(13, 17, 23, 0.95); /* Deep dark frosted glass */
     backdrop-filter: blur(25px);
@@ -112,12 +120,11 @@ body::before {
     list-style: none;
     
     transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    z-index: 1001; /* Stays above everything */
+    z-index: 1001; 
     box-shadow: -10px 0 40px rgba(0,0,0,0.7);
-    overflow-y: auto; /* Allows scrolling if menu gets too long */
+    overflow-y: auto; 
 }
 
-/* The class we will trigger with JavaScript to slide it in */
 .navbar ul.active {
     right: 0;
 }
@@ -136,7 +143,6 @@ body::before {
     color: #00d4ff;
 }
 
-/* Close button inside the menu */
 .close-menu {
     position: absolute;
     top: 25px;
@@ -154,24 +160,23 @@ body::before {
 
 /* --- Navigation Dropdowns (Notes & PYQs) --- */
 .submenu {
-    display: none; /* Hidden by default */
+    display: none; 
     flex-direction: column;
     gap: 15px;
     margin-top: 15px;
-    margin-left: 45px; /* Indent the folders */
+    margin-left: 45px; 
     padding-left: 15px;
     list-style: none;
-    border-left: 2px solid rgba(0, 212, 255, 0.3); /* Blue flame tree-line */
+    border-left: 2px solid rgba(0, 212, 255, 0.3); 
 }
 
-/* Class triggered by JavaScript to show the folders */
 .submenu.active {
     display: flex;
 }
 
 .submenu a {
     font-size: 16px;
-    color: rgba(255, 255, 255, 0.5); /* Slightly dimmer text for sub-items */
+    color: rgba(255, 255, 255, 0.5); 
     margin-left: 0;
 }
 
@@ -203,70 +208,11 @@ body::before {
 .hero p {
     font-size: 18px;
     color: rgba(255, 255, 255, 0.7);
-}
-
-/* --- Subject Cards Grid (Kept for future use) --- */
-.subjects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 30px;
-    padding: 40px 10%;
-}
-
-/* Frosted Glass Cards with Hover Glow */
-.subject {
-    /* Very sheer background for the glass body */
-    background: rgba(255, 255, 255, 0.03);
-    padding: 30px 20px;
-    border-radius: 16px;
-    text-align: center;
-    
-    /* The Blur */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    
-    /* The Glass Edge and Shadow */
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Light hitting the top edge */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: all 0.4s ease;
-}
-
-.subject h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
-    font-weight: 500;
-    color: #e6f1ff; /* Light, bright blue-white */
-}
-
-.subject:hover {
-    transform: translateY(-8px);
-    background: rgba(255, 255, 255, 0.06);
-    /* Border lights up blue flame on hover */
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    /* Soft blue glow effect around the card */
-    box-shadow: 0 12px 40px 0 rgba(0, 212, 255, 0.15); 
-}
-
-/* --- Buttons - Blue Flame --- */
-button {
-    margin: 5px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(45deg, #00d4ff, #005ae0);
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
-}
-
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 25px rgba(0, 212, 255, 0.6); /* Flame glows brighter */
-    filter: brightness(1.1);
+    background: rgba(0,0,0,0.4);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
 }
 
 /* --- PDF Viewer --- */
@@ -278,8 +224,8 @@ button:hover {
     display: none;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.3);
 }
 
 #pdfFrame {
@@ -289,76 +235,156 @@ button:hover {
     background: white; 
 }
 
-/* --- Reviews & Inputs --- */
-.reviews {
-    text-align: center;
+/* --- Integrated NoteVerse Copilot Section --- */
+.ai-chat-section {
     padding: 60px 20px;
+    max-width: 900px; 
+    margin: 0 auto;
+    text-align: center;
 }
 
-.stars {
-    margin: 20px 0;
+.ai-chat-section h2 {
+    color: #00d4ff;
+    font-size: 32px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
 }
 
-.stars span {
-    font-size: 40px;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.1);
-    transition: color 0.3s ease, transform 0.2s ease;
+.ai-chat-section > p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+    background: rgba(0,0,0,0.4);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
 }
 
-.stars span:hover {
-    color: #00d4ff; /* Stars turn blue to match theme */
-    transform: scale(1.1);
-}
-
-input, textarea {
-    width: 100%;
-    max-width: 500px;
-    padding: 15px;
-    margin: 10px auto;
-    display: block;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    background: rgba(10, 25, 47, 0.4); /* Inset frosted glass */
-    backdrop-filter: blur(10px);
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.3s;
-}
-
-input::placeholder, textarea::placeholder {
-    color: rgba(255, 255, 255, 0.3);
-}
-
-input:focus, textarea:focus {
-    outline: none;
-    border: 1px solid #00d4ff;
-    background: rgba(10, 25, 47, 0.7);
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
-}
-
-#reviewList {
-    max-width: 600px;
-    margin: 30px auto;
+/* The Main Chat UI Box */
+.chat-container {
+    background: rgba(13, 17, 23, 0.7); /* Darker, IDE-like background */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 16px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
     text-align: left;
 }
 
-#reviewList p {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    border-left: 4px solid #00d4ff;
+/* Scrollable message area */
+.chat-history {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* --- Footer --- */
-footer {
-    text-align: center;
-    padding: 30px;
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 14px;
+.chat-history::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-history::-webkit-scrollbar-thumb {
+    background: rgba(0, 212, 255, 0.4);
+    border-radius: 10px;
+}
+
+/* Message Bubbles */
+.bot-msg-inline, .user-msg-inline {
+    max-width: 85%;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 15px 20px;
+    border-radius: 12px;
+}
+
+.bot-msg-inline {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid #00d4ff;
+    align-self: flex-start;
+}
+
+.bot-msg-inline strong {
+    color: #00d4ff;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.user-msg-inline {
+    background: rgba(0, 212, 255, 0.15);
+    border-right: 3px solid #005ae0;
+    align-self: flex-end;
+}
+
+.user-msg-inline strong {
+    color: #e6f1ff;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: right;
+}
+
+/* The Input Area at the bottom */
+.chat-input-wrapper {
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.4);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.chat-input-wrapper input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 30px; 
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    transition: all 0.3s;
+    margin: 0; 
+    max-width: none;
+}
+
+.chat-input-wrapper input:focus {
+    outline: none;
+    border-color: #00d4ff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.chat-input-wrapper button {
+    background: linear-gradient(45deg, #00d4ff, #005ae0);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+.chat-input-wrapper button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
 }
 
 /* --- About Side Panel - Frosted Glass --- */
@@ -368,18 +394,15 @@ footer {
     right: -400px;
     width: 350px;
     height: 100%;
-    
-    /* Heavier blur for the overlay panel */
-    background: rgba(13, 17, 23, 0.85); 
+    background: rgba(13, 17, 23, 0.9); 
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    
     border-left: 1px solid rgba(0, 212, 255, 0.2);
     padding: 40px 30px;
     transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 1000;
     overflow-y: auto;
-    box-shadow: -10px 0 40px rgba(0,0,0,0.7);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.8);
 }
 
 .about-panel h2 {
@@ -388,7 +411,7 @@ footer {
 }
 
 .about-panel p {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
     margin-bottom: 15px;
 }
@@ -408,6 +431,17 @@ footer {
     transform: rotate(90deg);
 }
 
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 /* --- Mobile --- */
 @media(max-width: 768px) {
     .navbar {
@@ -416,14 +450,15 @@ footer {
     .hero h1 {
         font-size: 32px;
     }
-    .subjects {
-        padding: 20px;
-    }
     #pdfViewer {
         width: 95%;
         height: 500px;
     }
     .navbar ul {
-        width: 250px; /* Slightly narrower on mobile */
+        width: 250px;
+    }
+    .chat-container {
+        height: 450px;
     }
 }
+
