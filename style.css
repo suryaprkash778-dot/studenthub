@@ -6,16 +6,16 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* Main Cosmic Gradient Background */
-    background: linear-gradient(135deg, #0d1117 0%, #0d1117 50%, #0d2240 75%, #0d1117 100%);
+    /* Main Background Color (Navy Blue) */
+    background: #0d1117;
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
 }
 
-/* --- The Ambient Light & Star Effects --- */
-/* This adds the large, soft glows and the detailed generated stars from image_4.png */
+/* --- The Ambient Light Effects --- */
+/* This adds the large, soft background glows */
 body::after, body::before {
     content: '';
     position: fixed;
@@ -23,29 +23,25 @@ body::after, body::before {
     height: 300px;
     border-radius: 50%;
     filter: blur(100px); /* This creates the gradient fade */
-    opacity: 0.7; /* Increased opacity to match image_4.png density */
+    opacity: 0.6;
     z-index: -1; /* Puts glows behind the content */
     pointer-events: none;
 }
 
-/* Light 1: Top Right (Blue Flame/Cyan with Star Cluster) */
+/* Light 1: Top Right (Blue Flame) */
 body::after {
-    /* Blue flame to deep blue cluster effect */
-    background: radial-gradient(circle, #00d4ff 0%, #00d4ff 15%, #005ae0 50%, #0d1117 100%);
+    background: radial-gradient(circle, #00d4ff 0%, #005ae0 100%);
     top: 10%;
-    right: 15%;
-    width: 350px;
-    height: 350px;
+    right: 10%;
 }
 
-/* Light 2: Middle Left (Deep Purple/Indigo and Blue Flame) */
+/* Light 2: Middle Left (Slightly purpler blue) */
 body::before {
-    /* Rich indigo mixed with cyan */
-    background: radial-gradient(circle, #5e17eb 0%, #00d4ff 20%, #5e17eb 60%, #0d1117 100%);
+    background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%);
     top: 40%;
-    left: 10%;
-    width: 300px;
-    height: 300px;
+    left: 5%;
+    width: 250px;
+    height: 250px;
 }
 
 /* Custom Scrollbar */
@@ -82,22 +78,17 @@ body::before {
     z-index: 100;
 }
 
-/* --- NoteVerse Title --- */
-.navbar h2 {
-    color: #00d4ff; /* Blue flame cyan for title */
-}
-
 /* --- Hamburger Icon --- */
 .menu-icon {
     font-size: 28px;
     cursor: pointer;
-    color: #00d4ff; /* Blue flame icon */
+    color: rgba(255, 255, 255, 0.8);
     transition: color 0.3s ease;
     user-select: none;
 }
 
 .menu-icon:hover {
-    color: #e6f1ff; /* White-blue hover */
+    color: #00d4ff; /* Blue flame hover */
 }
 
 /* --- Navigation Menu Drawer --- */
@@ -105,7 +96,7 @@ body::before {
     position: fixed;
     top: 0;
     right: -300px; /* Hidden off-screen by default */
-    width: 280px; 
+    width: 280px; /* Made slightly wider to fit submenus */
     height: 100vh;
     background: rgba(13, 17, 23, 0.95); /* Deep dark frosted glass */
     backdrop-filter: blur(25px);
@@ -203,7 +194,7 @@ body::before {
     font-size: 48px;
     font-weight: 600;
     margin-bottom: 15px;
-    /* Blue Flame Gradient Text (luminous cyan/blue) */
+    /* Blue Flame Gradient Text */
     background: linear-gradient(90deg, #00d4ff, #005ae0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -278,14 +269,13 @@ button:hover {
     filter: brightness(1.1);
 }
 
-/* --- PDF Viewer (OPEN & DISPLAYING IN IMAGE) --- */
+/* --- PDF Viewer --- */
 #pdfViewer {
     width: 80%;
     max-width: 1000px;
     height: 700px;
     margin: 40px auto;
-    /* Change display: block when active! */
-    display: none; 
+    display: none;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
@@ -305,11 +295,6 @@ button:hover {
     padding: 60px 20px;
 }
 
-/* --- Star Section --- */
-.reviews h2 {
-    color: #00d4ff; /* Cyan title */
-}
-
 .stars {
     margin: 20px 0;
 }
@@ -322,7 +307,7 @@ button:hover {
 }
 
 .stars span:hover {
-    color: #ffcc00; /* Gold for interaction, or change to #00d4ff for theme */
+    color: #00d4ff; /* Stars turn blue to match theme */
     transform: scale(1.1);
 }
 
@@ -376,25 +361,51 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* --- Scroll Up Button --- */
-#scrollUp {
+/* --- About Side Panel - Frosted Glass --- */
+.about-panel {
     position: fixed;
-    bottom: 25px;
+    top: 0;
+    right: -400px;
+    width: 350px;
+    height: 100%;
+    
+    /* Heavier blur for the overlay panel */
+    background: rgba(13, 17, 23, 0.85); 
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    
+    border-left: 1px solid rgba(0, 212, 255, 0.2);
+    padding: 40px 30px;
+    transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.7);
+}
+
+.about-panel h2 {
+    margin-bottom: 20px;
+    color: #00d4ff;
+}
+
+.about-panel p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
     right: 25px;
     font-size: 24px;
     cursor: pointer;
-    color: #00d4ff; /* Cyan glow arrow */
-    background: rgba(13, 17, 23, 0.5);
-    backdrop-filter: blur(5px);
-    padding: 10px 15px;
-    border-radius: 50%;
-    transition: 0.3s ease;
-    user-select: none;
+    color: rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
 }
 
-#scrollUp:hover {
-    color: white;
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+.close-btn:hover {
+    color: #00d4ff;
+    transform: rotate(90deg);
 }
 
 /* --- Mobile --- */
