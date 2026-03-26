@@ -56,7 +56,6 @@
             </li>
 
             <li><a href="#" onclick="openAbout(); toggleMenu()">About</a></li>
-            <li><a href="#reviews" onclick="toggleMenu()">Reviews</a></li>
         </ul>
     </nav>
 
@@ -69,22 +68,19 @@
         <iframe id="pdfFrame"></iframe>
     </section>
 
-    <section id="reviews" class="reviews">
-        <h2>⭐ Rate NoteVerse</h2>
-        <div class="stars">
-            <span onclick="rate(1)">★</span>
-            <span onclick="rate(2)">★</span>
-            <span onclick="rate(3)">★</span>
-            <span onclick="rate(4)">★</span>
-            <span onclick="rate(5)">★</span>
-        </div>
-
-        <h3>Leave a Review</h3>
-        <input id="name" placeholder="Your Name">
-        <textarea id="review" placeholder="Write your review" rows="4"></textarea>
-        <button onclick="addReview()">Submit</button>
-
-        <div id="reviewList"></div>
-    </section>
-
     <footer>
+        <p>© 2026 NoteVerse | Built for Students</p>
+    </footer>
+
+    <div id="aboutPanel" class="about-panel">
+        <span class="close-btn" onclick="closeAbout()">✖</span>
+        <h2>About NoteVerse</h2>
+        <p>NoteVerse is a student-focused platform designed to make studying easier by providing organized notes and previous year question papers in one place.</p>
+        <p>Students can easily access subjects like DSA, AIML, Python, Physics, Digital Electronics and more without searching multiple websites.</p>
+        <p>Our mission is to simplify studying and help students learn faster through accessible academic resources.</p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
