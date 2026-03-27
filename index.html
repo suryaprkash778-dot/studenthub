@@ -4,166 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteVerse</title>
-    
+
     <link rel="stylesheet" href="style.css">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KFSS5R66X9"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KFSS5R66X9');
-    </script>
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <h2>📚 NoteVerse</h2>
-        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h2>📚 NoteVerse</h2>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
-        <ul id="navLinks">
-            <li><a href="#" onclick="toggleMenu(); location.reload();">Home</a></li>
-            
-            <li class="dropdown">
-                <div class="dropdown-header">
-                    <a href="#" class="dropdown-btn" onclick="toggleSubMenu('notesSubmenu', event)">Notes ▼</a>
-                    <span class="add-btn" onclick="openUploadModal('Notes', event)">+</span>
-                </div>
-                <ul class="submenu" id="notesSubmenu">
-                    <li><a href="#" onclick="toggleMenu()">Semester 1</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 2</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 3</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 4</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 5</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 6</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 7</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 8</a></li>
-                </ul>
-            </li>
+    <ul id="navLinks">
+        <li><a href="#">Home</a></li>
 
-            <li class="dropdown">
-                <div class="dropdown-header">
-                    <a href="#" class="dropdown-btn" onclick="toggleSubMenu('pyqSubmenu', event)">PYQs ▼</a>
-                    <span class="add-btn" onclick="openUploadModal('PYQs', event)">+</span>
-                </div>
-                <ul class="submenu" id="pyqSubmenu">
-                    <li><a href="#" onclick="toggleMenu()">Semester 1</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 2</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 3</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 4</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 5</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 6</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 7</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Semester 8</a></li>
-                </ul>
-            </li>
+        <li class="dropdown">
+            <div class="dropdown-header">
+                <a href="#" onclick="toggleSubMenu('notesSubmenu', event)">Notes ▼</a>
+                <span onclick="openUploadModal('Notes', event)">+</span>
+            </div>
+            <ul class="submenu" id="notesSubmenu">
+                <li><a href="#">Semester 1</a></li>
+                <li><a href="#">Semester 2</a></li>
+                <li><a href="#">Semester 3</a></li>
+                <li><a href="#">Semester 4</a></li>
+            </ul>
+        </li>
 
-            <li><a href="#" onclick="openAbout(); toggleMenu()">About</a></li>
-        </ul>
-    </nav>
+        <li class="dropdown">
+            <div class="dropdown-header">
+                <a href="#" onclick="toggleSubMenu('pyqSubmenu', event)">PYQs ▼</a>
+                <span onclick="openUploadModal('PYQs', event)">+</span>
+            </div>
+            <ul class="submenu" id="pyqSubmenu">
+                <li><a href="#">Semester 1</a></li>
+                <li><a href="#">Semester 2</a></li>
+                <li><a href="#">Semester 3</a></li>
+                <li><a href="#">Semester 4</a></li>
+            </ul>
+        </li>
 
-    <header class="hero" id="heroSection">
-        <h1>All Your Notes & PYQs in One Place</h1>
-        <p>Free academic resources for students</p>
-    </header>
+        <li><a href="#" onclick="openAbout()">About</a></li>
+    </ul>
+</nav>
 
-    <section id="pdfViewer">
-        <iframe id="pdfFrame"></iframe>
-    </section>
+<!-- HERO -->
+<header class="hero">
+    <h1>All Your Notes & PYQs in One Place</h1>
+    <p>Free academic resources for students</p>
+    <button onclick="openAbout()">Explore</button>
+</header>
 
-    <footer>
-        <p>© 2026 NoteVerse | Built for Students</p>
-    </footer>
+<!-- PDF VIEWER -->
+<section id="pdfViewer">
+    <iframe id="pdfFrame"></iframe>
+</section>
 
-    <div id="aboutPanel" class="about-panel">
-        <span class="close-btn" onclick="closeAbout()">✖</span>
-        <h2>About NoteVerse</h2>
-        <p>NoteVerse is a student-focused platform designed to make studying easier by providing organized notes and previous year question papers in one place.</p>
-        <p>Students can easily access subjects like DSA, AIML, Python, Physics, Digital Electronics and more without searching multiple websites.</p>
-        <p>Our mission is to simplify studying and help students learn faster through accessible academic resources.</p>
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 NoteVerse</p>
+</footer>
+
+<!-- ABOUT PANEL -->
+<div id="aboutPanel" class="about-panel">
+    <span onclick="closeAbout()">✖</span>
+    <h2>About</h2>
+    <p>NoteVerse helps students access notes and PYQs easily.</p>
+</div>
+
+<!-- UPLOAD MODAL -->
+<div id="uploadModal" class="modal-overlay">
+    <div class="modal-content">
+        <span onclick="closeUploadModal()">✖</span>
+        <h2 id="uploadTitle">Upload</h2>
+
+        <input type="text" placeholder="Subject">
+        <select>
+            <option>Select Semester</option>
+            <option>1</option>
+            <option>2</option>
+        </select>
+
+        <input type="file">
+        <button onclick="simulateUpload()">Upload</button>
     </div>
+</div>
 
-    <div id="uploadModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-modal-btn" onclick="closeUploadModal()">✖</span>
-            <h2 id="uploadTitle">Contribute</h2>
-            <p class="modal-subtitle">Help the community by uploading a file.</p>
-            
-            <input type="text" class="modal-input" placeholder="Subject Name (e.g., Physics)">
-            
-            <select class="modal-input">
-                <option value="" disabled selected>Select Semester</option>
-                <option value="1">Semester 1</option>
-                <option value="2">Semester 2</option>
-                <option value="3">Semester 3</option>
-                <option value="4">Semester 4</option>
-                <option value="5">Semester 5</option>
-                <option value="6">Semester 6</option>
-                <option value="7">Semester 7</option>
-                <option value="8">Semester 8</option>
-            </select>
-
-            <input type="file" class="modal-input file-input" accept=".pdf,.doc,.docx">
-            
-            <button class="upload-submit-btn" onclick="simulateUpload()">Upload File</button>
-        </div>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById("navLinks");
-            navLinks.classList.toggle("active");
-        }
-
-        function toggleSubMenu(menuId, event) {
-            event.preventDefault(); 
-            const submenu = document.getElementById(menuId);
-            submenu.classList.toggle("active");
-        }
-
-        function openAbout() {
-            document.getElementById("aboutPanel").style.right = "0";
-        }
-
-        function closeAbout() {
-            document.getElementById("aboutPanel").style.right = "-400px";
-        }
-
-        function openPDF(file) {
-            document.getElementById("pdfViewer").style.display = "block";
-            document.getElementById("pdfFrame").src = file;
-            window.scrollTo({
-                top: document.getElementById("pdfViewer").offsetTop,
-                behavior: "smooth"
-            });
-        }
-
-        /* --- Upload Modal Logic --- */
-        function openUploadModal(type, event) {
-            // Stops the menu from toggling when the + is clicked
-            event.stopPropagation(); 
-            
-            document.getElementById("uploadTitle").innerText = "Upload " + type;
-            document.getElementById("uploadModal").style.display = "flex";
-            
-            // Close the navigation menu so the user can see the popup clearly
-            document.getElementById("navLinks").classList.remove("active");
-        }
-
-        function closeUploadModal() {
-            document.getElementById("uploadModal").style.display = "none";
-        }
-
-        function simulateUpload() {
-            alert("Thank you for contributing! (Note: Database connection required to permanently save files.)");
-            closeUploadModal();
-        }
-    </script>
-
+<script src="script.js"></script>
 </body>
 </html>
