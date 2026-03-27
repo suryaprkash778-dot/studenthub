@@ -1,4 +1,4 @@
-/* SIDEBAR TOGGLE */
+/* SIDEBAR */
 function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle("active");
 }
@@ -20,7 +20,7 @@ function openAbout() {
 }
 
 function closeAbout() {
-    document.getElementById("aboutPanel").style.right = "-300px";
+    document.getElementById("aboutPanel").style.right = "-350px";
 }
 
 /* PDF VIEW */
