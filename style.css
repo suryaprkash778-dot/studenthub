@@ -2,28 +2,104 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* STRICT LOCK: Prevents the horizontal "slider" glitch entirely */
-html, body {
-    max-width: 100vw;
-    overflow-x: hidden; 
+    transition: 0.3s;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* Cosmic Background using your Gargantua image */
-    background: #0d1117 url('IMG_20260326_212648.png') no-repeat center center fixed;
-    background-size: cover;
+    background: #0d1117;
     color: white;
-    min-height: 100vh;
-    position: relative;
 }
 
-/* --- The Ambient Light Effects --- */
-body::after, body::before {
-    content: '';
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+}
+
+.menu-icon {
+    cursor: pointer;
+}
+
+#navLinks {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+#navLinks.active {
+    display: block;
+}
+
+/* DROPDOWN */
+.submenu {
+    display: none;
+}
+
+.submenu.active {
+    display: block;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+}
+
+.hero button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: cyan;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* PDF */
+#pdfViewer {
+    display: none;
+    width: 90%;
+    height: 500px;
+    margin: 20px auto;
+}
+
+#pdfFrame {
+    width: 100%;
+    height: 100%;
+}
+
+/* ABOUT PANEL */
+.about-panel {
     position: fixed;
+    right: -300px;
+    top: 0;
     width: 300px;
-    height: 300px;
+    height: 100%;
+    background: black;
+    padding: 20px;
+}
+
+/* MODAL */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+}
     
