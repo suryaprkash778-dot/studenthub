@@ -36,4 +36,3 @@ function toggleSubMenu(menuId, event) {
     event.preventDefault(); 
     const submenu = document.getElementById(menuId);
     submenu.classList.toggle("active");
-        
