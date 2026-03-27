@@ -30,7 +30,10 @@
             <li><a href="#" onclick="toggleMenu(); location.reload();">Home</a></li>
             
             <li class="dropdown">
-                <a href="#" class="dropdown-btn" onclick="toggleSubMenu('notesSubmenu', event)">Notes ▼</a>
+                <div class="dropdown-header">
+                    <a href="#" class="dropdown-btn" onclick="toggleSubMenu('notesSubmenu', event)">Notes ▼</a>
+                    <span class="add-btn" onclick="openUploadModal('Notes', event)">+</span>
+                </div>
                 <ul class="submenu" id="notesSubmenu">
                     <li><a href="#" onclick="toggleMenu()">Semester 1</a></li>
                     <li><a href="#" onclick="toggleMenu()">Semester 2</a></li>
@@ -44,7 +47,10 @@
             </li>
 
             <li class="dropdown">
-                <a href="#" class="dropdown-btn" onclick="toggleSubMenu('pyqSubmenu', event)">PYQs ▼</a>
+                <div class="dropdown-header">
+                    <a href="#" class="dropdown-btn" onclick="toggleSubMenu('pyqSubmenu', event)">PYQs ▼</a>
+                    <span class="add-btn" onclick="openUploadModal('PYQs', event)">+</span>
+                </div>
                 <ul class="submenu" id="pyqSubmenu">
                     <li><a href="#" onclick="toggleMenu()">Semester 1</a></li>
                     <li><a href="#" onclick="toggleMenu()">Semester 2</a></li>
@@ -82,6 +88,32 @@
         <p>Our mission is to simplify studying and help students learn faster through accessible academic resources.</p>
     </div>
 
+    <div id="uploadModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal-btn" onclick="closeUploadModal()">✖</span>
+            <h2 id="uploadTitle">Contribute</h2>
+            <p class="modal-subtitle">Help the community by uploading a file.</p>
+            
+            <input type="text" class="modal-input" placeholder="Subject Name (e.g., Physics)">
+            
+            <select class="modal-input">
+                <option value="" disabled selected>Select Semester</option>
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+                <option value="3">Semester 3</option>
+                <option value="4">Semester 4</option>
+                <option value="5">Semester 5</option>
+                <option value="6">Semester 6</option>
+                <option value="7">Semester 7</option>
+                <option value="8">Semester 8</option>
+            </select>
+
+            <input type="file" class="modal-input file-input" accept=".pdf,.doc,.docx">
+            
+            <button class="upload-submit-btn" onclick="simulateUpload()">Upload File</button>
+        </div>
+    </div>
+
     <script>
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
@@ -109,6 +141,27 @@
                 top: document.getElementById("pdfViewer").offsetTop,
                 behavior: "smooth"
             });
+        }
+
+        /* --- Upload Modal Logic --- */
+        function openUploadModal(type, event) {
+            // Stops the menu from toggling when the + is clicked
+            event.stopPropagation(); 
+            
+            document.getElementById("uploadTitle").innerText = "Upload " + type;
+            document.getElementById("uploadModal").style.display = "flex";
+            
+            // Close the navigation menu so the user can see the popup clearly
+            document.getElementById("navLinks").classList.remove("active");
+        }
+
+        function closeUploadModal() {
+            document.getElementById("uploadModal").style.display = "none";
+        }
+
+        function simulateUpload() {
+            alert("Thank you for contributing! (Note: Database connection required to permanently save files.)");
+            closeUploadModal();
         }
     </script>
 
