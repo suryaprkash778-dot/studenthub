@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+/* STRICT LOCK: Prevents the horizontal "slider" glitch entirely */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden; 
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     /* Cosmic Background using your Gargantua image */
@@ -11,7 +17,6 @@ body {
     background-size: cover;
     color: white;
     min-height: 100vh;
-    overflow-x: hidden;
     position: relative;
 }
 
@@ -42,16 +47,10 @@ body::before {
     height: 250px;
 }
 
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: rgba(13, 17, 23, 0.8);
-}
-::-webkit-scrollbar-thumb {
-    background: #00d4ff;
-    border-radius: 10px;
-}
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: rgba(13, 17, 23, 0.8); }
+::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 10px; }
 
 /* --- Navbar - Full Frosted Glass --- */
 .navbar {
@@ -69,9 +68,14 @@ body::before {
     z-index: 100;
 }
 
+/* Cursive Logo Styling */
 .navbar h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px; 
+    font-weight: 400;
     color: #00d4ff;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.4); 
 }
 
 .menu-icon {
@@ -82,36 +86,33 @@ body::before {
     user-select: none;
 }
 
-.menu-icon:hover {
-    color: #e6f1ff; 
-}
-
-/* --- Navigation Menu Drawer --- */
+/* --- THE NEW DROP-DOWN MENU --- */
 .navbar ul {
-    position: fixed;
-    top: 0;
-    right: -300px; 
-    width: 280px; 
-    height: 100vh;
+    position: absolute;
+    top: 100%; /* Puts it directly below the navbar */
+    left: 0;
+    width: 100%;
     background: rgba(13, 17, 23, 0.95); 
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border-left: 1px solid rgba(0, 212, 255, 0.2);
+    
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 100px;
-    padding-bottom: 50px;
-    gap: 25px;
+    align-items: center;
+    gap: 20px;
     list-style: none;
-    transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    z-index: 1001; 
-    box-shadow: -10px 0 40px rgba(0,0,0,0.7);
-    overflow-y: auto; 
+    
+    /* Animation magic to hide and reveal it */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
 }
 
 .navbar ul.active {
-    right: 0;
+    max-height: 800px; /* Expands to show options */
+    padding: 30px 0;
+    overflow-y: auto;
 }
 
 .navbar a {
@@ -119,60 +120,27 @@ body::before {
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;
-    margin-left: 30px;
     transition: color 0.3s;
     display: block;
+    text-align: center;
 }
 
-.navbar a:hover {
-    color: #00d4ff;
-}
+.navbar a:hover { color: #00d4ff; }
 
-.close-menu {
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    font-size: 24px;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.5);
-    transition: 0.3s;
-}
-
-.close-menu:hover {
-    color: #00d4ff;
-    transform: rotate(90deg);
-}
-
-/* --- Navigation Dropdowns --- */
+/* --- Navigation Dropdowns (Notes & PYQs) --- */
 .submenu {
     display: none; 
     flex-direction: column;
+    align-items: center;
     gap: 15px;
     margin-top: 15px;
-    margin-left: 45px; 
-    padding-left: 15px;
     list-style: none;
-    border-left: 2px solid rgba(0, 212, 255, 0.3); 
 }
 
-.submenu.active {
-    display: flex;
-}
-
-.submenu a {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.5); 
-    margin-left: 0;
-}
-
-.submenu a:hover {
-    color: #00d4ff;
-}
-
-.dropdown-btn {
-    cursor: pointer;
-    user-select: none;
-}
+.submenu.active { display: flex; }
+.submenu a { font-size: 16px; color: rgba(255, 255, 255, 0.5); }
+.submenu a:hover { color: #00d4ff; }
+.dropdown-btn { cursor: pointer; user-select: none; }
 
 /* --- Hero Section --- */
 .hero {
@@ -212,12 +180,7 @@ body::before {
     border: 1px solid rgba(0, 212, 255, 0.3);
 }
 
-#pdfFrame {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: white; 
-}
+#pdfFrame { width: 100%; height: 100%; border: none; background: white; }
 
 /* --- About Side Panel --- */
 .about-panel {
@@ -237,16 +200,8 @@ body::before {
     box-shadow: -10px 0 40px rgba(0,0,0,0.8);
 }
 
-.about-panel h2 {
-    margin-bottom: 20px;
-    color: #00d4ff;
-}
-
-.about-panel p {
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
+.about-panel h2 { margin-bottom: 20px; color: #00d4ff; }
+.about-panel p { color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin-bottom: 15px; }
 
 .close-btn {
     position: absolute;
@@ -258,10 +213,7 @@ body::before {
     transition: 0.3s;
 }
 
-.close-btn:hover {
-    color: #00d4ff;
-    transform: rotate(90deg);
-}
+.close-btn:hover { color: #00d4ff; transform: rotate(90deg); }
 
 /* --- Footer --- */
 footer {
@@ -276,17 +228,7 @@ footer {
 
 /* --- Mobile --- */
 @media(max-width: 768px) {
-    .navbar {
-        padding: 15px 20px;
-    }
-    .hero h1 {
-        font-size: 32px;
-    }
-    #pdfViewer {
-        width: 95%;
-        height: 500px;
-    }
-    .navbar ul {
-        width: 250px;
-    }
+    .navbar { padding: 15px 20px; }
+    .hero h1 { font-size: 32px; }
+    #pdfViewer { width: 95%; height: 500px; }
 }
