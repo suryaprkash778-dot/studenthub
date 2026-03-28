@@ -17,7 +17,7 @@ body {
     min-height: 100vh;
 }
 
-/* --- Ambient Light --- */
+/* --- Ambient Light Effects --- */
 body::after, body::before {
     content: '';
     position: fixed;
@@ -35,8 +35,11 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     padding: 25px 40px;
     background: transparent;
     position: fixed;
-    top: 0; left: 0; width: 100%;
-    z-index: 2000;
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    z-index: 2500; /* High enough to be above main content */
+    pointer-events: none; /* Allows clicks to pass through the empty parts of the bar */
 }
 
 .topbar h3 {
@@ -44,34 +47,39 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     font-size: 38px;
     color: #00d4ff;
     text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+    pointer-events: auto; /* Makes logo clickable/interactive */
 }
 
 .menu-btn {
     font-size: 32px;
     cursor: pointer;
     color: #00d4ff;
-    z-index: 2001;
+    transition: 0.3s;
+    pointer-events: auto; /* CRITICAL: Forces the button to capture clicks */
+    z-index: 2600; 
 }
 
-/* --- SIDEBAR (FLIPPED TO RIGHT) --- */
+.menu-btn:hover { color: #e6f1ff; transform: scale(1.1); }
+
+/* --- SIDEBAR (RIGHT SIDE) --- */
 .sidebar {
     position: fixed;
-    right: -300px; /* Hidden on the right */
+    right: -300px; 
     top: 0;
     width: 280px;
     height: 100%;
-    background: rgba(13, 17, 23, 0.95);
+    background: rgba(13, 17, 23, 0.98); /* Slightly more solid for readability */
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border-left: 1px solid rgba(0, 212, 255, 0.2);
-    padding: 60px 20px 20px 20px;
+    padding: 80px 20px 20px 20px;
     transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 3000;
     overflow-y: auto;
 }
 
 .sidebar.active {
-    right: 0; /* Slides in from right */
+    right: 0; 
 }
 
 .sidebar h2 { font-family: 'Great Vibes', cursive; font-size: 42px; color: #00d4ff; text-align: center; margin-bottom: 30px; }
@@ -81,7 +89,7 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 
 .close-sidebar { position: absolute; top: 20px; left: 20px; font-size: 24px; cursor: pointer; color: white; }
 
-.submenu { display: none; padding-left: 15px; border-left: 2px solid rgba(0, 212, 255, 0.3); margin-left: 25px; }
+.submenu { display: none; padding-left: 15px; border-left: 2px solid rgba(0, 212, 255, 0.3); margin-left: 25px; margin-bottom: 10px; }
 .submenu.active { display: block; }
 
 /* --- MAIN --- */
@@ -109,7 +117,7 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 
 /* --- GHOST BOX FIX --- */
 #pdfViewer {
-    display: none; /* Stays hidden until a file is opened */
+    display: none; 
     margin-bottom: 40px;
     width: 90%;
     max-width: 1000px;
@@ -121,7 +129,7 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 
 #pdfFrame { width: 100%; height: 100%; border: none; background: white; }
 
-/* --- UPLOAD --- */
+/* --- UPLOAD SECTION --- */
 .upload-section {
     background: rgba(13, 17, 23, 0.6);
     backdrop-filter: blur(20px);
