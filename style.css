@@ -47,43 +47,47 @@ body::before {
 ::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 10px; }
 
 /* =========================================
-   TOPBAR
+   TOPBAR (Minimalist Floating Style)
    ========================================= */
 .topbar {
     display: flex;
+    justify-content: space-between; /* Pushes Logo left, Menu right */
     align-items: center;
-    padding: 15px 25px;
-    background: rgba(13, 17, 23, 0.4);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    position: sticky;
+    padding: 25px 40px; /* Wider padding for a premium feel */
+    background: transparent; /* Removes the rectangular box entirely */
+    border: none; 
+    box-shadow: none; 
+    position: absolute; /* Floats naturally over the background */
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 100;
 }
 
 .topbar h3 {
     font-family: 'Great Vibes', cursive; 
-    font-size: 32px;
+    font-size: 38px; /* Slightly larger to stand out */
     font-weight: 400;
     color: #00d4ff;
     letter-spacing: 2px;
     text-shadow: 0 0 15px rgba(0, 212, 255, 0.4); 
+    margin: 0;
 }
 
 .menu-btn {
-    font-size: 28px;
+    font-size: 32px; /* Slightly larger icon for easier tapping */
     cursor: pointer;
-    margin-right: 20px;
     color: #00d4ff;
     transition: 0.3s;
     user-select: none;
-    display: flex; align-items: center; 
+    display: flex; 
+    align-items: center; 
+    margin: 0;
 }
 
 .menu-btn:hover {
     color: #e6f1ff;
+    transform: scale(1.1); /* Nice subtle pop when hovering */
 }
 
 /* =========================================
@@ -95,238 +99,4 @@ body::before {
     top: 0;
     width: 280px;
     height: 100%;
-    background: rgba(13, 17, 23, 0.85); 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-right: 1px solid rgba(0, 212, 255, 0.2);
-    box-shadow: 10px 0 40px rgba(0,0,0,0.7);
-    padding: 40px 20px 20px 20px;
-    transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    z-index: 1001; 
-    overflow-y: auto;
-}
-
-.sidebar.active {
-    left: 0;
-}
-
-.sidebar h2 {
-    font-family: 'Great Vibes', cursive; 
-    font-size: 42px;
-    font-weight: 400;
-    color: #00d4ff;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-    text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-    text-align: center;
-}
-
-.sidebar a {
-    display: flex;
-    align-items: center; 
-    gap: 12px; 
-    padding: 12px 15px;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 8px;
-    transition: 0.3s;
-    margin-bottom: 5px;
-}
-
-.sidebar a i {
-    font-size: 22px; 
-}
-
-.sidebar a:hover {
-    color: #00d4ff;
-    background: rgba(0, 212, 255, 0.1);
-    transform: translateX(5px);
-}
-
-.close-sidebar {
-    position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: rgba(255,255,255,0.5); transition: 0.3s;
-}
-.close-sidebar:hover { color: #ff4d4d; }
-
-.submenu { display: none; padding-left: 15px; border-left: 2px solid rgba(0, 212, 255, 0.3); margin-left: 25px; margin-bottom: 10px; }
-.submenu.active { display: block; }
-
-/* =========================================
-   MAIN CONTENT AREA
-   ========================================= */
-.main {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-}
-
-/* HERO */
-.hero {
-    text-align: center;
-    margin-top: 60px;
-    background: rgba(13, 17, 23, 0.5); 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 50px 30px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    max-width: 800px;
-    width: 100%;
-}
-
-.hero h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    background: linear-gradient(90deg, #00d4ff, #005ae0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero p { font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); }
-
-/* --- PDF VIEWER --- */
-#pdfViewer {
-    display: none;
-    margin-top: 40px;
-    width: 100%;
-    max-width: 1000px;
-    height: 700px;
-    border-radius: 15px;
-    overflow: hidden;
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-}
-
-#pdfFrame { width: 100%; height: 100%; border: none; background: white; }
-
-/* =========================================
-   UPLOAD SECTION
-   ========================================= */
-.upload-section {
-    margin-top: 60px;
-    margin-bottom: 50px;
-    background: rgba(13, 17, 23, 0.6); 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    width: 100%;
-    max-width: 700px;
-    text-align: center;
-}
-
-.upload-section h2 {
-    color: #00d4ff;
-    margin-bottom: 10px;
-    font-size: 28px;
-    text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-}
-
-.upload-section p {
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 25px;
-    font-size: 15px;
-}
-
-#uploadForm {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.upload-row { display: flex; gap: 15px; }
-
-.upload-input {
-    width: 100%;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.05); 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    color: white; 
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.upload-input:focus {
-    border-color: #00d4ff;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
-}
-
-.upload-input option {
-    background: #0d1117;
-    color: white;
-}
-
-.file-input {
-    padding: 12px;
-    color: rgba(255, 255, 255, 0.6);
-    cursor: pointer;
-}
-
-.upload-btn {
-    padding: 16px;
-    background: linear-gradient(45deg, #00d4ff, #005ae0);
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
-    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
-}
-
-.upload-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
-}
-
-/* =========================================
-   ABOUT PANEL
-   ========================================= */
-.about-panel {
-    position: fixed;
-    right: -400px; 
-    top: 0;
-    width: 350px;
-    height: 100%;
-    background: rgba(13, 17, 23, 0.95);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-left: 1px solid rgba(0, 212, 255, 0.2);
-    padding: 40px 30px;
-    transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    overflow-y: auto;
-    z-index: 1002; 
-    box-shadow: -10px 0 40px rgba(0,0,0,0.8);
-}
-
-.about-panel h2 { color: #00d4ff; margin-bottom: 20px; }
-.about-panel p { color: rgba(255, 255, 255, 0.8); margin-bottom: 15px; line-height: 1.6; font-size: 15px; }
-
-.close-about {
-    position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; color: rgba(255,255,255,0.5); transition: 0.3s;
-}
-.close-about:hover { color: #00d4ff; transform: rotate(90deg); }
-
-/* =========================================
-   MOBILE RESPONSIVE RULES
-   ========================================= */
-@media(max-width: 768px) {
-    .sidebar { left: -300px; } 
-    .sidebar.active { left: 0; } 
-    .topbar { padding: 15px 20px; }
-    .main { padding: 20px; }
-    .upload-row { flex-direction: column; } 
-}
+    background: rgba(13,
