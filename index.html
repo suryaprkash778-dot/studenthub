@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteVerse</title>
 
-    <!-- Stylish Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
-    <h2>📚 NoteVerse</h2>
+    <span onclick="toggleSidebar()" class="close-sidebar">✖</span>
 
-    <a href="#">🏠 Home</a>
+    <h2>NoteVerse</h2>
+
+    <a href="#" onclick="toggleSidebar(); location.reload();">🏠 Home</a>
 
     <a href="#" onclick="toggleSubMenu('notesMenu', event)">📘 Notes</a>
     <div class="submenu" id="notesMenu">
@@ -25,6 +26,10 @@
         <a href="#">Semester 2</a>
         <a href="#">Semester 3</a>
         <a href="#">Semester 4</a>
+        <a href="#">Semester 5</a>
+        <a href="#">Semester 6</a>
+        <a href="#">Semester 7</a>
+        <a href="#">Semester 8</a>
     </div>
 
     <a href="#" onclick="toggleSubMenu('pyqMenu', event)">📄 PYQs</a>
@@ -33,18 +38,32 @@
         <a href="#">Semester 2</a>
         <a href="#">Semester 3</a>
         <a href="#">Semester 4</a>
+        <a href="#">Semester 5</a>
+        <a href="#">Semester 6</a>
+        <a href="#">Semester 7</a>
+        <a href="#">Semester 8</a>
+    </div>
+
+    <a href="#" onclick="toggleSubMenu('resourcesMenu', event)">🛠️ Resources</a>
+    <div class="submenu" id="resourcesMenu">
+        <a href="#">Semester 1</a>
+        <a href="#">Semester 2</a>
+        <a href="#">Semester 3</a>
+        <a href="#">Semester 4</a>
+        <a href="#">Semester 5</a>
+        <a href="#">Semester 6</a>
+        <a href="#">Semester 7</a>
+        <a href="#">Semester 8</a>
     </div>
 
     <a href="#" onclick="openAbout()">ℹ️ About</a>
 </div>
 
-<!-- TOPBAR -->
 <div class="topbar">
     <span class="menu-btn" onclick="toggleSidebar()">☰</span>
     <h3>NoteVerse</h3>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
     <section class="hero">
@@ -56,44 +75,104 @@
         <iframe id="pdfFrame"></iframe>
     </section>
 
+    <section class="upload-section" id="uploadSection">
+        <h2>🚀 Contribute to NoteVerse</h2>
+        <p>Help the community by sharing your study materials.</p>
+        
+        <form id="uploadForm">
+            <input type="text" id="fileName" class="upload-input" placeholder="File Name (e.g., Physics Unit 1)" required>
+            
+            <div class="upload-row">
+                <select id="fileCategory" class="upload-input" required>
+                    <option value="" disabled selected>Select Category</option>
+                    <option value="notes">Notes</option>
+                    <option value="pyq">PYQs</option>
+                    <option value="resources">Resources</option>
+                </select>
+
+                <select id="fileSemester" class="upload-input" required>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+            </div>
+
+            <input type="file" id="fileInput" class="upload-input file-input" accept=".pdf,.doc,.docx" required>
+            
+            <button type="submit" class="upload-btn" onclick="handleFakeUpload(event)">Upload & Save File</button>
+        </form>
+    </section>
+
 </div>
 
-<!-- ABOUT PANEL -->
 <div id="aboutPanel" class="about-panel">
-    <span onclick="closeAbout()">✖</span>
-
+    <span onclick="closeAbout()" class="close-about">✖</span>
     <h2>About NoteVerse</h2>
-
-    <p>
-        NoteVerse is a smart academic platform designed to simplify the way students access study materials.
-        Instead of searching multiple websites, everything you need is available in one place.
-    </p>
-
-    <p>
-        This platform provides structured notes and previous year question papers (PYQs)
-        organized semester-wise, helping students save time and focus more on learning.
-    </p>
-
-    <p>
-        Whether you are preparing for exams, revising concepts, or exploring new subjects,
-        NoteVerse ensures a smooth and distraction-free experience.
-    </p>
-
-    <p>
-        🔥 Features:
-        <br>• Semester-wise Notes  
-        <br>• Previous Year Question Papers  
-        <br>• Clean & Simple UI  
-        <br>• Fast Navigation  
-        <br>• Student-Friendly Design  
-    </p>
-
-    <p>
-        Our mission is to make studying easier, faster, and more efficient for every student.
-    </p>
+    <p>NoteVerse is a smart academic platform designed to simplify the way students access study materials. Instead of searching multiple websites, everything you need is available in one place.</p>
+    <p>This platform provides structured notes, previous year question papers (PYQs), and additional resources organized semester-wise, helping students save time and focus more on learning.</p>
+    <p>Our mission is to make studying easier, faster, and more efficient for every student.</p>
 </div>
 
-<script src="script.js"></script>
+<script>
+    /* 1. SIDEBAR TOGGLE */
+    function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    /* 2. SUBMENU ACCORDION */
+    function toggleSubMenu(id, event) {
+        event.preventDefault(); 
+        // Close others
+        document.querySelectorAll(".submenu").forEach(menu => {
+            if (menu.id !== id) menu.classList.remove("active");
+        });
+        // Open clicked
+        document.getElementById(id).classList.toggle("active");
+    }
+
+    /* 3. ABOUT PANEL */
+    function openAbout() {
+        document.getElementById("aboutPanel").style.right = "0";
+    }
+
+    function closeAbout() {
+        document.getElementById("aboutPanel").style.right = "-400px"; 
+    }
+
+    /* 4. PDF VIEWER */
+    function openPDF(file) {
+        const viewer = document.getElementById("pdfViewer");
+        viewer.style.display = "block";
+        document.getElementById("pdfFrame").src = file;
+        window.scrollTo({
+            top: viewer.offsetTop - 100,
+            behavior: "smooth"
+        });
+    }
+
+    /* 5. UPLOAD FORM TEST LOGIC */
+    function handleFakeUpload(event) {
+        event.preventDefault();
+        const fileName = document.getElementById("fileName").value;
+        const category = document.getElementById("fileCategory").value;
+        const semester = document.getElementById("fileSemester").value;
+        const file = document.getElementById("fileInput").files[0];
+        
+        if (!file || !fileName || !category || !semester) {
+            alert("Please fill out all fields and select a file!");
+            return;
+        }
+        
+        alert(`Success! "${fileName}" (${category.toUpperCase()} - Sem ${semester}) is ready to be sent to the database.`);
+        document.getElementById("uploadForm").reset();
+    }
+</script>
 
 </body>
 </html>
