@@ -5,46 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteVerse</title>
 
-    <!-- Stylish Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
-    <h2>📚 NoteVerse</h2>
+    <span onclick="toggleSidebar()" class="close-sidebar"><i class="ph ph-x"></i></span>
 
-    <a href="#">🏠 Home</a>
+    <h2>NoteVerse</h2>
 
-    <a href="#" onclick="toggleSubMenu('notesMenu', event)">📘 Notes</a>
+    <a href="#" onclick="toggleSidebar(); location.reload();">
+        <i class="ph ph-house"></i> Home
+    </a>
+
+    <a href="#" onclick="toggleSubMenu('notesMenu', event)">
+        <i class="ph ph-book-open-text"></i> Notes
+    </a>
     <div class="submenu" id="notesMenu">
-        <a href="#">Semester 1</a>
+        <a href="#" onclick="openPDF('sample.pdf')">Semester 1</a>
         <a href="#">Semester 2</a>
         <a href="#">Semester 3</a>
         <a href="#">Semester 4</a>
+        <a href="#">Semester 5</a>
+        <a href="#">Semester 6</a>
+        <a href="#">Semester 7</a>
+        <a href="#">Semester 8</a>
     </div>
 
-    <a href="#" onclick="toggleSubMenu('pyqMenu', event)">📄 PYQs</a>
+    <a href="#" onclick="toggleSubMenu('pyqMenu', event)">
+        <i class="ph ph-file-text"></i> PYQs
+    </a>
     <div class="submenu" id="pyqMenu">
         <a href="#">Semester 1</a>
         <a href="#">Semester 2</a>
         <a href="#">Semester 3</a>
         <a href="#">Semester 4</a>
+        <a href="#">Semester 5</a>
+        <a href="#">Semester 6</a>
+        <a href="#">Semester 7</a>
+        <a href="#">Semester 8</a>
     </div>
 
-    <a href="#" onclick="openAbout()">ℹ️ About</a>
+    <a href="#" onclick="toggleSubMenu('resourcesMenu', event)">
+        <i class="ph ph-cube"></i> Resources
+    </a>
+    <div class="submenu" id="resourcesMenu">
+        <a href="#">Semester 1</a>
+        <a href="#">Semester 2</a>
+        <a href="#">Semester 3</a>
+        <a href="#">Semester 4</a>
+        <a href="#">Semester 5</a>
+        <a href="#">Semester 6</a>
+        <a href="#">Semester 7</a>
+        <a href="#">Semester 8</a>
+    </div>
+
+    <a href="#" onclick="openAbout()">
+        <i class="ph ph-info"></i> About
+    </a>
 </div>
 
-<!-- TOPBAR -->
 <div class="topbar">
-    <span class="menu-btn" onclick="toggleSidebar()">☰</span>
     <h3>NoteVerse</h3>
+    <span class="menu-btn" onclick="toggleSidebar()"><i class="ph ph-list"></i></span>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
     <section class="hero">
@@ -56,44 +87,145 @@
         <iframe id="pdfFrame"></iframe>
     </section>
 
+    <section class="upload-section" id="uploadSection">
+        <h2>Contribute to NoteVerse</h2>
+        <p>Help the community by sharing your study materials.</p>
+        
+        <form id="uploadForm">
+            <input type="text" id="fileName" class="upload-input" placeholder="File Name (e.g., Physics Unit 1)" required>
+            
+            <div class="upload-row">
+                <select id="fileCategory" class="upload-input" required>
+                    <option value="" disabled selected>Select Category</option>
+                    <option value="notes">Notes</option>
+                    <option value="pyq">PYQs</option>
+                    <option value="resources">Resources</option>
+                </select>
+
+                <select id="fileSemester" class="upload-input" required>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+            </div>
+
+            <input type="file" id="fileInput" class="upload-input file-input" accept=".pdf,.doc,.docx" required>
+            
+            <button type="submit" class="upload-btn">Upload & Save File</button>
+        </form>
+    </section>
+
 </div>
 
-<!-- ABOUT PANEL -->
 <div id="aboutPanel" class="about-panel">
-    <span onclick="closeAbout()">✖</span>
-
+    <span onclick="closeAbout()" class="close-about"><i class="ph ph-x"></i></span>
     <h2>About NoteVerse</h2>
-
-    <p>
-        NoteVerse is a smart academic platform designed to simplify the way students access study materials.
-        Instead of searching multiple websites, everything you need is available in one place.
-    </p>
-
-    <p>
-        This platform provides structured notes and previous year question papers (PYQs)
-        organized semester-wise, helping students save time and focus more on learning.
-    </p>
-
-    <p>
-        Whether you are preparing for exams, revising concepts, or exploring new subjects,
-        NoteVerse ensures a smooth and distraction-free experience.
-    </p>
-
-    <p>
-        🔥 Features:
-        <br>• Semester-wise Notes  
-        <br>• Previous Year Question Papers  
-        <br>• Clean & Simple UI  
-        <br>• Fast Navigation  
-        <br>• Student-Friendly Design  
-    </p>
-
-    <p>
-        Our mission is to make studying easier, faster, and more efficient for every student.
-    </p>
+    <p>NoteVerse is a smart academic platform designed to simplify the way students access study materials.</p>
+    <p>This platform provides structured notes, previous year question papers (PYQs), and additional resources organized semester-wise.</p>
+    <p>Our mission is to make studying easier, faster, and more efficient for every student.</p>
 </div>
 
-<script src="script.js"></script>
+<script>
+    /* SIDEBAR TOGGLE */
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("active");
+    }
+
+    /* SUBMENU ACCORDION */
+    function toggleSubMenu(id, event) {
+        event.preventDefault(); 
+        document.querySelectorAll(".submenu").forEach(menu => {
+            if (menu.id !== id) menu.classList.remove("active");
+        });
+        document.getElementById(id).classList.toggle("active");
+    }
+
+    /* ABOUT PANEL */
+    function openAbout() {
+        document.getElementById("aboutPanel").style.right = "0";
+    }
+
+    function closeAbout() {
+        document.getElementById("aboutPanel").style.right = "-400px"; 
+    }
+
+    /* PDF VIEWER */
+    function openPDF(file) {
+        const viewer = document.getElementById("pdfViewer");
+        viewer.style.display = "block"; // Shows the box ONLY when a file is opened
+        document.getElementById("pdfFrame").src = file;
+        window.scrollTo({
+            top: viewer.offsetTop - 120,
+            behavior: "smooth"
+        });
+    }
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    // PASTE YOUR ACTUAL FIREBASE CONFIG HERE
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        projectId: "YOUR_PROJECT",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+    const db = getFirestore(app);
+
+    const uploadForm = document.getElementById("uploadForm");
+    const submitBtn = document.querySelector(".upload-btn");
+
+    uploadForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); 
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = "Uploading... ⏳";
+        submitBtn.disabled = true;
+
+        try {
+            const fileName = document.getElementById("fileName").value;
+            const category = document.getElementById("fileCategory").value;
+            const semester = document.getElementById("fileSemester").value;
+            const file = document.getElementById("fileInput").files[0];
+
+            const storageRef = ref(storage, `uploads/${category}/sem${semester}/${file.name}`);
+            const snapshot = await uploadBytes(storageRef, file);
+            const downloadURL = await getDownloadURL(snapshot.ref);
+
+            await addDoc(collection(db, "study_materials"), {
+                title: fileName,
+                category: category,
+                semester: semester,
+                fileUrl: downloadURL,
+                uploadedAt: serverTimestamp() 
+            });
+
+            alert(`Success! "${fileName}" uploaded!`);
+            uploadForm.reset();
+
+        } catch (error) {
+            console.error(error);
+            alert("Upload Error: Link your actual Firebase keys to enable storage.");
+        } finally {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
+</script>
 
 </body>
 </html>

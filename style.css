@@ -4,129 +4,157 @@
     box-sizing: border-box;
 }
 
-/* BODY */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: url('IMG_20260326_212648.png') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden; 
 }
 
-/* TOPBAR */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0d1117 url('IMG_20260326_212648.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    min-height: 100vh;
+}
+
+/* --- Ambient Light Effects --- */
+body::after, body::before {
+    content: '';
+    position: fixed;
+    width: 300px; height: 300px; border-radius: 50%;
+    filter: blur(100px); opacity: 0.6; z-index: -1; pointer-events: none;
+}
+body::after { background: radial-gradient(circle, #00d4ff 0%, #005ae0 100%); top: 10%; right: 10%; }
+body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); top: 40%; left: 5%; }
+
+/* --- TOPBAR (Fixed Floating) --- */
 .topbar {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(8px);
+    padding: 25px 40px;
+    background: transparent;
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    z-index: 2500; /* High enough to be above main content */
+    pointer-events: none; /* Allows clicks to pass through the empty parts of the bar */
+}
+
+.topbar h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    color: #00d4ff;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+    pointer-events: auto; /* Makes logo clickable/interactive */
 }
 
 .menu-btn {
-    font-size: 26px;
+    font-size: 32px;
     cursor: pointer;
-    margin-right: 15px;
+    color: #00d4ff;
+    transition: 0.3s;
+    pointer-events: auto; /* CRITICAL: Forces the button to capture clicks */
+    z-index: 2600; 
 }
 
-/* SIDEBAR */
+.menu-btn:hover { color: #e6f1ff; transform: scale(1.1); }
+
+/* --- SIDEBAR (RIGHT SIDE) --- */
 .sidebar {
     position: fixed;
-    left: -260px;
+    right: -300px; 
     top: 0;
-    width: 260px;
+    width: 280px;
     height: 100%;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(15px);
-    padding: 20px;
-    transition: 0.3s;
-}
-
-.sidebar.active {
-    left: 0;
-}
-
-.sidebar h2 {
-    margin-bottom: 20px;
-}
-
-/* LINKS */
-.sidebar a {
-    display: block;
-    padding: 10px 0;
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
-}
-
-.sidebar a:hover {
-    color: #00f7ff;
-}
-
-/* SUBMENU */
-.submenu {
-    display: none;
-    padding-left: 15px;
-}
-
-.submenu.active {
-    display: block;
-}
-
-/* MAIN */
-.main {
-    padding: 20px;
-}
-
-/* HERO */
-.hero {
-    text-align: center;
-    margin-top: 100px;
-    background: rgba(0,0,0,0.4);
-    padding: 40px;
-    border-radius: 15px;
-    display: inline-block;
-}
-
-.hero h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    text-shadow: 0 0 15px rgba(0,0,0,0.9);
-}
-
-.hero p {
-    margin-top: 10px;
-    font-size: 1.1rem;
-}
-
-/* PDF */
-#pdfViewer {
-    display: none;
-    margin-top: 20px;
-    height: 500px;
-}
-
-#pdfFrame {
-    width: 100%;
-    height: 100%;
-}
-
-/* ABOUT PANEL */
-.about-panel {
-    position: fixed;
-    right: -350px;
-    top: 0;
-    width: 350px;
-    height: 100%;
-    background: rgba(0,0,0,0.85);
-    padding: 25px;
-    transition: 0.4s;
+    background: rgba(13, 17, 23, 0.98); /* Slightly more solid for readability */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-left: 1px solid rgba(0, 212, 255, 0.2);
+    padding: 80px 20px 20px 20px;
+    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 3000;
     overflow-y: auto;
 }
 
-.about-panel h2 {
-    margin-bottom: 15px;
+.sidebar.active {
+    right: 0; 
 }
 
-.about-panel p {
-    margin-bottom: 15px;
-    line-height: 1.6;
+.sidebar h2 { font-family: 'Great Vibes', cursive; font-size: 42px; color: #00d4ff; text-align: center; margin-bottom: 30px; }
+.sidebar a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: white; text-decoration: none; border-radius: 8px; margin-bottom: 5px; transition: 0.3s; }
+.sidebar a:hover { background: rgba(0, 212, 255, 0.1); color: #00d4ff; }
+.sidebar a i { font-size: 22px; }
+
+.close-sidebar { position: absolute; top: 20px; left: 20px; font-size: 24px; cursor: pointer; color: white; }
+
+.submenu { display: none; padding-left: 15px; border-left: 2px solid rgba(0, 212, 255, 0.3); margin-left: 25px; margin-bottom: 10px; }
+.submenu.active { display: block; }
+
+/* --- MAIN --- */
+.main {
+    padding-top: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.hero {
+    text-align: center;
+    background: rgba(13, 17, 23, 0.5);
+    backdrop-filter: blur(15px);
+    padding: 50px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    max-width: 800px;
+    width: 90%;
+    margin-bottom: 40px;
+}
+
+.hero h1 { font-size: 2.8rem; background: linear-gradient(90deg, #00d4ff, #005ae0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* --- GHOST BOX FIX --- */
+#pdfViewer {
+    display: none; 
+    margin-bottom: 40px;
+    width: 90%;
+    max-width: 1000px;
+    height: 600px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    overflow: hidden;
+}
+
+#pdfFrame { width: 100%; height: 100%; border: none; background: white; }
+
+/* --- UPLOAD SECTION --- */
+.upload-section {
+    background: rgba(13, 17, 23, 0.6);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.upload-section h2 { color: #00d4ff; margin-bottom: 15px; }
+#uploadForm { display: flex; flex-direction: column; gap: 15px; }
+.upload-row { display: flex; gap: 15px; }
+.upload-input { width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; outline: none; }
+.upload-btn { padding: 16px; background: linear-gradient(45deg, #00d4ff, #005ae0); border: none; border-radius: 10px; color: white; font-weight: 600; cursor: pointer; }
+
+/* --- ABOUT --- */
+.about-panel { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(25px); padding: 40px 30px; transition: 0.4s; z-index: 4000; }
+.about-panel h2 { color: #00d4ff; margin-bottom: 20px; }
+.close-about { position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; }
+
+@media(max-width: 768px) {
+    .topbar { padding: 15px 20px; }
+    .topbar h3 { font-size: 28px; }
+    .upload-row { flex-direction: column; }
 }
