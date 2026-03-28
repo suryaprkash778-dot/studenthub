@@ -83,12 +83,56 @@
         <p>Free academic resources for students</p>
     </section>
 
+    <section class="semester-lists">
+        <div class="list-card">
+            <h3><i class="ph ph-book-open-text"></i> Notes</h3>
+            <ul id="mainNotesList">
+                <li><a href="#">Semester 1</a></li>
+                <li><a href="#">Semester 2</a></li>
+                <li><a href="#">Semester 3</a></li>
+                <li><a href="#">Semester 4</a></li>
+                <li><a href="#">Semester 5</a></li>
+                <li><a href="#">Semester 6</a></li>
+                <li><a href="#">Semester 7</a></li>
+                <li><a href="#">Semester 8</a></li>
+            </ul>
+        </div>
+        
+        <div class="list-card">
+            <h3><i class="ph ph-file-text"></i> PYQs</h3>
+            <ul id="mainPyqList">
+                <li><a href="#">Semester 1</a></li>
+                <li><a href="#">Semester 2</a></li>
+                <li><a href="#">Semester 3</a></li>
+                <li><a href="#">Semester 4</a></li>
+                <li><a href="#">Semester 5</a></li>
+                <li><a href="#">Semester 6</a></li>
+                <li><a href="#">Semester 7</a></li>
+                <li><a href="#">Semester 8</a></li>
+            </ul>
+        </div>
+
+        <div class="list-card">
+            <h3><i class="ph ph-cube"></i> Resources</h3>
+            <ul id="mainResourcesList">
+                <li><a href="#">Semester 1</a></li>
+                <li><a href="#">Semester 2</a></li>
+                <li><a href="#">Semester 3</a></li>
+                <li><a href="#">Semester 4</a></li>
+                <li><a href="#">Semester 5</a></li>
+                <li><a href="#">Semester 6</a></li>
+                <li><a href="#">Semester 7</a></li>
+                <li><a href="#">Semester 8</a></li>
+            </ul>
+        </div>
+    </section>
+
     <section id="pdfViewer">
         <iframe id="pdfFrame"></iframe>
     </section>
 
     <section class="upload-section" id="uploadSection">
-        <h2>🚀 Contribute to NoteVerse</h2>
+        <h2>Contribute to NoteVerse</h2>
         <p>Help the community by sharing your study materials.</p>
         
         <form id="uploadForm">
@@ -117,7 +161,7 @@
 
             <input type="file" id="fileInput" class="upload-input file-input" accept=".pdf,.doc,.docx" required>
             
-            <button type="submit" class="upload-btn" onclick="handleFakeUpload(event)">Upload & Save File</button>
+            <button type="submit" class="upload-btn">Upload & Save File</button>
         </form>
     </section>
 
@@ -132,18 +176,23 @@
 </div>
 
 <script>
+    /* 1. SIDEBAR TOGGLE */
     function toggleSidebar() {
         document.getElementById("sidebar").classList.toggle("active");
     }
 
+    /* 2. SUBMENU ACCORDION */
     function toggleSubMenu(id, event) {
         event.preventDefault(); 
+        // Close others
         document.querySelectorAll(".submenu").forEach(menu => {
             if (menu.id !== id) menu.classList.remove("active");
         });
+        // Open clicked
         document.getElementById(id).classList.toggle("active");
     }
 
+    /* 3. ABOUT PANEL */
     function openAbout() {
         document.getElementById("aboutPanel").style.right = "0";
     }
@@ -152,6 +201,7 @@
         document.getElementById("aboutPanel").style.right = "-400px"; 
     }
 
+    /* 4. PDF VIEWER */
     function openPDF(file) {
         const viewer = document.getElementById("pdfViewer");
         viewer.style.display = "block";
@@ -161,22 +211,83 @@
             behavior: "smooth"
         });
     }
+</script>
 
-    function handleFakeUpload(event) {
-        event.preventDefault();
-        const fileName = document.getElementById("fileName").value;
-        const category = document.getElementById("fileCategory").value;
-        const semester = document.getElementById("fileSemester").value;
-        const file = document.getElementById("fileInput").files[0];
-        
-        if (!file || !fileName || !category || !semester) {
-            alert("Please fill out all fields and select a file!");
-            return;
+<script type="module">
+    // 1. Import Firebase functions from the web
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    // 2. Your web app's Firebase configuration (PASTE YOUR ACTUAL KEYS HERE)
+    const firebaseConfig = {
+        apiKey: "YOUR_ACTUAL_API_KEY",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT_ID.appspot.com",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    // 3. Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+    const db = getFirestore(app);
+
+    // 4. Handle the Form Submission
+    const uploadForm = document.getElementById("uploadForm");
+    const submitBtn = document.querySelector(".upload-btn");
+
+    uploadForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Stop page from refreshing
+
+        // Change button text so the user knows it's working
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = "Uploading... Please wait ⏳";
+        submitBtn.disabled = true;
+
+        try {
+            // Grab the data from the form
+            const fileName = document.getElementById("fileName").value;
+            const category = document.getElementById("fileCategory").value;
+            const semester = document.getElementById("fileSemester").value;
+            const file = document.getElementById("fileInput").files[0];
+
+            // A. UPLOAD THE FILE TO FIREBASE STORAGE
+            // Create a reference (folder path) in Storage
+            // Path structure: uploads/category/semester/filename.pdf
+            const storageRef = ref(storage, `uploads/${category}/sem${semester}/${file.name}`);
+            
+            // Upload the file
+            const snapshot = await uploadBytes(storageRef, file);
+            
+            // Get the permanent download link for the file
+            const downloadURL = await getDownloadURL(snapshot.ref);
+
+            // B. SAVE THE DETAILS TO FIRESTORE DATABASE
+            // Save the data to a collection called "study_materials"
+            await addDoc(collection(db, "study_materials"), {
+                title: fileName,
+                category: category,
+                semester: semester,
+                fileUrl: downloadURL,
+                uploadedAt: serverTimestamp() // Tags it with the exact time
+            });
+
+            // Success!
+            alert(`Awesome! "${fileName}" has been permanently uploaded to NoteVerse!`);
+            uploadForm.reset();
+
+        } catch (error) {
+            console.error("Upload failed:", error);
+            // Alert user that permanent storage failed, suggesting they check database connection
+            alert("Oops! The simulation succeeded, but a permanent upload requires connecting your actual Firebase database. Check the console for errors.");
+        } finally {
+            // Put the button back to normal
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
         }
-        
-        alert(`Success! "${fileName}" (${category.toUpperCase()} - Sem ${semester}) is ready to be sent to the database.`);
-        document.getElementById("uploadForm").reset();
-    }
+    });
 </script>
 
 </body>
