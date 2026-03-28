@@ -126,29 +126,24 @@
 <div id="aboutPanel" class="about-panel">
     <span onclick="closeAbout()" class="close-about"><i class="ph ph-x"></i></span>
     <h2>About NoteVerse</h2>
-    <p>NoteVerse is a smart academic platform designed to simplify the way students access study materials. Instead of searching multiple websites, everything you need is available in one place.</p>
-    <p>This platform provides structured notes, previous year question papers (PYQs), and additional resources organized semester-wise, helping students save time and focus more on learning.</p>
+    <p>NoteVerse is a smart academic platform designed to simplify the way students access study materials.</p>
+    <p>This platform provides structured notes, previous year question papers (PYQs), and additional resources organized semester-wise.</p>
     <p>Our mission is to make studying easier, faster, and more efficient for every student.</p>
 </div>
 
 <script>
-    /* 1. SIDEBAR TOGGLE */
     function toggleSidebar() {
         document.getElementById("sidebar").classList.toggle("active");
     }
 
-    /* 2. SUBMENU ACCORDION */
     function toggleSubMenu(id, event) {
         event.preventDefault(); 
-        // Close others
         document.querySelectorAll(".submenu").forEach(menu => {
             if (menu.id !== id) menu.classList.remove("active");
         });
-        // Open clicked
         document.getElementById(id).classList.toggle("active");
     }
 
-    /* 3. ABOUT PANEL */
     function openAbout() {
         document.getElementById("aboutPanel").style.right = "0";
     }
@@ -157,90 +152,5 @@
         document.getElementById("aboutPanel").style.right = "-400px"; 
     }
 
-    /* 4. PDF VIEWER */
     function openPDF(file) {
-        const viewer = document.getElementById("pdfViewer");
-        viewer.style.display = "block";
-        document.getElementById("pdfFrame").src = file;
-        window.scrollTo({
-            top: viewer.offsetTop - 100,
-            behavior: "smooth"
-        });
-    }
-</script>
-
-<script type="module">
-    // 1. Import Firebase functions from the web
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
-    // 2. Your web app's Firebase configuration (PASTE YOUR ACTUAL KEYS HERE)
-    const firebaseConfig = {
-        apiKey: "YOUR_ACTUAL_API_KEY",
-        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_PROJECT_ID.appspot.com",
-        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-        appId: "YOUR_APP_ID"
-    };
-
-    // 3. Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const storage = getStorage(app);
-    const db = getFirestore(app);
-
-    // 4. Handle the Form Submission
-    const uploadForm = document.getElementById("uploadForm");
-    const submitBtn = document.querySelector(".upload-btn");
-
-    uploadForm.addEventListener("submit", async (e) => {
-        e.preventDefault(); // Stop page from refreshing
-
-        // Change button text so the user knows it's working
-        const originalBtnText = submitBtn.innerText;
-        submitBtn.innerText = "Uploading... Please wait ⏳";
-        submitBtn.disabled = true;
-
-        try {
-            // Grab the data from the form
-            const fileName = document.getElementById("fileName").value;
-            const category = document.getElementById("fileCategory").value;
-            const semester = document.getElementById("fileSemester").value;
-            const file = document.getElementById("fileInput").files[0];
-
-            // A. UPLOAD THE FILE TO FIREBASE STORAGE
-            const storageRef = ref(storage, `uploads/${category}/sem${semester}/${file.name}`);
-            
-            // Upload the file
-            const snapshot = await uploadBytes(storageRef, file);
-            
-            // Get the permanent download link for the file
-            const downloadURL = await getDownloadURL(snapshot.ref);
-
-            // B. SAVE THE DETAILS TO FIRESTORE DATABASE
-            await addDoc(collection(db, "study_materials"), {
-                title: fileName,
-                category: category,
-                semester: semester,
-                fileUrl: downloadURL,
-                uploadedAt: serverTimestamp() // Tags it with the exact time
-            });
-
-            // Success!
-            alert(`Awesome! "${fileName}" has been permanently uploaded to NoteVerse!`);
-            uploadForm.reset();
-
-        } catch (error) {
-            console.error("Upload failed:", error);
-            alert("Oops! The simulation succeeded, but a permanent upload requires connecting your actual Firebase database. Check the console for errors.");
-        } finally {
-            // Put the button back to normal
-            submitBtn.innerText = originalBtnText;
-            submitBtn.disabled = false;
-        }
-    });
-</script>
-
-</body>
-</html>
+        const viewer = document.
