@@ -6,6 +6,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    /* Cosmic Background */
     background: #0d1117 url('IMG_20260326_212648.png') no-repeat center center fixed;
     background-size: cover;
     color: white;
@@ -33,7 +34,7 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 ::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 10px; }
 
 /* =========================================
-   TOPBAR (Now visible on ALL screens)
+   TOPBAR
    ========================================= */
 .topbar {
     display: flex;
@@ -41,6 +42,7 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     padding: 15px 25px;
     background: rgba(13, 17, 23, 0.8);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0, 212, 255, 0.2);
     position: sticky;
     top: 0;
@@ -55,11 +57,11 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
 }
 
-.menu-btn { font-size: 28px; cursor: pointer; color: #00d4ff; transition: 0.3s; }
+.menu-btn { font-size: 28px; cursor: pointer; color: #00d4ff; transition: 0.3s; display: flex; align-items: center; }
 .menu-btn:hover { color: #e6f1ff; }
 
 /* =========================================
-   SIDEBAR (Hidden by default, slides in)
+   SIDEBAR
    ========================================= */
 .sidebar {
     position: fixed;
@@ -71,15 +73,16 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border-right: 1px solid rgba(0, 212, 255, 0.2);
-    padding: 30px 20px;
+    padding: 40px 20px 20px 20px;
     transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 1000;
     overflow-y: auto;
     box-shadow: 10px 0 40px rgba(0,0,0,0.8);
 }
 
+/* Slide-in magic class */
 .sidebar.active {
-    left: 0; /* Slides into view when active class is added */
+    left: 0; 
 }
 
 .sidebar h2 {
@@ -91,8 +94,11 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
 }
 
+/* NEW: Icon & Text Alignment */
 .sidebar a {
-    display: block;
+    display: flex;
+    align-items: center; 
+    gap: 12px; /* Perfect spacing between icon and text */
     padding: 12px 15px;
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
@@ -103,11 +109,20 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     margin-bottom: 5px;
 }
 
+.sidebar a i {
+    font-size: 22px; /* Makes the Phosphor icons crisp and slightly larger */
+}
+
 .sidebar a:hover {
     color: #00d4ff;
     background: rgba(0, 212, 255, 0.1);
     transform: translateX(5px);
 }
+
+.close-sidebar {
+    position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: rgba(255,255,255,0.5); transition: 0.3s;
+}
+.close-sidebar:hover { color: #ff4d4d; }
 
 .submenu { display: none; padding-left: 15px; border-left: 2px solid rgba(0, 212, 255, 0.3); margin-left: 25px; margin-bottom: 10px; }
 .submenu.active { display: block; }
@@ -116,18 +131,17 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
    MAIN CONTENT AREA
    ========================================= */
 .main {
-    margin-left: 0; /* Centered by default */
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: 0.3s;
 }
 
 .hero {
     text-align: center;
     background: rgba(13, 17, 23, 0.5);
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     padding: 50px 30px;
     border-radius: 20px;
     border: 1px solid rgba(0, 212, 255, 0.2);
@@ -147,40 +161,12 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 .hero p { font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); }
 
 /* --- PDF VIEWER --- */
-#pdfViewer {
-    display: none; margin-top: 40px; width: 100%; max-width: 1000px; height: 700px; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.3); overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-}
+#pdfViewer { display: none; margin-top: 40px; width: 100%; max-width: 1000px; height: 700px; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.3); overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8); }
 #pdfFrame { width: 100%; height: 100%; border: none; background: white; }
 
 /* --- UPLOAD SECTION --- */
-.upload-section {
-    margin-top: 60px; margin-bottom: 50px; background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(20px); padding: 40px; border-radius: 20px; border: 1px solid rgba(0, 212, 255, 0.2); width: 100%; max-width: 700px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-}
+.upload-section { margin-top: 60px; margin-bottom: 50px; background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 40px; border-radius: 20px; border: 1px solid rgba(0, 212, 255, 0.2); width: 100%; max-width: 700px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
 .upload-section h2 { color: #00d4ff; margin-bottom: 10px; font-size: 28px; }
 .upload-section p { color: rgba(255, 255, 255, 0.7); margin-bottom: 25px; }
 #uploadForm { display: flex; flex-direction: column; gap: 15px; }
-.upload-row { display: flex; gap: 15px; }
-.upload-input { width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: white; font-family: 'Poppins', sans-serif; font-size: 15px; outline: none; transition: 0.3s; }
-.upload-input:focus { border-color: #00d4ff; background: rgba(255, 255, 255, 0.1); }
-.upload-input option { background: #0d1117; color: white; }
-.upload-btn { padding: 16px; background: linear-gradient(45deg, #00d4ff, #005ae0); border: none; border-radius: 10px; color: white; font-size: 18px; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px;}
-.upload-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5); }
-
-/* =========================================
-   ABOUT PANEL
-   ========================================= */
-.about-panel {
-    position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(25px); border-left: 1px solid rgba(0, 212, 255, 0.2); padding: 40px 30px; transition: 0.4s; overflow-y: auto; z-index: 1002;
-}
-.about-panel h2 { color: #00d4ff; margin-bottom: 20px; }
-.about-panel p { color: rgba(255, 255, 255, 0.8); margin-bottom: 15px; line-height: 1.6; }
-.about-panel span { position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; color: rgba(255, 255, 255, 0.5); transition: 0.3s; }
-.about-panel span:hover { color: #00d4ff; transform: rotate(90deg); }
-
-/* =========================================
-   MOBILE RESPONSIVE RULES
-   ========================================= */
-@media(max-width: 600px) {
-    .upload-row { flex-direction: column; } /* Stacks the dropdowns on small screens */
-    .hero h1 { font-size: 2.2rem; }
-}
+.upload-
