@@ -20,7 +20,7 @@
 
     <h2>NoteVerse</h2>
 
-    <a href="#" onclick="toggleSidebar(); location.reload();">
+    <a href="#" onclick="showHome()">
         <i class="ph ph-house"></i> Home
     </a>
 
@@ -66,60 +66,160 @@
         <a href="#">Semester 8</a>
     </div>
 
+    <a href="#" onclick="openRoadmap()">
+        <i class="ph ph-map-trifold"></i> Placement Roadmap
+    </a>
+
     <a href="#" onclick="openAbout()">
         <i class="ph ph-info"></i> About
     </a>
 </div>
 
 <div class="topbar">
-    <h3>NoteVerse</h3>
+    <h3 onclick="showHome()" style="cursor: pointer;">NoteVerse</h3>
     <span class="menu-btn" onclick="toggleSidebar()"><i class="ph ph-list"></i></span>
 </div>
 
 <div class="main">
 
-    <section class="hero">
-        <h1>All Your Notes & PYQs in One Place</h1>
-        <p>Free academic resources for students</p>
-    </section>
+    <div id="homeView">
+        <section class="hero">
+            <div class="hero-badge">Your Gateway to Academic Excellence</div>
+            <h1>Master your studies with <span class="highlight">curated</span> resources and roadmaps</h1>
+            <p>Unlock your potential with comprehensive guides, notes, and expert-designed learning paths for every step of your academic journey.</p>
+        </section>
 
-    <section id="pdfViewer">
-        <iframe id="pdfFrame"></iframe>
-    </section>
-
-    <section class="upload-section" id="uploadSection">
-        <h2>Contribute to NoteVerse</h2>
-        <p>Help the community by sharing your study materials.</p>
-        
-        <form id="uploadForm">
-            <input type="text" id="fileName" class="upload-input" placeholder="File Name (e.g., Physics Unit 1)" required>
+        <section class="core-subjects">
+            <h2>CSE Core Fundamental Subjects</h2>
+            <p class="core-subtext">Mastering these subjects is crucial for building a strong foundation and acing technical interviews.</p>
             
-            <div class="upload-row">
-                <select id="fileCategory" class="upload-input" required>
-                    <option value="" disabled selected>Select Category</option>
-                    <option value="notes">Notes</option>
-                    <option value="pyq">PYQs</option>
-                    <option value="resources">Resources</option>
-                </select>
+            <div class="subject-cards">
+                
+                <div class="subject-card">
+                    <h3><i class="ph ph-arrow-left"></i> Database Management System (DBMS)</h3>
+                    <ul>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers DBMS Playlist (Most Recommended)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate DBMS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy DBMS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala DBMS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                    </ul>
+                </div>
 
-                <select id="fileSemester" class="upload-input" required>
-                    <option value="" disabled selected>Select Semester</option>
-                    <option value="1">Semester 1</option>
-                    <option value="2">Semester 2</option>
-                    <option value="3">Semester 3</option>
-                    <option value="4">Semester 4</option>
-                    <option value="5">Semester 5</option>
-                    <option value="6">Semester 6</option>
-                    <option value="7">Semester 7</option>
-                    <option value="8">Semester 8</option>
-                </select>
+                <div class="subject-card">
+                    <h3><i class="ph ph-arrow-left"></i> Operating System (OS)</h3>
+                    <ul>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers OS Playlist (Most Recommended)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate OS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala OS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy OS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="subject-card">
+                    <h3><i class="ph ph-arrow-left"></i> Computer Networks</h3>
+                    <ul>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers CN Playlist (Most Recommended)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate CN Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala CN Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy CN Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="subject-card">
+                    <h3><i class="ph ph-arrow-left"></i> Object-Oriented Programming (OOP)</h3>
+                    <ul>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Telusko OOPs Playlist (Java)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Coder Army OOPs Playlist (C++)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="subject-card">
+                    <h3><i class="ph ph-arrow-left"></i> Aptitude & Reasoning</h3>
+                    <ul>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> One Stop Solution (Most Recommended)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="pdfViewer">
+            <iframe id="pdfFrame"></iframe>
+        </section>
+
+        <section class="upload-section" id="uploadSection">
+            <h2>Contribute to NoteVerse</h2>
+            <p>Help the community by sharing your study materials.</p>
+            <form id="uploadForm">
+                <input type="text" id="fileName" class="upload-input" placeholder="File Name (e.g., Physics Unit 1)" required>
+                <div class="upload-row">
+                    <select id="fileCategory" class="upload-input" required>
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="notes">Notes</option>
+                        <option value="pyq">PYQs</option>
+                        <option value="resources">Resources</option>
+                    </select>
+                    <select id="fileSemester" class="upload-input" required>
+                        <option value="" disabled selected>Select Semester</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                    </select>
+                </div>
+                <input type="file" id="fileInput" class="upload-input file-input" accept=".pdf,.doc,.docx" required>
+                <button type="submit" class="upload-btn">Upload & Save File</button>
+            </form>
+        </section>
+    </div>
+
+    <div id="roadmapView" style="display: none; width: 100%;">
+        <section class="roadmap-section">
+            
+            <div class="roadmap-header">
+                <h1>Placement <span class="highlight">Roadmap</span></h1>
+                <p>A comprehensive guide to navigate your career path, from fundamentals to specialized roles.</p>
             </div>
 
-            <input type="file" id="fileInput" class="upload-input file-input" accept=".pdf,.doc,.docx" required>
-            
-            <button type="submit" class="upload-btn">Upload & Save File</button>
-        </form>
-    </section>
+            <div class="roadmap-cards">
+                
+                <div class="roadmap-card">
+                    <h2>Stage 1: <span class="highlight">CGPA and Communication Skills</span></h2>
+                    <p class="main-desc">Master the essentials to build a strong base for your career.</p>
+                    
+                    <div class="indented-list">
+                        <div class="list-item">
+                            <h4><i class="ph ph-student"></i> CGPA Without Any Active Backlogs</h4>
+                            <p>Keep your CGPA as high as possible (preferably above 9.0) and avoid any active backlogs. Most companies—on-campus or off-campus—set CGPA as the first shortlisting criteria, though cutoffs vary. A strong CGPA keeps you eligible for the maximum number of opportunities.</p>
+                        </div>
+                        <div class="list-item">
+                            <h4><i class="ph ph-chats"></i> Communication Skills</h4>
+                            <p>You only need to express your thoughts clearly and concisely. Focus on explaining your code in simple English and ensuring smooth communication with the interviewer. For this you don't have to join any clubs, you will learn all on your own.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-card">
+                    <h2>Stage 2: <span class="highlight">Data Structure and Algorithm (Most Important)</span></h2>
+                    <p class="stage-only-desc">Pick a language (C++ or Java) and start learning DSA. Practice as many problems as you can on platforms like LeetCode, Codeforces, and CodeChef. Most companies—both on-campus and off-campus—ask DSA for SDE roles. Focus on DSA and LeetCode; if you’re interested in competitive programming (CP), pursue that too, as it can help you crack top tier companies like Google, Meta, or Tower Research Capital.</p>
+                </div>
+
+                <div class="roadmap-card">
+                    <h2>Stage 3: <span class="highlight">CSE CORE SUBJECTS</span></h2>
+                    <p class="main-desc">Crucial subjects for acing the technical interview questions.</p>
+                    
+                    <div class="indented-list simple-list">
+                        <div class="list-item"><h4>DBMS</h4><p>Data Base Management System</p></div>
+                        <div class="list-item"><h4>SQL</h4><p>Must Know SQL using MYSQL</p></div>
+                        <div class="list-item"><h4>OS</h4><p>Operating System</p></div>
+                        <div class="list-item"><h4>CN</h4><p>Computer Networks</p></div>
+                        <div class="list-item"><h4>OOPs</h4><p>Object Oriented Programming Systems</p></div>
+                        <div class="list-item"><h4>System Design</h4><p>Both LLD and HLD</p></div>
+                        <div class="list-item"><h4>Aptitude</h4></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
 
 </div>
 
@@ -127,104 +227,36 @@
     <span onclick="closeAbout()" class="close-about"><i class="ph ph-x"></i></span>
     <h2>About NoteVerse</h2>
     <p>NoteVerse is a smart academic platform designed to simplify the way students access study materials.</p>
-    <p>This platform provides structured notes, previous year question papers (PYQs), and additional resources organized semester-wise.</p>
-    <p>Our mission is to make studying easier, faster, and more efficient for every student.</p>
 </div>
 
 <script>
-    /* SIDEBAR TOGGLE */
-    function toggleSidebar() {
-        const sidebar = document.getElementById("sidebar");
-        sidebar.classList.toggle("active");
-    }
-
-    /* SUBMENU ACCORDION */
+    function toggleSidebar() { document.getElementById("sidebar").classList.toggle("active"); }
     function toggleSubMenu(id, event) {
         event.preventDefault(); 
-        document.querySelectorAll(".submenu").forEach(menu => {
-            if (menu.id !== id) menu.classList.remove("active");
-        });
+        document.querySelectorAll(".submenu").forEach(menu => { if (menu.id !== id) menu.classList.remove("active"); });
         document.getElementById(id).classList.toggle("active");
     }
-
-    /* ABOUT PANEL */
-    function openAbout() {
-        document.getElementById("aboutPanel").style.right = "0";
-    }
-
-    function closeAbout() {
-        document.getElementById("aboutPanel").style.right = "-400px"; 
-    }
-
-    /* PDF VIEWER */
+    function openAbout() { document.getElementById("aboutPanel").style.right = "0"; }
+    function closeAbout() { document.getElementById("aboutPanel").style.right = "-400px"; }
     function openPDF(file) {
-        const viewer = document.getElementById("pdfViewer");
-        viewer.style.display = "block"; // Shows the box ONLY when a file is opened
-        document.getElementById("pdfFrame").src = file;
-        window.scrollTo({
-            top: viewer.offsetTop - 120,
-            behavior: "smooth"
-        });
+        const viewer = document.getElementById("pdfViewer"); viewer.style.display = "block"; viewer.querySelector("#pdfFrame").src = file;
+        window.scrollTo({ top: viewer.offsetTop - 120, behavior: "smooth" });
     }
-</script>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    /* View Switcher */
+    function showHome() {
+        document.getElementById("homeView").style.display = "block";
+        document.getElementById("roadmapView").style.display = "none";
+        document.getElementById("sidebar").classList.remove("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-    // PASTE YOUR ACTUAL FIREBASE CONFIG HERE
-    const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT.firebaseapp.com",
-        projectId: "YOUR_PROJECT",
-        storageBucket: "YOUR_PROJECT.appspot.com",
-        messagingSenderId: "YOUR_SENDER_ID",
-        appId: "YOUR_APP_ID"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const storage = getStorage(app);
-    const db = getFirestore(app);
-
-    const uploadForm = document.getElementById("uploadForm");
-    const submitBtn = document.querySelector(".upload-btn");
-
-    uploadForm.addEventListener("submit", async (e) => {
-        e.preventDefault(); 
-        const originalBtnText = submitBtn.innerText;
-        submitBtn.innerText = "Uploading... ⏳";
-        submitBtn.disabled = true;
-
-        try {
-            const fileName = document.getElementById("fileName").value;
-            const category = document.getElementById("fileCategory").value;
-            const semester = document.getElementById("fileSemester").value;
-            const file = document.getElementById("fileInput").files[0];
-
-            const storageRef = ref(storage, `uploads/${category}/sem${semester}/${file.name}`);
-            const snapshot = await uploadBytes(storageRef, file);
-            const downloadURL = await getDownloadURL(snapshot.ref);
-
-            await addDoc(collection(db, "study_materials"), {
-                title: fileName,
-                category: category,
-                semester: semester,
-                fileUrl: downloadURL,
-                uploadedAt: serverTimestamp() 
-            });
-
-            alert(`Success! "${fileName}" uploaded!`);
-            uploadForm.reset();
-
-        } catch (error) {
-            console.error(error);
-            alert("Upload Error: Link your actual Firebase keys to enable storage.");
-        } finally {
-            submitBtn.innerText = originalBtnText;
-            submitBtn.disabled = false;
-        }
-    });
+    function openRoadmap() {
+        document.getElementById("homeView").style.display = "none";
+        document.getElementById("roadmapView").style.display = "block";
+        document.getElementById("sidebar").classList.remove("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 </script>
 
 </body>
