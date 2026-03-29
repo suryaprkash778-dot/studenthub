@@ -32,7 +32,9 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 ::-webkit-scrollbar-track { background: rgba(13, 17, 23, 0.8); }
 ::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 10px; }
 
-/* --- TOPBAR (Fixed Floating) --- */
+/* =========================================
+   TOPBAR
+   ========================================= */
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -40,11 +42,9 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     padding: 25px 40px;
     background: transparent;
     position: fixed;
-    top: 0; 
-    left: 0; 
-    width: 100%;
+    top: 0; left: 0; width: 100%;
     z-index: 2500; 
-    pointer-events: none; /* Allows clicks to pass through the empty parts */
+    pointer-events: none; 
 }
 
 .topbar h3 {
@@ -52,7 +52,12 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     font-size: 38px;
     color: #00d4ff;
     text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-    pointer-events: auto; /* Makes logo clickable/interactive */
+    pointer-events: auto; 
+    transition: 0.3s;
+}
+
+.topbar h3:hover {
+    color: white;
 }
 
 .menu-btn {
@@ -60,13 +65,15 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     cursor: pointer;
     color: #00d4ff;
     transition: 0.3s;
-    pointer-events: auto; /* CRITICAL: Forces button to capture clicks */
+    pointer-events: auto; 
     z-index: 2600; 
 }
 
 .menu-btn:hover { color: #e6f1ff; transform: scale(1.1); }
 
-/* --- SIDEBAR (RIGHT SIDE) --- */
+/* =========================================
+   SIDEBAR
+   ========================================= */
 .sidebar {
     position: fixed;
     right: -300px; 
@@ -88,13 +95,15 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 .sidebar a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: white; text-decoration: none; border-radius: 8px; margin-bottom: 5px; transition: 0.3s; }
 .sidebar a:hover { background: rgba(0, 212, 255, 0.1); color: #00d4ff; }
 .sidebar a i { font-size: 22px; }
-
-.close-sidebar { position: absolute; top: 20px; left: 20px; font-size: 24px; cursor: pointer; color: white; }
+.close-sidebar { position: absolute; top: 20px; left: 20px; font-size: 24px; cursor: pointer; color: white; transition: 0.3s;}
+.close-sidebar:hover { color: #ff4d4d; }
 
 .submenu { display: none; padding-left: 15px; border-left: 2px solid rgba(0, 212, 255, 0.3); margin-left: 25px; margin-bottom: 10px; }
 .submenu.active { display: block; }
 
-/* --- MAIN CONTENT AREA --- */
+/* =========================================
+   MAIN CONTENT AREA
+   ========================================= */
 .main {
     padding-top: 140px;
     display: flex;
@@ -103,7 +112,9 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     width: 100%;
 }
 
-/* --- NEW PREMIUM HERO SECTION --- */
+/* =========================================
+   HERO SECTION
+   ========================================= */
 .hero {
     text-align: center;
     background: rgba(13, 17, 23, 0.5); 
@@ -151,7 +162,9 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     margin: 0 auto;
 }
 
-/* --- CSE CORE SUBJECTS CARDS --- */
+/* =========================================
+   CSE CORE SUBJECTS CARDS
+   ========================================= */
 .core-subjects {
     width: 90%;
     max-width: 800px;
@@ -198,60 +211,187 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 .subject-card h3 {
     color: #00d4ff; 
     font-size: 1.3rem;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.subject-card ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.coming-soon {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.95rem;
+    font-style: italic;
+    padding-left: 35px;
 }
 
-.subject-card li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 1rem;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.subject-card ul { list-style: none; display: flex; flex-direction: column; gap: 15px; }
+.subject-card li { display: flex; justify-content: space-between; align-items: center; color: rgba(255, 255, 255, 0.85); font-size: 1rem; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.subject-card li:last-child { border-bottom: none; padding-bottom: 0; }
+.list-left { display: flex; align-items: center; gap: 12px; }
+.list-left i { color: rgba(255, 255, 255, 0.3); font-size: 1.2rem; }
+.subject-card li a { color: rgba(255, 255, 255, 0.5); text-decoration: none; font-size: 1.4rem; transition: 0.3s; display: flex; align-items: center; }
+.subject-card li a:hover { color: #00d4ff; transform: scale(1.1); }
+
+/* =========================================
+   PLACEMENT ROADMAP SECTION
+   ========================================= */
+.roadmap-section {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    color: white;
 }
 
-.subject-card li:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+.roadmap-header {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.list-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.roadmap-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: white;
 }
 
-.list-left i {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 1.2rem;
+.roadmap-header .highlight {
+    background: linear-gradient(90deg, #00d4ff, #005ae0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.subject-card li a {
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-    font-size: 1.4rem;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
+.roadmap-header p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
 }
 
-.subject-card li a:hover {
+/* Timeline Container */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+/* The Main Vertical Line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(0, 212, 255, 0.3);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+/* The Main Stage Dots */
+.timeline-dot {
+    position: absolute;
+    left: -32px;
+    top: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid #00d4ff;
+    background: #0d1117;
+    z-index: 2;
+}
+
+/* The Frosted Glass Card */
+.timeline-content {
+    background: rgba(13, 17, 23, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.timeline-content h2 {
     color: #00d4ff;
-    transform: scale(1.1);
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* --- GHOST BOX FIX --- */
+.timeline-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.stage-desc {
+    margin-bottom: 25px;
+}
+
+/* SUB-TIMELINE (For things like CGPA, DBMS, OS) */
+.sub-timeline {
+    position: relative;
+    padding-left: 25px;
+    margin-top: 20px;
+}
+
+/* Inner Vertical Line */
+.sub-timeline::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(0, 212, 255, 0.2);
+}
+
+.sub-item {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.sub-item:last-child {
+    margin-bottom: 0;
+}
+
+/* The Inner Stage Dots with horizontal tick marks */
+.sub-dot {
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #00d4ff;
+    background: #0d1117;
+}
+
+.sub-dot::after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 3px;
+    width: 12px;
+    height: 2px;
+    background: rgba(0, 212, 255, 0.3);
+}
+
+.sub-item h4 {
+    color: white;
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+.sub-item p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   GHOST BOX FIX (PDF Viewer)
+   ========================================= */
 #pdfViewer {
     display: none; 
     margin-bottom: 60px;
@@ -265,10 +405,13 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 
 #pdfFrame { width: 100%; height: 100%; border: none; background: white; }
 
-/* --- UPLOAD SECTION --- */
+/* =========================================
+   UPLOAD SECTION
+   ========================================= */
 .upload-section {
     background: rgba(13, 17, 23, 0.6);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     padding: 40px;
     border-radius: 20px;
     border: 1px solid rgba(0, 212, 255, 0.2);
@@ -287,20 +430,28 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 .upload-btn { padding: 16px; background: linear-gradient(45deg, #00d4ff, #005ae0); border: none; border-radius: 10px; color: white; font-weight: 600; cursor: pointer; transition: 0.3s;}
 .upload-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5); }
 
-/* --- ABOUT PANEL --- */
+/* =========================================
+   ABOUT PANEL
+   ========================================= */
 .about-panel { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(25px); padding: 40px 30px; transition: 0.4s; z-index: 4000; }
 .about-panel h2 { color: #00d4ff; margin-bottom: 20px; }
 .about-panel p { color: rgba(255, 255, 255, 0.8); margin-bottom: 15px; line-height: 1.6; font-size: 15px; }
 .close-about { position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; color: rgba(255,255,255,0.5); transition: 0.3s; }
-.close-about:hover { color: #00d4ff; transform: rotate(90deg); }
+.close-about:hover { color: #ff4d4d; transform: rotate(90deg); }
 
-/* --- MOBILE --- */
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
 @media(max-width: 768px) {
     .topbar { padding: 15px 20px; }
     .topbar h3 { font-size: 28px; }
+    
     .hero h1 { font-size: 2rem; }
     .core-subjects h2 { font-size: 2rem; }
+    .roadmap-header h1 { font-size: 2.2rem; }
+    
     .upload-row { flex-direction: column; }
+    
     .subject-card li { flex-direction: column; align-items: flex-start; gap: 10px; }
     .subject-card li a { align-self: flex-end; }
 }
