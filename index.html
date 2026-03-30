@@ -163,6 +163,12 @@
                         <option value="" disabled selected>Select Semester</option>
                         <option value="1">Semester 1</option>
                         <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
                     </select>
                 </div>
                 <input type="file" id="fileInput" class="upload-input file-input" accept=".pdf,.doc,.docx" required>
@@ -257,6 +263,61 @@
         document.getElementById("sidebar").classList.remove("active");
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
+</script>
+
+<script>
+    const CLOUD_NAME = "djypwcwxc"; 
+    const UPLOAD_PRESET = "noteverse_upload"; 
+
+    const uploadForm = document.getElementById("uploadForm");
+    const submitBtn = document.querySelector(".upload-btn");
+
+    uploadForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); 
+        
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = "Uploading to NoteVerse Cloud... ⏳";
+        submitBtn.disabled = true;
+
+        try {
+            const fileName = document.getElementById("fileName").value;
+            const category = document.getElementById("fileCategory").value;
+            const semester = document.getElementById("fileSemester").value;
+            const file = document.getElementById("fileInput").files[0];
+
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", UPLOAD_PRESET);
+            
+            // Format the public_id to keep your Cloudinary dashboard neat
+            const formattedName = fileName.replace(/\s+/g, '_').toLowerCase();
+            formData.append("public_id", `${category}/sem${semester}/${formattedName}`);
+
+            // Send to Cloudinary API
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.secure_url) {
+                console.log("Uploaded successfully! URL:", data.secure_url);
+                alert(`Success! "${fileName}" has been uploaded to NoteVerse!\n\nHere is your permanent link:\n${data.secure_url}`);
+                uploadForm.reset();
+            } else {
+                console.error("Cloudinary Error:", data);
+                alert(`Upload failed: ${data.error.message}`);
+            }
+
+        } catch (error) {
+            console.error("Upload Error:", error);
+            alert("Something went wrong with the upload. Check your internet connection or browser console.");
+        } finally {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
 </script>
 
 </body>
