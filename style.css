@@ -119,26 +119,38 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     display: none; /* Chrome, Safari and Opera */
 }
 
-/* REVERTED TO CLEAN FROSTED CIRCLES */
+/* UPDATED: PERFECT MOON/SPHERE CARDS (CLEAN) */
 .channel-card {
     flex: 0 0 auto; 
     width: 140px;   
     height: 140px;  
-    border-radius: 50%; /* Keeps the perfect circle shape */
-    background: rgba(13, 17, 23, 0.6); /* Reverted to simple frosted background */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    border-radius: 50%; 
+    
+    /* THE MOON FIX: Multi-layered background blend for texture and light */
+    background: 
+        /* Sharp specular glossy highlight (lower-right edge) */
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 60%),
+        /* Fine stippled noise texture blend (uniform fine noise) */
+        repeating-conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0.03) 0deg, rgba(255,255,255,0.03) 1deg, rgba(0,0,0,0.03) 1deg, rgba(0,0,0,0.03) 2deg),
+        /* Base sphere diffuse lighting blend (shadowed left-top, diffuse light) */
+        radial-gradient(circle at 35% 35%, rgba(180, 180, 180, 0.95) 0%, rgba(50, 50, 50, 0.8) 100%),
+        rgba(13, 17, 23, 1); 
+    
+    backdrop-filter: blur(10px); /* Slightly less blur for clearer texture, frosty edge remains */
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 212, 255, 0.2);
     text-align: center;
     text-decoration: none;
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     
-    /* Flexbox perfectly centers everything inside the circle */
+    /* Flexbox perfectly centers everything inside the sphere */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    
+    overflow: hidden; /* Strict containment for pseudo-elements */
 }
 
 .channel-card:hover {
@@ -148,18 +160,18 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 }
 
 .channel-card i {
-    font-size: 2.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
+    font-size: 2.2rem;
+    background: rgba(255, 255, 255, 0.05); /* Very subtle blend for the icon */
+    padding: 12px;
     border-radius: 50%;
 }
 
 .channel-card span {
     color: white;
-    font-size: 0.85rem; 
+    font-size: 0.8rem; /* Text size slightly reduced for elegant fit */
     font-weight: 500;
     line-height: 1.2;
-    padding: 0 10px; 
+    padding: 0 10px; /* Text does not touch Curved edge */
 }
 
 /* =========================================
