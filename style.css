@@ -89,7 +89,7 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 .hero p { font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; max-width: 650px; margin: 0 auto; }
 
 /* =========================================
-   CSE CORE SUBJECTS CARDS (HOME - WITH DROPDOWNS)
+   CSE CORE SUBJECTS CARDS (MASTER TOGGLE)
    ========================================= */
 .core-subjects { 
     width: 90%; 
@@ -98,13 +98,49 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     text-align: center; 
 }
 .core-subjects h2 { font-size: 2.5rem; color: white; margin-bottom: 15px; line-height: 1.2; }
-.core-subtext { color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; margin-bottom: 40px; line-height: 1.6; }
+.core-subtext { color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6; }
 
+/* The Master Button */
+.master-toggle-btn {
+    background: linear-gradient(45deg, #00d4ff, #005ae0);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px; 
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+    font-family: 'Poppins', sans-serif;
+}
+
+.master-toggle-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+}
+
+/* The Grid - Hidden by Default */
 .subject-cards { 
-    display: grid; 
+    display: none; /* Magic! */
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
     gap: 25px; 
-    align-items: start; /* Prevents cards from stretching vertically */
+    align-items: start; 
+}
+
+/* Shown when active class is added */
+.subject-cards.open {
+    display: grid;
+    animation: fadeInGrid 0.4s ease-out forwards;
+}
+
+@keyframes fadeInGrid {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .subject-card { 
@@ -123,47 +159,8 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     border-color: rgba(0, 212, 255, 0.4); 
 }
 
-/* NEW: Dropdown Header Styles */
-.subject-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-.subject-card h3 { 
-    color: #00d4ff; 
-    font-size: 1.3rem; 
-    display: flex; 
-    align-items: center; 
-    gap: 12px; 
-    margin: 0; /* Margin removed so it sits clean when closed */
-}
-
-.toggle-icon {
-    font-size: 1.5rem;
-    color: #00d4ff;
-    transition: transform 0.3s ease;
-}
-
-/* NEW: Hidden List Styles */
-.subject-list { 
-    list-style: none; 
-    display: none; /* Hidden by default! */
-    flex-direction: column; 
-    gap: 15px; 
-    margin-top: 25px; /* Adds space only when open */
-}
-
-/* When the card is clicked and 'active' is added via JS */
-.subject-card.active .subject-list {
-    display: flex;
-}
-
-.subject-card.active .toggle-icon {
-    transform: rotate(180deg); /* Flips the arrow upside down */
-}
-
+.subject-card h3 { color: #00d4ff; font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.subject-card ul { list-style: none; display: flex; flex-direction: column; gap: 15px; }
 .subject-card li { display: flex; justify-content: space-between; align-items: center; color: rgba(255, 255, 255, 0.85); font-size: 1rem; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 .subject-card li:last-child { border-bottom: none; padding-bottom: 0; }
 .list-left { display: flex; align-items: center; gap: 12px; }
@@ -251,7 +248,7 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
     .core-subjects h2 { font-size: 2rem; }
     .roadmap-header h1 { font-size: 2.2rem; }
     
-    .subject-cards { grid-template-columns: 1fr; }
+    .subject-cards.open { grid-template-columns: 1fr; }
     
     .roadmap-card { padding: 25px; }
     .roadmap-card h2 { font-size: 1.5rem; }
