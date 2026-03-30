@@ -89,54 +89,103 @@
             <p>Unlock your potential with comprehensive guides, notes, and expert-designed learning paths for every step of your academic journey.</p>
         </section>
 
+        <section class="top-channels">
+            <h2 class="section-title">Learn from Top Tech YouTube Channels</h2>
+            <div class="channel-scroll-container">
+                <a href="https://www.youtube.com/@striver_79" target="_blank" class="channel-card">
+                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
+                    <span>Striver</span>
+                </a>
+                <a href="https://www.youtube.com/@takeUforward" target="_blank" class="channel-card">
+                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
+                    <span>Take You Forward</span>
+                </a>
+                <a href="https://www.youtube.com/@PriyanshAgarwal" target="_blank" class="channel-card">
+                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
+                    <span>Priyansh Agarwal</span>
+                </a>
+                <a href="https://www.youtube.com/@LuvIsMe" target="_blank" class="channel-card">
+                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
+                    <span>LUV</span>
+                </a>
+                <a href="https://www.youtube.com/@VivekGupta7" target="_blank" class="channel-card">
+                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
+                    <span>Vivek Gupta</span>
+                </a>
+                <a href="https://www.youtube.com/@harkiratsingh" target="_blank" class="channel-card">
+                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
+                    <span>Harkirat Singh</span>
+                </a>
+                <a href="https://www.youtube.com/@ApnaCollegeOfficial" target="_blank" class="channel-card">
+                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
+                    <span>Apna College</span>
+                </a>
+            </div>
+        </section>
+
         <section class="core-subjects">
             <h2>CSE Core Fundamental Subjects</h2>
             <p class="core-subtext">Mastering these subjects is crucial for building a strong foundation and acing technical interviews.</p>
             
-            <div class="subject-cards">
+            <div class="toggle-container">
+                <button class="master-toggle-btn" id="coreToggleBtn" onclick="toggleCoreSubjects()">
+                    View Subjects <i class="ph ph-caret-down"></i>
+                </button>
+            </div>
+
+            <div class="subject-cards" id="coreSubjectCards">
                 
+                <div class="subject-card">
+                    <h3><i class="ph ph-arrow-left"></i> Data Structures and Algorithms (DSA)</h3>
+                    <ul>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Take U Forward (Striver) Playlist</span><a href="https://www.youtube.com/results?search_query=Take+U+Forward+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> CodeHelp (Love Babbar) Playlist</span><a href="https://www.youtube.com/results?search_query=CodeHelp+Love+Babbar+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Apna College DSA Playlist</span><a href="https://www.youtube.com/results?search_query=Apna+College+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                    </ul>
+                </div>
+
                 <div class="subject-card">
                     <h3><i class="ph ph-arrow-left"></i> Database Management System (DBMS)</h3>
                     <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers DBMS Playlist (Most Recommended)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate DBMS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy DBMS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala DBMS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesR1rSES7oLdJaNFgmuj0SYV" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLXj4XH7LcRfBF0sREiXwZPmbyCnLSM18K" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
                     </ul>
                 </div>
 
                 <div class="subject-card">
                     <h3><i class="ph ph-arrow-left"></i> Operating System (OS)</h3>
                     <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers OS Playlist (Most Recommended)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate OS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala OS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy OS Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesSFvj6gASuWmQd23Ul5omtD" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLXj4XH7LcRfDrdQuJTHIPmKMpa7eYVaPm" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
                     </ul>
                 </div>
 
                 <div class="subject-card">
                     <h3><i class="ph ph-arrow-left"></i> Computer Networks</h3>
                     <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers CN Playlist (Most Recommended)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate CN Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala CN Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy CN Playlist</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesSjFbXSZGF8JF_4LVwwofCd" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLXj4XH7LcRfCKbi7Najz8EIr1JymxoFBW" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
                     </ul>
                 </div>
 
                 <div class="subject-card">
                     <h3><i class="ph ph-arrow-left"></i> Object-Oriented Programming (OOP)</h3>
                     <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Telusko OOPs Playlist (Java)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Coder Army OOPs Playlist (C++)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Telusko OOPs Playlist (Java)</span><a href="https://www.youtube.com/playlist?list=PLsyeobzWxl7oa1WO9n4cP3OY9nOtUcZIg" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> Coder Army OOPs Playlist (C++)</span><a href="https://www.youtube.com/playlist?list=PLQEaRBV9gAFujcBWJhBT2XXsuMlIfETBy" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
                     </ul>
                 </div>
 
                 <div class="subject-card">
                     <h3><i class="ph ph-arrow-left"></i> Aptitude & Reasoning</h3>
                     <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> One Stop Solution (Most Recommended)</span><a href="#" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+                        <li><span class="list-left"><i class="ph ph-circle"></i> One Stop Solution (Most Recommended)</span><a href="https://www.lets-code.co.in/articles/aptituderoadmap/#google_vignette" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
                     </ul>
                 </div>
 
@@ -263,6 +312,20 @@
         document.getElementById("sidebar").classList.remove("active");
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+    /* Master Toggle JS */
+    function toggleCoreSubjects() {
+        const cardsContainer = document.getElementById("coreSubjectCards");
+        const btn = document.getElementById("coreToggleBtn");
+
+        cardsContainer.classList.toggle("open");
+        
+        if (cardsContainer.classList.contains("open")) {
+            btn.innerHTML = 'Hide Subjects <i class="ph ph-caret-up"></i>';
+        } else {
+            btn.innerHTML = 'View Subjects <i class="ph ph-caret-down"></i>';
+        }
+    }
 </script>
 
 <script>
@@ -289,11 +352,9 @@
             formData.append("file", file);
             formData.append("upload_preset", UPLOAD_PRESET);
             
-            // Format the public_id to keep your Cloudinary dashboard neat
             const formattedName = fileName.replace(/\s+/g, '_').toLowerCase();
             formData.append("public_id", `${category}/sem${semester}/${formattedName}`);
 
-            // Send to Cloudinary API
             const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, {
                 method: "POST",
                 body: formData
