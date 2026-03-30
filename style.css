@@ -32,7 +32,7 @@ body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); to
 ::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 10px; }
 
 /* =========================================
-   GLOBAL HEADING GRADIENT (FADED BLUE)
+   GLOBAL HEADING GRADIENT
    ========================================= */
 h1, h2, h3, .section-title {
     background: linear-gradient(90deg, #00d4ff, #005ae0);
@@ -55,27 +55,20 @@ h1, h2, h3, .section-title {
     pointer-events: none; 
 }
 .topbar h3 { font-family: 'Great Vibes', cursive; font-size: 38px; text-shadow: 0 0 15px rgba(0, 212, 255, 0.4); pointer-events: auto; transition: 0.3s; }
-.topbar h3:hover { text-shadow: 0 0 25px rgba(0, 212, 255, 0.8); }
 .menu-btn { font-size: 32px; cursor: pointer; color: #00d4ff; transition: 0.3s; pointer-events: auto; z-index: 2600; }
-.menu-btn:hover { color: #e6f1ff; transform: scale(1.1); }
 
 /* =========================================
    SIDEBAR
    ========================================= */
 .sidebar {
     position: fixed; right: -300px; top: 0; width: 280px; height: 100%;
-    background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-    border-left: 1px solid rgba(0, 212, 255, 0.2); padding: 80px 20px 20px 20px;
-    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 3000; overflow-y: auto;
+    background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(25px);
+    border-left: 1px solid rgba(0, 212, 255, 0.2); padding: 80px 20px;
+    transition: right 0.4s ease; z-index: 3000; overflow-y: auto;
 }
 .sidebar.active { right: 0; }
-.sidebar h2 { font-family: 'Great Vibes', cursive; font-size: 42px; text-align: center; margin-bottom: 30px; }
-.sidebar a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: white; text-decoration: none; border-radius: 8px; margin-bottom: 5px; transition: 0.3s; }
-.sidebar a:hover { background: rgba(0, 212, 255, 0.1); color: #00d4ff; }
-.sidebar a i { font-size: 22px; }
-.close-sidebar { position: absolute; top: 20px; left: 20px; font-size: 24px; cursor: pointer; color: white; transition: 0.3s;}
-.close-sidebar:hover { color: #ff4d4d; }
-.submenu { display: none; padding-left: 15px; border-left: 2px solid rgba(0, 212, 255, 0.3); margin-left: 25px; margin-bottom: 10px; }
+.sidebar a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: white; text-decoration: none; transition: 0.3s; }
+.submenu { display: none; padding-left: 15px; border-left: 2px solid rgba(0, 212, 255, 0.3); margin-left: 25px; }
 .submenu.active { display: block; }
 
 /* =========================================
@@ -84,222 +77,86 @@ h1, h2, h3, .section-title {
 .main { padding-top: 140px; display: flex; flex-direction: column; align-items: center; width: 100%; }
 
 /* =========================================
-   HERO SECTION (HOME)
+   DESKTOP DEFAULT SIZES
    ========================================= */
-.hero {
+.hero, .core-subjects, .roadmap-section, .upload-section, .top-channels {
+    width: 90%;
+    max-width: 1000px; /* PC Comfort width */
     text-align: center;
-    width: 95%; 
-    max-width: 1100px; 
-    margin: 20px auto 60px auto;
-}
-.hero-badge { display: inline-block; padding: 8px 20px; margin-bottom: 25px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50px; font-size: 14px; color: rgba(255, 255, 255, 0.7); background: rgba(255, 255, 255, 0.05); }
-.hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 20px; line-height: 1.3; }
-.hero p { font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; max-width: 650px; margin: 0 auto; }
-
-/* =========================================
-   TOP YOUTUBE CHANNELS SECTION
-   ========================================= */
-.top-channels {
-    width: 95%;
-    max-width: 1200px; 
     margin: 0 auto 60px auto;
-    text-align: center;
 }
 
-.top-channels .section-title {
-    font-size: 2.2rem; 
-    margin-bottom: 30px;
-    font-weight: 700;
-}
+.hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 20px; }
+.top-channels .section-title { font-size: 2.2rem; margin-bottom: 30px; font-weight: 700; }
 
+/* YouTube Scroll */
 .channel-scroll-container {
-    display: flex;
-    gap: 20px; 
-    overflow-x: auto;
-    padding-bottom: 25px; 
-    padding-top: 10px;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    display: flex; gap: 20px; overflow-x: auto; padding-bottom: 25px;
+    scrollbar-width: none; -ms-overflow-style: none;
 }
-
-@media(min-width: 1150px) {
-    .channel-scroll-container {
-        justify-content: center;
-    }
-}
-
-.channel-scroll-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
-}
+.channel-scroll-container::-webkit-scrollbar { display: none; }
 
 .channel-card {
-    flex: 0 0 auto; 
-    width: 140px;   
-    height: 140px;  
-    border-radius: 50%; 
-    background: rgba(13, 17, 23, 0.6); 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    text-align: center;
-    text-decoration: none;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    flex: 0 0 auto; width: 140px; height: 140px; border-radius: 50%;
+    background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 212, 255, 0.2); display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px; text-decoration: none;
 }
 
-.channel-card:hover {
-    transform: translateY(-8px); 
-    border-color: rgba(0, 212, 255, 0.5);
-    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.25); 
-}
-
-.channel-card i {
-    font-size: 2.2rem;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 12px;
-    border-radius: 50%;
-}
-
-.channel-card span {
-    color: white;
-    font-size: 0.8rem; 
-    font-weight: 500;
-    line-height: 1.2;
-    padding: 0 10px; 
-}
-
-/* =========================================
-   CSE CORE SUBJECTS CARDS
-   ========================================= */
-.core-subjects { 
-    width: 95%; 
-    max-width: 1100px; 
-    margin: 0 auto 60px auto; 
-    text-align: center; 
-}
-.core-subjects h2 { font-size: 2.5rem; margin-bottom: 15px; line-height: 1.2; }
-.core-subtext { color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6; }
-
-.toggle-container { text-align: center; width: 100%; margin-bottom: 40px; }
-
+/* Master Toggle Button */
 .master-toggle-btn {
     background: linear-gradient(45deg, #00d4ff, #005ae0);
-    color: white; border: none; padding: 16px 40px; font-size: 1.1rem; font-weight: 600; border-radius: 50px;
-    cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3); font-family: 'Poppins', sans-serif; outline: none;
+    color: white; border: none; padding: 16px 40px; font-size: 1.1rem; font-weight: 600;
+    border-radius: 50px; cursor: pointer; transition: 0.3s;
 }
 
-.master-toggle-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 212, 255, 0.6); }
-.master-toggle-btn i { font-size: 1.3rem; }
-
+/* Subject Grid */
 #coreSubjectCards { 
-    display: none; 
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-    gap: 25px; align-items: start; width: 100%;
+    display: none; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px; width: 100%;
 }
-
-#coreSubjectCards.open { display: grid !important; animation: fadeInGrid 0.4s ease-out forwards; }
-
-@keyframes fadeInGrid { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
+#coreSubjectCards.open { display: grid !important; }
 
 .subject-card { 
-    background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
-    border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 15px; padding: 25px 30px; text-align: left; transition: transform 0.3s ease, border-color 0.3s ease; 
+    background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(20px); 
+    border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 15px; padding: 25px;
 }
-.subject-card:hover { transform: translateY(-5px); border-color: rgba(0, 212, 255, 0.4); }
-.subject-card h3 { font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
-.subject-card ul { list-style: none; display: flex; flex-direction: column; gap: 15px; }
-.subject-card li { display: flex; justify-content: space-between; align-items: center; color: rgba(255, 255, 255, 0.85); font-size: 1rem; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-.subject-card li:last-child { border-bottom: none; padding-bottom: 0; }
-.list-left { display: flex; align-items: center; gap: 12px; }
-.list-left i { color: rgba(255, 255, 255, 0.3); font-size: 1.2rem; }
-.subject-card li a { color: rgba(255, 255, 255, 0.5); text-decoration: none; font-size: 1.4rem; transition: 0.3s; display: flex; align-items: center; }
-.subject-card li a:hover { color: #00d4ff; transform: scale(1.1); }
 
 /* =========================================
-   PLACEMENT ROADMAP SECTION
-   ========================================= */
-.roadmap-section { width: 95%; max-width: 1100px; margin: 0 auto 60px auto; }
-.roadmap-header { text-align: center; margin-bottom: 50px; }
-.roadmap-header h1 { font-size: 2.8rem; margin-bottom: 10px; }
-.roadmap-header p { color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; }
-
-.roadmap-cards { display: flex; flex-direction: column; gap: 30px; }
-
-.roadmap-card {
-    background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 20px; padding: 40px; text-align: left; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-}
-.roadmap-card h2 { margin-bottom: 10px; font-size: 1.8rem; display: flex; align-items: center; gap: 12px; }
-.main-desc { color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; font-weight: 500; margin-bottom: 25px; line-height: 1.6; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
-.stage-only-desc { color: rgba(255, 255, 255, 0.85); font-size: 1rem; line-height: 1.8; }
-
-.indented-list { list-style: none; display: flex; flex-direction: column; gap: 20px; padding-left: 15px; }
-.list-item { position: relative; padding-left: 20px; }
-.list-item::before { content: ''; position: absolute; left: -10px; top: 8px; width: 8px; height: 8px; background-color: #00d4ff; border-radius: 50%; }
-.list-item h4 { color: white; font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-.list-item h4 i { color: rgba(255,255,255,0.5); font-size: 1rem; }
-.list-item p { color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; line-height: 1.6; }
-
-.simple-list .list-item { padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-.simple-list .list-item h4 { margin-bottom: 0; color: rgba(255,255,255,0.8); }
-.simple-list .list-item p { margin-top: 5px; color: rgba(255, 255, 255, 0.5); }
-
-/* =========================================
-   GHOST BOX FIX (PDF Viewer)
-   ========================================= */
-#pdfViewer { display: none; margin-bottom: 60px; width: 95%; max-width: 1100px; height: 600px; border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.3); overflow: hidden; z-index: 100;}
-#pdfFrame { width: 100%; height: 100%; border: none; background: white; }
-
-/* =========================================
-   UPLOAD SECTION
-   ========================================= */
-.upload-section { 
-    background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
-    padding: 40px; border-radius: 20px; border: 1px solid rgba(0, 212, 255, 0.2); 
-    width: 95%; max-width: 1100px; 
-    text-align: center; margin: 0 auto 80px auto; 
-}
-.upload-section h2 { margin-bottom: 15px; }
-#uploadForm { display: flex; flex-direction: column; gap: 15px; }
-.upload-row { display: flex; gap: 15px; }
-.upload-input { width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; outline: none; transition: 0.3s; }
-.upload-input:focus { border-color: #00d4ff; background: rgba(255, 255, 255, 0.1); }
-.upload-input option { background: #0d1117; color: white; }
-.upload-btn { padding: 16px; background: linear-gradient(45deg, #00d4ff, #005ae0); border: none; border-radius: 10px; color: white; font-weight: 600; cursor: pointer; transition: 0.3s;}
-.upload-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5); }
-
-/* =========================================
-   ABOUT PANEL
-   ========================================= */
-.about-panel { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(25px); padding: 40px 30px; transition: 0.4s; z-index: 4000; }
-.about-panel h2 { margin-bottom: 20px; }
-.about-panel p { color: rgba(255, 255, 255, 0.8); margin-bottom: 15px; line-height: 1.6; font-size: 15px; }
-.close-about { position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; color: rgba(255,255,255,0.5); transition: 0.3s; }
-.close-about:hover { color: #ff4d4d; transform: rotate(90deg); }
-
-/* =========================================
-   MOBILE RESPONSIVE
+   MOBILE RESPONSIVE (THE FIX)
    ========================================= */
 @media(max-width: 768px) {
+    /* 1. Force containers to fit the screen exactly */
+    .hero, .core-subjects, .roadmap-section, .upload-section, .top-channels {
+        width: 92%; /* Small margin on sides */
+        max-width: 100%; /* Prevents the 900px stretch */
+        margin-bottom: 40px;
+    }
+
+    /* 2. Scale down typography */
+    .hero h1 { font-size: 1.8rem; }
+    .top-channels .section-title { font-size: 1.4rem; }
+    .core-subjects h2 { font-size: 1.6rem; }
+
+    /* 3. Shrink YouTube circles for small screens */
+    .channel-card {
+        width: 95px; 
+        height: 95px;
+    }
+    .channel-card i { font-size: 1.5rem; }
+    .channel-card span { font-size: 0.6rem; }
+
+    /* 4. Subject Cards stacking */
+    #coreSubjectCards.open { 
+        grid-template-columns: 1fr; 
+    }
+
+    /* 5. Topbar adjustment */
     .topbar { padding: 15px 20px; }
-    .topbar h3 { font-size: 28px; }
-    .hero h1 { font-size: 2rem; }
-    .core-subjects h2 { font-size: 2rem; }
-    .roadmap-header h1 { font-size: 2.2rem; }
-    
-    .top-channels .section-title { font-size: 1.8rem; } 
-    
-    #coreSubjectCards.open { grid-template-columns: 1fr; }
-    
-    .roadmap-card { padding: 25px; }
-    .roadmap-card h2 { font-size: 1.5rem; }
-    .main-desc { font-size: 1rem; }
-    .upload-row { flex-direction: column; }
-    .subject-card li { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .subject-card li a { align-self: flex-end; }
+    .topbar h3 { font-size: 26px; }
+
+    /* 6. Fix Roadmap and Upload sections */
+    .roadmap-card { padding: 20px; }
+    .upload-row { flex-direction: column; gap: 10px; }
+    .upload-input { padding: 12px; }
 }
