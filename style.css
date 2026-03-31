@@ -27,44 +27,32 @@ body::after, body::before {
 body::after { background: radial-gradient(circle, #00d4ff 0%, #005ae0 100%); top: 10%; right: 10%; }
 body::before { background: radial-gradient(circle, #5e17eb 0%, #00d4ff 100%); top: 40%; left: 5%; }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: rgba(13, 17, 23, 0.8); }
-::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 10px; }
-
 /* =========================================
    GLOBAL HEADING GRADIENT
    ========================================= */
-h1, h2, h3, .section-title {
+h1, h2, h3, h4, .section-title {
     background: linear-gradient(90deg, #00d4ff, #005ae0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    display: inline-block;
 }
 
 /* =========================================
-   TOPBAR
+   TOPBAR & SIDEBAR
    ========================================= */
 .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 40px;
-    background: transparent;
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    z-index: 2500; 
-    pointer-events: none; 
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 30px; background: transparent; position: fixed;
+    top: 0; left: 0; width: 100%; z-index: 2500; 
 }
-.topbar h3 { font-family: 'Great Vibes', cursive; font-size: 38px; text-shadow: 0 0 15px rgba(0, 212, 255, 0.4); pointer-events: auto; transition: 0.3s; }
-.menu-btn { font-size: 32px; cursor: pointer; color: #00d4ff; transition: 0.3s; pointer-events: auto; z-index: 2600; }
+.topbar h3 { font-family: 'Great Vibes', cursive; font-size: 32px; cursor: pointer; }
+.menu-btn { font-size: 28px; cursor: pointer; color: #00d4ff; }
 
-/* =========================================
-   SIDEBAR
-   ========================================= */
 .sidebar {
     position: fixed; right: -300px; top: 0; width: 280px; height: 100%;
     background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(25px);
     border-left: 1px solid rgba(0, 212, 255, 0.2); padding: 80px 20px;
-    transition: right 0.4s ease; z-index: 3000; overflow-y: auto;
+    transition: right 0.4s ease; z-index: 3000;
 }
 .sidebar.active { right: 0; }
 .sidebar a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: white; text-decoration: none; transition: 0.3s; }
@@ -72,91 +60,82 @@ h1, h2, h3, .section-title {
 .submenu.active { display: block; }
 
 /* =========================================
-   MAIN CONTENT AREA
+   DESKTOP SHARED SIZES (PC)
    ========================================= */
-.main { padding-top: 140px; display: flex; flex-direction: column; align-items: center; width: 100%; }
+.main { padding-top: 120px; width: 100%; display: flex; flex-direction: column; align-items: center; }
 
-/* =========================================
-   DESKTOP DEFAULT SIZES
-   ========================================= */
 .hero, .core-subjects, .roadmap-section, .upload-section, .top-channels {
-    width: 90%;
-    max-width: 1000px; /* PC Comfort width */
-    text-align: center;
-    margin: 0 auto 60px auto;
+    width: 90%; max-width: 1000px; margin: 0 auto 50px auto; text-align: center;
 }
 
-.hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 20px; }
-.top-channels .section-title { font-size: 2.2rem; margin-bottom: 30px; font-weight: 700; }
-
-/* YouTube Scroll */
-.channel-scroll-container {
-    display: flex; gap: 20px; overflow-x: auto; padding-bottom: 25px;
-    scrollbar-width: none; -ms-overflow-style: none;
-}
+/* YouTube Circles */
+.channel-scroll-container { display: flex; gap: 20px; overflow-x: auto; padding: 10px 0 20px 0; scrollbar-width: none; }
 .channel-scroll-container::-webkit-scrollbar { display: none; }
-
 .channel-card {
-    flex: 0 0 auto; width: 140px; height: 140px; border-radius: 50%;
+    flex: 0 0 auto; width: 130px; height: 130px; border-radius: 50%;
     background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(20px);
     border: 1px solid rgba(0, 212, 255, 0.2); display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 8px; text-decoration: none;
-}
-
-/* Master Toggle Button */
-.master-toggle-btn {
-    background: linear-gradient(45deg, #00d4ff, #005ae0);
-    color: white; border: none; padding: 16px 40px; font-size: 1.1rem; font-weight: 600;
-    border-radius: 50px; cursor: pointer; transition: 0.3s;
+    align-items: center; justify-content: center; gap: 5px; text-decoration: none;
 }
 
 /* Subject Grid */
-#coreSubjectCards { 
-    display: none; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 25px; width: 100%;
+.master-toggle-btn {
+    background: linear-gradient(45deg, #00d4ff, #005ae0);
+    color: white; border: none; padding: 14px 35px; font-size: 1rem; font-weight: 600;
+    border-radius: 50px; cursor: pointer; transition: 0.3s; margin-bottom: 30px;
 }
+#coreSubjectCards { display: none; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; }
 #coreSubjectCards.open { display: grid !important; }
-
 .subject-card { 
     background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(20px); 
-    border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 15px; padding: 25px;
+    border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 15px; padding: 25px; text-align: left;
 }
 
 /* =========================================
-   MOBILE RESPONSIVE (THE FIX)
+   PLACEMENT ROADMAP (BOXES RESTORED)
+   ========================================= */
+.roadmap-cards { display: flex; flex-direction: column; gap: 30px; margin-top: 40px; }
+.roadmap-card {
+    background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 20px;
+    padding: 40px; text-align: left; width: 100%;
+}
+.roadmap-card h2 { font-size: 1.8rem; margin-bottom: 15px; }
+.main-desc { color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.list-item { margin-bottom: 20px; padding-left: 20px; border-left: 2px solid #00d4ff; }
+.list-item h4 { font-size: 1.1rem; margin-bottom: 5px; }
+.list-item p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.6; }
+
+/* =========================================
+   MOBILE RESPONSIVE (THE TOTAL FIX)
    ========================================= */
 @media(max-width: 768px) {
-    /* 1. Force containers to fit the screen exactly */
+    .main { padding-top: 90px; }
+
+    /* Minimize Headings */
+    .hero h1 { font-size: 1.5rem !important; }
+    .hero p { font-size: 0.85rem !important; }
+    .section-title, .core-subjects h2, .roadmap-header h1 { font-size: 1.3rem !important; }
+    
+    /* Responsive Containers */
     .hero, .core-subjects, .roadmap-section, .upload-section, .top-channels {
-        width: 92%; /* Small margin on sides */
-        max-width: 100%; /* Prevents the 900px stretch */
-        margin-bottom: 40px;
+        width: 92% !important; margin-bottom: 35px;
     }
 
-    /* 2. Scale down typography */
-    .hero h1 { font-size: 1.8rem; }
-    .top-channels .section-title { font-size: 1.4rem; }
-    .core-subjects h2 { font-size: 1.6rem; }
+    /* Fixed Roadmap for Mobile */
+    .roadmap-card { padding: 20px !important; border-radius: 15px !important; }
+    .roadmap-card h2 { font-size: 1.2rem !important; }
+    .main-desc { font-size: 0.9rem !important; }
+    .list-item h4 { font-size: 1rem !important; }
+    .list-item p { font-size: 0.8rem !important; }
 
-    /* 3. Shrink YouTube circles for small screens */
-    .channel-card {
-        width: 95px; 
-        height: 95px;
-    }
-    .channel-card i { font-size: 1.5rem; }
-    .channel-card span { font-size: 0.6rem; }
+    /* YouTube Icons */
+    .channel-card { width: 90px !important; height: 90px !important; }
+    .channel-card i { font-size: 1.3rem !important; }
+    .channel-card span { font-size: 0.6rem !important; }
 
-    /* 4. Subject Cards stacking */
-    #coreSubjectCards.open { 
-        grid-template-columns: 1fr; 
-    }
-
-    /* 5. Topbar adjustment */
-    .topbar { padding: 15px 20px; }
-    .topbar h3 { font-size: 26px; }
-
-    /* 6. Fix Roadmap and Upload sections */
-    .roadmap-card { padding: 20px; }
-    .upload-row { flex-direction: column; gap: 10px; }
-    .upload-input { padding: 12px; }
+    /* Upload & Form */
+    .upload-section { padding: 20px !important; }
+    .upload-row { display: flex; flex-direction: column !important; gap: 10px !important; }
+    .upload-input { width: 100% !important; }
 }
