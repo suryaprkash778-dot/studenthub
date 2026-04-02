@@ -10,18 +10,22 @@ html, body {
 }
 
 /* =========================================
-   DARK MODE THEME OVERHAUL
+   DARK MODE THEME OVERHAUL + STARRY BACKGROUND
    ========================================= */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #000000; /* Pure black background */
+    background-color: #000000; /* Fallback color */
+    background-image: url('download.jpg'); /* The starry background */
+    background-size: cover; /* Stretches it to fit the screen */
+    background-position: center;
+    background-attachment: fixed; /* Keeps stars still while you scroll */
     color: #e0e0e0; /* Soft white text */
     min-height: 100vh;
     position: relative;
     z-index: 0;
 }
 
-/* --- NEW: AMBIENT LIGHTING GLOW --- */
+/* --- AMBIENT LIGHTING GLOW --- */
 body::before {
     content: "";
     position: fixed;
@@ -30,8 +34,8 @@ body::before {
     width: 60vw;
     height: 60vw;
     background: radial-gradient(circle, rgba(0, 170, 255, 0.12) 0%, transparent 70%);
-    z-index: -1; /* Sits perfectly behind all your content */
-    pointer-events: none; /* Prevents it from blocking your clicks */
+    z-index: -1; 
+    pointer-events: none; 
 }
 
 body::after {
@@ -162,7 +166,7 @@ h1, h2, h3, .section-title {
 
 .hero h1 { font-size: 4.5rem; margin-bottom: 20px; line-height: 1.05; letter-spacing: -1.5px; }
 .hero p { font-size: 1.1rem; color: #aaaaaa; line-height: 1.6; max-width: 800px; margin: 0 auto; font-weight: 400; }
-.hero-badge { display: inline-block; padding: 8px 20px; margin-bottom: 20px; border: 1px solid #333333; border-radius: 50px; font-size: 13px; color: #cccccc; background: #111111; font-weight: 500;}
+.hero-badge { display: inline-block; padding: 8px 20px; margin-bottom: 20px; border: 1px solid #333333; border-radius: 50px; font-size: 13px; color: #cccccc; background: rgba(17, 17, 17, 0.7); backdrop-filter: blur(5px); font-weight: 500;}
 
 .top-channels .section-title { font-size: 3rem; margin-bottom: 40px; letter-spacing: -1px;}
 
@@ -192,7 +196,8 @@ h1, h2, h3, .section-title {
     width: 130px; 
     height: 130px; 
     border-radius: 20px; 
-    background-color: #0d0d0d !important; /* Dark Box */
+    background-color: rgba(13, 13, 13, 0.8) !important; /* Slightly transparent so stars peek through */
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(0, 102, 255, 0.3) !important; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important; 
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
@@ -215,12 +220,13 @@ h1, h2, h3, .section-title {
 
 /* Master Toggle Button */
 .master-toggle-btn {
-    background: #111111; 
+    background: rgba(17, 17, 17, 0.8); 
+    backdrop-filter: blur(5px);
     color: #ffffff; border: 1px solid rgba(0, 102, 255, 0.5); padding: 14px 35px; font-size: 1rem; font-weight: 500;
     border-radius: 50px; cursor: pointer; transition: 0.3s; margin-bottom: 40px; display: inline-flex; align-items: center; gap: 10px;
     font-family: 'Inter', sans-serif;
 }
-.master-toggle-btn:hover { background: #1a1a1a; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 153, 255, 0.2); }
+.master-toggle-btn:hover { background: rgba(26, 26, 26, 0.9); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 153, 255, 0.2); }
 
 
 /* =========================================
@@ -229,7 +235,8 @@ h1, h2, h3, .section-title {
 .creator-talks h2 { font-size: 3rem; margin-bottom: 15px; }
 .creator-subtext { font-size: 1.1rem; color: #aaaaaa; margin-bottom: 30px; }
 .creator-box {
-    background-color: #0d0d0d !important;
+    background-color: rgba(13, 13, 13, 0.8) !important;
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(0, 102, 255, 0.3) !important;
     border-radius: 12px;
     padding: 30px;
@@ -255,7 +262,8 @@ h1, h2, h3, .section-title {
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
 .subject-card { 
-    background-color: #0d0d0d !important; 
+    background-color: rgba(13, 13, 13, 0.8) !important; 
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(0, 102, 255, 0.3) !important; 
     border-radius: 12px; padding: 35px; text-align: left; 
     box-shadow: 
@@ -284,7 +292,8 @@ h1, h2, h3, .section-title {
    ROADMAP (DARK MODE)
    ========================================= */
 .roadmap-card { 
-    background-color: #0d0d0d !important; 
+    background-color: rgba(13, 13, 13, 0.8) !important; 
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(0, 102, 255, 0.3) !important; 
     border-radius: 24px; 
     padding: 50px; 
@@ -325,7 +334,8 @@ h1, h2, h3, .section-title {
 }
 
 .vertical-subject-card {
-    background-color: #0d0d0d !important;
+    background-color: rgba(13, 13, 13, 0.8) !important;
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(0, 102, 255, 0.3) !important;
     border-radius: 16px;
     padding: 25px 30px;
@@ -406,7 +416,8 @@ h1, h2, h3, .section-title {
 }
 
 .comet-widget {
-    background-color: #0d0d0d !important;
+    background-color: rgba(13, 13, 13, 0.8) !important;
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(0, 102, 255, 0.3) !important;
     border-radius: 16px;
     padding: 35px;
