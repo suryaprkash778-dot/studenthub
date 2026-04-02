@@ -42,42 +42,55 @@ h1, h2, h3, .section-title {
 }
 
 /* =========================================
-   TOPBAR & LOGO STYLES (INVISIBLE BAR FIX)
+   TOPBAR & LOGO STYLES (SMOOTH SCROLLING FIX)
    ========================================= */
 .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px 40px;
-    background: transparent; /* Makes the bar completely invisible */
-    border-bottom: none; /* Removes the ugly line */
-    position: absolute; /* Lets it sit naturally over the page */
+    background: transparent; 
+    border-bottom: none; 
+    position: fixed; /* Makes it follow you down the page! */
     top: 0; left: 0; width: 100%;
     z-index: 2500; 
-    pointer-events: none; /* Prevents the invisible bar from blocking clicks below it */
+    pointer-events: none; /* Prevents invisible parts from blocking clicks */
+    transition: all 0.4s ease; /* The smooth "slow" animation effect */
+}
+
+/* The style applied when you scroll down */
+.topbar.scrolled {
+    padding: 15px 40px; /* Shrinks slightly */
+    background: rgba(252, 252, 252, 0.85); /* Faint frosted glass so text is readable */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    pointer-events: auto;
 }
 
 .logo-container, .menu-btn {
-    pointer-events: auto; /* Ensures the logo and menu button are still clickable! */
+    pointer-events: auto; /* Ensures the logo and menu button are always clickable */
 }
 
 .logo-container {
     display: flex;
     align-items: center;
     gap: 12px;
+    cursor: pointer;
 }
 
-/* LOGO BUG FIX: strict sizes so it doesn't get monstrously stretched */
+/* BULLETPROOF LOGO SIZE FIX */
 .logo-icon {
-    height: 35px !important; 
-    width: auto !important;
-    max-width: 50px;
-    object-fit: contain;
-    flex-shrink: 0;
-    mix-blend-mode: multiply; 
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    object-fit: contain !important;
+    display: block !important;
 }
 
-.topbar h3 { font-family: 'DM Serif Display', serif; font-size: 30px; margin: 0;}
+.topbar h3 { font-family: 'DM Serif Display', serif; font-size: 30px; margin: 0; transition: 0.3s;}
+.topbar.scrolled h3 { font-size: 26px; } /* Shrinks text slightly on scroll */
+
 .menu-btn { font-size: 32px; cursor: pointer; color: #111; transition: 0.3s; }
 .menu-btn:hover { opacity: 0.7; }
 
@@ -101,7 +114,6 @@ h1, h2, h3, .section-title {
     margin-bottom: 30px;
 }
 .sidebar-logo h2 { font-size: 36px; margin: 0;}
-.sidebar-logo .logo-icon { height: 40px !important; max-width: 55px;} /* Strict size for sidebar logo */
 
 .sidebar a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: #333; text-decoration: none; transition: 0.3s; border-radius: 8px; margin-bottom: 5px; font-weight: 500; }
 .sidebar a:hover { background-color: #F5F5F5 !important; color: #000; }
@@ -492,7 +504,7 @@ h1, h2, h3, .section-title {
     .main { padding-top: 100px; }
     
     .topbar { padding: 20px 25px; }
-    .logo-icon { height: 28px !important; }
+    .topbar.scrolled { padding: 10px 25px; }
 
     .hero, .core-subjects, .roadmap-section, .upload-container, .top-channels, .creator-talks, .semester-section, #pdfViewer {
         width: 90%; 
