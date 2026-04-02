@@ -48,7 +48,6 @@ h1, h2, h3, .section-title {
     z-index: 2500; 
 }
 
-/* Flex container for the Logo Icon + Text */
 .logo-container {
     display: flex;
     align-items: center;
@@ -101,7 +100,7 @@ h1, h2, h3, .section-title {
 /* =========================================
    HERO SECTION (HOME)
    ========================================= */
-.hero, .core-subjects, .roadmap-section, .upload-section, .top-channels {
+.hero, .core-subjects, .roadmap-section, .upload-container, .top-channels {
     width: 90%;
     max-width: 1000px; 
     text-align: center;
@@ -125,38 +124,18 @@ h1, h2, h3, .section-title {
 /* SAPPHIRE FROSTED GLASS CARDS */
 .channel-card {
     flex: 0 0 auto; width: 130px; height: 130px; border-radius: 50%;
-    
-    /* Deep Sapphire Blue with Glass Transparency */
     background: linear-gradient(135deg, rgba(30, 90, 200, 0.7), rgba(10, 40, 120, 0.85)); 
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    
-    /* Soft white glass edge */
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.3); 
-    
-    /* Sapphire tinted shadow */
     box-shadow: 0 8px 25px rgba(15, 82, 186, 0.25); 
-    
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 8px; text-decoration: none;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
-.channel-card:hover { 
-    transform: translateY(-5px); 
-    box-shadow: 0 12px 30px rgba(15, 82, 186, 0.4); 
-    border-color: rgba(255, 255, 255, 0.5);
-}
-.channel-card i { 
-    font-size: 2rem; 
-    background: rgba(255, 255, 255, 0.15); /* Frosted white behind icon */
-    padding: 10px; border-radius: 50%; 
-}
-.channel-card span { 
-    color: #ffffff; /* White text to contrast with Sapphire */
-    font-size: 0.85rem; font-weight: 500; letter-spacing: -0.3px;
-}
+.channel-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(15, 82, 186, 0.4); border-color: rgba(255, 255, 255, 0.5); }
+.channel-card i { font-size: 2rem; background: rgba(255, 255, 255, 0.15); padding: 10px; border-radius: 50%; }
+.channel-card span { color: #ffffff; font-size: 0.85rem; font-weight: 500; letter-spacing: -0.3px; }
 
-/* Master Toggle Button - Black Pill */
+/* Master Toggle Button */
 .master-toggle-btn {
     background: #0d1117; 
     color: white; border: none; padding: 14px 35px; font-size: 1rem; font-weight: 500;
@@ -170,11 +149,7 @@ h1, h2, h3, .section-title {
 #coreSubjectCards.open { display: grid !important; animation: fadeIn 0.4s; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-.subject-card { 
-    background: #ffffff; 
-    border: 1px solid #eaeaea; border-radius: 12px; padding: 30px; text-align: left;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-}
+.subject-card { background: #ffffff; border: 1px solid #eaeaea; border-radius: 12px; padding: 30px; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
 .subject-card h3 { font-size: 1.6rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 .subject-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
 .subject-card li { display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; color: #555; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
@@ -185,11 +160,7 @@ h1, h2, h3, .section-title {
 .list-left i { color: #ccc; }
 
 /* Roadmap */
-.roadmap-card {
-    background: #ffffff; 
-    border: 1px solid #eaeaea; border-radius: 16px; padding: 40px; text-align: left; margin-bottom: 30px;
-    box-shadow: 0 4px 25px rgba(0,0,0,0.03);
-}
+.roadmap-card { background: #ffffff; border: 1px solid #eaeaea; border-radius: 16px; padding: 40px; text-align: left; margin-bottom: 30px; box-shadow: 0 4px 25px rgba(0,0,0,0.03); }
 .roadmap-card h2 { font-size: 2rem; margin-bottom: 15px; }
 .main-desc { color: #444; font-size: 1.1rem; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
 .indented-list { list-style: none; padding-left: 15px; }
@@ -198,15 +169,117 @@ h1, h2, h3, .section-title {
 .list-item h4 { font-size: 1.2rem; color: #111; margin-bottom: 5px;}
 .list-item p { color: #666; font-size: 0.95rem; line-height: 1.6;}
 
-/* Upload Section */
-.upload-section { background: #ffffff; border: 1px solid #eaeaea; border-radius: 16px; padding: 50px; box-shadow: 0 4px 25px rgba(0,0,0,0.03);}
-.upload-section h2 { font-size: 2.5rem; margin-bottom: 15px;}
-.upload-row { display: flex; gap: 15px; margin: 15px 0; }
-.upload-input { width: 100%; padding: 15px; background: #fbfbfb; border: 1px solid #ddd; border-radius: 8px; color: #111; outline: none; font-family: 'Inter', sans-serif;}
-.upload-input:focus { border-color: #111; background: #fff;}
-.upload-input option { background: #fff; }
-.upload-btn { width: 100%; padding: 15px; background: #0d1117; border: none; border-radius: 8px; color: white; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: 0.3s;}
-.upload-btn:hover { background: #333; }
+/* =========================================
+   NEW COMET STYLED UPLOAD SECTION
+   ========================================= */
+.upload-container {
+    width: 90%; max-width: 800px; margin: 0 auto 80px auto; text-align: center;
+}
+.upload-title { font-size: 2.5rem; margin-bottom: 10px; }
+.upload-subtitle { font-size: 1.1rem; color: #555; margin-bottom: 30px; }
+
+/* The main white card widget */
+.comet-widget {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    text-align: left;
+}
+
+/* The text input mimicking the search bar */
+.comet-text-input {
+    width: 100%;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: #111;
+    background: transparent;
+    outline: none;
+    margin-bottom: 35px;
+}
+.comet-text-input::placeholder { color: #9ca3af; }
+
+/* The bottom row containing dropdowns and actions */
+.comet-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 20px;
+}
+
+/* Left side pill dropdowns */
+.comet-dropdowns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.comet-select-wrapper {
+    background: #f1f5f9;
+    border-radius: 50px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #475569;
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+.comet-select-wrapper:hover { border-color: #cbd5e1; }
+.comet-select-wrapper i { font-size: 1.1rem; color: #64748b; }
+
+.comet-select {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    appearance: none; /* Removes default dropdown arrow */
+}
+
+/* Right side actions (Icon and Submit) */
+.comet-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.comet-icon-btn {
+    color: #64748b;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 5px;
+}
+.comet-icon-btn:hover { color: #111; }
+
+/* The Teal Action Button */
+.comet-submit-btn {
+    background: #207e86; /* The exact Perplexity Teal */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.comet-submit-btn:hover { background: #1a656c; transform: scale(1.05); }
+
+/* File name indicator */
+.file-name-display {
+    font-size: 0.85rem; color: #555; margin-top: 15px; font-weight: 500; display: flex; align-items: center; gap: 5px;
+}
 
 /* ABOUT PANEL */
 .about-panel { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: #fff; padding: 40px 30px; transition: 0.4s; z-index: 4000; border-left: 1px solid #eee; box-shadow: -5px 0 25px rgba(0,0,0,0.05);}
@@ -220,46 +293,37 @@ h1, h2, h3, .section-title {
 @media(max-width: 768px) {
     .main { padding-top: 100px; }
 
-    /* Fixed Box Widths */
-    .hero, .core-subjects, .roadmap-section, .upload-section, .top-channels {
+    .hero, .core-subjects, .roadmap-section, .upload-container, .top-channels {
         width: 90%; 
         max-width: 100%;
         margin-bottom: 50px;
     }
 
-    /* Typography tuned specifically for the new Serif font */
     .hero h1 { font-size: 2.8rem; line-height: 1; letter-spacing: -1px;}
     .hero p { font-size: 0.95rem; }
     .top-channels .section-title { font-size: 2.2rem; }
     .core-subjects h2 { font-size: 2.2rem; }
     .roadmap-header h1 { font-size: 2.8rem; }
-    .upload-section h2 { font-size: 2.2rem; }
+    .upload-title { font-size: 2.2rem; }
 
-    /* Scale down the logo icon on mobile */
     .logo-icon { height: 26px; }
 
-    /* Fixed YouTube Circles */
-    .channel-card {
-        width: 95px; 
-        height: 95px;
-    }
+    .channel-card { width: 95px; height: 95px; }
     .channel-card i { font-size: 1.5rem; padding: 8px; }
     .channel-card span { font-size: 0.65rem; }
 
-    /* Fixed Subject Cards */
     #coreSubjectCards.open { grid-template-columns: 1fr; }
     .subject-card { padding: 20px; }
     .subject-card h3 { font-size: 1.3rem; }
     .subject-card li { flex-direction: column; align-items: flex-start; gap: 8px; }
     .subject-card li a { align-self: flex-end; }
 
-    /* Fixed Form Boxes */
-    .upload-section { padding: 30px 20px; }
-    .upload-row { flex-direction: column; gap: 15px; margin: 15px 0; }
-    .upload-input { padding: 12px; }
+    /* Fix Comet Widget on Mobile */
+    .comet-widget { padding: 20px 15px; }
+    .comet-dropdowns { width: 100%; justify-content: space-between; }
+    .comet-actions { width: 100%; justify-content: space-between; margin-top: 10px; border-top: 1px solid #f1f5f9; padding-top: 15px;}
 
-    /* Fixed Roadmap */
     .roadmap-card { padding: 25px; }
     .roadmap-card h2 { font-size: 1.5rem; }
     .main-desc { font-size: 1rem; }
-}
+    }
