@@ -42,36 +42,20 @@ h1, h2, h3, .section-title {
 }
 
 /* =========================================
-   TOPBAR & LOGO STYLES
+   FLOATING MENU BUTTON
    ========================================= */
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
-    background: rgba(252, 252, 252, 0.9); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid #eeeeee;
+.floating-menu-btn {
     position: fixed;
-    top: 0; left: 0; width: 100%;
-    z-index: 2500; 
+    top: 25px;
+    right: 35px;
+    font-size: 36px;
+    cursor: pointer;
+    color: #111;
+    z-index: 2500;
+    transition: 0.3s;
+    background: transparent;
 }
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.logo-icon {
-    height: 32px; 
-    width: auto;
-}
-
-.topbar h3 { font-family: 'DM Serif Display', serif; font-size: 30px; margin: 0;}
-.menu-btn { font-size: 30px; cursor: pointer; color: #111; transition: 0.3s; }
-.menu-btn:hover { opacity: 0.7; }
+.floating-menu-btn:hover { opacity: 0.6; transform: scale(1.05); }
 
 /* =========================================
    SIDEBAR
@@ -104,7 +88,8 @@ h1, h2, h3, .section-title {
 /* =========================================
    MAIN CONTENT AREA & CONTAINERS
    ========================================= */
-.main { padding-top: 130px; display: flex; flex-direction: column; align-items: center; width: 100%; }
+/* Reduced padding-top from 130px to 80px since topbar is removed */
+.main { padding-top: 80px; display: flex; flex-direction: column; align-items: center; width: 100%; }
 
 .hero, .core-subjects, .roadmap-section, .upload-container, .top-channels, .creator-talks, .semester-section {
     width: 96%;
@@ -273,7 +258,7 @@ h1, h2, h3, .section-title {
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    max-width: 800px; /* Makes them look like neat list items */
+    max-width: 800px; 
     margin: 0 auto;
 }
 
@@ -480,7 +465,10 @@ h1, h2, h3, .section-title {
    MOBILE RESPONSIVE 
    ========================================= */
 @media(max-width: 768px) {
-    .main { padding-top: 100px; }
+    /* Adjusted mobile padding to match desktop removal of topbar */
+    .main { padding-top: 60px; }
+    
+    .floating-menu-btn { top: 15px; right: 20px; font-size: 32px; }
 
     .hero, .core-subjects, .roadmap-section, .upload-container, .top-channels, .creator-talks, .semester-section, #pdfViewer {
         width: 90%; 
