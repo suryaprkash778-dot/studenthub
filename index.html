@@ -11,7 +11,7 @@
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <link rel="stylesheet" href="style.css?v=23">
+    <link rel="stylesheet" href="style.css?v=24">
 </head>
 
 <body>
@@ -490,17 +490,16 @@
         }
     }
 
-    // File Input Listener to show selected file name elegantly
+    // File Input Listener - FLAME BLUE CHECKMARK UPDATE
     document.getElementById('fileInput').addEventListener('change', function(e) {
         const display = document.getElementById('file-name-display');
         if (this.files && this.files.length > 0) {
-            display.innerHTML = '<i class="ph-fill ph-check-circle" style="color: #207e86;"></i> Attached: ' + this.files[0].name;
+            display.innerHTML = '<i class="ph-fill ph-check-circle" style="color: #0088ff;"></i> Attached: ' + this.files[0].name;
         } else {
             display.innerHTML = '';
         }
     });
 
-    // NEW: Scroll listener to shrink and slightly frost the topbar when scrolling down
     window.addEventListener("scroll", function() {
         const topbar = document.getElementById("mainTopbar");
         if (window.scrollY > 50) {
