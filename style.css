@@ -13,7 +13,6 @@ html, body {
    NEW LIGHT/EDITORIAL THEME 
    ========================================= */
 body {
-    /* The clean, modern Interface font */
     font-family: 'Inter', sans-serif;
     background-color: #fcfcfc; 
     color: #333333; 
@@ -24,17 +23,16 @@ body {
 ::-webkit-scrollbar-track { background: #f4f4f4; }
 ::-webkit-scrollbar-thumb { background: #cccccc; border-radius: 10px; }
 
-/* Typography Overhaul - Exact Perplexity Comet Style */
+/* Typography Overhaul */
 h1, h2, h3, .section-title {
-    /* The thick, high-contrast Editorial Serif */
     font-family: 'DM Serif Display', serif; 
     color: #111111; 
-    letter-spacing: -0.5px; /* Tight tracking just like the screenshots */
-    font-weight: 400; /* DM Serif Display is naturally bold */
+    letter-spacing: -0.5px; 
+    font-weight: 400; 
 }
 
 /* =========================================
-   TOPBAR
+   TOPBAR & LOGO STYLES
    ========================================= */
 .topbar {
     display: flex;
@@ -49,8 +47,21 @@ h1, h2, h3, .section-title {
     top: 0; left: 0; width: 100%;
     z-index: 2500; 
 }
-/* NoteVerse Logo stays Great Vibes, but dark */
-.topbar h3 { font-family: 'DM Serif Display', serif; font-size: 30px; cursor: pointer; color: #111; letter-spacing: 0px;}
+
+/* NEW: Flex container for the Logo Icon + Text */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    height: 32px; /* Perfect size next to the text */
+    width: auto;
+    mix-blend-mode: multiply; /* MAGIC TRICK: Hides the white background of your JPG! */
+}
+
+.topbar h3 { font-family: 'DM Serif Display', serif; font-size: 30px; color: #111; letter-spacing: 0px; margin: 0;}
 .menu-btn { font-size: 30px; cursor: pointer; color: #111; transition: 0.3s; }
 .menu-btn:hover { opacity: 0.7; }
 
@@ -65,7 +76,16 @@ h1, h2, h3, .section-title {
     box-shadow: -5px 0 20px rgba(0,0,0,0.05);
 }
 .sidebar.active { right: 0; }
-.sidebar h2 { font-size: 36px; text-align: center; margin-bottom: 30px; color: #111;}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.sidebar-logo h2 { font-size: 36px; color: #111; margin: 0;}
+
 .sidebar a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: #333; text-decoration: none; transition: 0.3s; border-radius: 8px; margin-bottom: 5px; font-weight: 500; }
 .sidebar a:hover { background: #f4f4f4; color: #000; }
 .sidebar a i { font-size: 22px; color: #555; }
@@ -116,7 +136,7 @@ h1, h2, h3, .section-title {
 
 /* Master Toggle Button - Black Pill */
 .master-toggle-btn {
-    background: #0d1117; /* Deep dark button like Comet */
+    background: #0d1117; 
     color: white; border: none; padding: 14px 35px; font-size: 1rem; font-weight: 500;
     border-radius: 50px; cursor: pointer; transition: 0.3s; margin-bottom: 40px; display: inline-flex; align-items: center; gap: 10px;
     font-family: 'Inter', sans-serif;
@@ -178,14 +198,12 @@ h1, h2, h3, .section-title {
 @media(max-width: 768px) {
     .main { padding-top: 100px; }
 
-    /* Fixed Box Widths */
     .hero, .core-subjects, .roadmap-section, .upload-section, .top-channels {
         width: 90%; 
         max-width: 100%;
         margin-bottom: 50px;
     }
 
-    /* Typography tuned specifically for the new Serif font */
     .hero h1 { font-size: 2.8rem; line-height: 1; letter-spacing: -1px;}
     .hero p { font-size: 0.95rem; }
     .top-channels .section-title { font-size: 2.2rem; }
@@ -193,7 +211,9 @@ h1, h2, h3, .section-title {
     .roadmap-header h1 { font-size: 2.8rem; }
     .upload-section h2 { font-size: 2.2rem; }
 
-    /* Fixed YouTube Circles */
+    /* Scale down the logo icon on mobile */
+    .logo-icon { height: 26px; }
+
     .channel-card {
         width: 95px; 
         height: 95px;
@@ -201,20 +221,19 @@ h1, h2, h3, .section-title {
     .channel-card i { font-size: 1.5rem; padding: 8px; }
     .channel-card span { font-size: 0.65rem; }
 
-    /* Fixed Subject Cards */
     #coreSubjectCards.open { grid-template-columns: 1fr; }
     .subject-card { padding: 20px; }
     .subject-card h3 { font-size: 1.3rem; }
     .subject-card li { flex-direction: column; align-items: flex-start; gap: 8px; }
     .subject-card li a { align-self: flex-end; }
 
-    /* Fixed Form Boxes */
     .upload-section { padding: 30px 20px; }
     .upload-row { flex-direction: column; gap: 15px; margin: 15px 0; }
     .upload-input { padding: 12px; }
 
-    /* Fixed Roadmap */
     .roadmap-card { padding: 25px; }
     .roadmap-card h2 { font-size: 1.5rem; }
     .main-desc { font-size: 1rem; }
+}
+ize: 1rem; }
 }
