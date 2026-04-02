@@ -31,6 +31,16 @@ h1, h2, h3, .section-title {
     font-weight: 400; 
 }
 
+/* NEW THEME TEXT GRADIENT */
+.text-gradient {
+    background: linear-gradient(to right, #1a5a63, #32a096);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
 /* =========================================
    TOPBAR & LOGO STYLES
    ========================================= */
@@ -104,7 +114,6 @@ h1, h2, h3, .section-title {
     width: 96%;
     max-width: 100%; 
     text-align: center;
-    /* Increased gap between sections from 70px to 100px for breathing room */
     margin: 0 auto 100px auto; 
 }
 
@@ -112,7 +121,6 @@ h1, h2, h3, .section-title {
 .hero p { font-size: 1.1rem; color: #555; line-height: 1.6; max-width: 800px; margin: 0 auto; font-weight: 400; }
 .hero-badge { display: inline-block; padding: 8px 20px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 50px; font-size: 13px; color: #666; background: #fff; font-weight: 500;}
 
-/* SPACING FIXES: Added margins to prevent text colliding with boxes */
 .top-channels .section-title { font-size: 3rem; margin-bottom: 40px; letter-spacing: -1px;}
 
 .core-subjects h2 { font-size: 3rem; margin-bottom: 15px; letter-spacing: -1px; }
@@ -410,6 +418,7 @@ h1, h2, h3, .section-title {
 
     .logo-icon { height: 26px; }
 
+    /* Adjust Youtube squircle for mobile */
     .channel-card { width: 105px; height: 105px; border-radius: 16px;}
     .channel-card i { font-size: 2.2rem; padding: 0; }
     .channel-card span { font-size: 0.75rem; }
