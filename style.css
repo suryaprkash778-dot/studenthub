@@ -159,8 +159,31 @@ h1, h2, h3, .section-title {
 .list-left { display: flex; align-items: center; gap: 10px; }
 .list-left i { color: #ccc; }
 
-/* Roadmap */
-.roadmap-card { background: #ffffff; border: 1px solid #eaeaea; border-radius: 16px; padding: 40px; text-align: left; margin-bottom: 30px; box-shadow: 0 4px 25px rgba(0,0,0,0.03); }
+/* =========================================
+   ROADMAP (COMET AURA STYLE)
+   ========================================= */
+.roadmap-card { 
+    background: #fbfcf8; /* Warm off-white paper color */
+    border: 1px solid rgba(82, 199, 196, 0.15); /* Very subtle teal inner edge */
+    border-radius: 24px; /* Slightly rounder like Comet */
+    padding: 40px; 
+    text-align: left; 
+    margin-bottom: 40px; 
+    
+    /* The magic greenish-blue ambient aura glow */
+    box-shadow: 
+        0 15px 45px rgba(66, 200, 190, 0.25), 
+        0 0 20px rgba(72, 210, 220, 0.15);
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.roadmap-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 20px 50px rgba(66, 200, 190, 0.3), 
+        0 0 25px rgba(72, 210, 220, 0.2);
+}
+
 .roadmap-card h2 { font-size: 2rem; margin-bottom: 15px; }
 .main-desc { color: #444; font-size: 1.1rem; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
 .indented-list { list-style: none; padding-left: 15px; }
@@ -337,7 +360,7 @@ h1, h2, h3, .section-title {
     .comet-dropdowns { width: 100%; justify-content: space-between; }
     .comet-actions { width: 100%; justify-content: space-between; margin-top: 10px; border-top: 1px solid #f1f5f9; padding-top: 15px;}
 
-    .roadmap-card { padding: 25px; }
+    .roadmap-card { padding: 25px; margin-bottom: 30px;}
     .roadmap-card h2 { font-size: 1.5rem; }
     .main-desc { font-size: 1rem; }
     
