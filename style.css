@@ -86,7 +86,7 @@ h1, h2, h3, .section-title {
 .sidebar-logo h2 { font-size: 36px; color: #111; margin: 0;}
 
 .sidebar a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: #333; text-decoration: none; transition: 0.3s; border-radius: 8px; margin-bottom: 5px; font-weight: 500; }
-.sidebar a:hover { background: #F9F6EE !important; color: #000; }
+.sidebar a:hover { background-color: #F5F5F5 !important; color: #000; }
 .sidebar a i { font-size: 22px; color: #555; }
 .close-sidebar { position: absolute; top: 20px; left: 20px; font-size: 24px; cursor: pointer; color: #111; }
 .submenu { display: none; padding-left: 15px; border-left: 2px solid #ddd; margin-left: 25px; margin-bottom: 10px; }
@@ -98,11 +98,11 @@ h1, h2, h3, .section-title {
 .main { padding-top: 130px; display: flex; flex-direction: column; align-items: center; width: 100%; }
 
 /* =========================================
-   HERO SECTION (HOME) - STRETCHED LAYOUT!
+   HERO SECTION (HOME) 
    ========================================= */
 .hero, .core-subjects, .roadmap-section, .upload-container, .top-channels {
     width: 96%;
-    max-width: 100%; /* No more width limits! */
+    max-width: 100%; 
     text-align: center;
     margin: 0 auto 70px auto;
 }
@@ -149,19 +149,23 @@ h1, h2, h3, .section-title {
 #coreSubjectCards.open { display: grid !important; animation: fadeIn 0.4s; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* THE FIX: PROPER SYNTAX FOR HIGH-INTENSITY INSET GRADIENTS
-   Notice there is only ONE !important tag at the very end of the box-shadow property!
-*/
+/* F5F5F5 BACKGROUND COLOR APPLIED */
 .subject-card { 
-    background-color: #F9F6EE !important; 
+    background-color: #F5F5F5 !important; 
     border: 1px solid rgba(32, 126, 134, 0.3) !important; 
     border-radius: 12px; padding: 35px; text-align: left; 
-    box-shadow: inset 0 0 50px 10px rgba(32, 126, 134, 0.35), 0 4px 15px rgba(0,0,0,0.03) !important; 
+    box-shadow: 
+        inset 0 0 50px 15px rgba(50, 160, 150, 0.7), 
+        inset 0 0 20px 5px rgba(50, 160, 150, 0.4), 
+        0 4px 15px rgba(0,0,0,0.03) !important; 
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .subject-card:hover {
     transform: translateY(-2px);
-    box-shadow: inset 0 0 60px 12px rgba(32, 126, 134, 0.45), 0 8px 25px rgba(0,0,0,0.05) !important;
+    box-shadow: 
+        inset 0 0 60px 18px rgba(50, 160, 150, 0.8), 
+        inset 0 0 25px 8px rgba(50, 160, 150, 0.5), 
+        0 8px 25px rgba(0,0,0,0.05) !important;
 }
 .subject-card h3 { font-size: 1.6rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 .subject-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
@@ -176,18 +180,24 @@ h1, h2, h3, .section-title {
    ROADMAP
    ========================================= */
 .roadmap-card { 
-    background-color: #F9F6EE !important; 
+    background-color: #F5F5F5 !important; 
     border: 1px solid rgba(32, 126, 134, 0.3) !important; 
     border-radius: 24px; 
     padding: 50px; 
     text-align: left; 
     margin-bottom: 40px; 
-    box-shadow: inset 0 0 50px 10px rgba(32, 126, 134, 0.35), 0 4px 15px rgba(0,0,0,0.03) !important;          
+    box-shadow: 
+        inset 0 0 50px 12px rgba(50, 160, 150, 0.7), 
+        inset 0 0 15px rgba(50, 160, 150, 0.4),          
+        0 4px 15px rgba(0, 0, 0, 0.03) !important;          
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .roadmap-card:hover {
     transform: translateY(-4px);
-    box-shadow: inset 0 0 60px 12px rgba(32, 126, 134, 0.45), 0 8px 25px rgba(0,0,0,0.05) !important;
+    box-shadow: 
+        inset 0 0 60px 15px rgba(50, 160, 150, 0.8), 
+        inset 0 0 20px rgba(50, 160, 150, 0.5), 
+        0 8px 25px rgba(0, 0, 0, 0.05) !important;
 }
 
 .roadmap-card h2 { font-size: 2.2rem; margin-bottom: 15px; }
@@ -208,16 +218,18 @@ h1, h2, h3, .section-title {
     max-width: 100%; 
     height: 700px; 
     border-radius: 16px; 
-    border: 1px solid rgba(32, 126, 134, 0.3) !important; 
+    border: 1px solid rgba(32, 126, 134, 0.4) !important; 
     overflow: hidden; 
     z-index: 100;
-    box-shadow: inset 0 0 50px 10px rgba(32, 126, 134, 0.35), 0 4px 15px rgba(0,0,0,0.03) !important;
+    box-shadow: 
+        inset 0 0 40px 10px rgba(50, 160, 150, 0.7), 
+        0 4px 15px rgba(0,0,0,0.03) !important;
 }
 #pdfFrame { 
     width: 100%; 
     height: 100%; 
     border: none; 
-    background-color: #F9F6EE !important;
+    background-color: #F5F5F5 !important;
 }
 
 /* =========================================
@@ -233,16 +245,20 @@ h1, h2, h3, .section-title {
 .upload-subtitle { font-size: 1.2rem; color: #555; margin-bottom: 30px; }
 
 .comet-widget {
-    background-color: #F9F6EE !important;
+    background-color: #F5F5F5 !important;
     border: 1px solid rgba(32, 126, 134, 0.3) !important;
     border-radius: 16px;
     padding: 35px;
-    box-shadow: inset 0 0 50px 10px rgba(32, 126, 134, 0.35), 0 10px 30px rgba(0,0,0,0.04) !important;
+    box-shadow: 
+        inset 0 0 40px 10px rgba(50, 160, 150, 0.7), 
+        0 10px 30px rgba(0,0,0,0.04) !important;
     text-align: left;
     transition: box-shadow 0.3s ease;
 }
 .comet-widget:hover {
-    box-shadow: inset 0 0 60px 12px rgba(32, 126, 134, 0.45), 0 15px 40px rgba(0,0,0,0.06) !important;
+    box-shadow: 
+        inset 0 0 50px 12px rgba(50, 160, 150, 0.8), 
+        0 15px 40px rgba(0,0,0,0.06) !important;
 }
 
 .comet-text-input {
@@ -335,10 +351,12 @@ h1, h2, h3, .section-title {
 /* ABOUT PANEL */
 .about-panel { 
     position: fixed; right: -400px; top: 0; width: 350px; height: 100%; 
-    background-color: #F9F6EE !important; 
+    background-color: #F5F5F5 !important; 
     padding: 40px 30px; transition: 0.4s; z-index: 4000; 
     border-left: 1px solid rgba(32, 126, 134, 0.3) !important; 
-    box-shadow: inset 0 0 50px 10px rgba(32, 126, 134, 0.35), -5px 0 25px rgba(0,0,0,0.05) !important;
+    box-shadow: 
+        inset 0 0 40px 10px rgba(50, 160, 150, 0.7), 
+        -5px 0 25px rgba(0,0,0,0.05) !important;
 }
 .about-panel h2 { margin-bottom: 20px;}
 .about-panel p { color: #555; margin-bottom: 15px; line-height: 1.6; font-size: 15px; }
