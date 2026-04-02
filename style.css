@@ -9,6 +9,9 @@ html, body {
     overflow-x: hidden; 
 }
 
+/* =========================================
+   NEW LIGHT/EDITORIAL THEME 
+   ========================================= */
 body {
     font-family: 'Inter', sans-serif;
     background-color: #fcfcfc; 
@@ -20,6 +23,7 @@ body {
 ::-webkit-scrollbar-track { background: #f4f4f4; }
 ::-webkit-scrollbar-thumb { background: #cccccc; border-radius: 10px; }
 
+/* Typography Overhaul */
 h1, h2, h3, .section-title {
     font-family: 'DM Serif Display', serif; 
     color: #111111; 
@@ -27,6 +31,7 @@ h1, h2, h3, .section-title {
     font-weight: 400; 
 }
 
+/* NEW THEME TEXT GRADIENT */
 .text-gradient {
     background: linear-gradient(to right, #1a5a63, #32a096);
     -webkit-background-clip: text;
@@ -37,7 +42,7 @@ h1, h2, h3, .section-title {
 }
 
 /* =========================================
-   TOPBAR & LOGO
+   TOPBAR & LOGO STYLES
    ========================================= */
 .topbar {
     display: flex;
@@ -97,15 +102,18 @@ h1, h2, h3, .section-title {
 .submenu.active { display: block; }
 
 /* =========================================
-   MAIN LAYOUT
+   MAIN CONTENT AREA
    ========================================= */
 .main { padding-top: 130px; display: flex; flex-direction: column; align-items: center; width: 100%; }
 
+/* =========================================
+   FIXED MAX-WIDTH TO PREVENT OVER-STRETCHING
+   ========================================= */
 .hero, .core-subjects, .roadmap-section, .upload-container, .top-channels, .creator-talks {
     width: 96%;
-    max-width: 100%; 
+    max-width: 1100px; /* Restored max-width to fix the wide monitor issue! */
     text-align: center;
-    margin: 0 auto 100px auto; 
+    margin: 0 auto 90px auto; 
 }
 
 .hero h1 { font-size: 4.5rem; margin-bottom: 20px; line-height: 1.05; letter-spacing: -1.5px; }
@@ -113,6 +121,16 @@ h1, h2, h3, .section-title {
 .hero-badge { display: inline-block; padding: 8px 20px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 50px; font-size: 13px; color: #666; background: #fff; font-weight: 500;}
 
 .top-channels .section-title { font-size: 3rem; margin-bottom: 40px; letter-spacing: -1px;}
+
+.core-subjects h2 { font-size: 3rem; margin-bottom: 15px; letter-spacing: -1px; }
+.core-subtext { font-size: 1.1rem; color: #555; margin-bottom: 40px; }
+
+.roadmap-header { margin-bottom: 50px; }
+.roadmap-header h1 { font-size: 3rem; margin-bottom: 15px; letter-spacing: -1px; }
+.roadmap-header p { font-size: 1.1rem; color: #555; }
+
+.upload-title { font-size: 3rem; margin-bottom: 15px; letter-spacing: -1px; }
+.upload-subtitle { font-size: 1.1rem; color: #555; margin-bottom: 45px; }
 
 /* YouTube Scroll */
 .channel-scroll-container {
@@ -122,16 +140,44 @@ h1, h2, h3, .section-title {
 @media(min-width: 1000px) { .channel-scroll-container { justify-content: center; } }
 .channel-scroll-container::-webkit-scrollbar { display: none; }
 
+/* =========================================
+   YOUTUBE CARDS 
+   ========================================= */
 .channel-card {
-    flex: 0 0 auto; width: 130px; height: 130px; border-radius: 20px; 
-    background-color: #F5F5F5 !important; border: 1px solid rgba(32, 126, 134, 0.3) !important; 
+    flex: 0 0 auto; 
+    width: 130px; 
+    height: 130px; 
+    border-radius: 20px; 
+    background-color: #F5F5F5 !important; 
+    border: 1px solid rgba(32, 126, 134, 0.3) !important; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important; 
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.channel-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important; }
-.channel-card i { font-size: 2.8rem; color: #207e86 !important; background: transparent; padding: 0; }
-.channel-card span { color: #111 !important; font-size: 0.85rem; font-weight: 600; letter-spacing: -0.3px; }
+.channel-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important; 
+}
+.channel-card i { 
+    font-size: 2.8rem; 
+    color: #207e86 !important; 
+    background: transparent; 
+    padding: 0; 
+}
+.channel-card span { 
+    color: #111 !important; 
+    font-size: 0.85rem; font-weight: 600; letter-spacing: -0.3px; 
+}
+
+/* Master Toggle Button */
+.master-toggle-btn {
+    background: #0d1117; 
+    color: white; border: none; padding: 14px 35px; font-size: 1rem; font-weight: 500;
+    border-radius: 50px; cursor: pointer; transition: 0.3s; margin-bottom: 40px; display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Inter', sans-serif;
+}
+.master-toggle-btn:hover { background: #333333; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
+
 
 /* =========================================
    CREATOR TALKS
@@ -151,40 +197,270 @@ h1, h2, h3, .section-title {
 .creator-content i { font-size: 2.5rem; color: #207e86; }
 .creator-content p { font-size: 1.2rem; color: #333; font-weight: 500; text-align: left; }
 
-/* =========================================
-   CARDS & BOXES
-   ========================================= */
-.core-subjects h2 { font-size: 3rem; margin-bottom: 15px; }
-.core-subtext { font-size: 1.1rem; color: #555; margin-bottom: 40px; }
 
-.subject-card, .roadmap-card, .comet-widget, .about-panel { 
+/* =========================================
+   SUBJECT GRID (FIXED WITH 300px MINMAX)
+   ========================================= */
+#coreSubjectCards { 
+    display: none; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Fixes the massive stretch */
+    gap: 25px; 
+    width: 100%; 
+}
+#coreSubjectCards.open { display: grid !important; animation: fadeIn 0.4s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+.subject-card { 
     background-color: #F5F5F5 !important; 
     border: 1px solid rgba(32, 126, 134, 0.3) !important; 
-    box-shadow: inset 0 0 50px 15px rgba(50, 160, 150, 0.7), 0 4px 15px rgba(0,0,0,0.03) !important; 
+    border-radius: 12px; padding: 35px; text-align: left; 
+    box-shadow: 
+        inset 0 0 50px 15px rgba(50, 160, 150, 0.7), 
+        inset 0 0 20px 5px rgba(50, 160, 150, 0.4), 
+        0 4px 15px rgba(0,0,0,0.03) !important; 
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
-
-.subject-card { border-radius: 12px; padding: 35px; text-align: left; }
-.subject-card:hover { transform: translateY(-2px); box-shadow: inset 0 0 60px 18px rgba(50, 160, 150, 0.8), 0 8px 25px rgba(0,0,0,0.05) !important; }
+.subject-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        inset 0 0 60px 18px rgba(50, 160, 150, 0.8), 
+        inset 0 0 25px 8px rgba(50, 160, 150, 0.5), 
+        0 8px 25px rgba(0,0,0,0.05) !important;
+}
 .subject-card h3 { font-size: 1.6rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 .subject-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
 .subject-card li { display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; color: #555; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; }
-.subject-card li:last-child { border-bottom: none; }
+.subject-card li:last-child { border-bottom: none; padding-bottom: 0;}
 .subject-card li a { color: #999; font-size: 1.4rem; transition: 0.3s; }
 .subject-card li a:hover { color: #111; }
+.list-left { display: flex; align-items: center; gap: 10px; }
+.list-left i { color: #207e86; } 
 
-.master-toggle-btn {
-    background: #0d1117; color: white; border: none; padding: 14px 35px; font-size: 1rem; border-radius: 50px; cursor: pointer; transition: 0.3s; margin-bottom: 40px;
+/* =========================================
+   ROADMAP
+   ========================================= */
+.roadmap-card { 
+    background-color: #F5F5F5 !important; 
+    border: 1px solid rgba(32, 126, 134, 0.3) !important; 
+    border-radius: 24px; 
+    padding: 50px; 
+    text-align: left; 
+    margin-bottom: 40px; 
+    box-shadow: 
+        inset 0 0 50px 12px rgba(50, 160, 150, 0.7), 
+        inset 0 0 15px rgba(50, 160, 150, 0.4),          
+        0 4px 15px rgba(0, 0, 0, 0.03) !important;          
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.roadmap-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        inset 0 0 60px 15px rgba(50, 160, 150, 0.8), 
+        inset 0 0 20px rgba(50, 160, 150, 0.5), 
+        0 8px 25px rgba(0, 0, 0, 0.05) !important;
+}
+
+.roadmap-card h2 { font-size: 2.2rem; margin-bottom: 15px; }
+.main-desc { color: #444; font-size: 1.2rem; margin-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 15px; }
+.indented-list { list-style: none; padding-left: 15px; }
+.list-item { margin-bottom: 15px; position: relative; padding-left: 20px; }
+.list-item::before { content: ''; position: absolute; left: -5px; top: 10px; width: 6px; height: 6px; background: #111; border-radius: 50%; }
+.list-item h4 { font-size: 1.3rem; color: #111; margin-bottom: 5px;}
+.list-item p { color: #666; font-size: 1.05rem; line-height: 1.6;}
+
+/* =========================================
+   PDF VIEWER 
+   ========================================= */
+#pdfViewer { 
+    display: none; 
+    margin: 0 auto 60px auto; 
+    width: 96%; 
+    max-width: 100%; 
+    height: 700px; 
+    border-radius: 16px; 
+    border: 1px solid rgba(32, 126, 134, 0.4) !important; 
+    overflow: hidden; 
+    z-index: 100;
+    box-shadow: 
+        inset 0 0 40px 10px rgba(50, 160, 150, 0.7), 
+        0 4px 15px rgba(0,0,0,0.03) !important;
+}
+#pdfFrame { 
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+    background-color: #F5F5F5 !important;
 }
 
 /* =========================================
-   MISC & MOBILE
+   COMET STYLED UPLOAD SECTION (FULLY RESTORED)
    ========================================= */
-.upload-container { width: 96%; max-width: 100%; text-align: center; }
-.comet-widget { border-radius: 16px; padding: 35px; text-align: left; }
+.upload-container {
+    width: 96%; 
+    max-width: 100%; 
+    text-align: center;
+}
 
+.comet-widget {
+    background-color: #F5F5F5 !important;
+    border: 1px solid rgba(32, 126, 134, 0.3) !important;
+    border-radius: 16px;
+    padding: 35px;
+    box-shadow: 
+        inset 0 0 40px 10px rgba(50, 160, 150, 0.7), 
+        0 10px 30px rgba(0,0,0,0.04) !important;
+    text-align: left;
+    transition: box-shadow 0.3s ease;
+}
+.comet-widget:hover {
+    box-shadow: 
+        inset 0 0 50px 12px rgba(50, 160, 150, 0.8), 
+        0 15px 40px rgba(0,0,0,0.06) !important;
+}
+
+.comet-text-input {
+    width: 100%;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3rem;
+    color: #111;
+    background: transparent;
+    outline: none;
+    margin-bottom: 35px;
+}
+.comet-text-input::placeholder { color: #8ba39a; }
+
+.comet-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 20px;
+}
+
+.comet-dropdowns {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.comet-select-wrapper {
+    background: #ffffff; 
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    transition: 0.2s;
+}
+.comet-select-wrapper:hover { border-color: #cbd5e1; }
+.comet-select-wrapper i { font-size: 1.2rem; color: #64748b; }
+
+.comet-select {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    appearance: none; 
+}
+
+.comet-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.comet-icon-btn {
+    color: #64748b;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 5px;
+}
+.comet-icon-btn:hover { color: #111; }
+
+.comet-submit-btn {
+    background: #207e86; 
+    color: white;
+    border: none;
+    border-radius: 12px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.comet-submit-btn:hover { background: #1a656c; transform: scale(1.05); }
+
+.file-name-display {
+    font-size: 0.95rem; color: #555; margin-top: 15px; font-weight: 500; display: flex; align-items: center; gap: 5px;
+}
+
+/* ABOUT PANEL */
+.about-panel { 
+    position: fixed; right: -400px; top: 0; width: 350px; height: 100%; 
+    background-color: #F5F5F5 !important; 
+    padding: 40px 30px; transition: 0.4s; z-index: 4000; 
+    border-left: 1px solid rgba(32, 126, 134, 0.3) !important; 
+    box-shadow: 
+        inset 0 0 40px 10px rgba(50, 160, 150, 0.7), 
+        -5px 0 25px rgba(0,0,0,0.05) !important;
+}
+.about-panel h2 { margin-bottom: 20px;}
+.about-panel p { color: #555; margin-bottom: 15px; line-height: 1.6; font-size: 15px; }
+.close-about { position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; color: #111; }
+
+/* =========================================
+   MOBILE RESPONSIVE 
+   ========================================= */
 @media(max-width: 768px) {
-    .hero h1 { font-size: 2.8rem; }
-    .top-channels .section-title, .core-subjects h2, .creator-talks h2 { font-size: 2.2rem; }
-    .channel-card { width: 105px; height: 105px; }
+    .main { padding-top: 100px; }
+
+    .hero, .core-subjects, .roadmap-section, .upload-container, .top-channels, .creator-talks, #pdfViewer {
+        width: 90%; 
+        max-width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .hero h1 { font-size: 2.8rem; line-height: 1; letter-spacing: -1px;}
+    .hero p { font-size: 0.95rem; }
+    
+    .roadmap-header { margin-bottom: 30px; }
+    .roadmap-header h1 { font-size: 2.8rem; }
+    .core-subjects h2 { font-size: 2.2rem; }
+    .top-channels .section-title { font-size: 2.2rem; }
+    .creator-talks h2 { font-size: 2.2rem; }
+    .upload-title { font-size: 2.2rem; }
+
+    .logo-icon { height: 26px; }
+
+    .channel-card { width: 105px; height: 105px; border-radius: 16px;}
+    .channel-card i { font-size: 2.2rem; padding: 0; }
+    .channel-card span { font-size: 0.75rem; }
+
+    #coreSubjectCards.open { grid-template-columns: 1fr; }
+    .subject-card { padding: 20px; }
+    .subject-card h3 { font-size: 1.3rem; }
+    .subject-card li { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .subject-card li a { align-self: flex-end; }
+
+    .comet-widget { padding: 20px 15px; }
+    .comet-text-input { font-size: 1.1rem; }
+    .comet-dropdowns { width: 100%; justify-content: space-between; }
+    .comet-actions { width: 100%; justify-content: space-between; margin-top: 10px; border-top: 1px solid rgba(82, 199, 196, 0.2); padding-top: 15px;}
+
+    .roadmap-card { padding: 25px; margin-bottom: 30px;}
+    .roadmap-card h2 { font-size: 1.5rem; }
+    .main-desc { font-size: 1rem; }
+    
+    #pdfViewer { height: 500px; }
 }
