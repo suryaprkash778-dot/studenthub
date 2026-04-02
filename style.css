@@ -98,11 +98,11 @@ h1, h2, h3, .section-title {
 .main { padding-top: 130px; display: flex; flex-direction: column; align-items: center; width: 100%; }
 
 /* =========================================
-   HERO SECTION (HOME) - STRETCHED FOR PC
+   HERO SECTION (HOME) - STRETCHED LAYOUT!
    ========================================= */
 .hero, .core-subjects, .roadmap-section, .upload-container, .top-channels {
     width: 96%;
-    max-width: 1800px; /* Removed the 1000px limit to stretch to maximum width */
+    max-width: 100%; /* No more width limits! */
     text-align: center;
     margin: 0 auto 70px auto;
 }
@@ -149,23 +149,19 @@ h1, h2, h3, .section-title {
 #coreSubjectCards.open { display: grid !important; animation: fadeIn 0.4s; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ALL BOXES WITH IVORY COLOR AND FADED INSET GRADIENT */
+/* THE FIX: PROPER SYNTAX FOR HIGH-INTENSITY INSET GRADIENTS
+   Notice there is only ONE !important tag at the very end of the box-shadow property!
+*/
 .subject-card { 
     background-color: #F9F6EE !important; 
-    border: 1px solid rgba(82, 199, 196, 0.4) !important; 
+    border: 1px solid rgba(32, 126, 134, 0.3) !important; 
     border-radius: 12px; padding: 35px; text-align: left; 
-    box-shadow: 
-        inset 0 0 50px 15px rgba(50, 160, 150, 0.7) !important, 
-        inset 0 0 20px 5px rgba(50, 160, 150, 0.4) !important, 
-        0 4px 15px rgba(0,0,0,0.03) !important; 
+    box-shadow: inset 0 0 50px 10px rgba(32, 126, 134, 0.35), 0 4px 15px rgba(0,0,0,0.03) !important; 
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .subject-card:hover {
     transform: translateY(-2px);
-    box-shadow: 
-        inset 0 0 60px 18px rgba(50, 160, 150, 0.8) !important, 
-        inset 0 0 25px 8px rgba(50, 160, 150, 0.5) !important, 
-        0 8px 25px rgba(0,0,0,0.05) !important;
+    box-shadow: inset 0 0 60px 12px rgba(32, 126, 134, 0.45), 0 8px 25px rgba(0,0,0,0.05) !important;
 }
 .subject-card h3 { font-size: 1.6rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 .subject-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
@@ -181,25 +177,17 @@ h1, h2, h3, .section-title {
    ========================================= */
 .roadmap-card { 
     background-color: #F9F6EE !important; 
-    border: 1px solid rgba(82, 199, 196, 0.4) !important; 
+    border: 1px solid rgba(32, 126, 134, 0.3) !important; 
     border-radius: 24px; 
     padding: 50px; 
     text-align: left; 
     margin-bottom: 40px; 
-    
-    box-shadow: 
-        inset 0 0 50px 12px rgba(50, 160, 150, 0.7) !important, 
-        inset 0 0 15px rgba(50, 160, 150, 0.4) !important,          
-        0 4px 15px rgba(0, 0, 0, 0.03) !important;          
-    
+    box-shadow: inset 0 0 50px 10px rgba(32, 126, 134, 0.35), 0 4px 15px rgba(0,0,0,0.03) !important;          
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .roadmap-card:hover {
     transform: translateY(-4px);
-    box-shadow: 
-        inset 0 0 60px 15px rgba(50, 160, 150, 0.8) !important, 
-        inset 0 0 20px rgba(50, 160, 150, 0.5) !important, 
-        0 8px 25px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: inset 0 0 60px 12px rgba(32, 126, 134, 0.45), 0 8px 25px rgba(0,0,0,0.05) !important;
 }
 
 .roadmap-card h2 { font-size: 2.2rem; margin-bottom: 15px; }
@@ -217,15 +205,13 @@ h1, h2, h3, .section-title {
     display: none; 
     margin: 0 auto 60px auto; 
     width: 96%; 
-    max-width: 1800px; 
+    max-width: 100%; 
     height: 700px; 
     border-radius: 16px; 
-    border: 1px solid rgba(82, 199, 196, 0.4) !important; 
+    border: 1px solid rgba(32, 126, 134, 0.3) !important; 
     overflow: hidden; 
     z-index: 100;
-    box-shadow: 
-        inset 0 0 40px 10px rgba(50, 160, 150, 0.7) !important, 
-        0 4px 15px rgba(0,0,0,0.03) !important;
+    box-shadow: inset 0 0 50px 10px rgba(32, 126, 134, 0.35), 0 4px 15px rgba(0,0,0,0.03) !important;
 }
 #pdfFrame { 
     width: 100%; 
@@ -239,7 +225,7 @@ h1, h2, h3, .section-title {
    ========================================= */
 .upload-container {
     width: 96%; 
-    max-width: 1800px; 
+    max-width: 100%; 
     margin: 0 auto 80px auto; 
     text-align: center;
 }
@@ -248,19 +234,15 @@ h1, h2, h3, .section-title {
 
 .comet-widget {
     background-color: #F9F6EE !important;
-    border: 1px solid rgba(82, 199, 196, 0.4) !important;
+    border: 1px solid rgba(32, 126, 134, 0.3) !important;
     border-radius: 16px;
     padding: 35px;
-    box-shadow: 
-        inset 0 0 40px 10px rgba(50, 160, 150, 0.7) !important, 
-        0 10px 30px rgba(0,0,0,0.04) !important;
+    box-shadow: inset 0 0 50px 10px rgba(32, 126, 134, 0.35), 0 10px 30px rgba(0,0,0,0.04) !important;
     text-align: left;
     transition: box-shadow 0.3s ease;
 }
 .comet-widget:hover {
-    box-shadow: 
-        inset 0 0 50px 12px rgba(50, 160, 150, 0.8) !important, 
-        0 15px 40px rgba(0,0,0,0.06) !important;
+    box-shadow: inset 0 0 60px 12px rgba(32, 126, 134, 0.45), 0 15px 40px rgba(0,0,0,0.06) !important;
 }
 
 .comet-text-input {
@@ -355,10 +337,8 @@ h1, h2, h3, .section-title {
     position: fixed; right: -400px; top: 0; width: 350px; height: 100%; 
     background-color: #F9F6EE !important; 
     padding: 40px 30px; transition: 0.4s; z-index: 4000; 
-    border-left: 1px solid rgba(82, 199, 196, 0.4) !important; 
-    box-shadow: 
-        inset 0 0 40px 10px rgba(50, 160, 150, 0.7) !important, 
-        -5px 0 25px rgba(0,0,0,0.05) !important;
+    border-left: 1px solid rgba(32, 126, 134, 0.3) !important; 
+    box-shadow: inset 0 0 50px 10px rgba(32, 126, 134, 0.35), -5px 0 25px rgba(0,0,0,0.05) !important;
 }
 .about-panel h2 { margin-bottom: 20px;}
 .about-panel p { color: #555; margin-bottom: 15px; line-height: 1.6; font-size: 15px; }
