@@ -1,385 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoteVerse</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoteVerse</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-<div class="sidebar" id="sidebar">
+  <div class="sidebar" id="sidebar">
     <span onclick="toggleSidebar()" class="close-sidebar"><i class="ph ph-x"></i></span>
 
     <h2>NoteVerse</h2>
 
     <a href="#" onclick="showHome()">
-        <i class="ph ph-house"></i> Home
+      <i class="ph ph-house"></i> Home
     </a>
 
     <a href="#" onclick="toggleSubMenu('notesMenu', event)">
-        <i class="ph ph-book-open-text"></i> Notes
+      <i class="ph ph-book-open-text"></i> Notes
     </a>
     <div class="submenu" id="notesMenu">
-        <a href="#" onclick="openPDF('sample.pdf')">Semester 1</a>
-        <a href="#">Semester 2</a>
-        <a href="#">Semester 3</a>
-        <a href="#">Semester 4</a>
-        <a href="#">Semester 5</a>
-        <a href="#">Semester 6</a>
-        <a href="#">Semester 7</a>
-        <a href="#">Semester 8</a>
+      <a href="#" onclick="filterByCategoryAndSemester('notes', '1')">Semester 1</a>
+      <a href="#" onclick="filterByCategoryAndSemester('notes', '2')">Semester 2</a>
+      <a href="#" onclick="filterByCategoryAndSemester('notes', '3')">Semester 3</a>
+      <a href="#" onclick="filterByCategoryAndSemester('notes', '4')">Semester 4</a>
+      <a href="#" onclick="filterByCategoryAndSemester('notes', '5')">Semester 5</a>
+      <a href="#" onclick="filterByCategoryAndSemester('notes', '6')">Semester 6</a>
+      <a href="#" onclick="filterByCategoryAndSemester('notes', '7')">Semester 7</a>
+      <a href="#" onclick="filterByCategoryAndSemester('notes', '8')">Semester 8</a>
     </div>
 
     <a href="#" onclick="toggleSubMenu('pyqMenu', event)">
-        <i class="ph ph-file-text"></i> PYQs
+      <i class="ph ph-file-text"></i> PYQs
     </a>
     <div class="submenu" id="pyqMenu">
-        <a href="#">Semester 1</a>
-        <a href="#">Semester 2</a>
-        <a href="#">Semester 3</a>
-        <a href="#">Semester 4</a>
-        <a href="#">Semester 5</a>
-        <a href="#">Semester 6</a>
-        <a href="#">Semester 7</a>
-        <a href="#">Semester 8</a>
+      <a href="#" onclick="filterByCategoryAndSemester('pyq', '1')">Semester 1</a>
+      <a href="#" onclick="filterByCategoryAndSemester('pyq', '2')">Semester 2</a>
+      <a href="#" onclick="filterByCategoryAndSemester('pyq', '3')">Semester 3</a>
+      <a href="#" onclick="filterByCategoryAndSemester('pyq', '4')">Semester 4</a>
+      <a href="#" onclick="filterByCategoryAndSemester('pyq', '5')">Semester 5</a>
+      <a href="#" onclick="filterByCategoryAndSemester('pyq', '6')">Semester 6</a>
+      <a href="#" onclick="filterByCategoryAndSemester('pyq', '7')">Semester 7</a>
+      <a href="#" onclick="filterByCategoryAndSemester('pyq', '8')">Semester 8</a>
     </div>
 
     <a href="#" onclick="toggleSubMenu('resourcesMenu', event)">
-        <i class="ph ph-cube"></i> Resources
+      <i class="ph ph-cube"></i> Resources
     </a>
     <div class="submenu" id="resourcesMenu">
-        <a href="#">Semester 1</a>
-        <a href="#">Semester 2</a>
-        <a href="#">Semester 3</a>
-        <a href="#">Semester 4</a>
-        <a href="#">Semester 5</a>
-        <a href="#">Semester 6</a>
-        <a href="#">Semester 7</a>
-        <a href="#">Semester 8</a>
+      <a href="#" onclick="filterByCategoryAndSemester('resources', '1')">Semester 1</a>
+      <a href="#" onclick="filterByCategoryAndSemester('resources', '2')">Semester 2</a>
+      <a href="#" onclick="filterByCategoryAndSemester('resources', '3')">Semester 3</a>
+      <a href="#" onclick="filterByCategoryAndSemester('resources', '4')">Semester 4</a>
+      <a href="#" onclick="filterByCategoryAndSemester('resources', '5')">Semester 5</a>
+      <a href="#" onclick="filterByCategoryAndSemester('resources', '6')">Semester 6</a>
+      <a href="#" onclick="filterByCategoryAndSemester('resources', '7')">Semester 7</a>
+      <a href="#" onclick="filterByCategoryAndSemester('resources', '8')">Semester 8</a>
     </div>
 
     <a href="#" onclick="openRoadmap()">
-        <i class="ph ph-map-trifold"></i> Placement Roadmap
+      <i class="ph ph-map-trifold"></i> Placement Roadmap
     </a>
 
     <a href="#" onclick="openAbout()">
-        <i class="ph ph-info"></i> About
+      <i class="ph ph-info"></i> About
     </a>
-</div>
+  </div>
 
-<div class="topbar">
-    <h3 onclick="showHome()" style="cursor: pointer;">NoteVerse</h3>
+  <div class="topbar">
+    <h3 onclick="showHome()" style="cursor:pointer;">NoteVerse</h3>
     <span class="menu-btn" onclick="toggleSidebar()"><i class="ph ph-list"></i></span>
-</div>
+  </div>
 
-<div class="main">
-
+  <div class="main">
     <div id="homeView">
-        <section class="hero">
-            <div class="hero-badge">Your Gateway to Academic Excellence</div>
-            <h1>Master your studies with <span class="highlight">curated</span> resources and roadmaps</h1>
-            <p>Unlock your potential with comprehensive guides, notes, and expert-designed learning paths for every step of your academic journey.</p>
-        </section>
+      <section class="hero glass-card">
+        <div class="hero-badge">Your Gateway to Academic Excellence</div>
+        <h1>Master your studies with <span class="highlight">curated</span> resources and roadmaps</h1>
+        <p>
+          Unlock your potential with comprehensive guides, notes, and expert-designed learning paths
+          for every step of your academic journey.
+        </p>
+      </section>
 
-        <section class="top-channels">
-            <h2 class="section-title">Learn from Top Tech YouTube Channels</h2>
-            <div class="channel-scroll-container">
-                <a href="https://www.youtube.com/@striver_79" target="_blank" class="channel-card">
-                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
-                    <span>Striver</span>
-                </a>
-                <a href="https://www.youtube.com/@takeUforward" target="_blank" class="channel-card">
-                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
-                    <span>Take You Forward</span>
-                </a>
-                <a href="https://www.youtube.com/@PriyanshAgarwal" target="_blank" class="channel-card">
-                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
-                    <span>Priyansh Agarwal</span>
-                </a>
-                <a href="https://www.youtube.com/@LuvIsMe" target="_blank" class="channel-card">
-                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
-                    <span>LUV</span>
-                </a>
-                <a href="https://www.youtube.com/@VivekGupta7" target="_blank" class="channel-card">
-                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
-                    <span>Vivek Gupta</span>
-                </a>
-                <a href="https://www.youtube.com/@harkiratsingh" target="_blank" class="channel-card">
-                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
-                    <span>Harkirat Singh</span>
-                </a>
-                <a href="https://www.youtube.com/@ApnaCollegeOfficial" target="_blank" class="channel-card">
-                    <i class="ph-fill ph-youtube-logo" style="color: #ffffff;"></i>
-                    <span>Apna College</span>
-                </a>
-            </div>
-        </section>
+      <section class="top-channels">
+        <h2 class="section-title">Learn from Top Tech YouTube Channels</h2>
+        <div class="channel-scroll-container">
+          <a href="https://www.youtube.com/@striver_79" target="_blank" class="channel-card">
+            <i class="ph-fill ph-youtube-logo"></i>
+            <span>Striver</span>
+          </a>
+          <a href="https://www.youtube.com/@takeUforward" target="_blank" class="channel-card">
+            <i class="ph-fill ph-youtube-logo"></i>
+            <span>Take U Forward</span>
+          </a>
+          <a href="https://www.youtube.com/@PriyanshAgarwal" target="_blank" class="channel-card">
+            <i class="ph-fill ph-youtube-logo"></i>
+            <span>Priyansh Agarwal</span>
+          </a>
+          <a href="https://www.youtube.com/@LuvIsMe" target="_blank" class="channel-card">
+            <i class="ph-fill ph-youtube-logo"></i>
+            <span>LUV</span>
+          </a>
+          <a href="https://www.youtube.com/@VivekGupta7" target="_blank" class="channel-card">
+            <i class="ph-fill ph-youtube-logo"></i>
+            <span>Vivek Gupta</span>
+          </a>
+          <a href="https://www.youtube.com/@harkiratsingh" target="_blank" class="channel-card">
+            <i class="ph-fill ph-youtube-logo"></i>
+            <span>Harkirat Singh</span>
+          </a>
+          <a href="https://www.youtube.com/@ApnaCollegeOfficial" target="_blank" class="channel-card">
+            <i class="ph-fill ph-youtube-logo"></i>
+            <span>Apna College</span>
+          </a>
+        </div>
+      </section>
 
-        <section class="core-subjects">
-            <h2>CSE Core Fundamental Subjects</h2>
-            <p class="core-subtext">Mastering these subjects is crucial for building a strong foundation and acing technical interviews.</p>
-            
-            <div class="toggle-container">
-                <button class="master-toggle-btn" id="coreToggleBtn" onclick="toggleCoreSubjects()">
-                    View Subjects <i class="ph ph-caret-down"></i>
-                </button>
-            </div>
+      <section class="core-subjects">
+        <h2>CSE Core Fundamental Subjects</h2>
+        <p class="core-subtext">
+          Mastering these subjects is crucial for building a strong foundation and acing technical interviews.
+        </p>
 
-            <div class="subject-cards" id="coreSubjectCards">
-                
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Data Structures and Algorithms (DSA)</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Take U Forward (Striver) Playlist</span><a href="https://www.youtube.com/results?search_query=Take+U+Forward+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> CodeHelp (Love Babbar) Playlist</span><a href="https://www.youtube.com/results?search_query=CodeHelp+Love+Babbar+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Apna College DSA Playlist</span><a href="https://www.youtube.com/results?search_query=Apna+College+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
-                </div>
+        <div class="toggle-container">
+          <button class="master-toggle-btn" id="coreToggleBtn" onclick="toggleCoreSubjects()">
+            View Subjects <i class="ph ph-caret-down"></i>
+          </button>
+        </div>
 
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Database Management System (DBMS)</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesR1rSES7oLdJaNFgmuj0SYV" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLXj4XH7LcRfBF0sREiXwZPmbyCnLSM18K" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
-                </div>
+        <div class="subject-cards" id="coreSubjectCards">
+          <div class="subject-card">
+            <h3><i class="ph ph-arrow-left"></i> Data Structures and Algorithms (DSA)</h3>
+            <ul>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Take U Forward (Striver) Playlist</span><a href="https://www.youtube.com/results?search_query=Take+U+Forward+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> CodeHelp (Love Babbar) Playlist</span><a href="https://www.youtube.com/results?search_query=CodeHelp+Love+Babbar+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Apna College DSA Playlist</span><a href="https://www.youtube.com/results?search_query=Apna+College+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+            </ul>
+          </div>
 
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Operating System (OS)</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesSFvj6gASuWmQd23Ul5omtD" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLXj4XH7LcRfDrdQuJTHIPmKMpa7eYVaPm" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
-                </div>
+          <div class="subject-card">
+            <h3><i class="ph ph-arrow-left"></i> Database Management System (DBMS)</h3>
+            <ul>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesR1rSES7oLdJaNFgmuj0SYV" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala DBMS Playlist</span><a href="https://www.youtube.com/playlist?list=PLXj4XH7LcRfBF0sREiXwZPmbyCnLSM18K" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+            </ul>
+          </div>
 
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Computer Networks</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesSjFbXSZGF8JF_4LVwwofCd" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLXj4XH7LcRfCKbi7Najz8EIr1JymxoFBW" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
-                </div>
+          <div class="subject-card">
+            <h3><i class="ph ph-arrow-left"></i> Operating System (OS)</h3>
+            <ul>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesSFvj6gASuWmQd23Ul5omtD" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala OS Playlist</span><a href="https://www.youtube.com/playlist?list=PLXj4XH7LcRfDrdQuJTHIPmKMpa7eYVaPm" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+            </ul>
+          </div>
 
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Object-Oriented Programming (OOP)</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Telusko OOPs Playlist (Java)</span><a href="https://www.youtube.com/playlist?list=PLsyeobzWxl7oa1WO9n4cP3OY9nOtUcZIg" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Coder Army OOPs Playlist (C++)</span><a href="https://www.youtube.com/playlist?list=PLQEaRBV9gAFujcBWJhBT2XXsuMlIfETBy" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
-                </div>
+          <div class="subject-card">
+            <h3><i class="ph ph-arrow-left"></i> Computer Networks</h3>
+            <ul>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesSjFbXSZGF8JF_4LVwwofCd" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Sudhakar Atchala CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLXj4XH7LcRfCKbi7Najz8EIr1JymxoFBW" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy CN Playlist</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+            </ul>
+          </div>
 
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Aptitude & Reasoning</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> One Stop Solution (Most Recommended)</span><a href="https://www.lets-code.co.in/articles/aptituderoadmap/#google_vignette" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
-                </div>
+          <div class="subject-card">
+            <h3><i class="ph ph-arrow-left"></i> Object-Oriented Programming (OOP)</h3>
+            <ul>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Telusko OOPs Playlist (Java)</span><a href="https://www.youtube.com/playlist?list=PLsyeobzWxl7oa1WO9n4cP3OY9nOtUcZIg" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+              <li><span class="list-left"><i class="ph ph-circle"></i> Coder Army OOPs Playlist (C++)</span><a href="https://www.youtube.com/playlist?list=PLQEaRBV9gAFujcBWJhBT2XXsuMlIfETBy" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+            </ul>
+          </div>
 
-            </div>
-        </section>
+          <div class="subject-card">
+            <h3><i class="ph ph-arrow-left"></i> Aptitude & Reasoning</h3>
+            <ul>
+              <li><span class="list-left"><i class="ph ph-circle"></i> One Stop Solution (Most Recommended)</span><a href="https://www.lets-code.co.in/articles/aptituderoadmap/#google_vignette" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-        <section id="pdfViewer">
-            <iframe id="pdfFrame"></iframe>
-        </section>
+      <section id="pdfViewer" class="pdf-viewer">
+        <iframe id="pdfFrame"></iframe>
+      </section>
 
-        <section class="upload-section" id="uploadSection">
-            <h2>Contribute to NoteVerse</h2>
-            <p>Help the community by sharing your study materials.</p>
-            <form id="uploadForm">
-                <input type="text" id="fileName" class="upload-input" placeholder="File Name (e.g., Physics Unit 1)" required>
-                <div class="upload-row">
-                    <select id="fileCategory" class="upload-input" required>
-                        <option value="" disabled selected>Select Category</option>
-                        <option value="notes">Notes</option>
-                        <option value="pyq">PYQs</option>
-                        <option value="resources">Resources</option>
-                    </select>
-                    <select id="fileSemester" class="upload-input" required>
-                        <option value="" disabled selected>Select Semester</option>
-                        <option value="1">Semester 1</option>
-                        <option value="2">Semester 2</option>
-                        <option value="3">Semester 3</option>
-                        <option value="4">Semester 4</option>
-                        <option value="5">Semester 5</option>
-                        <option value="6">Semester 6</option>
-                        <option value="7">Semester 7</option>
-                        <option value="8">Semester 8</option>
-                    </select>
-                </div>
-                <input type="file" id="fileInput" class="upload-input file-input" accept=".pdf,.doc,.docx" required>
-                <button type="submit" class="upload-btn">Upload & Save File</button>
-            </form>
-        </section>
+      <section class="upload-section glass-card" id="uploadSection">
+        <h2>Contribute to NoteVerse</h2>
+        <p>Help the community by sharing your study materials.</p>
+
+        <form id="uploadForm">
+          <input type="text" id="fileName" class="upload-input" placeholder="File Name (e.g., Physics Unit 1)" required>
+
+          <textarea id="fileDescription" class="upload-input" placeholder="Description (optional)" rows="4"></textarea>
+
+          <div class="upload-row">
+            <select id="fileCategory" class="upload-input" required>
+              <option value="" disabled selected>Select Category</option>
+              <option value="notes">Notes</option>
+              <option value="pyq">PYQs</option>
+              <option value="resources">Resources</option>
+            </select>
+
+            <select id="fileSemester" class="upload-input" required>
+              <option value="" disabled selected>Select Semester</option>
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+              <option value="3">Semester 3</option>
+              <option value="4">Semester 4</option>
+              <option value="5">Semester 5</option>
+              <option value="6">Semester 6</option>
+              <option value="7">Semester 7</option>
+              <option value="8">Semester 8</option>
+            </select>
+          </div>
+
+          <input type="file" id="fileInput" class="upload-input file-input" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" required>
+
+          <button type="submit" class="upload-btn">Upload & Save File</button>
+        </form>
+
+        <p id="uploadStatus" class="upload-status"></p>
+      </section>
+
+      <section class="library-section">
+        <div class="library-header">
+          <h2 class="section-title">Uploaded Materials</h2>
+          <button class="refresh-btn" onclick="loadNotes()">Refresh</button>
+        </div>
+
+        <div id="activeFilter" class="active-filter">Showing: All materials</div>
+        <div id="notesList" class="notes-grid"></div>
+      </section>
     </div>
 
-    <div id="roadmapView" style="display: none; width: 100%;">
-        <section class="roadmap-section">
-            
-            <div class="roadmap-header">
-                <h1>Placement <span class="highlight">Roadmap</span></h1>
-                <p>A comprehensive guide to navigate your career path, from fundamentals to specialized roles.</p>
+    <div id="roadmapView" style="display:none; width:100%;">
+      <section class="roadmap-section">
+        <div class="roadmap-header">
+          <h1>Placement <span class="highlight">Roadmap</span></h1>
+          <p>A comprehensive guide to navigate your career path, from fundamentals to specialized roles.</p>
+        </div>
+
+        <div class="roadmap-cards">
+          <div class="roadmap-card">
+            <h2>Stage 1: <span class="highlight">CGPA and Communication Skills</span></h2>
+            <p class="main-desc">Master the essentials to build a strong base for your career.</p>
+
+            <div class="indented-list">
+              <div class="list-item">
+                <h4><i class="ph ph-student"></i> CGPA Without Any Active Backlogs</h4>
+                <p>Keep your CGPA as high as possible and avoid active backlogs. A strong CGPA keeps you eligible for the maximum number of opportunities.</p>
+              </div>
+              <div class="list-item">
+                <h4><i class="ph ph-chats"></i> Communication Skills</h4>
+                <p>Focus on expressing your thoughts clearly and explaining your code in simple English.</p>
+              </div>
             </div>
+          </div>
 
-            <div class="roadmap-cards">
-                
-                <div class="roadmap-card">
-                    <h2>Stage 1: <span class="highlight">CGPA and Communication Skills</span></h2>
-                    <p class="main-desc">Master the essentials to build a strong base for your career.</p>
-                    
-                    <div class="indented-list">
-                        <div class="list-item">
-                            <h4><i class="ph ph-student"></i> CGPA Without Any Active Backlogs</h4>
-                            <p>Keep your CGPA as high as possible (preferably above 9.0) and avoid any active backlogs. Most companies—on-campus or off-campus—set CGPA as the first shortlisting criteria, though cutoffs vary. A strong CGPA keeps you eligible for the maximum number of opportunities.</p>
-                        </div>
-                        <div class="list-item">
-                            <h4><i class="ph ph-chats"></i> Communication Skills</h4>
-                            <p>You only need to express your thoughts clearly and concisely. Focus on explaining your code in simple English and ensuring smooth communication with the interviewer. For this you don't have to join any clubs, you will learn all on your own.</p>
-                        </div>
-                    </div>
-                </div>
+          <div class="roadmap-card">
+            <h2>Stage 2: <span class="highlight">Data Structure and Algorithm</span></h2>
+            <p class="stage-only-desc">
+              Pick a language like C++ or Java and practice DSA regularly on platforms such as LeetCode,
+              Codeforces, and CodeChef.
+            </p>
+          </div>
 
-                <div class="roadmap-card">
-                    <h2>Stage 2: <span class="highlight">Data Structure and Algorithm (Most Important)</span></h2>
-                    <p class="stage-only-desc">Pick a language (C++ or Java) and start learning DSA. Practice as many problems as you can on platforms like LeetCode, Codeforces, and CodeChef. Most companies—both on-campus and off-campus—ask DSA for SDE roles. Focus on DSA and LeetCode; if you’re interested in competitive programming (CP), pursue that too, as it can help you crack top tier companies like Google, Meta, or Tower Research Capital.</p>
-                </div>
+          <div class="roadmap-card">
+            <h2>Stage 3: <span class="highlight">CSE CORE SUBJECTS</span></h2>
+            <p class="main-desc">Crucial subjects for technical interviews.</p>
 
-                <div class="roadmap-card">
-                    <h2>Stage 3: <span class="highlight">CSE CORE SUBJECTS</span></h2>
-                    <p class="main-desc">Crucial subjects for acing the technical interview questions.</p>
-                    
-                    <div class="indented-list simple-list">
-                        <div class="list-item"><h4>DBMS</h4><p>Data Base Management System</p></div>
-                        <div class="list-item"><h4>SQL</h4><p>Must Know SQL using MYSQL</p></div>
-                        <div class="list-item"><h4>OS</h4><p>Operating System</p></div>
-                        <div class="list-item"><h4>CN</h4><p>Computer Networks</p></div>
-                        <div class="list-item"><h4>OOPs</h4><p>Object Oriented Programming Systems</p></div>
-                        <div class="list-item"><h4>System Design</h4><p>Both LLD and HLD</p></div>
-                        <div class="list-item"><h4>Aptitude</h4></div>
-                    </div>
-                </div>
-
+            <div class="indented-list simple-list">
+              <div class="list-item"><h4>DBMS</h4><p>Database Management System</p></div>
+              <div class="list-item"><h4>SQL</h4><p>Must know SQL using MySQL</p></div>
+              <div class="list-item"><h4>OS</h4><p>Operating System</p></div>
+              <div class="list-item"><h4>CN</h4><p>Computer Networks</p></div>
+              <div class="list-item"><h4>OOPs</h4><p>Object-Oriented Programming</p></div>
+              <div class="list-item"><h4>System Design</h4><p>Both LLD and HLD</p></div>
+              <div class="list-item"><h4>Aptitude</h4></div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </div>
+  </div>
 
-</div>
-
-<div id="aboutPanel" class="about-panel">
+  <div id="aboutPanel" class="about-panel">
     <span onclick="closeAbout()" class="close-about"><i class="ph ph-x"></i></span>
     <h2>About NoteVerse</h2>
     <p>NoteVerse is a smart academic platform designed to simplify the way students access study materials.</p>
-</div>
+  </div>
 
-<script>
-    function toggleSidebar() { document.getElementById("sidebar").classList.toggle("active"); }
-    function toggleSubMenu(id, event) {
-        event.preventDefault(); 
-        document.querySelectorAll(".submenu").forEach(menu => { if (menu.id !== id) menu.classList.remove("active"); });
-        document.getElementById(id).classList.toggle("active");
-    }
-    function openAbout() { document.getElementById("aboutPanel").style.right = "0"; }
-    function closeAbout() { document.getElementById("aboutPanel").style.right = "-400px"; }
-    function openPDF(file) {
-        const viewer = document.getElementById("pdfViewer"); viewer.style.display = "block"; viewer.querySelector("#pdfFrame").src = file;
-        window.scrollTo({ top: viewer.offsetTop - 120, behavior: "smooth" });
-    }
-
-    /* View Switcher */
-    function showHome() {
-        document.getElementById("homeView").style.display = "block";
-        document.getElementById("roadmapView").style.display = "none";
-        document.getElementById("sidebar").classList.remove("active");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function openRoadmap() {
-        document.getElementById("homeView").style.display = "none";
-        document.getElementById("roadmapView").style.display = "block";
-        document.getElementById("sidebar").classList.remove("active");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    /* Master Toggle JS */
-    function toggleCoreSubjects() {
-        const cardsContainer = document.getElementById("coreSubjectCards");
-        const btn = document.getElementById("coreToggleBtn");
-
-        cardsContainer.classList.toggle("open");
-        
-        if (cardsContainer.classList.contains("open")) {
-            btn.innerHTML = 'Hide Subjects <i class="ph ph-caret-up"></i>';
-        } else {
-            btn.innerHTML = 'View Subjects <i class="ph ph-caret-down"></i>';
-        }
-    }
-</script>
-
-<script>
-    const CLOUD_NAME = "djypwcwxc"; 
-    const UPLOAD_PRESET = "noteverse_upload"; 
-
-    const uploadForm = document.getElementById("uploadForm");
-    const submitBtn = document.querySelector(".upload-btn");
-
-    uploadForm.addEventListener("submit", async (e) => {
-        e.preventDefault(); 
-        
-        const originalBtnText = submitBtn.innerText;
-        submitBtn.innerText = "Uploading to NoteVerse Cloud... ⏳";
-        submitBtn.disabled = true;
-
-        try {
-            const fileName = document.getElementById("fileName").value;
-            const category = document.getElementById("fileCategory").value;
-            const semester = document.getElementById("fileSemester").value;
-            const file = document.getElementById("fileInput").files[0];
-
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("upload_preset", UPLOAD_PRESET);
-            
-            const formattedName = fileName.replace(/\s+/g, '_').toLowerCase();
-            formData.append("public_id", `${category}/sem${semester}/${formattedName}`);
-
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, {
-                method: "POST",
-                body: formData
-            });
-
-            const data = await response.json();
-
-            if (data.secure_url) {
-                console.log("Uploaded successfully! URL:", data.secure_url);
-                alert(`Success! "${fileName}" has been uploaded to NoteVerse!\n\nHere is your permanent link:\n${data.secure_url}`);
-                uploadForm.reset();
-            } else {
-                console.error("Cloudinary Error:", data);
-                alert(`Upload failed: ${data.error.message}`);
-            }
-
-        } catch (error) {
-            console.error("Upload Error:", error);
-            alert("Something went wrong with the upload. Check your internet connection or browser console.");
-        } finally {
-            submitBtn.innerText = originalBtnText;
-            submitBtn.disabled = false;
-        }
-    });
-</script>
-
+  <script type="module" src="script.js"></script>
 </body>
 </html>
