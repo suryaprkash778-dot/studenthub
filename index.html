@@ -11,7 +11,7 @@
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <link rel="stylesheet" href="style.css?v=29">
+    <link rel="stylesheet" href="style.css?v=30">
 </head>
 
 <body>
@@ -164,7 +164,7 @@
             
             <div class="toggle-container">
                 <button class="master-toggle-btn" id="coreToggleBtn" onclick="toggleCoreSubjects()">
-                    View Subjects <i class="ph ph-caret-down"></i>
+                    <span>View Subjects</span> <i class="ph ph-caret-down"></i>
                 </button>
             </div>
 
@@ -337,4 +337,235 @@
                 </div>
                 <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
                     <h3><i class="ph ph-code"></i> C programming</h3>
-              
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-terminal"></i> Linux</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-lightbulb"></i> Problem solving</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-leaf"></i> Evs</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-brain"></i> Managing Self</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="semester2View" style="display: none; width: 100%;">
+        <section class="semester-section">
+            <div class="roadmap-header">
+                <h1>Semester 2 <span class="text-gradient" id="sem2TitleType">Notes</span></h1>
+                <p>Select a subject below to view its corresponding materials.</p>
+            </div>
+
+            <div class="vertical-subject-list">
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-tree-structure"></i> Data Structures and Algorithm</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-atom"></i> Physics</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-calculator"></i> Advance Engineering Mathematics 2</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-file-code"></i> Python</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-cpu"></i> Digital Electronics</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-brain"></i> AI/ML</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-leaf"></i> EVS</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-clock"></i> Time management</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+<div id="aboutPanel" class="about-panel">
+    <span onclick="closeAbout()" class="close-about"><i class="ph ph-x"></i></span>
+    <h2>About <span class="text-gradient">NoteVerse</span></h2>
+    <p>NoteVerse is a smart academic platform designed to simplify the way students access study materials.</p>
+</div>
+
+<script>
+    function toggleSidebar() { 
+        document.getElementById("sidebar").classList.toggle("active"); 
+    }
+    
+    function toggleSubMenu(id, event) {
+        event.preventDefault(); 
+        document.querySelectorAll(".submenu").forEach(menu => { if (menu.id !== id) menu.classList.remove("active"); });
+        document.getElementById(id).classList.toggle("active");
+    }
+    
+    function openAbout() { document.getElementById("aboutPanel").style.right = "0"; }
+    function closeAbout() { document.getElementById("aboutPanel").style.right = "-400px"; }
+    
+    function openPDF(file) {
+        const viewer = document.getElementById("pdfViewer"); 
+        viewer.style.display = "block"; 
+        viewer.querySelector("#pdfFrame").src = file;
+        window.scrollTo({ top: viewer.offsetTop - 120, behavior: "smooth" });
+    }
+
+    function showHome() {
+        document.getElementById("homeView").style.display = "block";
+        document.getElementById("roadmapView").style.display = "none";
+        document.getElementById("semester1View").style.display = "none";
+        document.getElementById("semester2View").style.display = "none";
+        document.getElementById("pdfViewer").style.display = "none";
+        document.getElementById("sidebar").classList.remove("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openRoadmap() {
+        document.getElementById("homeView").style.display = "none";
+        document.getElementById("roadmapView").style.display = "block";
+        document.getElementById("semester1View").style.display = "none";
+        document.getElementById("semester2View").style.display = "none";
+        document.getElementById("pdfViewer").style.display = "none";
+        document.getElementById("sidebar").classList.remove("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showSemester1(type) {
+        document.getElementById("homeView").style.display = "none";
+        document.getElementById("roadmapView").style.display = "none";
+        document.getElementById("semester1View").style.display = "block";
+        document.getElementById("semester2View").style.display = "none";
+        document.getElementById("pdfViewer").style.display = "none";
+        document.getElementById("sidebar").classList.remove("active");
+        
+        // Dynamically change the title
+        document.getElementById("sem1TitleType").innerText = type;
+        
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showSemester2(type) {
+        document.getElementById("homeView").style.display = "none";
+        document.getElementById("roadmapView").style.display = "none";
+        document.getElementById("semester1View").style.display = "none";
+        document.getElementById("semester2View").style.display = "block";
+        document.getElementById("pdfViewer").style.display = "none";
+        document.getElementById("sidebar").classList.remove("active");
+        
+        // Dynamically change the title
+        document.getElementById("sem2TitleType").innerText = type;
+        
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleCoreSubjects() {
+        const cardsContainer = document.getElementById("coreSubjectCards");
+        const btn = document.getElementById("coreToggleBtn");
+
+        cardsContainer.classList.toggle("open");
+        if (cardsContainer.classList.contains("open")) {
+            btn.innerHTML = '<span>Hide Subjects</span> <i class="ph ph-caret-up"></i>';
+        } else {
+            btn.innerHTML = '<span>View Subjects</span> <i class="ph ph-caret-down"></i>';
+        }
+    }
+
+    // File Input Listener 
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+        const display = document.getElementById('file-name-display');
+        if (this.files && this.files.length > 0) {
+            display.innerHTML = '<i class="ph-fill ph-check-circle" style="color: #0088ff;"></i> Attached: ' + this.files[0].name;
+        } else {
+            display.innerHTML = '';
+        }
+    });
+
+    window.addEventListener("scroll", function() {
+        const topbar = document.getElementById("mainTopbar");
+        if (window.scrollY > 50) {
+            topbar.classList.add("scrolled");
+        } else {
+            topbar.classList.remove("scrolled");
+        }
+    });
+</script>
+
+<script>
+    const CLOUD_NAME = "djypwcwxc"; 
+    const UPLOAD_PRESET = "noteverse_upload"; 
+
+    const uploadForm = document.getElementById("uploadForm");
+    const submitBtn = document.getElementById("submitBtn");
+
+    uploadForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); 
+        const originalContent = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i>'; 
+        submitBtn.disabled = true;
+
+        try {
+            const fileName = document.getElementById("fileName").value;
+            const category = document.getElementById("fileCategory").value;
+            const semester = document.getElementById("fileSemester").value;
+            const file = document.getElementById("fileInput").files[0];
+
+            if (!file) {
+                alert("Please attach a file using the paperclip icon!");
+                submitBtn.innerHTML = originalContent;
+                submitBtn.disabled = false;
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", UPLOAD_PRESET);
+            
+            const formattedName = fileName.replace(/\s+/g, '_').toLowerCase();
+            formData.append("public_id", `${category}/sem${semester}/${formattedName}`);
+
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, {
+                method: "POST",
+                body: formData
+            });
+            const data = await response.json();
+
+            if (data.secure_url) {
+                alert(`Success! "${fileName}" uploaded.\nLink:\n${data.secure_url}`);
+                uploadForm.reset();
+                document.getElementById('file-name-display').innerHTML = ''; 
+            } else {
+                alert(`Upload failed: ${data.error.message}`);
+            }
+        } catch (error) {
+            alert("Something went wrong with the upload. Check your internet connection.");
+        } finally {
+            submitBtn.innerHTML = originalContent;
+            submitBtn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>
