@@ -102,7 +102,6 @@ section { margin-bottom: 100px; }
 /* =========================================
    CORE SUBJECTS (Pastel Cards) 
    ========================================= */
-/* CHANGED TO 3 COLUMNS TO PERFECTLY FIT 6 BOXES (3x2 GRID) */
 .subjects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .subject-card { border-radius: 24px; padding: 35px 25px; text-align: left; transition: 0.3s; cursor: pointer; display: flex; flex-direction: column; gap: 40px; }
 .subject-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
@@ -174,12 +173,13 @@ section { margin-bottom: 100px; }
 .desktop-only { display: flex; }
 .mobile-only { display: none; }
 
+/* Medium Screens / Tablets */
 @media (max-width: 1024px) {
     .features-grid, .subjects-grid { 
         display: flex !important; 
         flex-direction: row !important; 
         overflow-x: auto !important; 
-        gap: 20px !important; 
+        gap: 15px !important; 
         padding-bottom: 20px !important;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -190,32 +190,67 @@ section { margin-bottom: 100px; }
     .subject-card { flex: 0 0 280px !important; }
 }
 
+/* Small Screens / Mobile - SCALED DOWN VERSION */
 @media (max-width: 768px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: block; }
     
-    .navbar { padding: 15px 20px; }
-    .nav-logo { font-size: 1.3rem; }
-    .logo-mark { width: 30px; height: 30px; font-size: 1rem; }
+    /* Tighter Topbar */
+    .navbar { padding: 12px 15px; }
+    .nav-logo { font-size: 1.2rem; }
+    .logo-mark { width: 28px; height: 28px; font-size: 0.9rem; }
     
-    .app-container { padding: 100px 15px 40px; }
-    section { margin-bottom: 60px; }
+    .app-container { padding: 90px 15px 40px; }
+    section { margin-bottom: 50px; }
     
-    .hero-title { font-size: clamp(2.2rem, 8vw, 3rem); }
-    .section-heading, .cta-section h2 { font-size: 2.2rem; }
+    /* Scaled down typography */
+    .hero-title { font-size: clamp(2rem, 7vw, 2.5rem); margin-bottom: 15px; }
+    .hero-subtitle { font-size: 0.95rem; margin-bottom: 25px; }
+    .hero-badge { padding: 6px 16px; font-size: 0.75rem; margin-bottom: 20px; }
     
-    .hero-buttons { flex-direction: column; width: 100%; }
-    .hero-buttons button { width: 100%; justify-content: center; }
+    .section-heading, .cta-section h2 { font-size: 1.8rem; margin-bottom: 10px; }
+    .section-subheading, .cta-section p { font-size: 0.95rem; margin-bottom: 25px; }
     
-    .feature-card, .subject-card, .yt-card { 
-        flex: 0 0 85% !important; 
-        min-width: 260px !important; 
-        padding: 25px 20px !important; 
+    /* Smaller buttons */
+    .hero-buttons { flex-direction: column; width: 100%; gap: 10px; }
+    .btn-primary.large, .btn-outline.large { padding: 12px 24px; font-size: 1rem; width: 100%; justify-content: center; }
+    
+    /* Tighter Grids & Smaller Cards */
+    .features-grid, .subjects-grid, .youtube-grid { 
+        display: flex !important; 
+        flex-direction: row !important; 
+        overflow-x: auto !important; 
+        gap: 12px !important; 
+        padding-bottom: 15px !important;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
+    .features-grid::-webkit-scrollbar, .subjects-grid::-webkit-scrollbar, .youtube-grid::-webkit-scrollbar { display: none !important; }
     
-    .pdf-container { height: 500px; }
+    /* Scaled down boxes - flex-basis reduced to 75% so more of the next card shows */
+    .feature-card, .subject-card, .yt-card { 
+        flex: 0 0 75% !important; 
+        min-width: 230px !important; 
+        padding: 20px 15px !important; 
+    }
+    .subject-card { gap: 20px !important; } /* Tighter gap between icon and text inside subject cards */
     
-    .footer-content { flex-direction: column; gap: 30px; align-items: flex-start;}
-    .footer-bottom { flex-direction: column; text-align: center; justify-content: center; }
-    .footer-legal a { margin: 0 10px; }
+    /* Scaled down content inside boxes */
+    .feature-icon, .subject-icon { width: 40px; height: 40px; font-size: 1.2rem; margin-bottom: 15px; }
+    .feature-card h3, .subject-info h3, .yt-title-area h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .feature-card p, .yt-desc { font-size: 0.85rem; }
+    .explore-link { font-size: 0.85rem; }
+    
+    .yt-header { margin-bottom: 15px; }
+    .yt-avatar { width: 45px; height: 45px; font-size: 1rem; }
+    .yt-btn { padding: 10px; font-size: 0.85rem; }
+    
+    .pdf-container { height: 400px; }
+    
+    /* Scaled down footer */
+    .footer-content { flex-direction: column; gap: 25px; align-items: flex-start;}
+    .footer-brand h2 { font-size: 1.5rem; }
+    .footer-brand p { font-size: 0.85rem; }
+    .footer-bottom { flex-direction: column; text-align: center; justify-content: center; font-size: 0.85rem; gap: 10px; }
+    .footer-legal a { margin: 0 8px; }
 }
