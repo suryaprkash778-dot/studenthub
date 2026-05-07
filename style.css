@@ -1,15 +1,11 @@
 /* RESET & BASE */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 100%; max-width: 100%; overflow-x: hidden; font-family: 'Inter', sans-serif; background-color: #e8f1f8; color: #333; }
 ::-webkit-scrollbar { display: none; }
 
 /* TYPOGRAPHY */
 h1, h2, h3, .section-title { font-family: 'DM Serif Display', serif; color: #111; font-weight: 400; word-wrap: break-word; }
 .text-gradient { background: linear-gradient(to right, #0044cc, #00aaff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-/* AMBIENT LIGHTS */
-body::before { content: ""; position: fixed; top: -20vh; left: -10vw; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%); z-index: -1; }
-body::after { content: ""; position: fixed; bottom: -20vh; right: -10vw; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(0, 170, 255, 0.05) 0%, transparent 70%); z-index: -1; }
 
 /* TOPBAR */
 .topbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; position: fixed; top: 0; left: 0; width: 100%; z-index: 2500; transition: 0.3s; }
@@ -30,33 +26,33 @@ body::after { content: ""; position: fixed; bottom: -20vh; right: -10vw; width: 
 .sidebar-logo { text-align: center; margin-bottom: 30px; }
 .sidebar-logo h2 { font-size: 26px; }
 
-/* MAIN CONTAINERS */
-.main { padding-top: 120px; width: 100%; display: flex; flex-direction: column; align-items: center; }
-section { width: 100%; max-width: 1000px; padding: 0 20px; text-align: center; margin-bottom: 60px; }
+/* MAIN CONTAINERS - Changed to Block to prevent centering bug */
+.main { padding-top: 120px; width: 100%; display: block; overflow-x: hidden; }
+section { width: 100%; max-width: 1000px; padding: 0 20px; margin: 0 auto 60px auto; text-align: center; box-sizing: border-box;}
 
 /* HERO */
-.hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+.hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 20px; }
 .hero p { font-size: 1.1rem; color: #555; max-width: 700px; margin: 0 auto; line-height: 1.6; }
 .hero-badge { display: inline-block; padding: 8px 20px; border: 1px solid #d0dce8; border-radius: 50px; font-size: 13px; background: #fff; margin-bottom: 20px; }
 
 /* GENERAL TEXT */
-.section-title, h2 { font-size: 2.8rem; margin-bottom: 15px; }
+.section-title, h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 15px; }
 .core-subtext { font-size: 1.1rem; color: #555; margin-bottom: 35px; }
 
 /* YOUTUBE SCROLL */
-.channel-scroll-container { display: flex; gap: 15px; overflow-x: auto; padding: 10px 5px 25px; max-width: 100%; }
+.channel-scroll-container { display: flex; gap: 15px; overflow-x: auto; padding: 10px 5px 25px; width: 100%; justify-content: flex-start; scroll-behavior: smooth;}
 @media(min-width: 1000px) { .channel-scroll-container { justify-content: center; } }
 .channel-card { flex: 0 0 auto; width: 120px; height: 120px; border-radius: 20px; background: #fff; border: 2px solid #000080; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
 .channel-card i { font-size: 2.5rem; color: #0088ff; }
 .channel-card span { color: #111; font-size: 0.8rem; font-weight: 600; }
 
 /* TOGGLE BTN */
-.master-toggle-btn { background: #111; color: #fff; border: none; padding: 14px 30px; font-size: 1rem; border-radius: 50px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+.master-toggle-btn { background: #111; color: #fff; border: none; padding: 14px 30px; font-size: 1rem; border-radius: 50px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 0 auto 30px auto; }
 
 /* SUBJECT GRID */
-#coreSubjectCards { display: none; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; text-align: left; }
-#coreSubjectCards.open { display: grid; }
-.subject-card { background: #fff; border: 2px solid #000080; border-radius: 16px; padding: 30px; }
+#coreSubjectCards { display: none; width: 100%; text-align: left; }
+#coreSubjectCards.open { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.subject-card { background: #fff; border: 2px solid #000080; border-radius: 16px; padding: 30px; width: 100%; box-sizing: border-box;}
 .subject-card h3 { font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 .subject-card ul { list-style: none; display: flex; flex-direction: column; gap: 15px; }
 .subject-card li { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px; font-size: 1rem; color: #555; }
@@ -66,13 +62,13 @@ section { width: 100%; max-width: 1000px; padding: 0 20px; text-align: center; m
 .subject-card li a { color: #999; font-size: 1.2rem; }
 
 /* VERTICAL CARDS (SEMESTER) */
-.vertical-subject-list { display: flex; flex-direction: column; gap: 15px; max-width: 700px; margin: 0 auto; }
-.vertical-subject-card { background: #fff; border: 2px solid #000080; border-radius: 16px; padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #111; }
+.vertical-subject-list { display: flex; flex-direction: column; gap: 15px; max-width: 700px; margin: 0 auto; width: 100%; }
+.vertical-subject-card { background: #fff; border: 2px solid #000080; border-radius: 16px; padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #111; width: 100%; box-sizing: border-box;}
 .vertical-subject-card h3 { font-size: 1.2rem; display: flex; align-items: center; gap: 10px; margin: 0;}
 .vertical-subject-card h3 i { color: #0088ff; font-size: 1.5rem; }
 
 /* ROADMAP */
-.roadmap-card { background: #fff; border: 2px solid #000080; border-radius: 20px; padding: 30px; text-align: left; margin-bottom: 20px; }
+.roadmap-card { background: #fff; border: 2px solid #000080; border-radius: 20px; padding: 30px; text-align: left; margin-bottom: 20px; width: 100%; box-sizing: border-box;}
 .roadmap-card h2 { font-size: 1.6rem; margin-bottom: 10px; }
 .main-desc { color: #555; }
 
@@ -81,7 +77,7 @@ section { width: 100%; max-width: 1000px; padding: 0 20px; text-align: center; m
 #pdfFrame { width: 100%; height: 100%; border: none; background: #fff;}
 
 /* FOOTER */
-.site-footer { background: #fff; border-top: 2px solid #000080; padding: 40px 20px 20px; width: 100%; margin-top: 20px; }
+.site-footer { background: #fff; border-top: 2px solid #000080; padding: 40px 20px 20px; width: 100%; display: block; box-sizing: border-box;}
 .footer-content { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px; }
 .footer-logo { background: #0088ff; color: #fff; width: 40px; height: 40px; display: inline-flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold; border-radius: 8px; margin-bottom: 10px;}
 .footer-content p { color: #555; font-size: 0.95rem; max-width: 400px; line-height: 1.6; }
@@ -89,9 +85,11 @@ section { width: 100%; max-width: 1000px; padding: 0 20px; text-align: center; m
 
 
 /* =========================================
-   MOBILE RESPONSIVENESS (NO !IMPORTANT TAGS)
+   PURE MOBILE FIXES
    ========================================= */
 @media (max-width: 768px) {
+    .main { padding-top: 100px; }
+    
     .topbar { padding: 15px 20px; }
     .topbar.scrolled { padding: 10px 20px; }
     .topbar h3 { font-size: 20px; }
@@ -99,22 +97,21 @@ section { width: 100%; max-width: 1000px; padding: 0 20px; text-align: center; m
 
     section { padding: 0 15px; margin-bottom: 40px; }
     
-    .hero h1 { font-size: 2.2rem; }
-    .hero p { font-size: 0.95rem; }
-    h2, .section-title { font-size: 1.8rem; }
-    .core-subtext { font-size: 0.95rem; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 15px; }
+    h2, .section-title { font-size: 24px; }
+    .core-subtext { font-size: 15px; }
 
-    .channel-scroll-container { justify-content: flex-start; }
     .channel-card { width: 100px; height: 100px; }
     .channel-card i { font-size: 2rem; }
 
-    /* On mobile, change grid to flex column so it fits perfectly */
-    #coreSubjectCards { grid-template-columns: 1fr; }
-    #coreSubjectCards.open { display: flex; flex-direction: column; }
+    /* Fix Grid blowout by forcing a 1 column layout on mobile */
+    #coreSubjectCards.open { grid-template-columns: 1fr; gap: 15px;}
+    
     .subject-card { padding: 20px; }
     .subject-card h3 { font-size: 1.2rem; }
-    .subject-card li { flex-direction: column; align-items: flex-start; font-size: 0.9rem; gap: 5px; }
-    .subject-card li a { align-self: flex-end; margin-top: -10px; }
+    .subject-card li { flex-direction: column; align-items: flex-start; font-size: 0.95rem; gap: 8px; }
+    .subject-card li a { align-self: flex-end; }
     
     .vertical-subject-card { padding: 15px; }
     .vertical-subject-card h3 { font-size: 1rem; }
