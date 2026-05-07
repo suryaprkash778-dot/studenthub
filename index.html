@@ -11,7 +11,7 @@
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <link rel="stylesheet" href="style.css?v=41">
+    <link rel="stylesheet" href="style.css?v=42">
 </head>
 <body>
 
@@ -25,10 +25,10 @@
         </div>
         
         <div class="nav-links desktop-only">
-            <a href="#" class="active" onclick="showHome()">Home</a>
-            <a href="#coreSubjects">Resources</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="#uploadSection">Contribute</a>
+            <a href="#" onclick="showHome()">Home</a>
+            <a href="#" onclick="showHome(); setTimeout(() => document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'}), 100);">Resources</a>
+            <a href="#" onclick="openRoadmap()">Roadmap</a>
+            <a href="#" onclick="showHome(); setTimeout(() => document.getElementById('uploadSection').scrollIntoView({behavior: 'smooth'}), 100);">Contribute</a>
         </div>
 
         <div class="nav-actions desktop-only">
@@ -43,9 +43,9 @@
     <div class="mobile-menu" id="mobileMenu">
         <button class="close-menu" onclick="toggleMobileMenu()"><i class="ph ph-x"></i></button>
         <a href="#" onclick="showHome(); toggleMobileMenu();">Home</a>
-        <a href="#coreSubjects" onclick="toggleMobileMenu();">Resources</a>
-        <a href="#roadmap" onclick="toggleMobileMenu();">Roadmap</a>
-        <a href="#uploadSection" onclick="toggleMobileMenu();">Contribute</a>
+        <a href="#" onclick="showHome(); toggleMobileMenu(); setTimeout(() => document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'}), 100);">Resources</a>
+        <a href="#" onclick="openRoadmap(); toggleMobileMenu();">Roadmap</a>
+        <a href="#" onclick="showHome(); toggleMobileMenu(); setTimeout(() => document.getElementById('uploadSection').scrollIntoView({behavior: 'smooth'}), 100);">Contribute</a>
     </div>
 
     <main class="app-container" id="mainContent">
@@ -67,7 +67,7 @@
                     <button class="btn-primary large" onclick="document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'})">
                         <i class="ph ph-magnifying-glass"></i> Browse Notes
                     </button>
-                    <button class="btn-outline large" onclick="document.getElementById('roadmap').scrollIntoView({behavior: 'smooth'})">
+                    <button class="btn-outline large" onclick="openRoadmap()">
                         View Roadmap
                     </button>
                 </div>
@@ -175,28 +175,6 @@
                 </div>
             </section>
 
-            <section class="roadmap-preview" id="roadmap">
-                <h2 class="section-heading centered">Placement Roadmap</h2>
-                <p class="section-subheading centered">Follow this structured path to land your dream role.</p>
-                <div class="features-grid">
-                    <div class="feature-card outline-card">
-                        <h3 class="gradient-text">Stage 1</h3>
-                        <h4>CGPA & Communication</h4>
-                        <p>Maintain a 9.0+ CGPA without backlogs and practice articulating your code clearly.</p>
-                    </div>
-                    <div class="feature-card outline-card">
-                        <h3 class="gradient-text">Stage 2</h3>
-                        <h4>Data Structures</h4>
-                        <p>Master C++ or Java and practice consistently on LeetCode and Codeforces.</p>
-                    </div>
-                    <div class="feature-card outline-card">
-                        <h3 class="gradient-text">Stage 3</h3>
-                        <h4>Core Subjects</h4>
-                        <p>Acing DBMS, OS, Computer Networks, and OOPs is vital for technical interviews.</p>
-                    </div>
-                </div>
-            </section>
-
             <section class="upload-section" id="uploadSection">
                 <div class="upload-card">
                     <h2 class="section-heading centered">Contribute to NoteVerse</h2>
@@ -263,6 +241,33 @@
             </div>
         </div>
 
+        <div id="roadmapView" style="display: none;">
+            <div class="back-nav">
+                <button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button>
+            </div>
+            
+            <h1 class="hero-title">Placement <span class="text-gradient">Roadmap</span></h1>
+            <p class="hero-subtitle">Follow this structured path to land your dream role.</p>
+
+            <div class="features-grid" style="margin-top: 40px;">
+                <div class="feature-card outline-card">
+                    <h3 class="gradient-text">Stage 1</h3>
+                    <h4>CGPA & Communication</h4>
+                    <p>Maintain a 9.0+ CGPA without backlogs and practice articulating your code clearly.</p>
+                </div>
+                <div class="feature-card outline-card">
+                    <h3 class="gradient-text">Stage 2</h3>
+                    <h4>Data Structures</h4>
+                    <p>Master C++ or Java and practice consistently on LeetCode and Codeforces.</p>
+                </div>
+                <div class="feature-card outline-card">
+                    <h3 class="gradient-text">Stage 3</h3>
+                    <h4>Core Subjects</h4>
+                    <p>Acing DBMS, OS, Computer Networks, and OOPs is vital for technical interviews.</p>
+                </div>
+            </div>
+        </div>
+
         <section id="pdfViewer" style="display: none; margin-top: 40px;">
             <div class="pdf-container">
                 <iframe id="pdfFrame"></iframe>
@@ -270,6 +275,31 @@
         </section>
 
     </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">N</div>
+                <h2>NoteVerse</h2>
+                <p>Your comprehensive platform for curated study resources, roadmaps, and collaborative learning. Master your studies with quality notes and expert guidance.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#" onclick="showHome()">Home</a></li>
+                    <li><a href="#" onclick="showHome(); setTimeout(() => document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'}), 100);">Resources</a></li>
+                    <li><a href="#" onclick="openRoadmap()">Roadmap</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NoteVerse. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Mobile Menu Logic
@@ -281,6 +311,7 @@
         function hideAllViews() {
             document.getElementById("homeView").style.display = "none";
             document.getElementById("subjectView").style.display = "none";
+            document.getElementById("roadmapView").style.display = "none";
             document.getElementById("pdfViewer").style.display = "none";
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
@@ -288,6 +319,11 @@
         function showHome() { 
             hideAllViews(); 
             document.getElementById("homeView").style.display = "block"; 
+        }
+
+        function openRoadmap() {
+            hideAllViews();
+            document.getElementById("roadmapView").style.display = "block";
         }
 
         function showSubjectNotes(subjectName) { 
