@@ -1,358 +1,152 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden; 
-}
+/* Hard lock on mobile width to prevent stretching */
+html, body { width: 100vw; max-width: 100vw; overflow-x: hidden; }
 
-/* =========================================
-   SOLID ICE BLUE THEME 
-   ========================================= */
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #e8f1f8; 
-    color: #333333; 
-    min-height: 100vh;
-    position: relative;
-    z-index: 0;
-    display: flex;
-    flex-direction: column; 
-}
+/* THEME */
+body { font-family: 'Inter', sans-serif; background-color: #e8f1f8; color: #333; min-height: 100vh; }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #e8f1f8; }
-::-webkit-scrollbar-thumb { background: #bbccdd; border-radius: 10px; }
+/* TYPOGRAPHY */
+h1, h2, h3, .section-title { font-family: 'DM Serif Display', serif; color: #111; font-weight: 400; overflow-wrap: break-word; }
+.text-gradient { background: linear-gradient(to right, #0044cc, #00aaff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-/* Typography Overhaul - Prevent overflow on long words */
-h1, h2, h3, .section-title {
-    font-family: 'DM Serif Display', serif; 
-    color: #111111; 
-    letter-spacing: -0.5px; 
-    font-weight: 400; 
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto; 
-}
+/* TOPBAR */
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; position: fixed; top: 0; left: 0; width: 100%; z-index: 2500; transition: 0.3s; pointer-events: none; }
+.topbar.scrolled { background: rgba(232, 241, 248, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 15px 40px; }
+.logo-container, .menu-btn { pointer-events: auto !important; z-index: 9999; }
+.logo-container { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.logo-icon { width: 35px; height: 35px; }
+.topbar h3 { font-size: 26px; margin: 0; }
+.menu-btn, .close-sidebar { background: transparent; border: none; font-size: 32px; cursor: pointer; color: #111; padding: 5px; }
 
-.text-gradient {
-    background: linear-gradient(to right, #0044cc, #00aaff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    display: inline-block;
-}
-
-/* =========================================
-   BULLETPROOF CLICK FIXES FOR BUTTONS / SVGS
-   ========================================= */
-.menu-btn *, .master-toggle-btn *, .close-sidebar * {
-    pointer-events: none !important;
-}
-
-/* =========================================
-   TOPBAR & LOGO STYLES
-   ========================================= */
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 40px;
-    background: transparent; 
-    border-bottom: none; 
-    position: fixed; 
-    top: 0; left: 0; width: 100%;
-    z-index: 2500; 
-    transition: all 0.4s ease; 
-}
-
-.topbar.scrolled {
-    padding: 15px 40px; 
-    background: rgba(232, 241, 248, 0.95); 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-}
-
-.logo-icon {
-    width: 40px !important;
-    height: 40px !important;
-    max-width: 40px !important;
-    max-height: 40px !important;
-    object-fit: contain !important;
-    display: block !important;
-}
-
-.topbar h3 { font-family: 'DM Serif Display', serif; font-size: 30px; margin: 0; transition: 0.3s;}
-.topbar.scrolled h3 { font-size: 26px; } 
-
-/* FIXED NATIVE BUTTONS */
-.menu-btn, .close-sidebar { 
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 32px; 
-    cursor: pointer; 
-    color: #111111; 
-    transition: 0.3s; 
-    padding: 5px; 
-    position: relative;
-    z-index: 9999;
-}
-.menu-btn:hover, .close-sidebar:hover { opacity: 0.7; }
-
-/* =========================================
-   SIDEBAR 
-   ========================================= */
-.sidebar {
-    position: fixed; right: -300px; top: 0; width: 280px; height: 100%;
-    background: #ffffff; 
-    border-left: 1px solid #e0e6ed; padding: 80px 20px;
-    transition: right 0.4s ease; z-index: 3000; overflow-y: auto;
-    box-shadow: -5px 0 20px rgba(0,0,0,0.05);
-}
+/* SIDEBAR */
+.sidebar { position: fixed; right: -300px; top: 0; width: 280px; height: 100%; background: #fff; padding: 80px 20px; transition: 0.4s; z-index: 3000; border-left: 2px solid #000080;}
 .sidebar.active { right: 0 !important; }
-
-.sidebar-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-.sidebar-logo h2 { font-size: 36px; margin: 0; color: #111111;}
-
-.sidebar a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: #444444; text-decoration: none; transition: 0.3s; border-radius: 8px; margin-bottom: 5px; font-weight: 500; }
-.sidebar a:hover { background-color: #f0f4f8 !important; color: #0044cc; }
-.sidebar a i { font-size: 22px; color: #777777; }
-.close-sidebar { position: absolute; top: 20px; left: 20px; z-index: 9999; }
-.submenu { display: none; padding-left: 15px; border-left: 2px solid #dddddd; margin-left: 25px; margin-bottom: 10px; }
+.sidebar a { display: flex; align-items: center; gap: 10px; padding: 12px; color: #444; text-decoration: none; border-radius: 8px; font-weight: 500; }
+.sidebar a:hover { background: #f0f4f8; color: #0044cc; }
+.sidebar a i { font-size: 20px; color: #777; }
+.close-sidebar { position: absolute; top: 20px; left: 20px; }
+.submenu { display: none; padding-left: 15px; border-left: 2px solid #ddd; margin-left: 20px; }
 .submenu.active { display: block; }
+.sidebar-logo { text-align: center; margin-bottom: 30px; }
+.sidebar-logo h2 { font-size: 30px; }
 
-/* =========================================
-   MAIN CONTENT AREA & CONTAINERS
-   ========================================= */
-.main { 
-    flex: 1; /* Pushes footer to the bottom */
-    padding-top: 130px; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    width: 100%; 
-    max-width: 100%; 
-}
+/* MAIN CONTAINERS */
+.main { padding-top: 120px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+section { width: 100%; max-width: 1000px; padding: 0 20px; text-align: center; margin-bottom: 70px; }
 
-.hero, .core-subjects, .roadmap-section, .top-channels, .creator-talks, .semester-section {
-    width: 100%;
-    max-width: 1100px; 
-    padding: 0 20px; 
-    text-align: center;
-    margin: 0 auto 90px auto; 
-    box-sizing: border-box;
-}
+.hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px;}
+.hero p { font-size: 1.1rem; color: #555; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+.hero-badge { display: inline-block; padding: 8px 20px; border: 1px solid #d0dce8; border-radius: 50px; font-size: 13px; background: #fff; margin-bottom: 20px; }
+.section-title, h2 { font-size: 2.8rem; margin-bottom: 15px; }
+.core-subtext, .upload-subtitle { font-size: 1.1rem; color: #555; margin-bottom: 35px; }
 
-.hero h1 { font-size: 4.5rem; margin-bottom: 20px; line-height: 1.05; letter-spacing: -1.5px; }
-.hero p { font-size: 1.1rem; color: #555555; line-height: 1.6; max-width: 800px; margin: 0 auto; font-weight: 400; }
-.hero-badge { display: inline-block; padding: 8px 20px; margin-bottom: 20px; border: 1px solid #d0dce8; border-radius: 50px; font-size: 13px; color: #555555; background: #ffffff; font-weight: 500;}
-
-.top-channels .section-title { font-size: 3rem; margin-bottom: 40px; letter-spacing: -1px;}
-.core-subjects h2 { font-size: 3rem; margin-bottom: 15px; letter-spacing: -1px; }
-.core-subtext { font-size: 1.1rem; color: #555555; margin-bottom: 40px; }
-
-.roadmap-header { margin-bottom: 50px; }
-.roadmap-header h1 { font-size: 3rem; margin-bottom: 15px; letter-spacing: -1px; }
-.roadmap-header p { font-size: 1.1rem; color: #555555; }
-
-/* YouTube Scroll */
-.channel-scroll-container {
-    display: flex; gap: 20px; overflow-x: auto; padding: 10px 5px 25px 5px;
-    scrollbar-width: none; -ms-overflow-style: none; width: 100%;
-}
-@media(min-width: 1000px) { .channel-scroll-container { justify-content: center; } }
+/* YOUTUBE SCROLL */
+.channel-scroll-container { display: flex; gap: 15px; overflow-x: auto; padding: 10px 5px 25px; scrollbar-width: none; justify-content: center;}
 .channel-scroll-container::-webkit-scrollbar { display: none; }
+.channel-card { flex: 0 0 auto; width: 120px; height: 120px; border-radius: 20px; background: #fff; border: 2px solid #000080; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-decoration: none; pointer-events: auto;}
+.channel-card i { font-size: 2.5rem; color: #0088ff; }
+.channel-card span { color: #111; font-size: 0.8rem; font-weight: 600; }
 
-/* =========================================
-   YOUTUBE CARDS
-   ========================================= */
-.channel-card {
-    flex: 0 0 auto; 
-    width: 130px; 
-    height: 130px; 
-    border-radius: 20px; 
-    background-color: #ffffff !important; 
-    border: 2px solid #000080 !important; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important; 
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    pointer-events: auto;
-}
-.channel-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 102, 255, 0.1) !important; }
-.channel-card i { font-size: 2.8rem; color: #0088ff !important; background: transparent; padding: 0; }
-.channel-card span { color: #111111 !important; font-size: 0.85rem; font-weight: 600; letter-spacing: -0.3px; }
+/* TOGGLE BTN */
+.master-toggle-btn { background: #111; color: #fff; border: none; padding: 14px 30px; font-size: 1rem; border-radius: 50px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; pointer-events: auto !important; margin-bottom: 30px;}
 
-/* Master Toggle Button */
-.master-toggle-btn {
-    background: #111111; 
-    color: #ffffff; border: none; padding: 14px 35px; font-size: 1rem; font-weight: 500;
-    border-radius: 50px; cursor: pointer; transition: 0.3s; margin-bottom: 40px; display: inline-flex; align-items: center; gap: 10px;
-    font-family: 'Inter', sans-serif; position: relative; z-index: 100; 
-}
-.master-toggle-btn:hover { background: #333333; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
-
-
-/* =========================================
-   SUBJECT GRID 
-   ========================================= */
-#coreSubjectCards { 
-    display: none; 
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); 
-    gap: 25px; 
-    width: 100%; 
-}
-#coreSubjectCards.open { display: grid !important; animation: fadeIn 0.4s; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-
-.subject-card { 
-    background-color: #ffffff !important; 
-    border: 2px solid #000080 !important; 
-    border-radius: 12px; padding: 35px; text-align: left; 
-    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.05) !important; 
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-.subject-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 102, 255, 0.1) !important; }
-.subject-card h3 { font-size: 1.6rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: #111111; }
-.subject-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.subject-card li { display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; color: #555555; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; }
-.subject-card li:last-child { border-bottom: none; padding-bottom: 0;}
-.subject-card li a { color: #999999; font-size: 1.4rem; transition: 0.3s; position: relative; z-index: 10;} 
+/* SUBJECT CARDS (Grid Fix) */
+#coreSubjectCards { display: none; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; text-align: left; }
+#coreSubjectCards.open { display: grid !important; }
+.subject-card { background: #fff; border: 2px solid #000080; border-radius: 16px; padding: 30px; }
+.subject-card h3 { font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.subject-card ul { list-style: none; display: flex; flex-direction: column; gap: 15px; }
+.subject-card li { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px; font-size: 1rem; color: #555; }
+.subject-card li:last-child { border-bottom: none; padding-bottom: 0; }
+.list-left { display: flex; align-items: center; gap: 8px; flex: 1; }
+.list-left i { color: #0088ff; }
+.subject-card li a { color: #999; font-size: 1.2rem; pointer-events: auto !important; padding: 5px; }
 .subject-card li a:hover { color: #0044cc; }
-.list-left { display: flex; align-items: center; gap: 10px; }
-.list-left i { color: #0088ff; } 
+
+/* SEMESTER VERTICAL CARDS */
+.vertical-subject-list { display: flex; flex-direction: column; gap: 15px; max-width: 700px; margin: 0 auto; }
+.vertical-subject-card { background: #fff; border: 2px solid #000080; border-radius: 16px; padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #111; pointer-events: auto;}
+.vertical-subject-card h3 { font-size: 1.2rem; display: flex; align-items: center; gap: 10px; margin: 0;}
+.vertical-subject-card h3 i { color: #0088ff; font-size: 1.5rem; }
+.vertical-subject-card > i { color: #0088ff; font-size: 1.5rem; }
+
+/* ROADMAP */
+.roadmap-card { background: #fff; border: 2px solid #000080; border-radius: 20px; padding: 30px; text-align: left; margin-bottom: 20px; }
+.roadmap-card h2 { font-size: 1.6rem; margin-bottom: 10px; }
+.main-desc { color: #555; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 15px; margin-bottom: 15px; }
+
+/* UPLOAD */
+.comet-widget { background: #fff; border: 2px solid #000080; border-radius: 16px; padding: 30px; text-align: left; }
+.comet-text-input { width: 100%; border: none; border-bottom: 1px dashed #ccc; font-size: 1.2rem; padding-bottom: 10px; margin-bottom: 20px; outline: none; background: transparent; }
+.comet-controls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+.comet-dropdowns { display: flex; gap: 10px; }
+.comet-select-wrapper { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 50px; padding: 8px 15px; display: flex; align-items: center; gap: 8px; }
+.comet-select { border: none; background: transparent; outline: none; font-size: 0.95rem; color: #333; }
+.comet-actions { display: flex; align-items: center; gap: 15px; }
+.comet-icon-btn { font-size: 1.8rem; color: #666; cursor: pointer; }
+.comet-submit-btn { background: #0088ff; color: #fff; border: none; border-radius: 12px; width: 45px; height: 45px; font-size: 1.2rem; cursor: pointer; pointer-events: auto !important;}
+
+/* ABOUT & PDF */
+.about-panel { position: fixed; right: -400px; top: 0; width: 320px; height: 100%; background: #fff; padding: 40px 20px; transition: 0.4s; z-index: 4000; border-left: 2px solid #000080; }
+.about-panel h2 { font-size: 24px; margin-bottom: 15px;}
+#pdfViewer { display: none; height: 600px; border: 2px solid #000080; border-radius: 16px; overflow: hidden; width: 100%; max-width: 1000px;}
+#pdfFrame { width: 100%; height: 100%; border: none; background: #fff;}
+
+/* THE NEW FOOTER */
+.site-footer { background: #fff; border-top: 2px solid #000080; padding: 50px 20px 20px; width: 100%; margin-top: 20px;}
+.footer-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; text-align: left;}
+.footer-brand { max-width: 400px; }
+.footer-logo { background: #0088ff; color: #fff; width: 40px; height: 40px; display: inline-flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold; border-radius: 8px; margin-bottom: 15px;}
+.footer-brand h2 { font-size: 1.8rem; display: inline-block; vertical-align: top; margin-left: 10px; margin-top: 2px;}
+.footer-brand p { color: #555; font-size: 0.95rem; line-height: 1.6; }
+.footer-links h3 { font-size: 1.2rem; margin-bottom: 15px; }
+.footer-links ul { list-style: none; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a { color: #0044cc; text-decoration: none; font-weight: 500;}
+.footer-bottom { max-width: 1100px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; font-size: 0.9rem; color: #777;}
+.footer-legal a { color: #777; text-decoration: none; margin-left: 15px; }
 
 /* =========================================
-   ROADMAP 
+   ABSOLUTE MOBILE LOCKDOWN
    ========================================= */
-.roadmap-card { 
-    background-color: #ffffff !important; 
-    border: 2px solid #000080 !important; 
-    border-radius: 24px; 
-    padding: 50px; 
-    text-align: left; 
-    margin-bottom: 40px; 
-    box-shadow: 0 4px 20px rgba(0, 102, 255, 0.05) !important;          
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+@media(max-width: 768px) {
+    html, body, .main { width: 100vw !important; overflow-x: hidden !important; }
+    
+    .topbar { padding: 10px 15px !important; }
+    .topbar.scrolled { padding: 8px 15px !important; }
+    .topbar h3 { font-size: 22px !important; }
+    .menu-btn { font-size: 28px !important; }
+
+    section, .hero, .site-footer { padding-left: 15px !important; padding-right: 15px !important; box-sizing: border-box !important; margin-bottom: 40px !important;}
+
+    /* Force strict font sizes so they NEVER push the screen */
+    .hero h1 { font-size: 32px !important; line-height: 1.1 !important; }
+    .hero p { font-size: 15px !important; }
+    h2, .section-title { font-size: 26px !important; line-height: 1.1 !important; margin-bottom: 10px !important; }
+    .core-subtext { font-size: 14px !important; margin-bottom: 20px !important;}
+
+    /* Force scroll container to align left so it doesn't center off-screen */
+    .channel-scroll-container { justify-content: flex-start !important; padding-bottom: 10px !important; }
+    .channel-card { width: 100px !important; height: 100px !important; border-radius: 16px !important; }
+    .channel-card i { font-size: 2rem !important; }
+    .channel-card span { font-size: 0.7rem !important; }
+
+    /* Force Subjects into a clean vertical list */
+    #coreSubjectCards.open { display: flex !important; flex-direction: column !important; gap: 15px !important; }
+    .subject-card { width: 100% !important; padding: 20px !important; }
+    .subject-card h3 { font-size: 20px !important; }
+    .subject-card li { flex-direction: column !important; align-items: flex-start !important; gap: 5px !important; font-size: 14px !important; }
+    .subject-card li a { align-self: flex-end !important; margin-top: -15px !important; }
+
+    .comet-widget { padding: 20px 15px !important; }
+    .comet-dropdowns { flex-direction: column !important; width: 100% !important; }
+    .comet-select-wrapper { width: 100% !important; }
+    .comet-actions { width: 100% !important; justify-content: space-between !important; margin-top: 15px !important; }
+
+    #pdfViewer { height: 400px !important; }
+    
+    .footer-content { flex-direction: column !important; gap: 20px !important; }
+    .footer-bottom { flex-direction: column !important; text-align: center !important; }
+    .footer-legal a { margin: 0 10px !important; }
 }
-.roadmap-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 102, 255, 0.1) !important; }
-.roadmap-card h2 { font-size: 2.2rem; margin-bottom: 15px; color: #111111;}
-.main-desc { color: #444444; font-size: 1.2rem; margin-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 15px; }
-.indented-list { list-style: none; padding-left: 15px; }
-.list-item { margin-bottom: 15px; position: relative; padding-left: 20px; }
-.list-item::before { content: ''; position: absolute; left: -5px; top: 10px; width: 6px; height: 6px; background: #111111; border-radius: 50%; }
-.list-item h4 { font-size: 1.3rem; color: #111111; margin-bottom: 5px;}
-.list-item p { color: #555555; font-size: 1.05rem; line-height: 1.6;}
-
-/* =========================================
-   SEMESTER VIEW VERTICAL BOXES
-   ========================================= */
-.vertical-subject-list { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 800px; margin: 0 auto; }
-.vertical-subject-card {
-    background-color: #ffffff !important; border: 2px solid #000080 !important; 
-    border-radius: 16px; padding: 25px 30px; box-shadow: 0 4px 15px rgba(0, 102, 255, 0.05) !important;
-    text-align: left; transition: box-shadow 0.3s ease, transform 0.3s ease; display: flex;
-    justify-content: space-between; align-items: center; cursor: pointer; text-decoration: none;
-    color: #111111; position: relative; z-index: 10;
-}
-.vertical-subject-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 102, 255, 0.1) !important; }
-.vertical-subject-card h3 { font-size: 1.5rem; margin: 0; display: flex; align-items: center; gap: 15px; }
-.vertical-subject-card h3 i { color: #0088ff; font-size: 2rem; }
-.vertical-subject-card > i { color: #0088ff; font-size: 1.5rem; transition: transform 0.3s ease; }
-.vertical-subject-card:hover > i { transform: translateX(5px); }
-
-/* =========================================
-   PDF VIEWER 
-   ========================================= */
-#pdfViewer { 
-    display: none; margin: 0 auto 60px auto; width: 100%; max-width: 1100px; height: 700px; 
-    border-radius: 16px; border: 2px solid #000080 !important; overflow: hidden; z-index: 100;
-    box-shadow: 0 4px 20px rgba(0, 102, 255, 0.1) !important;
-}
-#pdfFrame { width: 100%; height: 100%; border: none; background-color: #ffffff !important; }
-
-/* ABOUT PANEL */
-.about-panel { 
-    position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background-color: #ffffff !important; 
-    padding: 40px 30px; transition: 0.4s; z-index: 4000; border-left: 2px solid #000080 !important; 
-    box-shadow: -5px 0 25px rgba(0,0,0,0.05) !important;
-}
-.about-panel h2 { margin-bottom: 20px; color: #111111;}
-.about-panel p { color: #555555; margin-bottom: 15px; line-height: 1.6; font-size: 15px; }
-.close-about { position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; color: #111111; z-index: 9999;}
-
-
-/* =========================================
-   FOOTER STYLES
-   ========================================= */
-.site-footer {
-    background-color: #ffffff;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-    padding: 60px 20px 20px 20px;
-    width: 100%;
-}
-
-.footer-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-}
-
-.footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-brand .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
-}
-
-.n-box {
-    background-color: #0088ff;
-    color: white;
-    font-weight: 700;
-    font-size: 1.3rem;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    font-family: 'Inter', sans-serif;
-}
-
-.footer-brand h3 {
-    font-size: 1.6rem;
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: #111111;
-}
-
-.footer-brand p {
-    color: #55555
