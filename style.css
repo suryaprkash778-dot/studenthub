@@ -47,9 +47,20 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; transition: 0.2s; ou
 .logo-mark { background: linear-gradient(135deg, #4f46e5, #9333ea); color: #fff; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.2rem; }
 
 .nav-links { display: flex; gap: 5px; background: #f1f5f9; padding: 4px; border-radius: 50px; }
-.nav-links a { padding: 8px 20px; font-size: 0.9rem; font-weight: 500; color: #475569; border-radius: 50px; }
-.nav-links a:hover { color: #0f172a; }
-.nav-links a.active { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #0f172a; }
+.nav-links > a, .nav-dropdown > a { padding: 8px 20px; font-size: 0.9rem; font-weight: 500; color: #475569; border-radius: 50px; display: flex; align-items: center; gap: 5px;}
+.nav-links > a:hover, .nav-dropdown > a:hover { color: #0f172a; }
+.nav-links > a.active { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #0f172a; }
+
+/* Desktop Dropdowns */
+.nav-dropdown { position: relative; }
+.dropdown-menu { 
+    position: absolute; top: 120%; left: 0; background: #fff; padding: 10px; border-radius: 12px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex; flex-direction: column; min-width: 150px;
+    opacity: 0; pointer-events: none; transition: 0.2s; z-index: 100;
+}
+.nav-dropdown:hover .dropdown-menu { opacity: 1; pointer-events: auto; top: 100%; }
+.dropdown-menu a { padding: 10px 15px !important; margin: 0; border-radius: 8px !important; font-size: 0.95rem !important; }
+.dropdown-menu a:hover { background: #f1f5f9 !important; color: #4f46e5 !important; }
 
 .nav-actions { display: flex; align-items: center; gap: 20px; }
 .icon-btn { background: transparent; border: none; font-size: 1.2rem; color: #475569; }
@@ -60,10 +71,16 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; transition: 0.2s; ou
 .mobile-menu-btn { display: none; background: transparent; border: none; font-size: 1.8rem; color: #0f172a; }
 
 /* Mobile Menu Overlay */
-.mobile-menu { position: fixed; top: 0; left: 100%; width: 100%; height: 100vh; background: #fff; z-index: 2000; padding: 80px 30px; display: flex; flex-direction: column; gap: 20px; transition: 0.3s ease; }
+.mobile-menu { position: fixed; top: 0; left: 100%; width: 100%; height: 100vh; background: #fff; z-index: 2000; padding: 80px 30px; display: flex; flex-direction: column; gap: 20px; transition: 0.3s ease; overflow-y: auto;}
 .mobile-menu.active { left: 0; }
-.mobile-menu a { font-size: 1.5rem; font-family: 'Playfair Display', serif; color: #0f172a; font-weight: 600; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; }
+.mobile-menu > a { display: flex; font-size: 1.5rem; font-family: 'Playfair Display', serif; color: #0f172a; font-weight: 600; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; }
 .close-menu { position: absolute; top: 20px; right: 20px; font-size: 2rem; background: transparent; border: none; color: #0f172a; }
+
+/* Mobile Accordions */
+.mobile-submenu { display: none; flex-direction: column; gap: 15px; padding-left: 20px; border-left: 2px solid #e2e8f0; margin: 0 0 10px 10px; }
+.mobile-submenu.active { display: flex; }
+.mobile-submenu a { border: none !important; font-size: 1.2rem !important; color: #64748b !important; padding: 0 !important; font-family: 'Inter', sans-serif !important; font-weight: 500 !important;}
+.mobile-submenu a:hover { color: #4f46e5 !important; }
 
 /* =========================================
    LAYOUT & CONTAINERS 
@@ -121,6 +138,16 @@ section { margin-bottom: 100px; }
 .pastel-peach .subject-icon { color: #f97316; }
 
 /* =========================================
+   SEMESTER VERTICAL SUBJECT CARDS
+   ========================================= */
+.vertical-subject-list { display: flex; flex-direction: column; gap: 15px; max-width: 800px; margin: 0 auto; width: 100%; }
+.vertical-subject-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px 30px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #111; width: 100%; box-sizing: border-box; transition: 0.3s;}
+.vertical-subject-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-color: #cbd5e1;}
+.vertical-subject-card h3 { font-size: 1.4rem; display: flex; align-items: center; gap: 15px; margin: 0; font-family: 'Inter', sans-serif; font-weight: 600;}
+.vertical-subject-card h3 i { color: #4f46e5; font-size: 1.8rem; }
+.vertical-subject-card > i { color: #4f46e5; font-size: 1.5rem; }
+
+/* =========================================
    YOUTUBE RESOURCES 
    ========================================= */
 .channel-scroll-container { display: flex; flex-direction: row; flex-wrap: nowrap; overflow-x: auto; gap: 25px; padding-bottom: 20px; scrollbar-width: none; }
@@ -128,9 +155,6 @@ section { margin-bottom: 100px; }
 .yt-card { flex: 0 0 320px; background: #fff; border: 1px solid #e2e8f0; border-radius: 24px; padding: 30px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
 .yt-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
 .yt-avatar { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 600; color: #0f172a; }
-.bg-green { background: #dcfce7; }
-.bg-mint { background: #d1fae5; }
-.bg-olive { background: #eab308; color: #fff; }
 .yt-title-area h3 { font-size: 1.3rem; margin-bottom: 4px; }
 .subs-badge { display: inline-block; background: #f1f5f9; font-size: 0.75rem; font-weight: 600; color: #475569; padding: 4px 10px; border-radius: 50px; }
 .yt-desc { font-size: 0.95rem; margin-bottom: 25px; flex-grow: 1; }
@@ -173,13 +197,12 @@ section { margin-bottom: 100px; }
 .desktop-only { display: flex; }
 .mobile-only { display: none; }
 
-/* Medium Screens / Tablets */
 @media (max-width: 1024px) {
     .features-grid, .subjects-grid { 
         display: flex !important; 
         flex-direction: row !important; 
         overflow-x: auto !important; 
-        gap: 15px !important; 
+        gap: 20px !important; 
         padding-bottom: 20px !important;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -190,12 +213,10 @@ section { margin-bottom: 100px; }
     .subject-card { flex: 0 0 280px !important; }
 }
 
-/* Small Screens / Mobile - SCALED DOWN VERSION */
 @media (max-width: 768px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: block; }
     
-    /* Tighter Topbar */
     .navbar { padding: 12px 15px; }
     .nav-logo { font-size: 1.2rem; }
     .logo-mark { width: 28px; height: 28px; font-size: 0.9rem; }
@@ -203,7 +224,6 @@ section { margin-bottom: 100px; }
     .app-container { padding: 90px 15px 40px; }
     section { margin-bottom: 50px; }
     
-    /* Scaled down typography */
     .hero-title { font-size: clamp(2rem, 7vw, 2.5rem); margin-bottom: 15px; }
     .hero-subtitle { font-size: 0.95rem; margin-bottom: 25px; }
     .hero-badge { padding: 6px 16px; font-size: 0.75rem; margin-bottom: 20px; }
@@ -211,11 +231,9 @@ section { margin-bottom: 100px; }
     .section-heading, .cta-section h2 { font-size: 1.8rem; margin-bottom: 10px; }
     .section-subheading, .cta-section p { font-size: 0.95rem; margin-bottom: 25px; }
     
-    /* Smaller buttons */
     .hero-buttons { flex-direction: column; width: 100%; gap: 10px; }
     .btn-primary.large, .btn-outline.large { padding: 12px 24px; font-size: 1rem; width: 100%; justify-content: center; }
     
-    /* Tighter Grids & Smaller Cards */
     .features-grid, .subjects-grid, .youtube-grid { 
         display: flex !important; 
         flex-direction: row !important; 
@@ -227,15 +245,13 @@ section { margin-bottom: 100px; }
     }
     .features-grid::-webkit-scrollbar, .subjects-grid::-webkit-scrollbar, .youtube-grid::-webkit-scrollbar { display: none !important; }
     
-    /* Scaled down boxes - flex-basis reduced to 75% so more of the next card shows */
     .feature-card, .subject-card, .yt-card { 
         flex: 0 0 75% !important; 
         min-width: 230px !important; 
         padding: 20px 15px !important; 
     }
-    .subject-card { gap: 20px !important; } /* Tighter gap between icon and text inside subject cards */
+    .subject-card { gap: 20px !important; }
     
-    /* Scaled down content inside boxes */
     .feature-icon, .subject-icon { width: 40px; height: 40px; font-size: 1.2rem; margin-bottom: 15px; }
     .feature-card h3, .subject-info h3, .yt-title-area h3 { font-size: 1.2rem; margin-bottom: 8px; }
     .feature-card p, .yt-desc { font-size: 0.85rem; }
@@ -244,10 +260,13 @@ section { margin-bottom: 100px; }
     .yt-header { margin-bottom: 15px; }
     .yt-avatar { width: 45px; height: 45px; font-size: 1rem; }
     .yt-btn { padding: 10px; font-size: 0.85rem; }
+
+    .vertical-subject-card { padding: 15px; }
+    .vertical-subject-card h3 { font-size: 1.1rem; }
+    .vertical-subject-card h3 i { font-size: 1.4rem; }
     
     .pdf-container { height: 400px; }
     
-    /* Scaled down footer */
     .footer-content { flex-direction: column; gap: 25px; align-items: flex-start;}
     .footer-brand h2 { font-size: 1.5rem; }
     .footer-brand p { font-size: 0.85rem; }
