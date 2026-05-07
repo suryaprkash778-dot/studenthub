@@ -11,7 +11,7 @@
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <link rel="stylesheet" href="style.css?v=34">
+    <link rel="stylesheet" href="style.css?v=37">
 </head>
 
 <body>
@@ -393,7 +393,48 @@
         </section>
     </div>
 
-</div>
+</div> <footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="n-box">N</div>
+                    <h3>NoteVerse</h3>
+                </div>
+                <p>Your comprehensive platform for curated study resources, roadmaps, and collaborative learning. Master your studies with quality notes and expert guidance.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#" onclick="showHome()">Home</a></li>
+                    <li><a href="#" onclick="toggleSubMenu('resourcesMenu', event)">Resources</a></li>
+                    <li><a href="#" onclick="document.getElementById('uploadSection').scrollIntoView({behavior: 'smooth'})">Contribute</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-connect">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="ph ph-github-logo"></i></a>
+                    <a href="#"><i class="ph ph-twitter-logo"></i></a>
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-envelope-simple"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 NoteVerse. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <div id="aboutPanel" class="about-panel">
     <button type="button" onclick="closeAbout()" class="close-about"><i class="ph ph-x"></i></button>
