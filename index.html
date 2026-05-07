@@ -2,257 +2,353 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NoteVerse</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <link rel="stylesheet" href="style.css?v=40">
+    <link rel="stylesheet" href="style.css?v=41">
 </head>
-
 <body>
 
-<div class="sidebar" id="sidebar">
-    <button type="button" onclick="toggleSidebar()" class="close-sidebar"><i class="ph ph-x"></i></button>
+    <div class="bg-glow glow-top-left"></div>
+    <div class="bg-glow glow-top-right"></div>
 
-    <div class="sidebar-logo">
-        <img src="logo.jpg" alt="NoteVerse" class="logo-icon" onerror="this.style.display='none'">
-        <h2><span class="text-gradient">NoteVerse</span></h2>
+    <nav class="navbar">
+        <div class="nav-logo" onclick="showHome()">
+            <div class="logo-mark"><i class="ph-fill ph-sparkle"></i></div>
+            <span>NoteVerse</span>
+        </div>
+        
+        <div class="nav-links desktop-only">
+            <a href="#" class="active" onclick="showHome()">Home</a>
+            <a href="#coreSubjects">Resources</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#uploadSection">Contribute</a>
+        </div>
+
+        <div class="nav-actions desktop-only">
+            <button class="icon-btn"><i class="ph ph-sun"></i></button>
+            <a href="#" class="text-link">Log In</a>
+            <a href="#" class="btn-primary">Sign Up</a>
+        </div>
+
+        <button class="mobile-menu-btn mobile-only" onclick="toggleMobileMenu()"><i class="ph ph-list"></i></button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMobileMenu()"><i class="ph ph-x"></i></button>
+        <a href="#" onclick="showHome(); toggleMobileMenu();">Home</a>
+        <a href="#coreSubjects" onclick="toggleMobileMenu();">Resources</a>
+        <a href="#roadmap" onclick="toggleMobileMenu();">Roadmap</a>
+        <a href="#uploadSection" onclick="toggleMobileMenu();">Contribute</a>
     </div>
 
-    <a href="#" onclick="showHome()"><i class="ph ph-house"></i> Home</a>
-    
-    <a href="#" onclick="toggleSubMenu('notesMenu', event)"><i class="ph ph-book-open-text"></i> Notes</a>
-    <div class="submenu" id="notesMenu">
-        <a href="#" onclick="showSemester1('Notes')">Semester 1</a>
-        <a href="#" onclick="showSemester2('Notes')">Semester 2</a>
-        <a href="#">Semester 3</a>
-    </div>
+    <main class="app-container" id="mainContent">
 
-    <a href="#" onclick="toggleSubMenu('pyqMenu', event)"><i class="ph ph-file-text"></i> PYQs</a>
-    <div class="submenu" id="pyqMenu">
-        <a href="#" onclick="showSemester1('PYQs')">Semester 1</a>
-        <a href="#" onclick="showSemester2('PYQs')">Semester 2</a>
-        <a href="#">Semester 3</a>
-    </div>
-
-    <a href="#" onclick="toggleSubMenu('resourcesMenu', event)"><i class="ph ph-cube"></i> Resources</a>
-    <div class="submenu" id="resourcesMenu">
-        <a href="#" onclick="showSemester1('Resources')">Semester 1</a>
-        <a href="#" onclick="showSemester2('Resources')">Semester 2</a>
-        <a href="#">Semester 3</a>
-    </div>
-
-    <a href="#" onclick="openRoadmap()"><i class="ph ph-map-trifold"></i> Placement Roadmap</a>
-</div>
-
-<div class="topbar" id="mainTopbar">
-    <div class="logo-container" onclick="showHome()">
-        <img src="logo.jpg" alt="NoteVerse" class="logo-icon" onerror="this.style.display='none'">
-        <h3><span class="text-gradient">NoteVerse</span></h3>
-    </div>
-    <button type="button" class="menu-btn" onclick="toggleSidebar()"><i class="ph ph-list"></i></button>
-</div>
-
-<div class="main">
-
-    <div id="homeView">
-        <section class="hero">
-            <div class="hero-badge">Your Gateway to Academic Excellence</div>
-            <h1><span class="text-gradient">Master</span> your studies with curated resources</h1>
-            <p>Unlock your potential with comprehensive guides, notes, and expert-designed learning paths for every step of your academic journey.</p>
-        </section>
-
-        <section class="top-channels">
-            <h2 class="section-title">Learn from <span class="text-gradient">Top</span> Tech YouTube Channels</h2>
-            <div class="channel-scroll-container">
-                <a href="https://www.youtube.com/@striver_79" target="_blank" class="channel-card"><i class="ph-fill ph-youtube-logo"></i><span>Striver</span></a>
-                <a href="https://www.youtube.com/@takeUforward" target="_blank" class="channel-card"><i class="ph-fill ph-youtube-logo"></i><span>Apna College</span></a>
-                <a href="https://www.youtube.com/@LoveBabbar" target="_blank" class="channel-card"><i class="ph-fill ph-youtube-logo"></i><span>Love Babbar</span></a>
-                <a href="https://www.youtube.com/@GateSmashers" target="_blank" class="channel-card"><i class="ph-fill ph-youtube-logo"></i><span>Gate Smashers</span></a>
-                <a href="https://www.youtube.com/@KunalKushwaha" target="_blank" class="channel-card"><i class="ph-fill ph-youtube-logo"></i><span>Kunal Kushwaha</span></a>
-                <a href="https://www.youtube.com/@CodeWithHarry" target="_blank" class="channel-card"><i class="ph-fill ph-youtube-logo"></i><span>CodeWithHarry</span></a>
-            </div>
-        </section>
-
-        <section class="core-subjects">
-            <h2>CSE <span class="text-gradient">Core</span> Fundamental Subjects</h2>
-            <p class="core-subtext">Mastering these subjects is crucial for building a strong foundation.</p>
+        <div id="homeView">
             
-            <button type="button" class="master-toggle-btn" id="coreToggleBtn" onclick="toggleCoreSubjects()">
-                <span>View Subjects</span> <i class="ph ph-caret-down"></i>
-            </button>
+            <header class="hero-section">
+                <div class="hero-badge">
+                    <i class="ph ph-sparkle"></i> The standard for engineering excellence
+                </div>
+                <h1 class="hero-title">
+                    Master Your<br>
+                    <span class="text-gradient">Engineering</span> Journey
+                </h1>
+                <p class="hero-subtitle">
+                    Access premium study materials, structured placement roadmaps, and curated resources to ace your exams and interviews.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary large" onclick="document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'})">
+                        <i class="ph ph-magnifying-glass"></i> Browse Notes
+                    </button>
+                    <button class="btn-outline large" onclick="document.getElementById('roadmap').scrollIntoView({behavior: 'smooth'})">
+                        View Roadmap
+                    </button>
+                </div>
+            </header>
 
-            <div class="subject-cards" id="coreSubjectCards">
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Data Structures</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Take U Forward</span><a href="https://www.youtube.com/results?search_query=Take+U+Forward+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> CodeHelp</span><a href="https://www.youtube.com/results?search_query=CodeHelp+Love+Babbar+DSA+playlist" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Ankush Saklecha</span><a href="https://youtube.com/playlist?list=PLir19lgiavA2h95ln1UUwPoZkt9ueSbhQ&si=N1wBqOBYyCuNEmNd" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
+            <section class="features-section">
+                <h2 class="section-heading centered">Built for success</h2>
+                <p class="section-subheading centered">Everything you need to structure your studies and preparation.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="ph ph-book-open"></i></div>
+                        <h3>Curated Notes</h3>
+                        <p>High-quality, peer-reviewed study materials for every semester, organized efficiently.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="ph ph-code"></i></div>
+                        <h3>DSA Mastery</h3>
+                        <p>Structured roadmaps and problem sets designed to help you ace technical interviews.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="ph ph-graph"></i></div>
+                        <h3>Collaborate</h3>
+                        <p>Share your own notes and learn together with a community of driven engineering students.</p>
+                    </div>
                 </div>
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Database Management</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers DBMS</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate DBMS</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesR1rSES7oLdJaNFgmuj0SYV" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy DBMS</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
+            </section>
+
+            <section class="core-subjects-section" id="coreSubjects">
+                <h2 class="section-heading">Core Subjects</h2>
+                <p class="section-subheading">Master the fundamentals required for top product companies.</p>
+
+                <div class="subjects-grid">
+                    <div class="subject-card pastel-blue" onclick="showSubjectNotes('Data Structures')">
+                        <div class="subject-icon"><i class="ph ph-code"></i></div>
+                        <div class="subject-info">
+                            <h3>Data Structures</h3>
+                            <span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="subject-card pastel-mint" onclick="showSubjectNotes('Database Systems')">
+                        <div class="subject-icon"><i class="ph ph-database"></i></div>
+                        <div class="subject-info">
+                            <h3>Database Systems</h3>
+                            <span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="subject-card pastel-purple" onclick="showSubjectNotes('Operating Systems')">
+                        <div class="subject-icon"><i class="ph ph-cpu"></i></div>
+                        <div class="subject-info">
+                            <h3>Operating Systems</h3>
+                            <span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="subject-card pastel-peach" onclick="showSubjectNotes('Computer Networks')">
+                        <div class="subject-icon"><i class="ph ph-share-network"></i></div>
+                        <div class="subject-info">
+                            <h3>Computer Networks</h3>
+                            <span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Operating System</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers OS</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Knowledge Gate OS</span><a href="https://www.youtube.com/playlist?list=PLmXKhU9FNesSFvj6gASuWmQd23Ul5omtD" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
+            </section>
+
+            <section class="video-resources-section">
+                <h2 class="section-heading centered">Top Video Resources</h2>
+                <p class="section-subheading centered">Curated channels to accelerate your learning.</p>
+
+                <div class="youtube-grid">
+                    <div class="yt-card">
+                        <div class="yt-header">
+                            <div class="yt-avatar bg-green">ST</div>
+                            <div class="yt-title-area">
+                                <h3>Striver</h3>
+                                <span class="subs-badge">847k subs</span>
+                            </div>
+                        </div>
+                        <p class="yt-desc">Definitive DSA and placement preparation guides.</p>
+                        <a href="https://www.youtube.com/@striver_79" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
+                    </div>
+
+                    <div class="yt-card">
+                        <div class="yt-header">
+                            <div class="yt-avatar bg-mint">LB</div>
+                            <div class="yt-title-area">
+                                <h3>Love Babbar</h3>
+                                <span class="subs-badge">1.2M subs</span>
+                            </div>
+                        </div>
+                        <p class="yt-desc">Comprehensive DSA courses and web development.</p>
+                        <a href="https://www.youtube.com/@LoveBabbar" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
+                    </div>
+
+                    <div class="yt-card">
+                        <div class="yt-header">
+                            <div class="yt-avatar bg-olive">AC</div>
+                            <div class="yt-title-area">
+                                <h3>Apna College</h3>
+                                <span class="subs-badge">5.8M subs</span>
+                            </div>
+                        </div>
+                        <p class="yt-desc">College advice, placements, and coding tutorials.</p>
+                        <a href="https://www.youtube.com/@ApnaCollegeOfficial" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
+                    </div>
                 </div>
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Computer Networks</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Gate Smashers CN</span><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Neso Academy CN</span><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
+            </section>
+
+            <section class="roadmap-preview" id="roadmap">
+                <h2 class="section-heading centered">Placement Roadmap</h2>
+                <p class="section-subheading centered">Follow this structured path to land your dream role.</p>
+                <div class="features-grid">
+                    <div class="feature-card outline-card">
+                        <h3 class="gradient-text">Stage 1</h3>
+                        <h4>CGPA & Communication</h4>
+                        <p>Maintain a 9.0+ CGPA without backlogs and practice articulating your code clearly.</p>
+                    </div>
+                    <div class="feature-card outline-card">
+                        <h3 class="gradient-text">Stage 2</h3>
+                        <h4>Data Structures</h4>
+                        <p>Master C++ or Java and practice consistently on LeetCode and Codeforces.</p>
+                    </div>
+                    <div class="feature-card outline-card">
+                        <h3 class="gradient-text">Stage 3</h3>
+                        <h4>Core Subjects</h4>
+                        <p>Acing DBMS, OS, Computer Networks, and OOPs is vital for technical interviews.</p>
+                    </div>
                 </div>
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Object-Oriented Prog.</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Telusko OOPs</span><a href="https://www.youtube.com/playlist?list=PLsyeobzWxl7oa1WO9n4cP3OY9nOtUcZIg" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> Coder Army</span><a href="https://www.youtube.com/playlist?list=PLQEaRBV9gAFujcBWJhBT2XXsuMlIfETBy" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
+            </section>
+
+            <section class="upload-section" id="uploadSection">
+                <div class="upload-card">
+                    <h2 class="section-heading centered">Contribute to NoteVerse</h2>
+                    <p class="section-subheading centered">Share your study materials to help the community grow.</p>
+                    
+                    <form id="uploadForm" class="clean-form">
+                        <input type="text" id="fileName" class="form-input" placeholder="File Name (e.g., Physics Unit 1)" required>
+                        <div class="form-row">
+                            <select id="fileCategory" class="form-select" required>
+                                <option value="" disabled selected>Category</option>
+                                <option value="notes">Notes</option>
+                                <option value="pyq">PYQs</option>
+                            </select>
+                            <select id="fileSemester" class="form-select" required>
+                                <option value="" disabled selected>Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <label for="fileInput" class="upload-label">
+                                <i class="ph ph-upload-simple"></i> Choose File
+                            </label>
+                            <input type="file" id="fileInput" accept=".pdf,.doc,.docx" required style="display: none;">
+                            <button type="submit" class="btn-primary" id="submitBtn">Submit Resource</button>
+                        </div>
+                        <div id="file-name-display" class="file-display"></div>
+                    </form>
                 </div>
-                <div class="subject-card">
-                    <h3><i class="ph ph-arrow-left"></i> Aptitude & Reasoning</h3>
-                    <ul>
-                        <li><span class="list-left"><i class="ph ph-circle"></i> One Stop Solution</span><a href="https://www.lets-code.co.in/articles/aptituderoadmap/#google_vignette" target="_blank"><i class="ph ph-arrow-up-right"></i></a></li>
-                    </ul>
+            </section>
+
+            <section class="cta-section">
+                <h2>Ready to step up?</h2>
+                <p>Join students using NoteVerse to structure their preparation and land their dream engineering roles.</p>
+                <button class="btn-primary large">Get Started Free <i class="ph ph-arrow-right"></i></button>
+            </section>
+
+        </div>
+
+        <div id="subjectView" style="display: none;">
+            <div class="back-nav">
+                <button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button>
+            </div>
+            
+            <h1 class="hero-title" id="dynamicSubjectTitle">Subject Notes</h1>
+            <p class="hero-subtitle">Select a resource below to open the PDF viewer.</p>
+
+            <div class="features-grid" style="margin-top: 40px;">
+                <div class="feature-card outline-card clickable" onclick="openPDF('sample.pdf')">
+                    <div class="feature-icon"><i class="ph ph-file-pdf"></i></div>
+                    <h3>Unit 1 Notes</h3>
+                    <p>Comprehensive handwritten notes covering all fundamentals.</p>
                 </div>
+                <div class="feature-card outline-card clickable" onclick="openPDF('sample.pdf')">
+                    <div class="feature-icon"><i class="ph ph-file-pdf"></i></div>
+                    <h3>Unit 2 Notes</h3>
+                    <p>Advanced topics and standard algorithms.</p>
+                </div>
+                <div class="feature-card outline-card clickable" onclick="openPDF('sample.pdf')">
+                    <div class="feature-icon"><i class="ph ph-file-pdf"></i></div>
+                    <h3>Previous Year Questions</h3>
+                    <p>Solved PYQs from the last 5 years.</p>
+                </div>
+            </div>
+        </div>
+
+        <section id="pdfViewer" style="display: none; margin-top: 40px;">
+            <div class="pdf-container">
+                <iframe id="pdfFrame"></iframe>
             </div>
         </section>
 
-        <footer class="site-footer">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">N</div>
-                    <h2>NoteVerse</h2>
-                    <p>Your platform for curated study resources, roadmaps, and collaborative learning.</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 NoteVerse. All rights reserved.</p>
-            </div>
-        </footer>
-    </div>
+    </main>
 
-    <div id="roadmapView" style="display: none; width: 100%;">
-        <section class="roadmap-section">
-            <div class="roadmap-header">
-                <h1>Placement <span class="text-gradient">Roadmap</span></h1>
-                <p>A comprehensive guide to navigate your career path.</p>
-            </div>
-            <div class="roadmap-cards">
-                <div class="roadmap-card">
-                    <h2>Stage 1: CGPA & Comm.</h2>
-                    <p class="main-desc">Master the essentials to build a strong base.</p>
-                </div>
-                <div class="roadmap-card">
-                    <h2>Stage 2: DSA</h2>
-                    <p class="main-desc">Pick C++ or Java and master logic building.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="semester1View" style="display: none; width: 100%;">
-        <section class="semester-section">
-            <div class="roadmap-header">
-                <h1>Semester 1 <span class="text-gradient" id="sem1TitleType">Notes</span></h1>
-            </div>
-            <div class="vertical-subject-list">
-                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
-                    <h3><i class="ph ph-calculator"></i> Engineering Math 1</h3>
-                    <i class="ph-bold ph-arrow-right"></i>
-                </div>
-                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
-                    <h3><i class="ph ph-code"></i> C programming</h3>
-                    <i class="ph-bold ph-arrow-right"></i>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="semester2View" style="display: none; width: 100%;">
-        <section class="semester-section">
-            <div class="roadmap-header">
-                <h1>Semester 2 <span class="text-gradient" id="sem2TitleType">Notes</span></h1>
-            </div>
-            <div class="vertical-subject-list">
-                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
-                    <h3><i class="ph ph-tree-structure"></i> DSA</h3>
-                    <i class="ph-bold ph-arrow-right"></i>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <section id="pdfViewer">
-        <iframe id="pdfFrame"></iframe>
-    </section>
-
-</div>
-
-<script>
-    function toggleSidebar() { document.getElementById("sidebar").classList.toggle("active"); }
-    
-    function toggleSubMenu(id, event) {
-        event.preventDefault(); 
-        document.querySelectorAll(".submenu").forEach(menu => { if (menu.id !== id) menu.classList.remove("active"); });
-        document.getElementById(id).classList.toggle("active");
-    }
-    
-    function hideAllViews() {
-        document.getElementById("homeView").style.display = "none";
-        document.getElementById("roadmapView").style.display = "none";
-        document.getElementById("semester1View").style.display = "none";
-        document.getElementById("semester2View").style.display = "none";
-        document.getElementById("pdfViewer").style.display = "none";
-        document.getElementById("sidebar").classList.remove("active");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function showHome() { hideAllViews(); document.getElementById("homeView").style.display = "block"; }
-    function openRoadmap() { hideAllViews(); document.getElementById("roadmapView").style.display = "block"; }
-    function showSemester1(type) { hideAllViews(); document.getElementById("semester1View").style.display = "block"; document.getElementById("sem1TitleType").innerText = type; }
-    function showSemester2(type) { hideAllViews(); document.getElementById("semester2View").style.display = "block"; document.getElementById("sem2TitleType").innerText = type; }
-    
-    function openPDF(file) {
-        const viewer = document.getElementById("pdfViewer"); 
-        viewer.style.display = "block"; 
-        viewer.querySelector("#pdfFrame").src = file;
-        window.scrollTo({ top: viewer.offsetTop - 120, behavior: "smooth" });
-    }
-
-    function toggleCoreSubjects() {
-        const cardsContainer = document.getElementById("coreSubjectCards");
-        const btn = document.getElementById("coreToggleBtn");
-        cardsContainer.classList.toggle("open");
-        if (cardsContainer.classList.contains("open")) {
-            btn.innerHTML = '<span>Hide Subjects</span> <i class="ph ph-caret-up"></i>';
-        } else {
-            btn.innerHTML = '<span>View Subjects</span> <i class="ph ph-caret-down"></i>';
+    <script>
+        // Mobile Menu Logic
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
         }
-    }
 
-    window.addEventListener("scroll", function() {
-        const topbar = document.getElementById("mainTopbar");
-        if (window.scrollY > 50) { topbar.classList.add("scrolled"); } 
-        else { topbar.classList.remove("scrolled"); }
-    });
-</script>
+        // View Switching Logic
+        function hideAllViews() {
+            document.getElementById("homeView").style.display = "none";
+            document.getElementById("subjectView").style.display = "none";
+            document.getElementById("pdfViewer").style.display = "none";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
 
+        function showHome() { 
+            hideAllViews(); 
+            document.getElementById("homeView").style.display = "block"; 
+        }
+
+        function showSubjectNotes(subjectName) { 
+            hideAllViews(); 
+            document.getElementById("subjectView").style.display = "block"; 
+            document.getElementById("dynamicSubjectTitle").innerText = subjectName;
+        }
+        
+        function openPDF(file) {
+            const viewer = document.getElementById("pdfViewer"); 
+            viewer.style.display = "block"; 
+            viewer.querySelector("#pdfFrame").src = file;
+            window.scrollTo({ top: viewer.offsetTop - 80, behavior: "smooth" });
+        }
+
+        // File Input Display
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const display = document.getElementById('file-name-display');
+            if (this.files && this.files.length > 0) {
+                display.innerHTML = '<i class="ph-fill ph-check-circle text-purple"></i> ' + this.files[0].name;
+            } else {
+                display.innerHTML = '';
+            }
+        });
+
+        // Cloudinary Upload Logic
+        const CLOUD_NAME = "djypwcwxc"; 
+        const UPLOAD_PRESET = "noteverse_upload"; 
+        const uploadForm = document.getElementById("uploadForm");
+        const submitBtn = document.getElementById("submitBtn");
+
+        uploadForm.addEventListener("submit", async (e) => {
+            e.preventDefault(); 
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Uploading...'; 
+            submitBtn.disabled = true;
+
+            try {
+                const fileName = document.getElementById("fileName").value;
+                const category = document.getElementById("fileCategory").value;
+                const semester = document.getElementById("fileSemester").value;
+                const file = document.getElementById("fileInput").files[0];
+
+                if (!file) { alert("Please attach a file!"); submitBtn.innerHTML = originalContent; submitBtn.disabled = false; return; }
+
+                const formData = new FormData();
+                formData.append("file", file);
+                formData.append("upload_preset", UPLOAD_PRESET);
+                const formattedName = fileName.replace(/\s+/g, '_').toLowerCase();
+                formData.append("public_id", `${category}/sem${semester}/${formattedName}`);
+
+                const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, { method: "POST", body: formData });
+                const data = await response.json();
+
+                if (data.secure_url) {
+                    alert(`Success! "${fileName}" uploaded.\nLink:\n${data.secure_url}`);
+                    uploadForm.reset(); document.getElementById('file-name-display').innerHTML = ''; 
+                } else { alert(`Upload failed: ${data.error.message}`); }
+            } catch (error) { alert("Upload error. Check connection."); } 
+            finally { submitBtn.innerHTML = originalContent; submitBtn.disabled = false; }
+        });
+    </script>
 </body>
 </html>
