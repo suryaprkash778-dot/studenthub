@@ -8,7 +8,7 @@ html, body {
     max-width: 100vw;
     overflow-x: hidden; 
     font-family: 'Inter', sans-serif;
-    background-color: #f8fafc; /* Very light cool gray/blue */
+    background-color: #f8fafc; 
     color: #0f172a; 
     scroll-behavior: smooth;
 }
@@ -90,7 +90,8 @@ section { margin-bottom: 100px; }
 /* =========================================
    FEATURES (Built for success) 
    ========================================= */
-.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+/* STRICT 3-COLUMN HORIZONTAL GRID */
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
 .feature-card { background: #fff; border: 1px solid #f1f5f9; border-radius: 24px; padding: 40px 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); text-align: left; transition: 0.3s; cursor: pointer; }
 .feature-card:hover { transform: translateY(-5px); box-shadow: 0 15px 50px rgba(79, 70, 229, 0.08); border-color: #e2e8f0; }
 .feature-icon { width: 50px; height: 50px; background: #f1f5f9; color: #4f46e5; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 25px; }
@@ -102,7 +103,8 @@ section { margin-bottom: 100px; }
 /* =========================================
    CORE SUBJECTS (Pastel Cards) 
    ========================================= */
-.subjects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+/* STRICT 4-COLUMN HORIZONTAL GRID */
+.subjects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .subject-card { border-radius: 24px; padding: 35px 25px; text-align: left; transition: 0.3s; cursor: pointer; display: flex; flex-direction: column; gap: 40px; }
 .subject-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
 .subject-icon { width: 45px; height: 45px; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
@@ -123,8 +125,10 @@ section { margin-bottom: 100px; }
 /* =========================================
    YOUTUBE RESOURCES 
    ========================================= */
-.youtube-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-.yt-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 24px; padding: 30px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
+/* ALWAYS A HORIZONTAL SCROLLING ROW */
+.channel-scroll-container { display: flex; flex-direction: row; flex-wrap: nowrap; overflow-x: auto; gap: 25px; padding-bottom: 20px; scrollbar-width: none; }
+.channel-scroll-container::-webkit-scrollbar { display: none; }
+.yt-card { flex: 0 0 320px; background: #fff; border: 1px solid #e2e8f0; border-radius: 24px; padding: 30px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
 .yt-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
 .yt-avatar { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 600; color: #0f172a; }
 .bg-green { background: #dcfce7; }
@@ -151,11 +155,45 @@ section { margin-bottom: 100px; }
 .back-nav { margin-bottom: 30px; }
 
 /* =========================================
-   MOBILE RESPONSIVE (BULLETPROOF)
+   FOOTER 
+   ========================================= */
+.site-footer { background: #fff; border-top: 1px solid #e2e8f0; padding: 60px 20px 30px; width: 100%; margin-top: 40px; }
+.footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+.footer-brand { max-width: 400px; text-align: left; }
+.footer-logo { background: linear-gradient(135deg, #4f46e5, #9333ea); color: #fff; width: 40px; height: 40px; display: inline-flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold; border-radius: 8px; margin-bottom: 15px;}
+.footer-brand h2 { font-size: 1.8rem; display: inline-block; vertical-align: top; margin-left: 10px; margin-top: 2px;}
+.footer-brand p { color: #555; font-size: 0.95rem; line-height: 1.6; }
+.footer-links h3 { font-size: 1.2rem; margin-bottom: 15px; }
+.footer-links ul { list-style: none; text-align: left;}
+.footer-links li { margin-bottom: 8px; }
+.footer-links a { color: #4f46e5; text-decoration: none; font-weight: 500;}
+.footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; font-size: 0.9rem; color: #777;}
+.footer-legal a { color: #777; text-decoration: none; margin-left: 15px; }
+
+/* =========================================
+   RESPONSIVE DESIGN (TABLETS & MOBILE)
    ========================================= */
 .desktop-only { display: flex; }
 .mobile-only { display: none; }
 
+/* Medium Screens / Tablets: Switch grids to horizontal swipe rows */
+@media (max-width: 1024px) {
+    .features-grid, .subjects-grid { 
+        display: flex !important; 
+        flex-direction: row !important; 
+        overflow-x: auto !important; 
+        gap: 20px !important; 
+        padding-bottom: 20px !important;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .features-grid::-webkit-scrollbar, .subjects-grid::-webkit-scrollbar { display: none; }
+    
+    .feature-card { flex: 0 0 320px !important; }
+    .subject-card { flex: 0 0 280px !important; }
+}
+
+/* Small Screens / Mobile */
 @media (max-width: 768px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: block; }
@@ -167,28 +205,13 @@ section { margin-bottom: 100px; }
     .app-container { padding: 100px 15px 40px; }
     section { margin-bottom: 60px; }
     
-    /* Strict font clamps */
     .hero-title { font-size: clamp(2.2rem, 8vw, 3rem); }
     .section-heading, .cta-section h2 { font-size: 2.2rem; }
     
     .hero-buttons { flex-direction: column; width: 100%; }
     .hero-buttons button { width: 100%; justify-content: center; }
     
-    /* Horizontal Swiping for Mobile Grids */
-    .features-grid, .subjects-grid, .youtube-grid { 
-        display: flex !important; 
-        flex-direction: row !important; 
-        overflow-x: auto !important; 
-        gap: 15px !important; 
-        padding-bottom: 15px !important;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    .features-grid::-webkit-scrollbar, .subjects-grid::-webkit-scrollbar, .youtube-grid::-webkit-scrollbar { 
-        display: none !important; 
-    }
-    
-    /* Lock the cards to 85% width so they peek off-screen */
+    /* Lock the cards to 85% width on mobile so they peek off the edge, encouraging swiping */
     .feature-card, .subject-card, .yt-card { 
         flex: 0 0 85% !important; 
         min-width: 260px !important; 
@@ -196,4 +219,8 @@ section { margin-bottom: 100px; }
     }
     
     .pdf-container { height: 500px; }
+    
+    .footer-content { flex-direction: column; gap: 30px; align-items: flex-start;}
+    .footer-bottom { flex-direction: column; text-align: center; justify-content: center; }
+    .footer-legal a { margin: 0 10px; }
 }
