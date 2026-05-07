@@ -11,7 +11,7 @@
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <link rel="stylesheet" href="style.css?v=46">
+    <link rel="stylesheet" href="style.css?v=48">
 </head>
 <body>
 
@@ -28,6 +28,22 @@
             <a href="#" onclick="showHome()">Home</a>
             <a href="#" onclick="showHome(); setTimeout(() => document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'}), 100);">Resources</a>
             <a href="#" onclick="openRoadmap()">Roadmap</a>
+            
+            <div class="nav-dropdown">
+                <a href="#">Notes <i class="ph ph-caret-down"></i></a>
+                <div class="dropdown-menu">
+                    <a href="#" onclick="showSemester1('Notes')">Semester 1</a>
+                    <a href="#" onclick="showSemester2('Notes')">Semester 2</a>
+                </div>
+            </div>
+
+            <div class="nav-dropdown">
+                <a href="#">PYQs <i class="ph ph-caret-down"></i></a>
+                <div class="dropdown-menu">
+                    <a href="#" onclick="showSemester1('PYQs')">Semester 1</a>
+                    <a href="#" onclick="showSemester2('PYQs')">Semester 2</a>
+                </div>
+            </div>
         </div>
 
         <div class="nav-actions desktop-only">
@@ -44,6 +60,18 @@
         <a href="#" onclick="showHome(); toggleMobileMenu();">Home</a>
         <a href="#" onclick="showHome(); toggleMobileMenu(); setTimeout(() => document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'}), 100);">Resources</a>
         <a href="#" onclick="openRoadmap(); toggleMobileMenu();">Roadmap</a>
+        
+        <a href="#" onclick="toggleSubMenu('mobNotes', event)">Notes <i class="ph ph-caret-down" style="font-size: 1.2rem; margin-left: auto;"></i></a>
+        <div class="mobile-submenu" id="mobNotes">
+            <a href="#" onclick="showSemester1('Notes'); toggleMobileMenu();">Semester 1</a>
+            <a href="#" onclick="showSemester2('Notes'); toggleMobileMenu();">Semester 2</a>
+        </div>
+
+        <a href="#" onclick="toggleSubMenu('mobPyq', event)">PYQs <i class="ph ph-caret-down" style="font-size: 1.2rem; margin-left: auto;"></i></a>
+        <div class="mobile-submenu" id="mobPyq">
+            <a href="#" onclick="showSemester1('PYQs'); toggleMobileMenu();">Semester 1</a>
+            <a href="#" onclick="showSemester2('PYQs'); toggleMobileMenu();">Semester 2</a>
+        </div>
     </div>
 
     <main class="app-container" id="mainContent">
@@ -149,7 +177,6 @@
                 <p class="section-subheading centered">Curated channels to accelerate your learning.</p>
 
                 <div class="channel-scroll-container">
-                    
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-blue">ST</div>
@@ -161,7 +188,6 @@
                         <p class="yt-desc">Definitive DSA and placement preparation guides.</p>
                         <a href="https://www.youtube.com/@striver_79" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-mint">TF</div>
@@ -173,7 +199,6 @@
                         <p class="yt-desc">Top-tier tutorials for competitive programming and DSA.</p>
                         <a href="https://www.youtube.com/@takeUforward" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-purple">PA</div>
@@ -185,7 +210,6 @@
                         <p class="yt-desc">Excellent competitive programming strategies and tips.</p>
                         <a href="https://www.youtube.com/@PriyanshAgarwal" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-peach">LV</div>
@@ -197,7 +221,6 @@
                         <p class="yt-desc">Deep dives into C++ STL and competitive programming.</p>
                         <a href="https://www.youtube.com/@LuvIsMe" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-blue">VG</div>
@@ -209,7 +232,6 @@
                         <p class="yt-desc">Advanced algorithms and problem-solving techniques.</p>
                         <a href="https://www.youtube.com/@VivekGupta7" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-mint">HS</div>
@@ -221,7 +243,6 @@
                         <p class="yt-desc">Open source, full-stack web development, and DevOps.</p>
                         <a href="https://www.youtube.com/@harkiratsingh" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-purple">AC</div>
@@ -233,7 +254,6 @@
                         <p class="yt-desc">College advice, placements, and coding tutorials.</p>
                         <a href="https://www.youtube.com/@ApnaCollegeOfficial" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-peach">LB</div>
@@ -245,7 +265,6 @@
                         <p class="yt-desc">Comprehensive DSA courses and web development.</p>
                         <a href="https://www.youtube.com/@LoveBabbar" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-blue">GS</div>
@@ -257,7 +276,6 @@
                         <p class="yt-desc">The best resource for OS, DBMS, and Computer Networks.</p>
                         <a href="https://www.youtube.com/@GateSmashers" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-mint">CH</div>
@@ -269,7 +287,6 @@
                         <p class="yt-desc">In-depth tutorials for popular tech stacks and languages.</p>
                         <a href="https://www.youtube.com/@CodeHelp" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-purple">KK</div>
@@ -281,7 +298,6 @@
                         <p class="yt-desc">Java, DevOps, Open Source, and system design.</p>
                         <a href="https://www.youtube.com/@KunalKushwaha" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-peach">CC</div>
@@ -293,7 +309,6 @@
                         <p class="yt-desc">Hindi tutorials on Javascript, React, and backend tech.</p>
                         <a href="https://www.youtube.com/@chaiaurcode" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-blue">HW</div>
@@ -305,7 +320,6 @@
                         <p class="yt-desc">One-shot videos and comprehensive programming courses.</p>
                         <a href="https://www.youtube.com/@CodeWithHarry" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-mint">RN</div>
@@ -317,7 +331,6 @@
                         <p class="yt-desc">GATE CSE preparation and software engineering interviews.</p>
                         <a href="https://www.youtube.com/@RohitNegi9" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                     <div class="yt-card">
                         <div class="yt-header">
                             <div class="yt-avatar pastel-purple">CA</div>
@@ -329,7 +342,6 @@
                         <p class="yt-desc">Great resource for mastering C++ and Object-Oriented Prog.</p>
                         <a href="https://www.youtube.com/@CoderArmy" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-
                 </div>
             </section>
 
@@ -395,6 +407,52 @@
             </div>
         </div>
 
+        <div id="semester1View" style="display: none;">
+            <div class="back-nav">
+                <button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button>
+            </div>
+            <h1 class="hero-title">Semester 1 <span class="text-gradient" id="sem1TitleType">Notes</span></h1>
+            <p class="hero-subtitle">Select a subject below to view its corresponding materials.</p>
+            
+            <div class="vertical-subject-list" style="margin-top: 40px;">
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-calculator"></i> Engineering Math 1</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-code"></i> C programming</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-terminal"></i> Linux</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="semester2View" style="display: none;">
+            <div class="back-nav">
+                <button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button>
+            </div>
+            <h1 class="hero-title">Semester 2 <span class="text-gradient" id="sem2TitleType">Notes</span></h1>
+            <p class="hero-subtitle">Select a subject below to view its corresponding materials.</p>
+
+            <div class="vertical-subject-list" style="margin-top: 40px;">
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-tree-structure"></i> DSA</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-atom"></i> Physics</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+                <div class="vertical-subject-card" onclick="openPDF('sample.pdf')">
+                    <h3><i class="ph ph-file-code"></i> Python</h3>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+
         <section id="pdfViewer" style="display: none; margin-top: 40px;">
             <div class="pdf-container">
                 <iframe id="pdfFrame"></iframe>
@@ -433,10 +491,25 @@
             document.getElementById('mobileMenu').classList.toggle('active');
         }
 
+        // Dropdown toggle logic for Mobile Side Menu
+        function toggleSubMenu(id, event) {
+            event.preventDefault(); 
+            const menu = document.getElementById(id);
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            } else {
+                // Close other submenus first
+                document.querySelectorAll('.mobile-submenu').forEach(m => m.classList.remove('active'));
+                menu.classList.add('active');
+            }
+        }
+
         function hideAllViews() {
             document.getElementById("homeView").style.display = "none";
             document.getElementById("subjectView").style.display = "none";
             document.getElementById("roadmapView").style.display = "none";
+            document.getElementById("semester1View").style.display = "none";
+            document.getElementById("semester2View").style.display = "none";
             document.getElementById("pdfViewer").style.display = "none";
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
@@ -449,6 +522,18 @@
         function openRoadmap() {
             hideAllViews();
             document.getElementById("roadmapView").style.display = "block";
+        }
+
+        function showSemester1(type) { 
+            hideAllViews(); 
+            document.getElementById("semester1View").style.display = "block"; 
+            document.getElementById("sem1TitleType").innerText = type; 
+        }
+
+        function showSemester2(type) { 
+            hideAllViews(); 
+            document.getElementById("semester2View").style.display = "block"; 
+            document.getElementById("sem2TitleType").innerText = type; 
         }
 
         function showSubjectNotes(subjectName) { 
