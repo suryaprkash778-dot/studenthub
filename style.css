@@ -129,7 +129,6 @@ section { margin-bottom: 100px; }
 .accordion-content { display: none; padding: 0 25px 25px 80px; text-align: left; }
 .accordion-content p { font-size: 0.95rem; margin-bottom: 15px; }
 
-/* The Sleek Problem Scroll Box */
 .problem-list { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; max-height: 450px; overflow-y: auto; padding-right: 5px;}
 .problem-list::-webkit-scrollbar { width: 6px; }
 .problem-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -188,7 +187,7 @@ section { margin-bottom: 100px; }
 .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; font-size: 0.9rem; color: #777;}
 .footer-legal a { color: #777; margin-left: 15px; }
 
-/* D3 CAL-HEATMAP CUSTOMIZATION */
+/* HEATMAP RESET */
 .cal-heatmap-container rect.graph-rect { stroke: #f8fafc; stroke-width: 1px; }
 .cal-heatmap-container text.subdomain-text { font-family: 'Inter', sans-serif; font-size: 10px; }
 
@@ -226,8 +225,8 @@ section { margin-bottom: 100px; }
     .hero-buttons { flex-direction: column; width: 100%; gap: 10px; }
     .btn-primary.large, .btn-outline.large { padding: 12px 24px; font-size: 1rem; width: 100%; justify-content: center; }
     
-    .features-grid, .subjects-grid, .youtube-grid { display: flex !important; flex-direction: row !important; overflow-x: auto !important; gap: 12px !important; padding-bottom: 15px !important; scrollbar-width: none; -ms-overflow-style: none; }
-    .features-grid::-webkit-scrollbar, .subjects-grid::-webkit-scrollbar, .youtube-grid::-webkit-scrollbar { display: none !important; }
+    .features-grid, .subjects-grid, .channel-scroll-container { display: flex !important; flex-direction: row !important; overflow-x: auto !important; gap: 12px !important; padding-bottom: 15px !important; scrollbar-width: none; -ms-overflow-style: none; }
+    .features-grid::-webkit-scrollbar, .subjects-grid::-webkit-scrollbar, .channel-scroll-container::-webkit-scrollbar { display: none !important; }
     
     .feature-card, .subject-card, .yt-card { flex: 0 0 75% !important; min-width: 230px !important; padding: 20px 15px !important; }
     .subject-card { gap: 20px !important; }
@@ -241,7 +240,6 @@ section { margin-bottom: 100px; }
     .yt-avatar { width: 45px; height: 45px; font-size: 1rem; }
     .yt-btn { padding: 10px; font-size: 0.85rem; }
 
-    /* Problem List Mobile Adjustments */
     .accordion-header { padding: 15px; font-size: 1.1rem; }
     .accordion-content { padding: 0 15px 20px 15px; }
     .acc-icon { width: 35px; height: 35px; font-size: 1.2rem; }
@@ -253,7 +251,6 @@ section { margin-bottom: 100px; }
     .vertical-subject-card h3 i { font-size: 1.4rem; }
     
     .pdf-container { height: 400px; }
-    
     .fab-button { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 1rem; }
 
     .footer-content { flex-direction: column; gap: 25px; align-items: flex-start;}
