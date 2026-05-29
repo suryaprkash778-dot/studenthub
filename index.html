@@ -2,68 +2,232 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NoteVerse</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/cal-heatmap/3.3.6/cal-heatmap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/cal-heatmap/3.3.6/cal-heatmap.css" />
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div class="bg-glow glow-top-left"></div>
+    <div class="bg-glow glow-top-right"></div>
+
     <nav class="navbar">
-        <div class="nav-logo" onclick="showHome()">NoteVerse</div>
-        <div class="nav-actions" id="authContainer">
-            <a href="#" class="btn-outline" onclick="signInWithGoogle()">Google</a>
-            <a href="#" class="btn-primary" onclick="signInWithGithub()">GitHub</a>
+        <div class="nav-logo" onclick="showHome()">
+            <div class="logo-mark"><i class="ph-fill ph-sparkle"></i></div>
+            <span>NoteVerse</span>
         </div>
+        
+        <div class="nav-links desktop-only">
+            <a href="#" onclick="showHome()">Home</a>
+            <a href="#" onclick="showHome(); setTimeout(() => document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'}), 100);">Resources</a>
+            <a href="#" onclick="openRoadmap()">Roadmap</a>
+            
+            <div class="nav-dropdown">
+                <a href="#">Notes <i class="ph ph-caret-down"></i></a>
+                <div class="dropdown-menu">
+                    <a href="#" onclick="showCategory(1, 'Notes')">Semester 1</a>
+                    <a href="#" onclick="showCategory(2, 'Notes')">Semester 2</a>
+                </div>
+            </div>
+
+            <div class="nav-dropdown">
+                <a href="#">PYQs <i class="ph ph-caret-down"></i></a>
+                <div class="dropdown-menu">
+                    <a href="#" onclick="showCategory(1, 'PYQs')">Semester 1</a>
+                    <a href="#" onclick="showCategory(2, 'PYQs')">Semester 2</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-actions desktop-only" id="authContainer">
+            <button class="icon-btn"><i class="ph ph-sun"></i></button>
+            <a href="#" class="btn-outline" style="border-color: #e2e8f0; color: #475569; padding: 10px 20px; font-size: 0.95rem;" onclick="signInWithGoogle()">
+                <i class="ph-fill ph-google-logo" style="color: #ea4335;"></i> Google
+            </a>
+            <a href="#" class="btn-primary" style="padding: 10px 20px; font-size: 0.95rem;" onclick="signInWithGithub()">
+                <i class="ph-fill ph-github-logo"></i> GitHub
+            </a>
+        </div>
+
+        <button class="mobile-menu-btn mobile-only" onclick="toggleMobileMenu()"><i class="ph ph-list"></i></button>
     </nav>
 
-    <main class="app-container">
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMobileMenu()"><i class="ph ph-x"></i></button>
+        
+        <div id="mobileAuthContainer" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <button class="btn-outline" style="width: 100%; justify-content: center; border-color: #e2e8f0;" onclick="signInWithGoogle()">
+                <i class="ph-fill ph-google-logo" style="color: #ea4335;"></i> Login with Google
+            </button>
+            <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="signInWithGithub()">
+                <i class="ph-fill ph-github-logo"></i> Login with GitHub
+            </button>
+        </div>
+
+        <a href="#" onclick="showHome(); toggleMobileMenu();">Home</a>
+        <a href="#" onclick="openRoadmap(); toggleMobileMenu();">Roadmap</a>
+        
+        <a href="#" onclick="toggleSubMenu('mobNotes', event)">Notes <i class="ph ph-caret-down" style="font-size: 1.2rem; margin-left: auto;"></i></a>
+        <div class="mobile-submenu" id="mobNotes">
+            <a href="#" onclick="showCategory(1, 'Notes'); toggleMobileMenu();">Semester 1</a>
+            <a href="#" onclick="showCategory(2, 'Notes'); toggleMobileMenu();">Semester 2</a>
+        </div>
+
+        <a href="#" onclick="toggleSubMenu('mobPyq', event)">PYQs <i class="ph ph-caret-down" style="font-size: 1.2rem; margin-left: auto;"></i></a>
+        <div class="mobile-submenu" id="mobPyq">
+            <a href="#" onclick="showCategory(1, 'PYQs'); toggleMobileMenu();">Semester 1</a>
+            <a href="#" onclick="showCategory(2, 'PYQs'); toggleMobileMenu();">Semester 2</a>
+        </div>
+    </div>
+
+    <main class="app-container" id="mainContent">
+
         <div id="homeView">
-            <h1 class="hero-title">Engineering Journey</h1>
-            <button onclick="showCategory(1, 'Notes')">Sem 1 Notes</button>
-            <button onclick="showCategory(2, 'Notes')">Sem 2 Notes</button>
+            <header class="hero-section">
+                <div class="hero-badge"><i class="ph ph-sparkle"></i> The standard for engineering excellence</div>
+                <h1 class="hero-title">Master Your<br><span class="text-gradient">Engineering</span> Journey</h1>
+                <p class="hero-subtitle">Access premium study materials, structured placement roadmaps, and curated resources to ace your exams and interviews.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary large" onclick="document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'})"><i class="ph ph-magnifying-glass"></i> Browse Notes</button>
+                    <button class="btn-outline large" onclick="openRoadmap()">View Roadmap</button>
+                </div>
+            </header>
+
+            <section class="features-section">
+                <h2 class="section-heading centered">Built for success</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="ph ph-book-open"></i></div>
+                        <h3>Curated Notes</h3>
+                        <p>High-quality, peer-reviewed study materials for every semester, organized efficiently.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="ph ph-code"></i></div>
+                        <h3>DSA Mastery</h3>
+                        <p>Structured roadmaps and problem sets designed to help you ace technical interviews.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="ph ph-graph"></i></div>
+                        <h3>Collaborate</h3>
+                        <p>Share your own notes and learn together with a community of driven engineering students.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="core-subjects-section" id="coreSubjects">
+                <h2 class="section-heading">Core Subjects</h2>
+                <div class="subjects-grid">
+                    <div class="subject-card pastel-blue"><div class="subject-icon"><i class="ph ph-code"></i></div><div class="subject-info"><h3>Data Structures</h3></div></div>
+                    <div class="subject-card pastel-mint"><div class="subject-icon"><i class="ph ph-database"></i></div><div class="subject-info"><h3>Database Systems</h3></div></div>
+                    <div class="subject-card pastel-purple"><div class="subject-icon"><i class="ph ph-cpu"></i></div><div class="subject-info"><h3>Operating Systems</h3></div></div>
+                </div>
+            </section>
+        </div>
+
+        <div id="profileView" style="display: none;">
+            <div class="back-nav">
+                <button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button>
+            </div>
+            
+            <div class="profile-header" style="text-align: center; margin-bottom: 40px;">
+                <img id="profileAvatar" src="" alt="Profile" style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid #4f46e5; margin-bottom: 15px; object-fit: cover;">
+                <h1 class="hero-title" id="profileName">Student Name</h1>
+                <div style="display: inline-block; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 5px 20px; border-radius: 50px; font-weight: 600; font-size: 1.1rem; margin-top: 10px;">
+                    Rank: <span id="profileRank">Bronze</span>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card outline-card" style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; padding: 40px 20px;">
+                    <h3 style="margin-bottom: 20px;">Consistency Heatmap</h3>
+                    <div id="cal-heatmap" style="overflow-x: auto; max-width: 100%; padding-bottom: 10px;"></div>
+                    <h4 style="margin-top: 30px;">Total Solved: <span id="totalSolvedCount" class="text-purple" style="font-size: 1.8rem;">0</span></h4>
+                </div>
+            </div>
         </div>
 
         <div id="semester1View" style="display: none;">
-            <button onclick="showHome()">Back</button>
-            <h1 id="sem1TitleType">Notes</h1>
-            <div class="vertical-subject-list"></div>
+            <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
+            <h1 class="hero-title">Semester 1 <span class="text-gradient" id="sem1TitleType">Notes</span></h1>
+            <div class="vertical-subject-list" style="margin-top: 40px;"></div>
         </div>
 
         <div id="semester2View" style="display: none;">
-            <button onclick="showHome()">Back</button>
-            <h1 id="sem2TitleType">Notes</h1>
-            <div class="vertical-subject-list"></div>
+            <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
+            <h1 class="hero-title">Semester 2 <span class="text-gradient" id="sem2TitleType">Notes</span></h1>
+            <div class="vertical-subject-list" style="margin-top: 40px;"></div>
         </div>
 
-        <section id="pdfViewer" style="display: none;">
-            <iframe id="pdfFrame" style="width:100%; height:600px;"></iframe>
+        <section id="pdfViewer" style="display: none; margin-top: 40px;">
+            <div class="pdf-container">
+                <iframe id="pdfFrame"></iframe>
+            </div>
         </section>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Initialize
+        // --- 1. UI & Navigation Functions ---
+        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        function toggleSubMenu(id, event) {
+            event.preventDefault(); 
+            const menu = document.getElementById(id);
+            if (menu.classList.contains('active')) { menu.classList.remove('active'); } 
+            else { document.querySelectorAll('.mobile-submenu').forEach(m => m.classList.remove('active')); menu.classList.add('active'); }
+        }
+
+        function hideAllViews() {
+            const views = ["homeView", "semester1View", "semester2View", "profileView", "pdfViewer"];
+            views.forEach(view => {
+                const el = document.getElementById(view);
+                if(el) el.style.display = "none";
+            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function showHome() { hideAllViews(); document.getElementById("homeView").style.display = "block"; }
+        function showProfile() { hideAllViews(); document.getElementById("profileView").style.display = "block"; }
+        
+        function openPDF(file) {
+            const viewer = document.getElementById("pdfViewer"); 
+            if(viewer) { viewer.style.display = "block"; viewer.querySelector("#pdfFrame").src = file; window.scrollTo({ top: viewer.offsetTop - 80, behavior: "smooth" }); }
+        }
+
+        // --- 2. Database & Auth Logic ---
         const nvSupabaseUrl = 'https://tcijpueblweradmiphpd.supabase.co'; 
         const nvSupabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjaWpwdWVibHdlcmFkbWlwaHBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTk5MTIsImV4cCI6MjA5NTU5NTkxMn0._tXpjssqHAlsVWEYcrJdGP28HISZU1tnt2WrOTR3DXY';
-        const dbClient = window.supabase.createClient(nvSupabaseUrl, nvSupabaseKey);
-
-        // Navigation
-        function hideAllViews() {
-            document.querySelectorAll('main > div, section').forEach(el => el.style.display = 'none');
-        }
-        function showHome() { hideAllViews(); document.getElementById('homeView').style.display = 'block'; }
         
+        let dbClient = null;
+        if (window.supabase) {
+            dbClient = window.supabase.createClient(nvSupabaseUrl, nvSupabaseKey);
+        }
+
+        // Dynamically fetch and display Notes/PYQs
         async function showCategory(semNumber, categoryType) {
             hideAllViews();
             const viewId = (semNumber === 1) ? "semester1View" : "semester2View";
-            document.getElementById(viewId).style.display = "block";
+            const viewEl = document.getElementById(viewId);
+            if(viewEl) viewEl.style.display = "block";
+
+            const titleEl = document.getElementById(semNumber === 1 ? "sem1TitleType" : "sem2TitleType");
+            if(titleEl) titleEl.innerText = categoryType;
+
             const listContainer = document.querySelector(`#${viewId} .vertical-subject-list`);
-            listContainer.innerHTML = "Loading...";
+            listContainer.innerHTML = "<p style='text-align: center; color: #64748b; padding: 20px;'>Loading materials...</p>";
+
+            if(!dbClient) return listContainer.innerHTML = "<p style='color: #ef4444;'>Database disconnected.</p>";
 
             try {
                 const { data, error } = await dbClient
@@ -75,28 +239,121 @@
                 if (error) throw error;
 
                 listContainer.innerHTML = "";
-                data.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'vertical-subject-card';
-                    card.onclick = () => openPDF(item.file_url);
-                    card.innerHTML = `<h3>${item.title}</h3>`;
-                    listContainer.appendChild(card);
-                });
+                if (!data || data.length === 0) {
+                    listContainer.innerHTML = `<p style='text-align: center; color: #64748b; padding: 20px;'>No ${categoryType} uploaded for Semester ${semNumber} yet.</p>`;
+                } else {
+                    data.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'vertical-subject-card';
+                        card.onclick = () => openPDF(item.file_url || "#");
+                        card.innerHTML = `
+                            <h3><i class="ph ph-file-pdf"></i> ${item.title}</h3>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        `;
+                        listContainer.appendChild(card);
+                    });
+                }
             } catch (err) {
-                listContainer.innerHTML = "Error loading files. Check console.";
-                console.error(err);
+                console.error("Fetch Error:", err);
+                listContainer.innerHTML = `<p style='text-align: center; color: #ef4444; padding: 20px;'>Error loading files.</p>`;
             }
         }
 
-        function openPDF(url) {
-            hideAllViews();
-            const viewer = document.getElementById("pdfViewer");
-            viewer.style.display = "block";
-            document.getElementById("pdfFrame").src = url;
+        async function signInWithGithub() {
+            if (!dbClient) return alert("Database disconnected.");
+            await dbClient.auth.signInWithOAuth({ provider: 'github' });
         }
 
-        async function signInWithGoogle() { await dbClient.auth.signInWithOAuth({ provider: 'google' }); }
-        async function signInWithGithub() { await dbClient.auth.signInWithOAuth({ provider: 'github' }); }
+        async function signInWithGoogle() {
+            if (!dbClient) return alert("Database disconnected.");
+            await dbClient.auth.signInWithOAuth({ provider: 'google' });
+        }
+
+        async function signOut() {
+            if (dbClient) { await dbClient.auth.signOut(); window.location.reload(); }
+        }
+
+        async function checkSession() {
+            if (!dbClient) return;
+            try {
+                const { data: { session }, error } = await dbClient.auth.getSession();
+                if (session) {
+                    const user = session.user;
+                    const name = user.user_metadata.user_name || user.user_metadata.full_name || "Student";
+                    const avatarUrl = user.user_metadata.avatar_url || "default-avatar.png";
+
+                    const authContainer = document.getElementById('authContainer');
+                    if (authContainer) {
+                        authContainer.innerHTML = `
+                            <button class="icon-btn"><i class="ph ph-sun"></i></button>
+                            <div style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px 10px; border-radius: 50px; transition: 0.2s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'" onclick="showProfile()">
+                                <img src="${avatarUrl}" alt="Profile" style="width: 35px; height: 35px; border-radius: 50%; border: 2px solid #4f46e5; object-fit: cover;">
+                                <span style="font-weight: 600; color: #0f172a;">${name}</span>
+                            </div>
+                            <button class="btn-outline" style="padding: 8px 15px; font-size: 0.85rem;" onclick="signOut()">Sign Out</button>
+                        `;
+                    }
+
+                    const profileAvatar = document.getElementById('profileAvatar');
+                    const profileName = document.getElementById('profileName');
+                    if(profileAvatar) profileAvatar.src = avatarUrl;
+                    if(profileName) profileName.innerText = name;
+
+                    syncUserToDatabase(user, name);
+                }
+            } catch (err) { console.error("Session crash:", err); }
+        }
+
+        async function syncUserToDatabase(user, name) {
+            try {
+                const { data, error } = await dbClient.from('user_progress').select('*').eq('id', user.id).single();
+                if (error && error.code === 'PGRST116') {
+                    await dbClient.from('user_progress').insert([{ id: user.id, username: name, total_solved: 0, solved_array: {} }]);
+                    updateProfileStats(0, {});
+                } else if (data) {
+                    updateProfileStats(data.total_solved, data.solved_array);
+                }
+            } catch (err) { console.error("Sync crash:", err); }
+        }
+
+        function updateProfileStats(solvedCount, activityData) {
+            const countEl = document.getElementById('totalSolvedCount');
+            const rankEl = document.getElementById('profileRank');
+            
+            if (countEl) countEl.innerText = solvedCount;
+            if (rankEl) {
+                let rank = "Bronze";
+                if (solvedCount >= 50) rank = "Silver";
+                if (solvedCount >= 150) rank = "Gold";
+                if (solvedCount >= 300) rank = "Diamond";
+                rankEl.innerText = rank;
+            }
+
+            const hm = document.getElementById('cal-heatmap');
+            if(!hm) return;
+            hm.innerHTML = ""; 
+            
+            let parsedData = {};
+            if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) parsedData = activityData;
+
+            try {
+                var cal = new CalHeatMap();
+                cal.init({
+                    itemSelector: "#cal-heatmap",
+                    domain: "month",
+                    subDomain: "day",
+                    data: parsedData, 
+                    start: new Date(new Date().setMonth(new Date().getMonth() - 5)), 
+                    cellSize: 15,
+                    range: 6,
+                    displayLegend: false,
+                    tooltip: true,
+                    legendColors: { min: "#eff6ff", max: "#4f46e5", empty: "#f1f5f9" }
+                });
+            } catch (err) { console.error("Heatmap render failed:", err); }
+        }
+
+        checkSession();
     </script>
 </body>
 </html>
