@@ -11,7 +11,7 @@
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <link rel="stylesheet" href="style.css?v=48">
+    <link rel="stylesheet" href="style.css?v=50">
 </head>
 <body>
 
@@ -276,72 +276,6 @@
                         <p class="yt-desc">The best resource for OS, DBMS, and Computer Networks.</p>
                         <a href="https://www.youtube.com/@GateSmashers" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
                     </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-mint">CH</div>
-                            <div class="yt-title-area">
-                                <h3>Code Help</h3>
-                                <span class="subs-badge">Tech Stack</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">In-depth tutorials for popular tech stacks and languages.</p>
-                        <a href="https://www.youtube.com/@CodeHelp" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-purple">KK</div>
-                            <div class="yt-title-area">
-                                <h3>Kunal Kushwaha</h3>
-                                <span class="subs-badge">Open Source</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">Java, DevOps, Open Source, and system design.</p>
-                        <a href="https://www.youtube.com/@KunalKushwaha" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-peach">CC</div>
-                            <div class="yt-title-area">
-                                <h3>Chai aur Code</h3>
-                                <span class="subs-badge">Web Dev</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">Hindi tutorials on Javascript, React, and backend tech.</p>
-                        <a href="https://www.youtube.com/@chaiaurcode" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-blue">HW</div>
-                            <div class="yt-title-area">
-                                <h3>CodeWithHarry</h3>
-                                <span class="subs-badge">Python & Web</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">One-shot videos and comprehensive programming courses.</p>
-                        <a href="https://www.youtube.com/@CodeWithHarry" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-mint">RN</div>
-                            <div class="yt-title-area">
-                                <h3>Rohit Negi</h3>
-                                <span class="subs-badge">GATE & DSA</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">GATE CSE preparation and software engineering interviews.</p>
-                        <a href="https://www.youtube.com/@RohitNegi9" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-purple">CA</div>
-                            <div class="yt-title-area">
-                                <h3>Coder Army</h3>
-                                <span class="subs-badge">C++ OOPs</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">Great resource for mastering C++ and Object-Oriented Prog.</p>
-                        <a href="https://www.youtube.com/@CoderArmy" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
                 </div>
             </section>
 
@@ -350,7 +284,119 @@
                 <p>Join students using NoteVerse to structure their preparation and land their dream engineering roles.</p>
                 <button class="btn-primary large">Get Started Free <i class="ph ph-arrow-right"></i></button>
             </section>
+        </div>
 
+        <div id="dsaMasteryView" style="display: none;">
+            <div class="back-nav">
+                <button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button>
+            </div>
+            
+            <h1 class="hero-title">Master <span class="text-gradient">DSA</span></h1>
+            <p class="hero-subtitle">Expand the topics below to access curated roadmaps, theory notes, and problem sets for every data structure.</p>
+
+            <div class="accordion-container">
+                
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="acc-title"><span class="acc-icon pastel-blue"><i class="ph ph-squares-four"></i></span> Array</div>
+                        <i class="ph ph-caret-down acc-caret"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Contiguous memory locations holding elements of the same data type. Crucial for memory indexing and foundational algorithms.</p>
+                        <div class="acc-links">
+                            <a href="#"><i class="ph-fill ph-play-circle"></i> Video: Array Fundamentals</a>
+                            <a href="#"><i class="ph-fill ph-file-text"></i> Theory: Searching & Sorting</a>
+                            <a href="#"><i class="ph-fill ph-code-block"></i> Practice: Top 50 Array Problems</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="acc-title"><span class="acc-icon pastel-mint"><i class="ph ph-circles-three"></i></span> Linked List</div>
+                        <i class="ph ph-caret-down acc-caret"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Linear data structure consisting of nodes where each node points to the next, allowing for efficient insertions and deletions.</p>
+                        <div class="acc-links">
+                            <a href="#"><i class="ph-fill ph-play-circle"></i> Video: Singly vs Doubly Linked Lists</a>
+                            <a href="#"><i class="ph-fill ph-code-block"></i> Practice: Reversing a Linked List</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="acc-title"><span class="acc-icon pastel-purple"><i class="ph ph-stack"></i></span> Stack</div>
+                        <i class="ph ph-caret-down acc-caret"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>LIFO (Last In First Out) structure. Essential for recursion, undo/redo features, and balancing parentheses.</p>
+                        <div class="acc-links">
+                            <a href="#"><i class="ph-fill ph-play-circle"></i> Video: Stack Implementation</a>
+                            <a href="#"><i class="ph-fill ph-code-block"></i> Practice: Valid Parentheses</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="acc-title"><span class="acc-icon pastel-peach"><i class="ph ph-queue"></i></span> Queue</div>
+                        <i class="ph ph-caret-down acc-caret"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>FIFO (First In First Out) structure. Used in scheduling, buffering, and Breadth-First Search (BFS).</p>
+                        <div class="acc-links">
+                            <a href="#"><i class="ph-fill ph-play-circle"></i> Video: Queue & Deque Concepts</a>
+                            <a href="#"><i class="ph-fill ph-code-block"></i> Practice: Sliding Window Maximum</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="acc-title"><span class="acc-icon pastel-blue"><i class="ph ph-tree-structure"></i></span> Tree</div>
+                        <i class="ph ph-caret-down acc-caret"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Hierarchical structure comprising a root node and child nodes. Focus heavily on Binary Trees and Binary Search Trees (BST).</p>
+                        <div class="acc-links">
+                            <a href="#"><i class="ph-fill ph-play-circle"></i> Video: Traversals (Inorder, Preorder, Postorder)</a>
+                            <a href="#"><i class="ph-fill ph-code-block"></i> Practice: Lowest Common Ancestor</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="acc-title"><span class="acc-icon pastel-mint"><i class="ph ph-pyramid"></i></span> Heap</div>
+                        <i class="ph ph-caret-down acc-caret"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>A specialized tree-based structure used primarily for priority queues and Heap Sort.</p>
+                        <div class="acc-links">
+                            <a href="#"><i class="ph-fill ph-play-circle"></i> Video: Min Heap vs Max Heap</a>
+                            <a href="#"><i class="ph-fill ph-code-block"></i> Practice: Find Kth Largest Element</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="acc-title"><span class="acc-icon pastel-purple"><i class="ph ph-graph"></i></span> Graph</div>
+                        <i class="ph ph-caret-down acc-caret"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Non-linear structure consisting of vertices connected by edges. The most complex and important topic for top-tier interviews.</p>
+                        <div class="acc-links">
+                            <a href="#"><i class="ph-fill ph-play-circle"></i> Video: BFS and DFS Search</a>
+                            <a href="#"><i class="ph-fill ph-file-text"></i> Theory: Dijkstra's Algorithm</a>
+                            <a href="#"><i class="ph-fill ph-code-block"></i> Practice: Number of Islands</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <div id="subjectView" style="display: none;">
@@ -466,7 +512,7 @@
             <div class="footer-brand">
                 <div class="footer-logo">N</div>
                 <h2>NoteVerse</h2>
-                <p>Your comprehensive platform for curated study resources, roadmaps, and collaborative learning. Master your studies with quality notes and expert guidance.</p>
+                <p>Your comprehensive platform for curated study resources, roadmaps, and collaborative learning.</p>
             </div>
             <div class="footer-links">
                 <h3>Quick Links</h3>
@@ -478,7 +524,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 NoteVerse. All rights reserved.</p>
+            <p>© 2026 NoteVerse. All rights reserved.</p>
             <div class="footer-legal">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
@@ -486,19 +532,21 @@
         </div>
     </footer>
 
+    <button class="fab-button" onclick="showDSAMastery()">
+        <i class="ph-bold ph-code"></i> Master DSA
+    </button>
+
     <script>
         function toggleMobileMenu() {
             document.getElementById('mobileMenu').classList.toggle('active');
         }
 
-        // Dropdown toggle logic for Mobile Side Menu
         function toggleSubMenu(id, event) {
             event.preventDefault(); 
             const menu = document.getElementById(id);
             if (menu.classList.contains('active')) {
                 menu.classList.remove('active');
             } else {
-                // Close other submenus first
                 document.querySelectorAll('.mobile-submenu').forEach(m => m.classList.remove('active'));
                 menu.classList.add('active');
             }
@@ -508,45 +556,47 @@
             document.getElementById("homeView").style.display = "none";
             document.getElementById("subjectView").style.display = "none";
             document.getElementById("roadmapView").style.display = "none";
+            document.getElementById("dsaMasteryView").style.display = "none";
             document.getElementById("semester1View").style.display = "none";
             document.getElementById("semester2View").style.display = "none";
             document.getElementById("pdfViewer").style.display = "none";
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
-        function showHome() { 
-            hideAllViews(); 
-            document.getElementById("homeView").style.display = "block"; 
-        }
-
-        function openRoadmap() {
-            hideAllViews();
-            document.getElementById("roadmapView").style.display = "block";
-        }
-
-        function showSemester1(type) { 
-            hideAllViews(); 
-            document.getElementById("semester1View").style.display = "block"; 
-            document.getElementById("sem1TitleType").innerText = type; 
-        }
-
-        function showSemester2(type) { 
-            hideAllViews(); 
-            document.getElementById("semester2View").style.display = "block"; 
-            document.getElementById("sem2TitleType").innerText = type; 
-        }
-
-        function showSubjectNotes(subjectName) { 
-            hideAllViews(); 
-            document.getElementById("subjectView").style.display = "block"; 
-            document.getElementById("dynamicSubjectTitle").innerText = subjectName;
-        }
+        function showHome() { hideAllViews(); document.getElementById("homeView").style.display = "block"; }
+        function openRoadmap() { hideAllViews(); document.getElementById("roadmapView").style.display = "block"; }
+        function showDSAMastery() { hideAllViews(); document.getElementById("dsaMasteryView").style.display = "block"; }
+        function showSemester1(type) { hideAllViews(); document.getElementById("semester1View").style.display = "block"; document.getElementById("sem1TitleType").innerText = type; }
+        function showSemester2(type) { hideAllViews(); document.getElementById("semester2View").style.display = "block"; document.getElementById("sem2TitleType").innerText = type; }
+        function showSubjectNotes(subjectName) { hideAllViews(); document.getElementById("subjectView").style.display = "block"; document.getElementById("dynamicSubjectTitle").innerText = subjectName; }
         
         function openPDF(file) {
             const viewer = document.getElementById("pdfViewer"); 
             viewer.style.display = "block"; 
             viewer.querySelector("#pdfFrame").src = file;
             window.scrollTo({ top: viewer.offsetTop - 80, behavior: "smooth" });
+        }
+
+        function toggleAccordion(btn) {
+            const content = btn.nextElementSibling;
+            const caret = btn.querySelector('.acc-caret');
+            
+            // Close all other accordions
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                if (item !== content) {
+                    item.style.display = "none";
+                    item.previousElementSibling.querySelector('.acc-caret').style.transform = "rotate(0deg)";
+                }
+            });
+
+            // Toggle current
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                caret.style.transform = "rotate(0deg)";
+            } else {
+                content.style.display = "block";
+                caret.style.transform = "rotate(180deg)";
+            }
         }
     </script>
 </body>
