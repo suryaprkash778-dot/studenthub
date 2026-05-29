@@ -76,6 +76,7 @@
         </div>
 
         <a href="#" onclick="showHome(); toggleMobileMenu();">Home</a>
+        <a href="#" onclick="showHome(); toggleMobileMenu(); setTimeout(() => document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'}), 100);">Resources</a>
         <a href="#" onclick="openRoadmap(); toggleMobileMenu();">Roadmap</a>
         
         <a href="#" onclick="toggleSubMenu('mobNotes', event)">Notes <i class="ph ph-caret-down" style="font-size: 1.2rem; margin-left: auto;"></i></a>
@@ -94,18 +95,32 @@
     <main class="app-container" id="mainContent">
 
         <div id="homeView">
+            
             <header class="hero-section">
-                <div class="hero-badge"><i class="ph ph-sparkle"></i> The standard for engineering excellence</div>
-                <h1 class="hero-title">Master Your<br><span class="text-gradient">Engineering</span> Journey</h1>
-                <p class="hero-subtitle">Access premium study materials, structured placement roadmaps, and curated resources to ace your exams and interviews.</p>
+                <div class="hero-badge">
+                    <i class="ph ph-sparkle"></i> The standard for engineering excellence
+                </div>
+                <h1 class="hero-title">
+                    Master Your<br>
+                    <span class="text-gradient">Engineering</span> Journey
+                </h1>
+                <p class="hero-subtitle">
+                    Access premium study materials, structured placement roadmaps, and curated resources to ace your exams and interviews.
+                </p>
                 <div class="hero-buttons">
-                    <button class="btn-primary large" onclick="document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'})"><i class="ph ph-magnifying-glass"></i> Browse Notes</button>
-                    <button class="btn-outline large" onclick="openRoadmap()">View Roadmap</button>
+                    <button class="btn-primary large" onclick="document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'})">
+                        <i class="ph ph-magnifying-glass"></i> Browse Notes
+                    </button>
+                    <button class="btn-outline large" onclick="openRoadmap()">
+                        View Roadmap
+                    </button>
                 </div>
             </header>
 
             <section class="features-section">
                 <h2 class="section-heading centered">Built for success</h2>
+                <p class="section-subheading centered">Everything you need to structure your studies and preparation.</p>
+                
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon"><i class="ph ph-book-open"></i></div>
@@ -127,12 +142,131 @@
 
             <section class="core-subjects-section" id="coreSubjects">
                 <h2 class="section-heading">Core Subjects</h2>
+                <p class="section-subheading">Master the fundamentals required for top product companies.</p>
+
                 <div class="subjects-grid">
-                    <div class="subject-card pastel-blue"><div class="subject-icon"><i class="ph ph-code"></i></div><div class="subject-info"><h3>Data Structures</h3></div></div>
-                    <div class="subject-card pastel-mint"><div class="subject-icon"><i class="ph ph-database"></i></div><div class="subject-info"><h3>Database Systems</h3></div></div>
-                    <div class="subject-card pastel-purple"><div class="subject-icon"><i class="ph ph-cpu"></i></div><div class="subject-info"><h3>Operating Systems</h3></div></div>
+                    <div class="subject-card pastel-blue" onclick="showSubjectNotes('Data Structures')">
+                        <div class="subject-icon"><i class="ph ph-code"></i></div>
+                        <div class="subject-info">
+                            <h3>Data Structures</h3>
+                            <span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="subject-card pastel-mint" onclick="showSubjectNotes('Database Systems')">
+                        <div class="subject-icon"><i class="ph ph-database"></i></div>
+                        <div class="subject-info">
+                            <h3>Database Systems</h3>
+                            <span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="subject-card pastel-purple" onclick="showSubjectNotes('Operating Systems')">
+                        <div class="subject-icon"><i class="ph ph-cpu"></i></div>
+                        <div class="subject-info">
+                            <h3>Operating Systems</h3>
+                            <span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="subject-card pastel-peach" onclick="showSubjectNotes('Computer Networks')">
+                        <div class="subject-icon"><i class="ph ph-share-network"></i></div>
+                        <div class="subject-info">
+                            <h3>Computer Networks</h3>
+                            <span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="subject-card pastel-blue" onclick="showSubjectNotes('Object-Oriented Programming')">
+                        <div class="subject-icon"><i class="ph ph-cube"></i></div>
+                        <div class="subject-info">
+                            <h3>Object-Oriented Prog.</h3>
+                            <span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="subject-card pastel-mint" onclick="showSubjectNotes('Aptitude & Reasoning')">
+                        <div class="subject-icon"><i class="ph ph-brain"></i></div>
+                        <div class="subject-info">
+                            <h3>Aptitude & Reasoning</h3>
+                            <span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
                 </div>
             </section>
+
+            <section class="video-resources-section">
+                <h2 class="section-heading centered">Top Video Resources</h2>
+                <p class="section-subheading centered">Curated channels to accelerate your learning.</p>
+
+                <div class="channel-scroll-container">
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-blue">ST</div><div class="yt-title-area"><h3>Striver</h3><span class="subs-badge">Placement</span></div></div><p class="yt-desc">Definitive DSA and placement preparation guides.</p><a href="https://www.youtube.com/@striver_79" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-mint">TF</div><div class="yt-title-area"><h3>Take U Forward</h3><span class="subs-badge">DSA Mastery</span></div></div><p class="yt-desc">Top-tier tutorials for competitive programming and DSA.</p><a href="https://www.youtube.com/@takeUforward" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-purple">PA</div><div class="yt-title-area"><h3>Priyansh Agarwal</h3><span class="subs-badge">CP Guide</span></div></div><p class="yt-desc">Excellent competitive programming strategies and tips.</p><a href="https://www.youtube.com/@PriyanshAgarwal" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-peach">LV</div><div class="yt-title-area"><h3>LUV</h3><span class="subs-badge">CP & STL</span></div></div><p class="yt-desc">Deep dives into C++ STL and competitive programming.</p><a href="https://www.youtube.com/@LuvIsMe" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-blue">VG</div><div class="yt-title-area"><h3>Vivek Gupta</h3><span class="subs-badge">Logic Building</span></div></div><p class="yt-desc">Advanced algorithms and problem-solving techniques.</p><a href="https://www.youtube.com/@VivekGupta7" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-mint">HS</div><div class="yt-title-area"><h3>Harkirat Singh</h3><span class="subs-badge">100xDevs</span></div></div><p class="yt-desc">Open source, full-stack web development, and DevOps.</p><a href="https://www.youtube.com/@harkiratsingh" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-purple">AC</div><div class="yt-title-area"><h3>Apna College</h3><span class="subs-badge">College Advice</span></div></div><p class="yt-desc">College advice, placements, and coding tutorials.</p><a href="https://www.youtube.com/@ApnaCollegeOfficial" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-peach">LB</div><div class="yt-title-area"><h3>Love Babbar</h3><span class="subs-badge">CodeHelp</span></div></div><p class="yt-desc">Comprehensive DSA courses and web development.</p><a href="https://www.youtube.com/@LoveBabbar" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-blue">GS</div><div class="yt-title-area"><h3>Gate Smashers</h3><span class="subs-badge">Core Subjects</span></div></div><p class="yt-desc">The best resource for OS, DBMS, and Computer Networks.</p><a href="https://www.youtube.com/@GateSmashers" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>Ready to step up?</h2>
+                <p>Join students using NoteVerse to structure their preparation and land their dream engineering roles.</p>
+                <button class="btn-primary large" onclick="signInWithGithub()">Get Started Free <i class="ph ph-arrow-right"></i></button>
+            </section>
+        </div>
+
+        <div id="dsaMasteryView" style="display: none;">
+            <div class="back-nav">
+                <button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button>
+            </div>
+            
+            <h1 class="hero-title">Master <span class="text-gradient">DSA</span></h1>
+            <p class="hero-subtitle">100 Days of DSA. Expand the topics below to access the most important problems directly on LeetCode covering every algorithmic pattern.</p>
+
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="acc-title"><span class="acc-icon pastel-blue"><i class="ph ph-squares-four"></i></span> Array & Hashing</div>
+                        <i class="ph ph-caret-down acc-caret"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Covers Two Pointers, Sliding Window, Prefix Sum, Hash Maps, Matrices, and Kadane's Algorithm.</p>
+                        <div class="problem-list">
+                            <div class="problem-item"><span class="prob-title">1. Two Sum (Hashing)</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/two-sum/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
+                            <div class="problem-item"><span class="prob-title">2. Maximum Subarray (Kadane's)</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
+                            <div class="problem-item"><span class="prob-title">3. Trapping Rain Water</span><div class="prob-actions"><span class="prob-difficulty diff-hard">Hard</span><a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="acc-title"><span class="acc-icon pastel-mint"><i class="ph ph-circles-three"></i></span> Linked List</div>
+                        <i class="ph ph-caret-down acc-caret"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Covers Fast/Slow Pointers, In-place Reversal, Interweaving, and Dummy Nodes.</p>
+                        <div class="problem-list">
+                            <div class="problem-item"><span class="prob-title">1. Reverse Linked List</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
+                            <div class="problem-item"><span class="prob-title">2. LRU Cache (Design)</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/lru-cache/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
+                            <div class="problem-item"><span class="prob-title">3. Reverse Nodes in k-Group</span><div class="prob-actions"><span class="prob-difficulty diff-hard">Hard</span><a href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="acc-title"><span class="acc-icon pastel-purple"><i class="ph ph-stack"></i></span> Stack & Queues</div>
+                        <i class="ph ph-caret-down acc-caret"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Covers LIFO, Monotonic Stacks, and Sliding Windows.</p>
+                        <div class="problem-list">
+                            <div class="problem-item"><span class="prob-title">1. Valid Parentheses</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/valid-parentheses/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
+                            <div class="problem-item"><span class="prob-title">2. Daily Temperatures</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/daily-temperatures/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="profileView" style="display: none;">
@@ -151,7 +285,10 @@
             <div class="features-grid">
                 <div class="feature-card outline-card" style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; padding: 40px 20px;">
                     <h3 style="margin-bottom: 20px;">Consistency Heatmap</h3>
+                    <p style="margin-bottom: 30px; font-size: 0.95rem; text-align: center;">Track your daily problem-solving streak.</p>
+                    
                     <div id="cal-heatmap" style="overflow-x: auto; max-width: 100%; padding-bottom: 10px;"></div>
+                    
                     <h4 style="margin-top: 30px;">Total Solved: <span id="totalSolvedCount" class="text-purple" style="font-size: 1.8rem;">0</span></h4>
                 </div>
             </div>
@@ -160,13 +297,41 @@
         <div id="semester1View" style="display: none;">
             <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
             <h1 class="hero-title">Semester 1 <span class="text-gradient" id="sem1TitleType">Notes</span></h1>
+            <p class="hero-subtitle">Select a subject below to view its corresponding materials.</p>
             <div class="vertical-subject-list" style="margin-top: 40px;"></div>
         </div>
 
         <div id="semester2View" style="display: none;">
             <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
             <h1 class="hero-title">Semester 2 <span class="text-gradient" id="sem2TitleType">Notes</span></h1>
+            <p class="hero-subtitle">Select a subject below to view its corresponding materials.</p>
             <div class="vertical-subject-list" style="margin-top: 40px;"></div>
+        </div>
+
+        <div id="subjectView" style="display: none;">
+            <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
+            <h1 class="hero-title" id="dynamicSubjectTitle">Subject Notes</h1>
+            <p class="hero-subtitle">Select a resource below to open the PDF viewer.</p>
+            <div class="features-grid" style="margin-top: 40px;">
+                <div class="feature-card outline-card clickable" onclick="openPDF('sample.pdf')">
+                    <div class="feature-icon"><i class="ph ph-file-pdf"></i></div>
+                    <h3>Unit 1 Notes</h3>
+                    <p>Comprehensive handwritten notes covering all fundamentals.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="roadmapView" style="display: none;">
+            <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
+            <h1 class="hero-title">Placement <span class="text-gradient">Roadmap</span></h1>
+            <p class="hero-subtitle">Follow this structured path to land your dream role.</p>
+            <div class="features-grid" style="margin-top: 40px;">
+                <div class="feature-card outline-card">
+                    <h3 class="gradient-text">Stage 1</h3>
+                    <h4>CGPA & Communication</h4>
+                    <p>Maintain a 9.0+ CGPA without backlogs and practice articulating your code clearly.</p>
+                </div>
+            </div>
         </div>
 
         <section id="pdfViewer" style="display: none; margin-top: 40px;">
@@ -176,6 +341,35 @@
         </section>
 
     </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">N</div>
+                <h2>NoteVerse</h2>
+                <p>Your comprehensive platform for curated study resources, roadmaps, and collaborative learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#" onclick="showHome()">Home</a></li>
+                    <li><a href="#" onclick="showHome(); setTimeout(() => document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'}), 100);">Resources</a></li>
+                    <li><a href="#" onclick="openRoadmap()">Roadmap</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 NoteVerse. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="fab-button" onclick="showDSAMastery()">
+        <i class="ph-bold ph-code"></i> Master DSA
+    </button>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
@@ -189,7 +383,7 @@
         }
 
         function hideAllViews() {
-            const views = ["homeView", "semester1View", "semester2View", "profileView", "pdfViewer"];
+            const views = ["homeView", "subjectView", "roadmapView", "dsaMasteryView", "semester1View", "semester2View", "profileView", "pdfViewer"];
             views.forEach(view => {
                 const el = document.getElementById(view);
                 if(el) el.style.display = "none";
@@ -198,25 +392,41 @@
         }
 
         function showHome() { hideAllViews(); document.getElementById("homeView").style.display = "block"; }
+        function openRoadmap() { hideAllViews(); document.getElementById("roadmapView").style.display = "block"; }
+        function showDSAMastery() { hideAllViews(); document.getElementById("dsaMasteryView").style.display = "block"; }
         function showProfile() { hideAllViews(); document.getElementById("profileView").style.display = "block"; }
+        function showSubjectNotes(subjectName) { hideAllViews(); document.getElementById("subjectView").style.display = "block"; document.getElementById("dynamicSubjectTitle").innerText = subjectName; }
         
         function openPDF(file) {
             const viewer = document.getElementById("pdfViewer"); 
             if(viewer) { viewer.style.display = "block"; viewer.querySelector("#pdfFrame").src = file; window.scrollTo({ top: viewer.offsetTop - 80, behavior: "smooth" }); }
         }
 
-        // --- 2. Database & Auth Logic ---
+        function toggleAccordion(btn) {
+            const content = btn.nextElementSibling;
+            const caret = btn.querySelector('.acc-caret');
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                if (item !== content) { item.style.display = "none"; if(item.previousElementSibling.querySelector('.acc-caret')) item.previousElementSibling.querySelector('.acc-caret').style.transform = "rotate(0deg)"; }
+            });
+            if (content.style.display === "block") { content.style.display = "none"; caret.style.transform = "rotate(0deg)"; } 
+            else { content.style.display = "block"; caret.style.transform = "rotate(180deg)"; }
+        }
+
+        // --- 2. Database Initialization ---
         const nvSupabaseUrl = 'https://tcijpueblweradmiphpd.supabase.co'; 
         const nvSupabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjaWpwdWVibHdlcmFkbWlwaHBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTk5MTIsImV4cCI6MjA5NTU5NTkxMn0._tXpjssqHAlsVWEYcrJdGP28HISZU1tnt2WrOTR3DXY';
         
         let dbClient = null;
         if (window.supabase) {
             dbClient = window.supabase.createClient(nvSupabaseUrl, nvSupabaseKey);
+        } else {
+            console.error("Supabase failed to load.");
         }
 
-        // Dynamically fetch and display Notes/PYQs
+        // --- 3. Dynamic Database Fetching for Notes & PYQs ---
         async function showCategory(semNumber, categoryType) {
             hideAllViews();
+            
             const viewId = (semNumber === 1) ? "semester1View" : "semester2View";
             const viewEl = document.getElementById(viewId);
             if(viewEl) viewEl.style.display = "block";
@@ -225,9 +435,11 @@
             if(titleEl) titleEl.innerText = categoryType;
 
             const listContainer = document.querySelector(`#${viewId} .vertical-subject-list`);
-            listContainer.innerHTML = "<p style='text-align: center; color: #64748b; padding: 20px;'>Loading materials...</p>";
+            listContainer.innerHTML = "<p style='padding: 20px; color: #64748b; text-align: center;'>Loading materials from database...</p>";
 
-            if(!dbClient) return listContainer.innerHTML = "<p style='color: #ef4444;'>Database disconnected.</p>";
+            if (!dbClient) {
+                return listContainer.innerHTML = "<p style='padding: 20px; color: #ef4444; text-align: center;'>Database disconnected.</p>";
+            }
 
             try {
                 const { data, error } = await dbClient
@@ -239,8 +451,9 @@
                 if (error) throw error;
 
                 listContainer.innerHTML = "";
+                
                 if (!data || data.length === 0) {
-                    listContainer.innerHTML = `<p style='text-align: center; color: #64748b; padding: 20px;'>No ${categoryType} uploaded for Semester ${semNumber} yet.</p>`;
+                    listContainer.innerHTML = `<p style='padding: 20px; color: #64748b; text-align: center;'>No ${categoryType} uploaded for Semester ${semNumber} yet.</p>`;
                 } else {
                     data.forEach(item => {
                         const card = document.createElement('div');
@@ -254,19 +467,26 @@
                     });
                 }
             } catch (err) {
-                console.error("Fetch Error:", err);
-                listContainer.innerHTML = `<p style='text-align: center; color: #ef4444; padding: 20px;'>Error loading files.</p>`;
+                console.error("Database Fetch Error:", err);
+                listContainer.innerHTML = `<p style='padding: 20px; color: #ef4444; text-align: center;'>Error: ${err.message}</p>`;
             }
         }
 
+        // --- 4. Auth & Session Logic ---
         async function signInWithGithub() {
             if (!dbClient) return alert("Database disconnected.");
-            await dbClient.auth.signInWithOAuth({ provider: 'github' });
+            try {
+                const { error } = await dbClient.auth.signInWithOAuth({ provider: 'github' });
+                if (error) alert("Login Error: " + error.message);
+            } catch (err) { console.error("Login crashed:", err); }
         }
 
         async function signInWithGoogle() {
             if (!dbClient) return alert("Database disconnected.");
-            await dbClient.auth.signInWithOAuth({ provider: 'google' });
+            try {
+                const { error } = await dbClient.auth.signInWithOAuth({ provider: 'google' });
+                if (error) alert("Login Error: " + error.message);
+            } catch (err) { console.error("Login crashed:", err); }
         }
 
         async function signOut() {
@@ -277,11 +497,14 @@
             if (!dbClient) return;
             try {
                 const { data: { session }, error } = await dbClient.auth.getSession();
+                if (error) { console.error("Session error:", error.message); return; }
+                
                 if (session) {
                     const user = session.user;
                     const name = user.user_metadata.user_name || user.user_metadata.full_name || "Student";
                     const avatarUrl = user.user_metadata.avatar_url || "default-avatar.png";
 
+                    // Update Desktop Nav
                     const authContainer = document.getElementById('authContainer');
                     if (authContainer) {
                         authContainer.innerHTML = `
@@ -294,6 +517,19 @@
                         `;
                     }
 
+                    // Update Mobile Menu Auth container
+                    const mobileAuth = document.getElementById('mobileAuthContainer');
+                    if(mobileAuth) {
+                        mobileAuth.innerHTML = `
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9;">
+                                <img src="${avatarUrl}" alt="Profile" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #4f46e5; object-fit: cover;" onclick="showProfile(); toggleMobileMenu();">
+                                <span style="font-weight: 600; font-size: 1.2rem; color: #0f172a;">${name}</span>
+                                <button class="btn-outline" style="width: 100%; justify-content: center;" onclick="signOut()">Sign Out</button>
+                                <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="showProfile(); toggleMobileMenu();">View Profile</button>
+                            </div>
+                        `;
+                    }
+
                     const profileAvatar = document.getElementById('profileAvatar');
                     const profileName = document.getElementById('profileName');
                     if(profileAvatar) profileAvatar.src = avatarUrl;
@@ -301,19 +537,20 @@
 
                     syncUserToDatabase(user, name);
                 }
-            } catch (err) { console.error("Session crash:", err); }
+            } catch (err) { console.error("Session check crashed:", err); }
         }
 
         async function syncUserToDatabase(user, name) {
             try {
                 const { data, error } = await dbClient.from('user_progress').select('*').eq('id', user.id).single();
+
                 if (error && error.code === 'PGRST116') {
                     await dbClient.from('user_progress').insert([{ id: user.id, username: name, total_solved: 0, solved_array: {} }]);
                     updateProfileStats(0, {});
                 } else if (data) {
                     updateProfileStats(data.total_solved, data.solved_array);
                 }
-            } catch (err) { console.error("Sync crash:", err); }
+            } catch (err) { console.error("DB Sync crash:", err); }
         }
 
         function updateProfileStats(solvedCount, activityData) {
@@ -350,9 +587,10 @@
                     tooltip: true,
                     legendColors: { min: "#eff6ff", max: "#4f46e5", empty: "#f1f5f9" }
                 });
-            } catch (err) { console.error("Heatmap render failed:", err); }
+            } catch (err) { console.error("Heatmap rendering failed:", err); }
         }
 
+        // Boot up the checks!
         checkSession();
     </script>
 </body>
