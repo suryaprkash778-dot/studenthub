@@ -597,117 +597,140 @@
         }
     </script>
 
-    <script>
-        let supabase;
-        let currentUser = null;
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        // Try to initialize Supabase
-        try {
-            const supabaseUrl = 'https://tcijpueblweradmiphpd.supabase.co'; 
-            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjaWpwdWVibHdlcmFkbWlwaHBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTk5MTIsImV4cCI6MjA5NTU5NTkxMn0._tXpjssqHAlsVWEYcrJdGP28HISZU1tnt2WrOTR3DXY';
-            
-            if (window.supabase) {
-                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-                checkSession();
-            } else {
-                console.error("Supabase script blocked or failed to load.");
-            }
-        } catch (error) {
-            console.error("Database initialization error:", error);
+    <script>
+        // --- 1. UI & Navigation Functions ---
+        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        function toggleSubMenu(id, event) {
+            event.preventDefault(); 
+            const menu = document.getElementById(id);
+            if (menu.classList.contains('active')) { menu.classList.remove('active'); } 
+            else { document.querySelectorAll('.mobile-submenu').forEach(m => m.classList.remove('active')); menu.classList.add('active'); }
+        }
+
+        function hideAllViews() {
+            const views = ["homeView", "subjectView", "roadmapView", "dsaMasteryView", "semester1View", "semester2View", "profileView", "pdfViewer"];
+            views.forEach(view => {
+                const el = document.getElementById(view);
+                if(el) el.style.display = "none";
+            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function showHome() { hideAllViews(); document.getElementById("homeView").style.display = "block"; }
+        function openRoadmap() { hideAllViews(); document.getElementById("roadmapView").style.display = "block"; }
+        function showDSAMastery() { hideAllViews(); document.getElementById("dsaMasteryView").style.display = "block"; }
+        function showProfile() { hideAllViews(); document.getElementById("profileView").style.display = "block"; }
+        function showSemester1(type) { hideAllViews(); document.getElementById("semester1View").style.display = "block"; document.getElementById("sem1TitleType").innerText = type; }
+        function showSemester2(type) { hideAllViews(); document.getElementById("semester2View").style.display = "block"; document.getElementById("sem2TitleType").innerText = type; }
+        function showSubjectNotes(subjectName) { hideAllViews(); document.getElementById("subjectView").style.display = "block"; document.getElementById("dynamicSubjectTitle").innerText = subjectName; }
+        
+        function openPDF(file) {
+            const viewer = document.getElementById("pdfViewer"); 
+            if(viewer) { viewer.style.display = "block"; viewer.querySelector("#pdfFrame").src = file; window.scrollTo({ top: viewer.offsetTop - 80, behavior: "smooth" }); }
+        }
+
+        function toggleAccordion(btn) {
+            const content = btn.nextElementSibling;
+            const caret = btn.querySelector('.acc-caret');
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                if (item !== content) { item.style.display = "none"; if(item.previousElementSibling.querySelector('.acc-caret')) item.previousElementSibling.querySelector('.acc-caret').style.transform = "rotate(0deg)"; }
+            });
+            if (content.style.display === "block") { content.style.display = "none"; caret.style.transform = "rotate(0deg)"; } 
+            else { content.style.display = "block"; caret.style.transform = "rotate(180deg)"; }
+        }
+
+        // --- 2. Database & Auth Logic ---
+        
+        // Use a unique variable name to prevent any accidental double-declarations
+        const nvSupabaseUrl = 'https://tcijpueblweradmiphpd.supabase.co'; 
+        const nvSupabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjaWpwdWVibHdlcmFkbWlwaHBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTk5MTIsImV4cCI6MjA5NTU5NTkxMn0._tXpjssqHAlsVWEYcrJdGP28HISZU1tnt2WrOTR3DXY';
+        
+        let dbClient = null;
+        if (window.supabase) {
+            dbClient = window.supabase.createClient(nvSupabaseUrl, nvSupabaseKey);
+        } else {
+            console.error("Supabase failed to load. Check your internet or adblocker.");
         }
 
         async function signInWithGithub() {
-            if (!supabase) return alert("Database is disconnected. Make sure you are using Live Server and not an AdBlocker.");
+            if (!dbClient) return alert("Database disconnected. Ensure you are using Live Server (http://) and not file:///");
             try {
-                const { error } = await supabase.auth.signInWithOAuth({ provider: 'github' });
-                if (error) alert("Error logging in: " + error.message);
-            } catch (err) {
-                console.error("Login crash:", err);
-            }
+                const { error } = await dbClient.auth.signInWithOAuth({ provider: 'github' });
+                if (error) alert("Login Error: " + error.message);
+            } catch (err) { console.error("Login crashed:", err); }
         }
 
         async function signOut() {
-            if (supabase) {
-                await supabase.auth.signOut();
-                window.location.reload(); 
-            }
+            if (dbClient) { await dbClient.auth.signOut(); window.location.reload(); }
         }
 
         async function checkSession() {
+            if (!dbClient) return;
             try {
-                const { data: { session }, error } = await supabase.auth.getSession();
+                const { data: { session }, error } = await dbClient.auth.getSession();
                 if (error) { console.error("Session error:", error.message); return; }
                 
                 if (session) {
-                    currentUser = session.user;
-                    const githubName = currentUser.user_metadata.user_name || currentUser.user_metadata.full_name || "Student";
-                    const avatarUrl = currentUser.user_metadata.avatar_url || "default-avatar.png";
+                    const user = session.user;
+                    const githubName = user.user_metadata.user_name || user.user_metadata.full_name || "Student";
+                    const avatarUrl = user.user_metadata.avatar_url || "default-avatar.png";
 
-                    // Update Desktop Nav
                     const authContainer = document.getElementById('authContainer');
                     if (authContainer) {
                         authContainer.innerHTML = `
                             <button class="icon-btn"><i class="ph ph-sun"></i></button>
                             <div style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px 10px; border-radius: 50px; transition: 0.2s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'" onclick="showProfile()">
-                                <img src="${avatarUrl}" alt="Profile" style="width: 35px; height: 35px; border-radius: 50%; border: 2px solid #4f46e5;">
+                                <img src="${avatarUrl}" alt="Profile" style="width: 35px; height: 35px; border-radius: 50%; border: 2px solid #4f46e5; object-fit: cover;">
                                 <span style="font-weight: 600; color: #0f172a;">${githubName}</span>
                             </div>
                             <button class="btn-outline" style="padding: 8px 15px; font-size: 0.85rem;" onclick="signOut()">Sign Out</button>
                         `;
                     }
 
-                    // Sync Database & Setup Profile
-                    syncUserToDatabase(currentUser, githubName);
-                    document.getElementById('profileAvatar').src = avatarUrl;
-                    document.getElementById('profileName').innerText = githubName;
+                    const profileAvatar = document.getElementById('profileAvatar');
+                    const profileName = document.getElementById('profileName');
+                    if(profileAvatar) profileAvatar.src = avatarUrl;
+                    if(profileName) profileName.innerText = githubName;
+
+                    syncUserToDatabase(user, githubName);
                 }
-            } catch (err) {
-                console.error("Session check crashed:", err);
-            }
+            } catch (err) { console.error("Session check crashed:", err); }
         }
 
         async function syncUserToDatabase(user, name) {
             try {
-                const { data, error } = await supabase.from('user_progress').select('*').eq('id', user.id).single();
+                const { data, error } = await dbClient.from('user_progress').select('*').eq('id', user.id).single();
 
                 if (error && error.code === 'PGRST116') {
-                    // New user
-                    await supabase.from('user_progress').insert([
-                        { id: user.id, username: name, total_solved: 0, solved_array: {} } 
-                    ]);
-                    document.getElementById('totalSolvedCount').innerText = 0;
-                    calculateRank(0);
-                    renderHeatmap({});
+                    await dbClient.from('user_progress').insert([{ id: user.id, username: name, total_solved: 0, solved_array: {} }]);
+                    updateProfileStats(0, {});
                 } else if (data) {
-                    // Existing User
-                    document.getElementById('totalSolvedCount').innerText = data.total_solved;
-                    calculateRank(data.total_solved);
-                    renderHeatmap(data.solved_array);
+                    updateProfileStats(data.total_solved, data.solved_array);
                 }
-            } catch (err) {
-                console.error("DB Sync crash:", err);
-            }
+            } catch (err) { console.error("DB Sync crash:", err); }
         }
 
-        function calculateRank(solvedCount) {
-            let rank = "Bronze";
-            if (solvedCount >= 50) rank = "Silver";
-            if (solvedCount >= 150) rank = "Gold";
-            if (solvedCount >= 300) rank = "Diamond";
-            
+        function updateProfileStats(solvedCount, activityData) {
+            const countEl = document.getElementById('totalSolvedCount');
             const rankEl = document.getElementById('profileRank');
-            if(rankEl) rankEl.innerText = rank;
-        }
+            
+            if (countEl) countEl.innerText = solvedCount;
+            if (rankEl) {
+                let rank = "Bronze";
+                if (solvedCount >= 50) rank = "Silver";
+                if (solvedCount >= 150) rank = "Gold";
+                if (solvedCount >= 300) rank = "Diamond";
+                rankEl.innerText = rank;
+            }
 
-        function renderHeatmap(activityData) {
             const hm = document.getElementById('cal-heatmap');
             if(!hm) return;
             hm.innerHTML = ""; 
             
             let parsedData = {};
-            if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) {
-                parsedData = activityData;
-            }
+            if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) parsedData = activityData;
 
             try {
                 var cal = new CalHeatMap();
@@ -723,11 +746,11 @@
                     tooltip: true,
                     legendColors: { min: "#eff6ff", max: "#4f46e5", empty: "#f1f5f9" }
                 });
-            } catch (err) {
-                console.error("Heatmap failed to render:", err);
-            }
+            } catch (err) { console.error("Heatmap rendering failed:", err); }
         }
+
+        // Boot up the checks!
+        checkSession();
     </script>
 </body>
 </html>
-   
