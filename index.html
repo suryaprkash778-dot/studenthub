@@ -604,7 +604,7 @@
 
             try {
                 const { data, error } = await dbClient
-                    .from('course_materials')
+                    .from('course_material')
                     .select('*')
                     .eq('semester', semNumber)
                     .eq('category', categoryType);
