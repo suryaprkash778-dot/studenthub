@@ -11,7 +11,11 @@
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <link rel="stylesheet" href="style.css?v=52">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/cal-heatmap/3.3.6/cal-heatmap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/cal-heatmap/3.3.6/cal-heatmap.css" />
+
+    <link rel="stylesheet" href="style.css?v=53">
 </head>
 <body>
 
@@ -46,10 +50,11 @@
             </div>
         </div>
 
-        <div class="nav-actions desktop-only">
+        <div class="nav-actions desktop-only" id="authContainer">
             <button class="icon-btn"><i class="ph ph-sun"></i></button>
-            <a href="#" class="text-link">Log In</a>
-            <a href="#" class="btn-primary">Sign Up</a>
+            <a href="#" class="btn-primary" onclick="signInWithGithub()">
+                <i class="ph-fill ph-github-logo"></i> Login with GitHub
+            </a>
         </div>
 
         <button class="mobile-menu-btn mobile-only" onclick="toggleMobileMenu()"><i class="ph ph-list"></i></button>
@@ -57,6 +62,13 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <button class="close-menu" onclick="toggleMobileMenu()"><i class="ph ph-x"></i></button>
+        
+        <div id="mobileAuthContainer" style="margin-bottom: 20px;">
+            <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="signInWithGithub()">
+                <i class="ph-fill ph-github-logo"></i> Login with GitHub
+            </button>
+        </div>
+
         <a href="#" onclick="showHome(); toggleMobileMenu();">Home</a>
         <a href="#" onclick="showHome(); toggleMobileMenu(); setTimeout(() => document.getElementById('coreSubjects').scrollIntoView({behavior: 'smooth'}), 100);">Resources</a>
         <a href="#" onclick="openRoadmap(); toggleMobileMenu();">Roadmap</a>
@@ -177,112 +189,22 @@
                 <p class="section-subheading centered">Curated channels to accelerate your learning.</p>
 
                 <div class="channel-scroll-container">
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-blue">ST</div>
-                            <div class="yt-title-area">
-                                <h3>Striver</h3>
-                                <span class="subs-badge">Placement</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">Definitive DSA and placement preparation guides.</p>
-                        <a href="https://www.youtube.com/@striver_79" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-mint">TF</div>
-                            <div class="yt-title-area">
-                                <h3>Take U Forward</h3>
-                                <span class="subs-badge">DSA Mastery</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">Top-tier tutorials for competitive programming and DSA.</p>
-                        <a href="https://www.youtube.com/@takeUforward" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-purple">PA</div>
-                            <div class="yt-title-area">
-                                <h3>Priyansh Agarwal</h3>
-                                <span class="subs-badge">CP Guide</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">Excellent competitive programming strategies and tips.</p>
-                        <a href="https://www.youtube.com/@PriyanshAgarwal" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-peach">LV</div>
-                            <div class="yt-title-area">
-                                <h3>LUV</h3>
-                                <span class="subs-badge">CP & STL</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">Deep dives into C++ STL and competitive programming.</p>
-                        <a href="https://www.youtube.com/@LuvIsMe" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-blue">VG</div>
-                            <div class="yt-title-area">
-                                <h3>Vivek Gupta</h3>
-                                <span class="subs-badge">Logic Building</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">Advanced algorithms and problem-solving techniques.</p>
-                        <a href="https://www.youtube.com/@VivekGupta7" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-mint">HS</div>
-                            <div class="yt-title-area">
-                                <h3>Harkirat Singh</h3>
-                                <span class="subs-badge">100xDevs</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">Open source, full-stack web development, and DevOps.</p>
-                        <a href="https://www.youtube.com/@harkiratsingh" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-purple">AC</div>
-                            <div class="yt-title-area">
-                                <h3>Apna College</h3>
-                                <span class="subs-badge">College Advice</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">College advice, placements, and coding tutorials.</p>
-                        <a href="https://www.youtube.com/@ApnaCollegeOfficial" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-peach">LB</div>
-                            <div class="yt-title-area">
-                                <h3>Love Babbar</h3>
-                                <span class="subs-badge">CodeHelp</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">Comprehensive DSA courses and web development.</p>
-                        <a href="https://www.youtube.com/@LoveBabbar" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
-                    <div class="yt-card">
-                        <div class="yt-header">
-                            <div class="yt-avatar pastel-blue">GS</div>
-                            <div class="yt-title-area">
-                                <h3>Gate Smashers</h3>
-                                <span class="subs-badge">Core Subjects</span>
-                            </div>
-                        </div>
-                        <p class="yt-desc">The best resource for OS, DBMS, and Computer Networks.</p>
-                        <a href="https://www.youtube.com/@GateSmashers" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a>
-                    </div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-blue">ST</div><div class="yt-title-area"><h3>Striver</h3><span class="subs-badge">Placement</span></div></div><p class="yt-desc">Definitive DSA and placement preparation guides.</p><a href="https://www.youtube.com/@striver_79" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-mint">TF</div><div class="yt-title-area"><h3>Take U Forward</h3><span class="subs-badge">DSA Mastery</span></div></div><p class="yt-desc">Top-tier tutorials for competitive programming and DSA.</p><a href="https://www.youtube.com/@takeUforward" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-purple">PA</div><div class="yt-title-area"><h3>Priyansh Agarwal</h3><span class="subs-badge">CP Guide</span></div></div><p class="yt-desc">Excellent competitive programming strategies and tips.</p><a href="https://www.youtube.com/@PriyanshAgarwal" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-peach">LV</div><div class="yt-title-area"><h3>LUV</h3><span class="subs-badge">CP & STL</span></div></div><p class="yt-desc">Deep dives into C++ STL and competitive programming.</p><a href="https://www.youtube.com/@LuvIsMe" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-blue">VG</div><div class="yt-title-area"><h3>Vivek Gupta</h3><span class="subs-badge">Logic Building</span></div></div><p class="yt-desc">Advanced algorithms and problem-solving techniques.</p><a href="https://www.youtube.com/@VivekGupta7" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-mint">HS</div><div class="yt-title-area"><h3>Harkirat Singh</h3><span class="subs-badge">100xDevs</span></div></div><p class="yt-desc">Open source, full-stack web development, and DevOps.</p><a href="https://www.youtube.com/@harkiratsingh" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-purple">AC</div><div class="yt-title-area"><h3>Apna College</h3><span class="subs-badge">College Advice</span></div></div><p class="yt-desc">College advice, placements, and coding tutorials.</p><a href="https://www.youtube.com/@ApnaCollegeOfficial" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-peach">LB</div><div class="yt-title-area"><h3>Love Babbar</h3><span class="subs-badge">CodeHelp</span></div></div><p class="yt-desc">Comprehensive DSA courses and web development.</p><a href="https://www.youtube.com/@LoveBabbar" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
+                    <div class="yt-card"><div class="yt-header"><div class="yt-avatar pastel-blue">GS</div><div class="yt-title-area"><h3>Gate Smashers</h3><span class="subs-badge">Core Subjects</span></div></div><p class="yt-desc">The best resource for OS, DBMS, and Computer Networks.</p><a href="https://www.youtube.com/@GateSmashers" target="_blank" class="yt-btn"><i class="ph-fill ph-youtube-logo text-red"></i> Visit Channel</a></div>
                 </div>
             </section>
 
             <section class="cta-section">
                 <h2>Ready to step up?</h2>
                 <p>Join students using NoteVerse to structure their preparation and land their dream engineering roles.</p>
-                <button class="btn-primary large">Get Started Free <i class="ph ph-arrow-right"></i></button>
+                <button class="btn-primary large" onclick="signInWithGithub()">Get Started Free <i class="ph ph-arrow-right"></i></button>
             </section>
         </div>
 
@@ -458,6 +380,31 @@
             </div>
         </div>
 
+        <div id="profileView" style="display: none;">
+            <div class="back-nav">
+                <button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button>
+            </div>
+            
+            <div class="profile-header" style="text-align: center; margin-bottom: 40px;">
+                <img id="profileAvatar" src="" alt="Profile" style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid #4f46e5; margin-bottom: 15px; object-fit: cover;">
+                <h1 class="hero-title" id="profileName">Student Name</h1>
+                <div style="display: inline-block; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 5px 20px; border-radius: 50px; font-weight: 600; font-size: 1.1rem; margin-top: 10px;">
+                    Rank: <span id="profileRank">Bronze</span>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card outline-card" style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; padding: 40px 20px;">
+                    <h3 style="margin-bottom: 20px;">Consistency Heatmap</h3>
+                    <p style="margin-bottom: 30px; font-size: 0.95rem; text-align: center;">Track your daily problem-solving streak.</p>
+                    
+                    <div id="cal-heatmap" style="overflow-x: auto; max-width: 100%; padding-bottom: 10px;"></div>
+                    
+                    <h4 style="margin-top: 30px;">Total Solved: <span id="totalSolvedCount" class="text-purple" style="font-size: 1.8rem;">0</span></h4>
+                </div>
+            </div>
+        </div>
+
         <div id="subjectView" style="display: none;">
             <div class="back-nav">
                 <button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button>
@@ -583,7 +530,137 @@
         <i class="ph-bold ph-code"></i> Master DSA
     </button>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script>
+        // ==========================================
+        // 1. SUPABASE INITIALIZATION
+        // 🚨 REPLACE THESE STRINGS WITH YOUR ACTUAL KEYS! 🚨
+        // ==========================================
+        const supabaseUrl = 'YOUR_SUPABASE_PROJECT_URL_HERE'; // e.g. https://tcijpueblweradmiphpd.supabase.co
+        const supabaseKey = 'YOUR_SUPABASE_ANON_KEY_HERE';    // e.g. eyJhb...
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        let currentUser = null;
+
+        // ==========================================
+        // 2. AUTHENTICATION FUNCTIONS
+        // ==========================================
+        async function signInWithGithub() {
+            const { error } = await supabase.auth.signInWithOAuth({ provider: 'github' });
+            if (error) {
+                console.error("Error signing in:", error.message);
+                alert("Error logging in: " + error.message);
+            }
+        }
+
+        async function signOut() {
+            await supabase.auth.signOut();
+            window.location.reload(); 
+        }
+
+        async function checkSession() {
+            const { data: { session } } = await supabase.auth.getSession();
+            
+            if (session) {
+                currentUser = session.user;
+                const githubName = currentUser.user_metadata.user_name || currentUser.user_metadata.full_name || "Student";
+                const avatarUrl = currentUser.user_metadata.avatar_url || "default-avatar.png";
+
+                // Update Desktop Nav
+                document.getElementById('authContainer').innerHTML = `
+                    <button class="icon-btn"><i class="ph ph-sun"></i></button>
+                    <div style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px 10px; border-radius: 50px; transition: 0.2s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'" onclick="showProfile()">
+                        <img src="${avatarUrl}" alt="Profile" style="width: 35px; height: 35px; border-radius: 50%; border: 2px solid #4f46e5;">
+                        <span style="font-weight: 600; color: #0f172a;">${githubName}</span>
+                    </div>
+                    <button class="btn-outline" style="padding: 8px 15px; font-size: 0.85rem;" onclick="signOut()">Sign Out</button>
+                `;
+
+                // Update Mobile Menu Auth container
+                const mobileAuth = document.getElementById('mobileAuthContainer');
+                if(mobileAuth) {
+                    mobileAuth.innerHTML = `
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9;">
+                            <img src="${avatarUrl}" alt="Profile" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #4f46e5;" onclick="showProfile(); toggleMobileMenu();">
+                            <span style="font-weight: 600; font-size: 1.2rem; color: #0f172a;">${githubName}</span>
+                            <button class="btn-outline" style="width: 100%; justify-content: center;" onclick="signOut()">Sign Out</button>
+                            <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="showProfile(); toggleMobileMenu();">View Profile</button>
+                        </div>
+                    `;
+                }
+
+                // Sync User to Database & Setup Profile
+                syncUserToDatabase(currentUser, githubName);
+                document.getElementById('profileAvatar').src = avatarUrl;
+                document.getElementById('profileName').innerText = githubName;
+            }
+        }
+
+        // ==========================================
+        // 3. DATABASE & PROFILE LOGIC
+        // ==========================================
+        async function syncUserToDatabase(user, name) {
+            // Try to fetch existing profile
+            const { data, error } = await supabase.from('user_progress').select('*').eq('id', user.id).single();
+
+            if (error && error.code === 'PGRST116') {
+                // User doesn't exist yet, insert them!
+                console.log("New user! Creating profile in database...");
+                await supabase.from('user_progress').insert([
+                    { id: user.id, username: name, total_solved: 0, solved_array: {} } 
+                ]);
+                document.getElementById('totalSolvedCount').innerText = 0;
+                calculateRank(0);
+                renderHeatmap({});
+            } else if (data) {
+                // User exists! Load their data
+                console.log("User found in DB. Loading stats...");
+                document.getElementById('totalSolvedCount').innerText = data.total_solved;
+                calculateRank(data.total_solved);
+                renderHeatmap(data.solved_array);
+            }
+        }
+
+        function calculateRank(solvedCount) {
+            let rank = "Bronze";
+            if (solvedCount >= 50) rank = "Silver";
+            if (solvedCount >= 150) rank = "Gold";
+            if (solvedCount >= 300) rank = "Diamond";
+            document.getElementById('profileRank').innerText = rank;
+        }
+
+        function renderHeatmap(activityData) {
+            document.getElementById('cal-heatmap').innerHTML = ""; // Clear existing
+            
+            // Safe fallback if activityData is null or empty array instead of object
+            let parsedData = {};
+            if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) {
+                parsedData = activityData;
+            }
+
+            var cal = new CalHeatMap();
+            cal.init({
+                itemSelector: "#cal-heatmap",
+                domain: "month",
+                subDomain: "day",
+                data: parsedData, // JSON formatted as { "timestamp_seconds": count }
+                start: new Date(new Date().setMonth(new Date().getMonth() - 5)), // Show last 6 months
+                cellSize: 15,
+                range: 6,
+                displayLegend: false,
+                tooltip: true,
+                legendColors: {
+                    min: "#eff6ff",
+                    max: "#4f46e5",
+                    empty: "#f1f5f9"
+                }
+            });
+        }
+
+        // ==========================================
+        // 4. UI NAVIGATION LOGIC
+        // ==========================================
         function toggleMobileMenu() {
             document.getElementById('mobileMenu').classList.toggle('active');
         }
@@ -606,6 +683,7 @@
             document.getElementById("dsaMasteryView").style.display = "none";
             document.getElementById("semester1View").style.display = "none";
             document.getElementById("semester2View").style.display = "none";
+            document.getElementById("profileView").style.display = "none";
             document.getElementById("pdfViewer").style.display = "none";
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
@@ -613,6 +691,8 @@
         function showHome() { hideAllViews(); document.getElementById("homeView").style.display = "block"; }
         function openRoadmap() { hideAllViews(); document.getElementById("roadmapView").style.display = "block"; }
         function showDSAMastery() { hideAllViews(); document.getElementById("dsaMasteryView").style.display = "block"; }
+        function showProfile() { hideAllViews(); document.getElementById("profileView").style.display = "block"; }
+        
         function showSemester1(type) { hideAllViews(); document.getElementById("semester1View").style.display = "block"; document.getElementById("sem1TitleType").innerText = type; }
         function showSemester2(type) { hideAllViews(); document.getElementById("semester2View").style.display = "block"; document.getElementById("sem2TitleType").innerText = type; }
         function showSubjectNotes(subjectName) { hideAllViews(); document.getElementById("subjectView").style.display = "block"; document.getElementById("dynamicSubjectTitle").innerText = subjectName; }
@@ -645,6 +725,9 @@
                 caret.style.transform = "rotate(180deg)";
             }
         }
+
+        // Run Session Check on Load
+        checkSession();
     </script>
 </body>
 </html>
