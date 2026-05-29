@@ -112,14 +112,17 @@ section { margin-bottom: 100px; }
 .yt-card { flex: 0 0 320px; background: #fff; border: 1px solid #e2e8f0; border-radius: 24px; padding: 30px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
 .yt-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
 .yt-avatar { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 600; color: #0f172a; }
+.bg-green { background: #dcfce7; }
+.bg-mint { background: #d1fae5; }
+.bg-olive { background: #eab308; color: #fff; }
 .yt-title-area h3 { font-size: 1.3rem; margin-bottom: 4px; }
 .subs-badge { display: inline-block; background: #f1f5f9; font-size: 0.75rem; font-weight: 600; color: #475569; padding: 4px 10px; border-radius: 50px; }
 .yt-desc { font-size: 0.95rem; margin-bottom: 25px; flex-grow: 1; }
 .yt-btn { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 12px; font-weight: 500; font-size: 0.95rem; color: #334155; }
 .yt-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
 
-/* DSA ACCORDION */
-.accordion-container { max-width: 800px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 15px; }
+/* DSA ACCORDION & PROBLEM LISTS */
+.accordion-container { max-width: 900px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 15px; }
 .accordion-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); overflow: hidden; }
 .accordion-header { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; background: #fff; border: none; font-size: 1.3rem; font-family: 'Playfair Display', serif; font-weight: 600; color: #0f172a; cursor: pointer; transition: 0.2s; }
 .accordion-header:hover { background: #f8fafc; }
@@ -127,10 +130,18 @@ section { margin-bottom: 100px; }
 .acc-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 1.4rem; }
 .acc-caret { transition: transform 0.3s ease; color: #64748b; }
 .accordion-content { display: none; padding: 0 25px 25px 80px; text-align: left; }
-.accordion-content p { font-size: 0.95rem; margin-bottom: 15px; }
-.acc-links { display: flex; flex-direction: column; gap: 10px; }
-.acc-links a { display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 500; color: #4f46e5; }
-.acc-links a:hover { text-decoration: underline; }
+
+.problem-list { display: flex; flex-direction: column; gap: 10px; margin-top: 5px; }
+.problem-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; transition: 0.2s;}
+.problem-item:hover { border-color: #cbd5e1; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.03);}
+.prob-title { font-size: 0.95rem; font-weight: 500; color: #0f172a; }
+.prob-actions { display: flex; align-items: center; gap: 15px; }
+.prob-difficulty { font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 50px; }
+.diff-easy { background: #dcfce7; color: #166534; }
+.diff-medium { background: #fef08a; color: #854d0e; }
+.diff-hard { background: #fee2e2; color: #991b1b; }
+.solve-btn { font-size: 0.85rem; font-weight: 600; color: #4f46e5; display: flex; align-items: center; gap: 5px; text-decoration: none; padding: 8px 16px; border-radius: 8px; border: 1px solid transparent; transition: 0.2s;}
+.solve-btn:hover { background: #eff6ff; border-color: #bfdbfe; }
 
 /* VERTICAL CARDS (SEMESTER) */
 .vertical-subject-list { display: flex; flex-direction: column; gap: 15px; max-width: 800px; margin: 0 auto; width: 100%; }
@@ -223,9 +234,12 @@ section { margin-bottom: 100px; }
     .yt-avatar { width: 45px; height: 45px; font-size: 1rem; }
     .yt-btn { padding: 10px; font-size: 0.85rem; }
 
+    /* Problem List Mobile Adjustments */
     .accordion-header { padding: 15px; font-size: 1.1rem; }
-    .accordion-content { padding: 0 15px 20px 65px; }
+    .accordion-content { padding: 0 15px 20px 15px; } /* Removed excessive left padding for mobile */
     .acc-icon { width: 35px; height: 35px; font-size: 1.2rem; }
+    .problem-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .prob-actions { width: 100%; justify-content: space-between; }
 
     .vertical-subject-card { padding: 15px; }
     .vertical-subject-card h3 { font-size: 1.1rem; }
