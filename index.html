@@ -130,12 +130,12 @@
                 <h2 class="section-heading">Core Subjects</h2>
                 <p class="section-subheading">Master the fundamentals required for top product companies.</p>
                 <div class="subjects-grid">
-                    <div class="subject-card pastel-blue" onclick="showSubjectNotes('Data Structures')"><div class="subject-icon"><i class="ph ph-code"></i></div><div class="subject-info"><h3>Data Structures</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-mint" onclick="showSubjectNotes('Database Systems')"><div class="subject-icon"><i class="ph ph-database"></i></div><div class="subject-info"><h3>Database Systems</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-purple" onclick="showSubjectNotes('Operating Systems')"><div class="subject-icon"><i class="ph ph-cpu"></i></div><div class="subject-info"><h3>Operating Systems</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-peach" onclick="showSubjectNotes('Computer Networks')"><div class="subject-icon"><i class="ph ph-share-network"></i></div><div class="subject-info"><h3>Computer Networks</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-blue" onclick="showSubjectNotes('Object-Oriented Programming')"><div class="subject-icon"><i class="ph ph-cube"></i></div><div class="subject-info"><h3>Object-Oriented Prog.</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-mint" onclick="showSubjectNotes('Aptitude & Reasoning')"><div class="subject-icon"><i class="ph ph-brain"></i></div><div class="subject-info"><h3>Aptitude & Reasoning</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-blue" onclick="showSubjectFiles(null, 'Notes', 'Data Structures')"><div class="subject-icon"><i class="ph ph-code"></i></div><div class="subject-info"><h3>Data Structures</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-mint" onclick="showSubjectFiles(null, 'Notes', 'Database Systems')"><div class="subject-icon"><i class="ph ph-database"></i></div><div class="subject-info"><h3>Database Systems</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-purple" onclick="showSubjectFiles(null, 'Notes', 'Operating Systems')"><div class="subject-icon"><i class="ph ph-cpu"></i></div><div class="subject-info"><h3>Operating Systems</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-peach" onclick="showSubjectFiles(null, 'Notes', 'Computer Networks')"><div class="subject-icon"><i class="ph ph-share-network"></i></div><div class="subject-info"><h3>Computer Networks</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-blue" onclick="showSubjectFiles(null, 'Notes', 'Object-Oriented Programming')"><div class="subject-icon"><i class="ph ph-cube"></i></div><div class="subject-info"><h3>Object-Oriented Prog.</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-mint" onclick="showSubjectFiles(null, 'Notes', 'Aptitude & Reasoning')"><div class="subject-icon"><i class="ph ph-brain"></i></div><div class="subject-info"><h3>Aptitude & Reasoning</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
                 </div>
             </section>
 
@@ -179,28 +179,23 @@
         <div id="semester1View" style="display: none;">
             <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
             <h1 class="hero-title">Semester 1 <span class="text-gradient" id="sem1TitleType">Notes</span></h1>
-            <p class="hero-subtitle">Select a subject below to view its corresponding materials.</p>
+            <p class="hero-subtitle">Select a subject folder below.</p>
             <div class="vertical-subject-list" style="margin-top: 40px;"></div>
         </div>
 
         <div id="semester2View" style="display: none;">
             <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
             <h1 class="hero-title">Semester 2 <span class="text-gradient" id="sem2TitleType">Notes</span></h1>
-            <p class="hero-subtitle">Select a subject below to view its corresponding materials.</p>
+            <p class="hero-subtitle">Select a subject folder below.</p>
             <div class="vertical-subject-list" style="margin-top: 40px;"></div>
         </div>
 
         <div id="subjectView" style="display: none;">
-            <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
+            <div class="back-nav"><button id="subjectBackBtn" class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back</button></div>
             <h1 class="hero-title" id="dynamicSubjectTitle">Subject Notes</h1>
             <p class="hero-subtitle">Select a resource below to open the PDF viewer.</p>
             <div class="features-grid" style="margin-top: 40px;">
-                <div class="feature-card outline-card clickable" onclick="openPDF('sample.pdf')">
-                    <div class="feature-icon"><i class="ph ph-file-pdf"></i></div>
-                    <h3>Unit 1 Notes</h3>
-                    <p>Comprehensive handwritten notes covering all fundamentals.</p>
-                </div>
-            </div>
+               </div>
         </div>
 
         <div id="roadmapView" style="display: none;">
@@ -222,285 +217,18 @@
             <p class="hero-subtitle">The Definitive 150. Organized strictly by Paradigm and Data Structure, covering every major algorithmic pattern.</p>
 
             <div class="accordion-container">
-                
                 <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="acc-title"><span class="acc-icon pastel-blue"><i class="ph ph-squares-four"></i></span> Arrays & Strings</div><i class="ph ph-caret-down acc-caret"></i>
-                    </button>
+                    <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-blue"><i class="ph ph-squares-four"></i></span> Arrays & Strings</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
-                        
                         <h4 style="margin: 20px 0 10px; color: #4f46e5; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Hash Maps & Counting</h4>
                         <div class="problem-list">
                             <div class="problem-item"><span class="prob-title">Contains Duplicate</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/contains-duplicate/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
                             <div class="problem-item"><span class="prob-title">Valid Anagram</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/valid-anagram/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
                             <div class="problem-item"><span class="prob-title">Two Sum</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/two-sum/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Group Anagrams</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/group-anagrams/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #4f46e5; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Two Pointers</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Valid Palindrome</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/valid-palindrome/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">3Sum</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/3sum/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Container With Most Water</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Trapping Rain Water</span><div class="prob-actions"><span class="prob-difficulty diff-hard">Hard</span><a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #4f46e5; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Sliding Window</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Best Time to Buy & Sell Stock</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Longest Substring Without Repeats</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Longest Repeating Character Replacement</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/longest-repeating-character-replacement/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Minimum Window Substring</span><div class="prob-actions"><span class="prob-difficulty diff-hard">Hard</span><a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #4f46e5; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Binary Search</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Binary Search</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/binary-search/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Search a 2D Matrix</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Find Minimum in Rotated Sorted Array</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Search in Rotated Sorted Array</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
                         </div>
                     </div>
                 </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="acc-title"><span class="acc-icon pastel-mint"><i class="ph ph-circles-three"></i></span> Linked Lists</div><i class="ph ph-caret-down acc-caret"></i>
-                    </button>
-                    <div class="accordion-content">
-                        
-                        <h4 style="margin: 20px 0 10px; color: #10b981; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: In-Place Reversal</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Reverse Linked List</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Reverse Nodes in K-Group</span><div class="prob-actions"><span class="prob-difficulty diff-hard">Hard</span><a href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #10b981; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Fast & Slow Pointers</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Linked List Cycle</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Middle of the Linked List</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Find the Duplicate Number</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/find-the-duplicate-number/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Reorder List</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/reorder-list/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #10b981; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Dummy Head / Merging</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Merge Two Sorted Lists</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Remove Nth Node From End</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Add Two Numbers</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/add-two-numbers/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-                    </div>
                 </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="acc-title"><span class="acc-icon pastel-purple"><i class="ph ph-stack"></i></span> Stacks & Queues</div><i class="ph ph-caret-down acc-caret"></i>
-                    </button>
-                    <div class="accordion-content">
-                        
-                        <h4 style="margin: 20px 0 10px; color: #a855f7; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: LIFO/FIFO & String Parsing</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Valid Parentheses</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/valid-parentheses/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Min Stack</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/min-stack/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Evaluate Reverse Polish Notation</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/evaluate-reverse-polish-notation/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Generate Parentheses</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/generate-parentheses/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #a855f7; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Monotonic Stack & Deque</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Daily Temperatures</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/daily-temperatures/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Car Fleet</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/car-fleet/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Largest Rectangle in Histogram</span><div class="prob-actions"><span class="prob-difficulty diff-hard">Hard</span><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="acc-title"><span class="acc-icon pastel-blue"><i class="ph ph-tree-structure"></i></span> Trees & Tries</div><i class="ph ph-caret-down acc-caret"></i>
-                    </button>
-                    <div class="accordion-content">
-                        
-                        <h4 style="margin: 20px 0 10px; color: #3b82f6; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Depth First Search (DFS)</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Invert Binary Tree</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/invert-binary-tree/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Maximum Depth of Binary Tree</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Diameter of Binary Tree</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Same Tree</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/same-tree/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Lowest Common Ancestor of a BT</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Binary Tree Maximum Path Sum</span><div class="prob-actions"><span class="prob-difficulty diff-hard">Hard</span><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #3b82f6; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Breadth First Search (BFS)</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Binary Tree Level Order Traversal</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Binary Tree Right Side View</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #3b82f6; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Binary Search Trees (BST)</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Lowest Common Ancestor of a BST</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Validate Binary Search Tree</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Kth Smallest Element in a BST</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #3b82f6; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Tries (Prefix Trees)</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Implement Trie (Prefix Tree)</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/implement-trie-prefix-tree/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Design Add and Search Words Data Structure</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/design-add-and-search-words-data-structure/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="acc-title"><span class="acc-icon pastel-peach"><i class="ph ph-pyramid"></i></span> Heaps (Priority Queues)</div><i class="ph ph-caret-down acc-caret"></i>
-                    </button>
-                    <div class="accordion-content">
-                        
-                        <h4 style="margin: 20px 0 10px; color: #f97316; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Top K Elements</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Kth Largest Element in a Stream</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/kth-largest-element-in-a-stream/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Last Stone Weight</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/last-stone-weight/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">K Closest Points to Origin</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/k-closest-points-to-origin/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Top K Frequent Elements</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/top-k-frequent-elements/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #f97316; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Two Heaps</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Find Median from Data Stream</span><div class="prob-actions"><span class="prob-difficulty diff-hard">Hard</span><a href="https://leetcode.com/problems/find-median-from-data-stream/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="acc-title"><span class="acc-icon pastel-purple"><i class="ph ph-graph"></i></span> Graphs</div><i class="ph ph-caret-down acc-caret"></i>
-                    </button>
-                    <div class="accordion-content">
-                        
-                        <h4 style="margin: 20px 0 10px; color: #a855f7; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Matrix Traversal (Grid)</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Number of Islands</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/number-of-islands/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Max Area of Island</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/max-area-of-island/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Rotting Oranges</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/rotting-oranges/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Surrounded Regions</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/surrounded-regions/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #a855f7; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Adjacency List & Graph DFS/BFS</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Clone Graph</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/clone-graph/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Word Ladder</span><div class="prob-actions"><span class="prob-difficulty diff-hard">Hard</span><a href="https://leetcode.com/problems/word-ladder/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #a855f7; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Topological Sort</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Course Schedule</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/course-schedule/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Course Schedule II</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/course-schedule-ii/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #a855f7; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Union Find & Shortest Path</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Redundant Connection</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/redundant-connection/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Network Delay Time (Dijkstra)</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/network-delay-time/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Cheapest Flights Within K Stops</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="acc-title"><span class="acc-icon pastel-blue"><i class="ph ph-git-branch"></i></span> Backtracking</div><i class="ph ph-caret-down acc-caret"></i>
-                    </button>
-                    <div class="accordion-content">
-                        
-                        <h4 style="margin: 20px 0 10px; color: #3b82f6; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Subsets, Combinations, Permutations</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Subsets</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/subsets/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Combination Sum</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/combination-sum/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Permutations</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/permutations/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Subsets II</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/subsets-ii/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Palindrome Partitioning</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #3b82f6; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Grid / Board Backtracking</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Word Search</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/word-search/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">N-Queens</span><div class="prob-actions"><span class="prob-difficulty diff-hard">Hard</span><a href="https://leetcode.com/problems/n-queens/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="acc-title"><span class="acc-icon pastel-mint"><i class="ph ph-table"></i></span> Dynamic Programming</div><i class="ph ph-caret-down acc-caret"></i>
-                    </button>
-                    <div class="accordion-content">
-                        
-                        <h4 style="margin: 20px 0 10px; color: #10b981; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: 1D DP</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Climbing Stairs</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Min Cost Climbing Stairs</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/min-cost-climbing-stairs/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">House Robber</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/house-robber/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">House Robber II</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/house-robber-ii/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Decode Ways</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/decode-ways/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Coin Change</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/coin-change/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Maximum Product Subarray</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Word Break</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/word-break/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #10b981; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: 2D DP & Strings</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Unique Paths</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/unique-paths/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Longest Common Subsequence</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/longest-common-subsequence/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Longest Palindromic Substring</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Palindromic Substrings</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/palindromic-substrings/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="acc-title"><span class="acc-icon pastel-purple"><i class="ph ph-fast-forward"></i></span> Greedy & Intervals</div><i class="ph ph-caret-down acc-caret"></i>
-                    </button>
-                    <div class="accordion-content">
-                        
-                        <h4 style="margin: 20px 0 10px; color: #a855f7; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Interval Operations</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Insert Interval</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/insert-interval/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Merge Intervals</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/merge-intervals/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Non-overlapping Intervals</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/non-overlapping-intervals/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-
-                        <h4 style="margin: 20px 0 10px; color: #a855f7; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Greedy Choices</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Jump Game</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/jump-game/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Jump Game II</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/jump-game-ii/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Gas Station</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/gas-station/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Hand of Straights</span><div class="prob-actions"><span class="prob-difficulty diff-medium">Medium</span><a href="https://leetcode.com/problems/hand-of-straights/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="acc-title"><span class="acc-icon pastel-peach"><i class="ph ph-calculator"></i></span> Bit Manipulation & Math</div><i class="ph ph-caret-down acc-caret"></i>
-                    </button>
-                    <div class="accordion-content">
-                        
-                        <h4 style="margin: 20px 0 10px; color: #f97316; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Pattern: Bitwise Operations & Math</h4>
-                        <div class="problem-list">
-                            <div class="problem-item"><span class="prob-title">Single Number</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/single-number/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Number of 1 Bits</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/number-of-1-bits/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Counting Bits</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/counting-bits/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Missing Number</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/missing-number/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Reverse Bits</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/reverse-bits/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                            <div class="problem-item"><span class="prob-title">Happy Number</span><div class="prob-actions"><span class="prob-difficulty diff-easy">Easy</span><a href="https://leetcode.com/problems/happy-number/" target="_blank" class="solve-btn">Solve <i class="ph ph-arrow-square-out"></i></a></div></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
         <section id="pdfViewer" style="display: none; margin-top: 40px;">
@@ -564,7 +292,6 @@
         function openRoadmap() { hideAllViews(); document.getElementById("roadmapView").style.display = "block"; }
         function showDSAMastery() { hideAllViews(); document.getElementById("dsaMasteryView").style.display = "block"; }
         function showProfile() { hideAllViews(); document.getElementById("profileView").style.display = "block"; }
-        function showSubjectNotes(subjectName) { hideAllViews(); document.getElementById("subjectView").style.display = "block"; document.getElementById("dynamicSubjectTitle").innerText = subjectName; }
         
         function openPDF(file) {
             const viewer = document.getElementById("pdfViewer"); 
@@ -588,6 +315,7 @@
         let dbClient = null;
         if (window.supabase) { dbClient = window.supabase.createClient(nvSupabaseUrl, nvSupabaseKey); }
 
+        // --- 1. Fetch Subject Folders for a Semester ---
         async function showCategory(semNumber, categoryType) {
             hideAllViews();
             const viewId = (semNumber === 1) ? "semester1View" : "semester2View";
@@ -598,28 +326,33 @@
             if(titleEl) titleEl.innerText = categoryType;
 
             const listContainer = document.querySelector(`#${viewId} .vertical-subject-list`);
-            listContainer.innerHTML = "<p style='padding: 20px; color: #64748b; text-align: center;'>Loading materials from database...</p>";
+            listContainer.innerHTML = "<p style='padding: 20px; color: #64748b; text-align: center;'>Loading subject folders...</p>";
 
             if (!dbClient) return listContainer.innerHTML = "<p style='color: #ef4444; text-align: center;'>Database disconnected.</p>";
 
             try {
+                // Fetch all entries for this semester to find unique subjects
                 const { data, error } = await dbClient
                     .from('course_material')
-                    .select('*')
+                    .select('subject')
                     .eq('semester', semNumber)
                     .eq('category', categoryType);
 
                 if (error) throw error;
                 listContainer.innerHTML = "";
                 
-                if (!data || data.length === 0) {
+                // Filter down to a list of unique subject names
+                const subjects = [...new Set(data.map(item => item.subject))].filter(Boolean);
+                
+                if (subjects.length === 0) {
                     listContainer.innerHTML = `<p style='padding: 20px; color: #64748b; text-align: center;'>No ${categoryType} uploaded for Semester ${semNumber} yet.</p>`;
                 } else {
-                    data.forEach(item => {
+                    subjects.forEach(subject => {
                         const card = document.createElement('div');
                         card.className = 'vertical-subject-card';
-                        card.onclick = () => openPDF(item.file_url || "#");
-                        card.innerHTML = `<h3><i class="ph ph-file-pdf"></i> ${item.title}</h3><i class="ph-bold ph-arrow-right"></i>`;
+                        // When clicked, open the contents of THIS folder
+                        card.onclick = () => showSubjectFiles(semNumber, categoryType, subject);
+                        card.innerHTML = `<h3><i class="ph ph-folder" style="color: #4f46e5;"></i> ${subject}</h3><i class="ph-bold ph-arrow-right"></i>`;
                         listContainer.appendChild(card);
                     });
                 }
@@ -628,6 +361,57 @@
             }
         }
 
+        // --- 2. Fetch Files INSIDE a Subject Folder ---
+        async function showSubjectFiles(semNumber, categoryType, subjectName) {
+            hideAllViews();
+            const viewEl = document.getElementById("subjectView");
+            if(viewEl) viewEl.style.display = "block";
+            
+            document.getElementById("dynamicSubjectTitle").innerText = `${subjectName} ${categoryType}`;
+            
+            // Set the back button to either go to the Semester list, or Home if semester is null
+            const backBtn = document.getElementById("subjectBackBtn");
+            if (semNumber) {
+                backBtn.onclick = () => showCategory(semNumber, categoryType);
+                backBtn.innerHTML = `<i class="ph ph-arrow-left"></i> Back to Semester ${semNumber}`;
+            } else {
+                backBtn.onclick = () => showHome();
+                backBtn.innerHTML = `<i class="ph ph-arrow-left"></i> Back to Dashboard`;
+            }
+
+            const listContainer = document.querySelector("#subjectView .features-grid");
+            listContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>Loading files...</p>";
+
+            try {
+                // Fetch the actual PDFs for this specific subject
+                let query = dbClient.from('course_material').select('*').eq('subject', subjectName).eq('category', categoryType);
+                if (semNumber) query = query.eq('semester', semNumber);
+
+                const { data, error } = await query;
+
+                if (error) throw error;
+                listContainer.innerHTML = "";
+
+                if (!data || data.length === 0) {
+                    listContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>No files found in this folder.</p>";
+                } else {
+                    data.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'feature-card outline-card clickable';
+                        card.onclick = () => openPDF(item.file_url || "#");
+                        card.innerHTML = `
+                            <div class="feature-icon"><i class="ph ph-file-pdf"></i></div>
+                            <h3>${item.title}</h3>
+                        `;
+                        listContainer.appendChild(card);
+                    });
+                }
+            } catch (err) {
+                listContainer.innerHTML = `<p style='grid-column: 1/-1; color: #ef4444; text-align: center;'>Error: ${err.message}</p>`;
+            }
+        }
+
+        // --- Auth & Profile ---
         async function signInWithGithub() { if (dbClient) await dbClient.auth.signInWithOAuth({ provider: 'github' }); }
         async function signInWithGoogle() { if (dbClient) await dbClient.auth.signInWithOAuth({ provider: 'google' }); }
         async function signOut() { if (dbClient) { await dbClient.auth.signOut(); window.location.reload(); } }
@@ -703,7 +487,6 @@
                 
                 rankEl.innerText = rank;
                 
-                // Dynamic colors based on rank tier
                 if (rank === "SS" || rank === "S") {
                     rankEl.parentElement.style.background = "linear-gradient(135deg, #ef4444, #b91c1c)";
                 } else if (rank === "A" || rank === "B") {
