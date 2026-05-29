@@ -5,22 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NoteVerse</title>
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Icons & Heatmap Libraries -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/cal-heatmap/3.3.6/cal-heatmap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/cal-heatmap/3.3.6/cal-heatmap.css" />
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Ambient Background -->
     <div class="bg-glow glow-top-left"></div>
     <div class="bg-glow glow-top-right"></div>
 
+    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-logo" onclick="showHome()">
             <div class="logo-mark"><i class="ph-fill ph-sparkle"></i></div>
@@ -62,6 +67,7 @@
         <button class="mobile-menu-btn mobile-only" onclick="toggleMobileMenu()"><i class="ph ph-list"></i></button>
     </nav>
 
+    <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="close-menu" onclick="toggleMobileMenu()"><i class="ph ph-x"></i></button>
         
@@ -91,8 +97,10 @@
         </div>
     </div>
 
+    <!-- MAIN APP WRAPPER -->
     <main class="app-container" id="mainContent">
 
+        <!-- ================= HOME VIEW ================= -->
         <div id="homeView">
             <header class="hero-section">
                 <div class="hero-badge"><i class="ph ph-sparkle"></i> The standard for engineering excellence</div>
@@ -130,12 +138,12 @@
                 <h2 class="section-heading">Core Subjects</h2>
                 <p class="section-subheading">Master the fundamentals required for top product companies.</p>
                 <div class="subjects-grid">
-                    <div class="subject-card pastel-blue" onclick="showSubjectFiles(null, 'Notes', 'Data Structures')"><div class="subject-icon"><i class="ph ph-code"></i></div><div class="subject-info"><h3>Data Structures</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-mint" onclick="showSubjectFiles(null, 'Notes', 'Database Systems')"><div class="subject-icon"><i class="ph ph-database"></i></div><div class="subject-info"><h3>Database Systems</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-purple" onclick="showSubjectFiles(null, 'Notes', 'Operating Systems')"><div class="subject-icon"><i class="ph ph-cpu"></i></div><div class="subject-info"><h3>Operating Systems</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-peach" onclick="showSubjectFiles(null, 'Notes', 'Computer Networks')"><div class="subject-icon"><i class="ph ph-share-network"></i></div><div class="subject-info"><h3>Computer Networks</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-blue" onclick="showSubjectFiles(null, 'Notes', 'Object-Oriented Programming')"><div class="subject-icon"><i class="ph ph-cube"></i></div><div class="subject-info"><h3>Object-Oriented Prog.</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-mint" onclick="showSubjectFiles(null, 'Notes', 'Aptitude & Reasoning')"><div class="subject-icon"><i class="ph ph-brain"></i></div><div class="subject-info"><h3>Aptitude & Reasoning</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-blue"><div class="subject-icon"><i class="ph ph-code"></i></div><div class="subject-info"><h3>Data Structures</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-mint"><div class="subject-icon"><i class="ph ph-database"></i></div><div class="subject-info"><h3>Database Systems</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-purple"><div class="subject-icon"><i class="ph ph-cpu"></i></div><div class="subject-info"><h3>Operating Systems</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-peach"><div class="subject-icon"><i class="ph ph-share-network"></i></div><div class="subject-info"><h3>Computer Networks</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-blue"><div class="subject-icon"><i class="ph ph-cube"></i></div><div class="subject-info"><h3>Object-Oriented Prog.</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                    <div class="subject-card pastel-mint"><div class="subject-icon"><i class="ph ph-brain"></i></div><div class="subject-info"><h3>Aptitude & Reasoning</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
                 </div>
             </section>
 
@@ -159,6 +167,7 @@
             </section>
         </div>
 
+        <!-- ================= PROFILE / HEATMAP VIEW ================= -->
         <div id="profileView" style="display: none;">
             <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
             <div class="profile-header" style="text-align: center; margin-bottom: 40px;">
@@ -176,28 +185,22 @@
             </div>
         </div>
 
+        <!-- ================= DYNAMIC SEMESTER VIEWS (GROUPED HORIZONTAL SCROLL) ================= -->
         <div id="semester1View" style="display: none;">
             <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
             <h1 class="hero-title">Semester 1 <span class="text-gradient" id="sem1TitleType">Notes</span></h1>
-            <p class="hero-subtitle">Select a subject folder below.</p>
-            <div class="vertical-subject-list" style="margin-top: 40px;"></div>
+            <p class="hero-subtitle" style="margin-bottom: 50px;">Scroll horizontally to explore resources by subject.</p>
+            <div class="vertical-subject-list"></div>
         </div>
 
         <div id="semester2View" style="display: none;">
             <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
             <h1 class="hero-title">Semester 2 <span class="text-gradient" id="sem2TitleType">Notes</span></h1>
-            <p class="hero-subtitle">Select a subject folder below.</p>
-            <div class="vertical-subject-list" style="margin-top: 40px;"></div>
+            <p class="hero-subtitle" style="margin-bottom: 50px;">Scroll horizontally to explore resources by subject.</p>
+            <div class="vertical-subject-list"></div>
         </div>
 
-        <div id="subjectView" style="display: none;">
-            <div class="back-nav"><button id="subjectBackBtn" class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back</button></div>
-            <h1 class="hero-title" id="dynamicSubjectTitle">Subject Notes</h1>
-            <p class="hero-subtitle">Select a resource below to open the PDF viewer.</p>
-            <div class="features-grid" style="margin-top: 40px;">
-               </div>
-        </div>
-
+        <!-- ================= ROADMAP VIEW ================= -->
         <div id="roadmapView" style="display: none;">
             <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
             <h1 class="hero-title">Placement <span class="text-gradient">Roadmap</span></h1>
@@ -211,12 +214,14 @@
             </div>
         </div>
 
+        <!-- ================= FULL DSA MASTERY VIEW ================= -->
         <div id="dsaMasteryView" style="display: none;">
             <div class="back-nav"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
             <h1 class="hero-title">Master <span class="text-gradient">DSA</span></h1>
             <p class="hero-subtitle">The Definitive 150. Organized strictly by Paradigm and Data Structure, covering every major algorithmic pattern.</p>
 
             <div class="accordion-container">
+                <!-- 1. ARRAYS & STRINGS -->
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-blue"><i class="ph ph-squares-four"></i></span> Arrays & Strings</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
@@ -254,6 +259,7 @@
                     </div>
                 </div>
 
+                <!-- 2. LINKED LISTS -->
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-mint"><i class="ph ph-circles-three"></i></span> Linked Lists</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
@@ -280,6 +286,7 @@
                     </div>
                 </div>
 
+                <!-- 3. STACKS & QUEUES -->
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-purple"><i class="ph ph-stack"></i></span> Stacks & Queues</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
@@ -300,6 +307,7 @@
                     </div>
                 </div>
 
+                <!-- 4. TREES & TRIES -->
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-blue"><i class="ph ph-tree-structure"></i></span> Trees & Tries</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
@@ -334,6 +342,7 @@
                     </div>
                 </div>
 
+                <!-- 5. HEAPS (PRIORITY QUEUES) -->
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-peach"><i class="ph ph-pyramid"></i></span> Heaps (Priority Queues)</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
@@ -352,6 +361,7 @@
                     </div>
                 </div>
 
+                <!-- 6. GRAPHS -->
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-purple"><i class="ph ph-graph"></i></span> Graphs</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
@@ -384,6 +394,7 @@
                     </div>
                 </div>
 
+                <!-- 7. BACKTRACKING -->
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-blue"><i class="ph ph-git-branch"></i></span> Backtracking</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
@@ -404,6 +415,7 @@
                     </div>
                 </div>
 
+                <!-- 8. DYNAMIC PROGRAMMING -->
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-mint"><i class="ph ph-table"></i></span> Dynamic Programming</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
@@ -429,6 +441,7 @@
                     </div>
                 </div>
 
+                <!-- 9. GREEDY & INTERVALS -->
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-purple"><i class="ph ph-fast-forward"></i></span> Greedy & Intervals</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
@@ -449,6 +462,7 @@
                     </div>
                 </div>
 
+                <!-- 10. BIT MANIPULATION & MATH -->
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)"><div class="acc-title"><span class="acc-icon pastel-peach"><i class="ph ph-calculator"></i></span> Bit Manipulation & Math</div><i class="ph ph-caret-down acc-caret"></i></button>
                     <div class="accordion-content">
@@ -467,6 +481,7 @@
             </div>
         </div>
 
+        <!-- ================= PDF VIEWER ================= -->
         <section id="pdfViewer" style="display: none; margin-top: 40px;">
             <div class="pdf-container">
                 <iframe id="pdfFrame"></iframe>
@@ -475,6 +490,7 @@
 
     </main>
 
+    <!-- ================= FOOTER ================= -->
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-brand">
@@ -500,10 +516,12 @@
         </div>
     </footer>
 
+    <!-- MASTER DSA FLOATING BUTTON -->
     <button class="fab-button" onclick="showDSAMastery()">
         <i class="ph-bold ph-code"></i> Master DSA
     </button>
 
+    <!-- ================= SUPABASE & APP LOGIC ================= -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         // --- UI Functions ---
@@ -551,7 +569,7 @@
         let dbClient = null;
         if (window.supabase) { dbClient = window.supabase.createClient(nvSupabaseUrl, nvSupabaseKey); }
 
-        // --- 1. Fetch Subject Folders for a Semester ---
+        // --- Fetch & Group Files by Subject ---
         async function showCategory(semNumber, categoryType) {
             hideAllViews();
             const viewId = (semNumber === 1) ? "semester1View" : "semester2View";
@@ -562,88 +580,83 @@
             if(titleEl) titleEl.innerText = categoryType;
 
             const listContainer = document.querySelector(`#${viewId} .vertical-subject-list`);
-            listContainer.innerHTML = "<p style='padding: 20px; color: #64748b; text-align: center;'>Loading subject folders...</p>";
+            listContainer.innerHTML = "<p style='padding: 20px; color: #64748b; text-align: center;'>Loading materials from database...</p>";
 
             if (!dbClient) return listContainer.innerHTML = "<p style='color: #ef4444; text-align: center;'>Database disconnected.</p>";
 
             try {
-                // Fetch all entries for this semester to find unique subjects
+                // Fetch ALL notes for this semester and category
                 const { data, error } = await dbClient
                     .from('course_material')
-                    .select('Subject') // Capital S to match your database exactly!
+                    .select('*')
                     .eq('semester', semNumber)
                     .eq('category', categoryType);
 
                 if (error) throw error;
                 listContainer.innerHTML = "";
                 
-                // Filter down to a list of unique subject names
-                const subjects = [...new Set(data.map(item => item.Subject))].filter(Boolean); // Capital S
-                
-                if (subjects.length === 0) {
-                    listContainer.innerHTML = `<p style='padding: 20px; color: #64748b; text-align: center;'>No ${categoryType} uploaded for Semester ${semNumber} yet.</p>`;
-                } else {
-                    subjects.forEach(subject => {
-                        const card = document.createElement('div');
-                        card.className = 'vertical-subject-card';
-                        // When clicked, open the contents of THIS folder
-                        card.onclick = () => showSubjectFiles(semNumber, categoryType, subject);
-                        card.innerHTML = `<h3><i class="ph ph-folder" style="color: #4f46e5;"></i> ${subject}</h3><i class="ph-bold ph-arrow-right"></i>`;
-                        listContainer.appendChild(card);
-                    });
-                }
-            } catch (err) {
-                listContainer.innerHTML = `<p style='color: #ef4444; text-align: center;'>Error: ${err.message}</p>`;
-            }
-        }
-
-        // --- 2. Fetch Files INSIDE a Subject Folder ---
-        async function showSubjectFiles(semNumber, categoryType, subjectName) {
-            hideAllViews();
-            const viewEl = document.getElementById("subjectView");
-            if(viewEl) viewEl.style.display = "block";
-            
-            document.getElementById("dynamicSubjectTitle").innerText = `${subjectName} ${categoryType}`;
-            
-            // Set the back button to either go to the Semester list, or Home if semester is null
-            const backBtn = document.getElementById("subjectBackBtn");
-            if (semNumber) {
-                backBtn.onclick = () => showCategory(semNumber, categoryType);
-                backBtn.innerHTML = `<i class="ph ph-arrow-left"></i> Back to Semester ${semNumber}`;
-            } else {
-                backBtn.onclick = () => showHome();
-                backBtn.innerHTML = `<i class="ph ph-arrow-left"></i> Back to Dashboard`;
-            }
-
-            const listContainer = document.querySelector("#subjectView .features-grid");
-            listContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>Loading files...</p>";
-
-            try {
-                // Fetch the actual PDFs for this specific subject
-                let query = dbClient.from('course_material').select('*').eq('Subject', subjectName).eq('category', categoryType); // Capital S
-                if (semNumber) query = query.eq('semester', semNumber);
-
-                const { data, error } = await query;
-
-                if (error) throw error;
-                listContainer.innerHTML = "";
-
                 if (!data || data.length === 0) {
-                    listContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>No files found in this folder.</p>";
-                } else {
-                    data.forEach(item => {
+                    listContainer.innerHTML = `<p style='padding: 20px; color: #64748b; text-align: center;'>No ${categoryType} uploaded for Semester ${semNumber} yet.</p>`;
+                    return;
+                }
+
+                // Group the data by 'Subject'
+                const groupedData = data.reduce((acc, item) => {
+                    const subj = item.Subject || 'Uncategorized';
+                    if (!acc[subj]) acc[subj] = [];
+                    acc[subj].push(item);
+                    return acc;
+                }, {});
+
+                // Render each subject row
+                for (const [subject, files] of Object.entries(groupedData)) {
+                    const subjectSection = document.createElement('div');
+                    subjectSection.style.marginBottom = "50px";
+                    
+                    // The Subject Title (Styled like your reference)
+                    const heading = document.createElement('h2');
+                    heading.innerHTML = `<span style="border-left: 4px solid #4f46e5; padding-left: 15px; text-transform: uppercase; letter-spacing: 1px;">${subject}</span>`;
+                    heading.style.fontFamily = "'Inter', sans-serif";
+                    heading.style.fontSize = "1.5rem";
+                    heading.style.fontWeight = "700";
+                    heading.style.color = "#0f172a";
+                    heading.style.marginBottom = "20px";
+                    
+                    // The Horizontally Scrolling Row
+                    const scrollRow = document.createElement('div');
+                    scrollRow.className = 'channel-scroll-container'; 
+                    scrollRow.style.paddingBottom = "15px";
+
+                    // The Individual PDF Cards
+                    files.forEach(file => {
                         const card = document.createElement('div');
                         card.className = 'feature-card outline-card clickable';
-                        card.onclick = () => openPDF(item.file_url || "#");
+                        card.style.flex = "0 0 280px"; // Fixed width so they scroll
+                        card.style.minHeight = "180px";
+                        card.style.display = "flex";
+                        card.style.flexDirection = "column";
+                        card.style.justifyContent = "center";
+                        card.style.alignItems = "center";
+                        card.style.textAlign = "center";
+                        card.onclick = () => openPDF(file.file_url || "#");
+                        
+                        // Beautiful purple gradient thumbnail for the PDF
                         card.innerHTML = `
-                            <div class="feature-icon"><i class="ph ph-file-pdf"></i></div>
-                            <h3>${item.title}</h3>
+                            <div style="width: 100%; height: 100px; background: linear-gradient(135deg, #a855f7, #6d28d9); border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="ph-bold ph-file-pdf" style="font-size: 2.5rem;"></i>
+                            </div>
+                            <h3 style="font-size: 1.1rem; font-family: 'Inter', sans-serif; margin: 0;">${file.title}</h3>
                         `;
-                        listContainer.appendChild(card);
+                        scrollRow.appendChild(card);
                     });
+
+                    subjectSection.appendChild(heading);
+                    subjectSection.appendChild(scrollRow);
+                    listContainer.appendChild(subjectSection);
                 }
+
             } catch (err) {
-                listContainer.innerHTML = `<p style='grid-column: 1/-1; color: #ef4444; text-align: center;'>Error: ${err.message}</p>`;
+                listContainer.innerHTML = `<p style='color: #ef4444; text-align: center;'>Error: ${err.message}</p>`;
             }
         }
 
