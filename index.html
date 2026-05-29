@@ -533,140 +533,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
-        // ==========================================
-        // 1. SUPABASE INITIALIZATION (KEYS PLUGGED IN!)
-        // ==========================================
-        const supabaseUrl = 'https://tcijpueblweradmiphpd.supabase.co'; 
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjaWpwdWVibHdlcmFkbWlwaHBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTk5MTIsImV4cCI6MjA5NTU5NTkxMn0._tXpjssqHAlsVWEYcrJdGP28HISZU1tnt2WrOTR3DXY';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-        let currentUser = null;
-
-        // ==========================================
-        // 2. AUTHENTICATION FUNCTIONS
-        // ==========================================
-        async function signInWithGithub() {
-            const { error } = await supabase.auth.signInWithOAuth({ provider: 'github' });
-            if (error) {
-                console.error("Error signing in:", error.message);
-                alert("Error logging in: " + error.message);
-            }
-        }
-
-        async function signOut() {
-            await supabase.auth.signOut();
-            window.location.reload(); 
-        }
-
-        async function checkSession() {
-            const { data: { session }, error } = await supabase.auth.getSession();
-            
-            if (error) {
-                console.error("Session error:", error.message);
-                return;
-            }
-            
-            if (session) {
-                currentUser = session.user;
-                const githubName = currentUser.user_metadata.user_name || currentUser.user_metadata.full_name || "Student";
-                const avatarUrl = currentUser.user_metadata.avatar_url || "default-avatar.png";
-
-                // Update Desktop Nav
-                document.getElementById('authContainer').innerHTML = `
-                    <button class="icon-btn"><i class="ph ph-sun"></i></button>
-                    <div style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px 10px; border-radius: 50px; transition: 0.2s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'" onclick="showProfile()">
-                        <img src="${avatarUrl}" alt="Profile" style="width: 35px; height: 35px; border-radius: 50%; border: 2px solid #4f46e5;">
-                        <span style="font-weight: 600; color: #0f172a;">${githubName}</span>
-                    </div>
-                    <button class="btn-outline" style="padding: 8px 15px; font-size: 0.85rem;" onclick="signOut()">Sign Out</button>
-                `;
-
-                // Update Mobile Menu Auth container
-                const mobileAuth = document.getElementById('mobileAuthContainer');
-                if(mobileAuth) {
-                    mobileAuth.innerHTML = `
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9;">
-                            <img src="${avatarUrl}" alt="Profile" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #4f46e5;" onclick="showProfile(); toggleMobileMenu();">
-                            <span style="font-weight: 600; font-size: 1.2rem; color: #0f172a;">${githubName}</span>
-                            <button class="btn-outline" style="width: 100%; justify-content: center;" onclick="signOut()">Sign Out</button>
-                            <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="showProfile(); toggleMobileMenu();">View Profile</button>
-                        </div>
-                    `;
-                }
-
-                // Sync User to Database & Setup Profile
-                syncUserToDatabase(currentUser, githubName);
-                document.getElementById('profileAvatar').src = avatarUrl;
-                document.getElementById('profileName').innerText = githubName;
-            }
-        }
-
-        // ==========================================
-        // 3. DATABASE & PROFILE LOGIC
-        // ==========================================
-        async function syncUserToDatabase(user, name) {
-            // Try to fetch existing profile
-            const { data, error } = await supabase.from('user_progress').select('*').eq('id', user.id).single();
-
-            if (error && error.code === 'PGRST116') {
-                // User doesn't exist yet, insert them!
-                console.log("New user! Creating profile in database...");
-                await supabase.from('user_progress').insert([
-                    { id: user.id, username: name, total_solved: 0, solved_array: {} } 
-                ]);
-                document.getElementById('totalSolvedCount').innerText = 0;
-                calculateRank(0);
-                renderHeatmap({});
-            } else if (data) {
-                // User exists! Load their data
-                console.log("User found in DB. Loading stats...");
-                document.getElementById('totalSolvedCount').innerText = data.total_solved;
-                calculateRank(data.total_solved);
-                renderHeatmap(data.solved_array);
-            } else if (error) {
-                 console.error("Database sync error:", error.message);
-            }
-        }
-
-        function calculateRank(solvedCount) {
-            let rank = "Bronze";
-            if (solvedCount >= 50) rank = "Silver";
-            if (solvedCount >= 150) rank = "Gold";
-            if (solvedCount >= 300) rank = "Diamond";
-            document.getElementById('profileRank').innerText = rank;
-        }
-
-        function renderHeatmap(activityData) {
-            document.getElementById('cal-heatmap').innerHTML = ""; // Clear existing
-            
-            // Safe fallback if activityData is null or empty array instead of object
-            let parsedData = {};
-            if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) {
-                parsedData = activityData;
-            }
-
-            var cal = new CalHeatMap();
-            cal.init({
-                itemSelector: "#cal-heatmap",
-                domain: "month",
-                subDomain: "day",
-                data: parsedData, // JSON formatted as { "timestamp_seconds": count }
-                start: new Date(new Date().setMonth(new Date().getMonth() - 5)), // Show last 6 months
-                cellSize: 15,
-                range: 6,
-                displayLegend: false,
-                tooltip: true,
-                legendColors: {
-                    min: "#eff6ff",
-                    max: "#4f46e5",
-                    empty: "#f1f5f9"
-                }
-            });
-        }
-
-        // ==========================================
-        // 4. UI NAVIGATION LOGIC
-        // ==========================================
         function toggleMobileMenu() {
             document.getElementById('mobileMenu').classList.toggle('active');
         }
@@ -714,7 +580,6 @@
             const content = btn.nextElementSibling;
             const caret = btn.querySelector('.acc-caret');
             
-            // Close all other accordions
             document.querySelectorAll('.accordion-content').forEach(item => {
                 if (item !== content) {
                     item.style.display = "none";
@@ -722,7 +587,6 @@
                 }
             });
 
-            // Toggle current
             if (content.style.display === "block") {
                 content.style.display = "none";
                 caret.style.transform = "rotate(0deg)";
@@ -731,7 +595,139 @@
                 caret.style.transform = "rotate(180deg)";
             }
         }
-
-        // Run Session Check on Load
-        checkSession();
     </script>
+
+    <script>
+        let supabase;
+        let currentUser = null;
+
+        // Try to initialize Supabase
+        try {
+            const supabaseUrl = 'https://tcijpueblweradmiphpd.supabase.co'; 
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjaWpwdWVibHdlcmFkbWlwaHBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTk5MTIsImV4cCI6MjA5NTU5NTkxMn0._tXpjssqHAlsVWEYcrJdGP28HISZU1tnt2WrOTR3DXY';
+            
+            if (window.supabase) {
+                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+                checkSession();
+            } else {
+                console.error("Supabase script blocked or failed to load.");
+            }
+        } catch (error) {
+            console.error("Database initialization error:", error);
+        }
+
+        async function signInWithGithub() {
+            if (!supabase) return alert("Database is disconnected. Make sure you are using Live Server and not an AdBlocker.");
+            try {
+                const { error } = await supabase.auth.signInWithOAuth({ provider: 'github' });
+                if (error) alert("Error logging in: " + error.message);
+            } catch (err) {
+                console.error("Login crash:", err);
+            }
+        }
+
+        async function signOut() {
+            if (supabase) {
+                await supabase.auth.signOut();
+                window.location.reload(); 
+            }
+        }
+
+        async function checkSession() {
+            try {
+                const { data: { session }, error } = await supabase.auth.getSession();
+                if (error) { console.error("Session error:", error.message); return; }
+                
+                if (session) {
+                    currentUser = session.user;
+                    const githubName = currentUser.user_metadata.user_name || currentUser.user_metadata.full_name || "Student";
+                    const avatarUrl = currentUser.user_metadata.avatar_url || "default-avatar.png";
+
+                    // Update Desktop Nav
+                    const authContainer = document.getElementById('authContainer');
+                    if (authContainer) {
+                        authContainer.innerHTML = `
+                            <button class="icon-btn"><i class="ph ph-sun"></i></button>
+                            <div style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px 10px; border-radius: 50px; transition: 0.2s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'" onclick="showProfile()">
+                                <img src="${avatarUrl}" alt="Profile" style="width: 35px; height: 35px; border-radius: 50%; border: 2px solid #4f46e5;">
+                                <span style="font-weight: 600; color: #0f172a;">${githubName}</span>
+                            </div>
+                            <button class="btn-outline" style="padding: 8px 15px; font-size: 0.85rem;" onclick="signOut()">Sign Out</button>
+                        `;
+                    }
+
+                    // Sync Database & Setup Profile
+                    syncUserToDatabase(currentUser, githubName);
+                    document.getElementById('profileAvatar').src = avatarUrl;
+                    document.getElementById('profileName').innerText = githubName;
+                }
+            } catch (err) {
+                console.error("Session check crashed:", err);
+            }
+        }
+
+        async function syncUserToDatabase(user, name) {
+            try {
+                const { data, error } = await supabase.from('user_progress').select('*').eq('id', user.id).single();
+
+                if (error && error.code === 'PGRST116') {
+                    // New user
+                    await supabase.from('user_progress').insert([
+                        { id: user.id, username: name, total_solved: 0, solved_array: {} } 
+                    ]);
+                    document.getElementById('totalSolvedCount').innerText = 0;
+                    calculateRank(0);
+                    renderHeatmap({});
+                } else if (data) {
+                    // Existing User
+                    document.getElementById('totalSolvedCount').innerText = data.total_solved;
+                    calculateRank(data.total_solved);
+                    renderHeatmap(data.solved_array);
+                }
+            } catch (err) {
+                console.error("DB Sync crash:", err);
+            }
+        }
+
+        function calculateRank(solvedCount) {
+            let rank = "Bronze";
+            if (solvedCount >= 50) rank = "Silver";
+            if (solvedCount >= 150) rank = "Gold";
+            if (solvedCount >= 300) rank = "Diamond";
+            
+            const rankEl = document.getElementById('profileRank');
+            if(rankEl) rankEl.innerText = rank;
+        }
+
+        function renderHeatmap(activityData) {
+            const hm = document.getElementById('cal-heatmap');
+            if(!hm) return;
+            hm.innerHTML = ""; 
+            
+            let parsedData = {};
+            if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) {
+                parsedData = activityData;
+            }
+
+            try {
+                var cal = new CalHeatMap();
+                cal.init({
+                    itemSelector: "#cal-heatmap",
+                    domain: "month",
+                    subDomain: "day",
+                    data: parsedData, 
+                    start: new Date(new Date().setMonth(new Date().getMonth() - 5)), 
+                    cellSize: 15,
+                    range: 6,
+                    displayLegend: false,
+                    tooltip: true,
+                    legendColors: { min: "#eff6ff", max: "#4f46e5", empty: "#f1f5f9" }
+                });
+            } catch (err) {
+                console.error("Heatmap failed to render:", err);
+            }
+        }
+    </script>
+</body>
+</html>
+   
