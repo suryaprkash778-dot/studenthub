@@ -589,6 +589,9 @@
     <!-- ================= SUPABASE & APP LOGIC ================= -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        // Global variable to hold heatmap data until the profile is opened
+        let globalActivityData = {};
+
         // --- UI Functions ---
         function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
         function toggleSubMenu(id, event) {
@@ -610,7 +613,13 @@
         function showHome() { hideAllViews(); document.getElementById("homeView").style.display = "block"; }
         function openRoadmap() { hideAllViews(); document.getElementById("roadmapView").style.display = "block"; }
         function showDSAMastery() { hideAllViews(); document.getElementById("dsaMasteryView").style.display = "block"; }
-        function showProfile() { hideAllViews(); document.getElementById("profileView").style.display = "block"; }
+        
+        // MOVED HEATMAP RENDER HERE: Only draws when profile is actually visible
+        function showProfile() { 
+            hideAllViews(); 
+            document.getElementById("profileView").style.display = "block"; 
+            drawHeatmap(); 
+        }
         
         function openPDF(file) {
             const viewer = document.getElementById("pdfViewer"); 
@@ -634,7 +643,6 @@
         let dbClient = null;
         if (window.supabase) { dbClient = window.supabase.createClient(nvSupabaseUrl, nvSupabaseKey); }
 
-        // --- Fetch & Group Files by Subject ---
         async function showCategory(semNumber, categoryType) {
             hideAllViews();
             const viewId = (semNumber === 1) ? "semester1View" : "semester2View";
@@ -720,18 +728,13 @@
                     subjectSection.appendChild(scrollRow);
                     listContainer.appendChild(subjectSection);
                 }
-
             } catch (err) {
                 listContainer.innerHTML = `<p style='color: #ef4444; text-align: center;'>Error: ${err.message}</p>`;
             }
         }
 
-        // --- Fallback for Home Page Core Subjects ---
-        function showSubjectFiles(sem, cat, subj) {
-            showCategory(1, 'Notes'); 
-        }
+        function showSubjectFiles(sem, cat, subj) { showCategory(1, 'Notes'); }
 
-        // --- Auth & Profile ---
         async function signInWithGithub() { if (dbClient) await dbClient.auth.signInWithOAuth({ provider: 'github' }); }
         async function signInWithGoogle() { if (dbClient) await dbClient.auth.signInWithOAuth({ provider: 'google' }); }
         async function signOut() { if (dbClient) { await dbClient.auth.signOut(); window.location.reload(); } }
@@ -756,19 +759,6 @@
                             <button class="btn-outline" style="padding: 8px 15px; font-size: 0.85rem;" onclick="signOut()">Sign Out</button>
                         `;
                     }
-                    const mobileAuth = document.getElementById('mobileAuthContainer');
-                    if(mobileAuth) {
-                        mobileAuth.innerHTML = `
-                            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9;">
-                                <img src="${avatarUrl}" alt="Profile" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #4f46e5; object-fit: cover;" onclick="showProfile(); toggleMobileMenu();">
-                                <span style="font-weight: 600; font-size: 1.2rem; color: #0f172a;">${name}</span>
-                                <button class="btn-outline" style="width: 100%; justify-content: center;" onclick="signOut()">Sign Out</button>
-                                <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="showProfile(); toggleMobileMenu();">View Profile</button>
-                            </div>
-                        `;
-                    }
-
-                    // Populate Guild Card Data
                     const profileAvatarGuild = document.getElementById('profileAvatarGuild');
                     const profileNameGuild = document.getElementById('profileNameGuild');
                     if(profileAvatarGuild) profileAvatarGuild.src = avatarUrl;
@@ -795,7 +785,6 @@
             const countEl = document.getElementById('totalSolvedCount');
             if (countEl) countEl.innerText = solvedCount;
 
-            // RPG Guild Card Logic
             let rank = "F";
             if (solvedCount >= 10) rank = "E";
             if (solvedCount >= 25) rank = "D";
@@ -820,31 +809,41 @@
                 else rankLarge.style.color = "#1a1a1a";
             }
 
-            const hm = document.getElementById('cal-heatmap');
-            if(!hm) return;
-            hm.innerHTML = ""; 
-            let parsedData = {};
-            if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) parsedData = activityData;
+            // Save the data, but DO NOT draw it yet
+            if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) {
+                globalActivityData = activityData;
+            } else {
+                globalActivityData = {};
+            }
 
-            // SAFE HEATMAP RENDER - Will NEVER crash your buttons!
+            // If profile is already open, draw it now
+            if (document.getElementById("profileView").style.display === "block") {
+                drawHeatmap();
+            }
+        }
+
+        // Dedicated function to draw the heatmap ONLY when it's visible
+        function drawHeatmap() {
+            const hm = document.getElementById('cal-heatmap');
+            if(!hm || typeof CalHeatMap === 'undefined') return;
+            hm.innerHTML = ""; // Clear old grid
+            
             try {
-                if (typeof CalHeatMap !== 'undefined') {
-                    var cal = new CalHeatMap();
-                    cal.init({
-                        itemSelector: "#cal-heatmap",
-                        domain: "month",
-                        subDomain: "x_day", 
-                        data: parsedData, 
-                        start: new Date(new Date().setMonth(new Date().getMonth() - 5)), 
-                        cellSize: 14,
-                        cellPadding: 3,
-                        domainGutter: 15,
-                        range: 6,
-                        displayLegend: true,
-                        legend: [1, 3, 5, 10],
-                        tooltip: true
-                    });
-                }
+                var cal = new CalHeatMap();
+                cal.init({
+                    itemSelector: "#cal-heatmap",
+                    domain: "month",
+                    subDomain: "x_day", 
+                    data: globalActivityData, 
+                    start: new Date(new Date().setMonth(new Date().getMonth() - 5)), 
+                    cellSize: 14,
+                    cellPadding: 3,
+                    domainGutter: 15,
+                    range: 6,
+                    displayLegend: true,
+                    legend: [1, 3, 5, 10],
+                    tooltip: true
+                });
             } catch (err) {
                 console.warn("Heatmap issue safely bypassed.");
             }
