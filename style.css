@@ -339,25 +339,25 @@ section { margin-bottom: 100px; }
     z-index: 2;
 }
 
-/* Watermark Seal - MOVED TO BOTTOM LEFT */
+/* Watermark Seal */
 .gc-watermark {
     position: absolute;
-    bottom: -60px; /* Anchors to bottom */
-    left: -40px;   /* Anchors to left */
-    width: 320px;
-    height: 320px;
+    bottom: -160px; /* Pulls it way down to surround the signature */
+    left: -100px;   /* Pulls it exactly to the bottom-left corner */
+    width: 500px;   /* Massively enlarged */
+    height: 500px;  /* Massively enlarged */
     border: 4px dashed rgba(220, 38, 38, 0.2);
     border-radius: 50%;
-    z-index: 0;    /* Forces it behind the text */
+    z-index: 0; 
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none; /* Stops it from blocking clicks */
+    pointer-events: none; 
 }
 
 .gc-watermark-inner {
-    width: 270px;
-    height: 270px;
+    width: 420px;   /* Massively enlarged */
+    height: 420px;  /* Massively enlarged */
     border: 2px solid rgba(220, 38, 38, 0.15);
     border-radius: 50%;
     background: repeating-radial-gradient(
@@ -367,6 +367,7 @@ section { margin-bottom: 100px; }
         rgba(220, 38, 38, 0.05) 10px,
         rgba(220, 38, 38, 0.05) 20px
     );
+}
 }
 
 /* Detail Rows */
