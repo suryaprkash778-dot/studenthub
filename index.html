@@ -826,12 +826,21 @@
             let parsedData = {};
             if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) parsedData = activityData;
 
+            // ... (above is your RPG Guild Card rank logic) ...
+
+            const hm = document.getElementById('cal-heatmap');
+            if(!hm) return;
+            hm.innerHTML = ""; 
+            let parsedData = {};
+            if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) parsedData = activityData;
+
+            // PASTE THE NEW CODE RIGHT HERE:
             try {
                 var cal = new CalHeatMap();
                 cal.init({
                     itemSelector: "#cal-heatmap",
                     domain: "month",
-                    subDomain: "day", /* Restored to "day" to prevent library crashes */
+                    subDomain: "x_day",      /* This forces the GitHub horizontal layout */
                     data: parsedData, 
                     start: new Date(new Date().setMonth(new Date().getMonth() - 5)), 
                     cellSize: 14,
@@ -845,8 +854,12 @@
             } catch (err) {
                 console.error("Heatmap failed to load:", err);
             }
-        }
+        } // <-- This is the end of the updateProfileStats function
 
+        checkSession();
+    </script>
+</body>
+</html>
         checkSession();
     </script>
 </body>
