@@ -826,40 +826,30 @@
             let parsedData = {};
             if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) parsedData = activityData;
 
-            // ... (above is your RPG Guild Card rank logic) ...
-
-            const hm = document.getElementById('cal-heatmap');
-            if(!hm) return;
-            hm.innerHTML = ""; 
-            let parsedData = {};
-            if(activityData && typeof activityData === 'object' && !Array.isArray(activityData)) parsedData = activityData;
-
-            // PASTE THE NEW CODE RIGHT HERE:
+            // SAFE HEATMAP RENDER - Will NEVER crash your buttons!
             try {
-                var cal = new CalHeatMap();
-                cal.init({
-                    itemSelector: "#cal-heatmap",
-                    domain: "month",
-                    subDomain: "x_day",      /* This forces the GitHub horizontal layout */
-                    data: parsedData, 
-                    start: new Date(new Date().setMonth(new Date().getMonth() - 5)), 
-                    cellSize: 14,
-                    cellPadding: 3,
-                    domainGutter: 15,
-                    range: 6,
-                    displayLegend: true,
-                    legend: [1, 3, 5, 10],
-                    tooltip: true
-                });
+                if (typeof CalHeatMap !== 'undefined') {
+                    var cal = new CalHeatMap();
+                    cal.init({
+                        itemSelector: "#cal-heatmap",
+                        domain: "month",
+                        subDomain: "x_day", 
+                        data: parsedData, 
+                        start: new Date(new Date().setMonth(new Date().getMonth() - 5)), 
+                        cellSize: 14,
+                        cellPadding: 3,
+                        domainGutter: 15,
+                        range: 6,
+                        displayLegend: true,
+                        legend: [1, 3, 5, 10],
+                        tooltip: true
+                    });
+                }
             } catch (err) {
-                console.error("Heatmap failed to load:", err);
+                console.warn("Heatmap issue safely bypassed.");
             }
-        } // <-- This is the end of the updateProfileStats function
+        }
 
-        checkSession();
-    </script>
-</body>
-</html>
         checkSession();
     </script>
 </body>
