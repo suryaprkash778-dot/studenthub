@@ -493,3 +493,41 @@ section { margin-bottom: 100px; }
     .gc-row-text p { font-size: 0.9rem; }
     .gc-watermark { display: none; } 
 }
+/* =========================================
+   EXACT GITHUB HEATMAP STYLES
+========================================= */
+/* Center the heatmap container */
+#cal-heatmap {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Force ALL empty cells to GitHub Grey with rounded corners */
+svg.cal-heatmap-container rect.graph-rect {
+    fill: #ebedf0 !important;
+    stroke: rgba(27,31,35,0.06) !important;
+    stroke-width: 1px !important;
+    rx: 3px !important;
+    ry: 3px !important;
+}
+
+/* GitHub Green Colors for Active Days */
+svg.cal-heatmap-container rect.q1 { fill: #9be9a8 !important; } /* Light Green */
+svg.cal-heatmap-container rect.q2 { fill: #40c463 !important; } /* Med Green */
+svg.cal-heatmap-container rect.q3 { fill: #30a14e !important; } /* Dark Green */
+svg.cal-heatmap-container rect.q4 { fill: #216e39 !important; } /* Darkest Green */
+svg.cal-heatmap-container rect.q5 { fill: #216e39 !important; } /* Fallback */
+
+/* Hide default library borders */
+svg.cal-heatmap-container .graph-domain {
+    stroke: none !important;
+}
+
+/* Style the Month text labels */
+svg.cal-heatmap-container text.graph-label {
+    font-family: 'Inter', sans-serif !important;
+    fill: #57606a !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+}
