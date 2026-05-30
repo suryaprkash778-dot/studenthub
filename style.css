@@ -268,7 +268,7 @@ section { margin-bottom: 100px; }
 }
 
 .guild-card {
-    background-color: #fdf6eb; 
+    background-color: #fdf6eb; /* Parchment color */
     background-image: linear-gradient(#fdf6eb, #f4e8d1);
     border: 2px solid #3c2a1e;
     padding: 6px;
@@ -339,25 +339,25 @@ section { margin-bottom: 100px; }
     z-index: 2;
 }
 
-/* Watermark Seal */
+/* Watermark Seal - MOVED TO BOTTOM LEFT */
 .gc-watermark {
     position: absolute;
-    top: 50%;
-    left: 40%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
-    border: 4px dashed rgba(220, 38, 38, 0.15);
+    bottom: -60px; /* Anchors to bottom */
+    left: -40px;   /* Anchors to left */
+    width: 320px;
+    height: 320px;
+    border: 4px dashed rgba(220, 38, 38, 0.2);
     border-radius: 50%;
-    z-index: -1;
+    z-index: 0;    /* Forces it behind the text */
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none; /* Stops it from blocking clicks */
 }
 
 .gc-watermark-inner {
-    width: 250px;
-    height: 250px;
+    width: 270px;
+    height: 270px;
     border: 2px solid rgba(220, 38, 38, 0.15);
     border-radius: 50%;
     background: repeating-radial-gradient(
@@ -378,6 +378,7 @@ section { margin-bottom: 100px; }
     border-bottom: 1px solid #a38d76;
     padding: 8px 0;
     position: relative;
+    z-index: 1; /* Keeps text above watermark */
 }
 
 .gc-detail-row::before {
@@ -407,6 +408,8 @@ section { margin-bottom: 100px; }
     transform: rotate(-5deg);
     margin-top: 20px;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1; /* Keeps signature above watermark */
 }
 
 /* Right Column - Images */
