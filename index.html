@@ -596,7 +596,7 @@
         }
 
         function hideAllViews() {
-            const views = ["homeView", "roadmapView", "dsaMasteryView", "semester1View", "semester2View", "profileView", "pdfViewer"];
+            const views = ["homeView", "subjectView", "roadmapView", "dsaMasteryView", "semester1View", "semester2View", "profileView", "pdfViewer"];
             views.forEach(view => {
                 const el = document.getElementById(view);
                 if(el) el.style.display = "none";
@@ -642,23 +642,14 @@
             if(titleEl) titleEl.innerText = categoryType;
 
             const listContainer = document.querySelector(`#${viewId} .vertical-subject-list`);
-            
-            // Set max-width to allow horizontal scrolling row to stretch
             listContainer.style.maxWidth = "1200px"; 
-            listContainer.style.display = "block"; // Make sure subjects stack vertically
-            
+            listContainer.style.display = "block"; 
             listContainer.innerHTML = "<p style='padding: 20px; color: #64748b; text-align: center;'>Loading materials from database...</p>";
 
             if (!dbClient) return listContainer.innerHTML = "<p style='color: #ef4444; text-align: center;'>Database disconnected.</p>";
 
             try {
-                // Fetch ALL notes for this semester and category
-                const { data, error } = await dbClient
-                    .from('course_material')
-                    .select('*')
-                    .eq('semester', semNumber)
-                    .eq('category', categoryType);
-
+                const { data, error } = await dbClient.from('course_material').select('*').eq('semester', semNumber).eq('category', categoryType);
                 if (error) throw error;
                 listContainer.innerHTML = "";
                 
@@ -667,7 +658,6 @@
                     return;
                 }
 
-                // Group the data by 'Subject'
                 const groupedData = data.reduce((acc, item) => {
                     const subj = item.Subject || 'Uncategorized';
                     if (!acc[subj]) acc[subj] = [];
@@ -675,13 +665,11 @@
                     return acc;
                 }, {});
 
-                // Render each subject row
                 for (const [subject, files] of Object.entries(groupedData)) {
                     const subjectSection = document.createElement('div');
                     subjectSection.style.marginBottom = "50px";
                     subjectSection.style.width = "100%";
                     
-                    // The Subject Title (Styled like your reference)
                     const heading = document.createElement('h2');
                     heading.innerHTML = `<span style="border-left: 4px solid #4f46e5; padding-left: 15px; text-transform: uppercase; letter-spacing: 1px;">${subject}</span>`;
                     heading.style.fontFamily = "'Inter', sans-serif";
@@ -690,7 +678,6 @@
                     heading.style.color = "#0f172a";
                     heading.style.marginBottom = "20px";
                     
-                    // The Horizontally Scrolling Row - Strict Inline Styles
                     const scrollRow = document.createElement('div');
                     scrollRow.style.display = "flex";
                     scrollRow.style.flexDirection = "row";
@@ -699,15 +686,12 @@
                     scrollRow.style.gap = "20px";
                     scrollRow.style.paddingBottom = "20px";
                     scrollRow.style.width = "100%";
-                    scrollRow.style.scrollbarWidth = "none"; // Hide scrollbar in Firefox
+                    scrollRow.style.scrollbarWidth = "none"; 
                     scrollRow.style.WebkitOverflowScrolling = "touch";
 
-                    // The Individual PDF Cards
                     files.forEach(file => {
                         const card = document.createElement('div');
                         card.className = 'feature-card outline-card clickable';
-                        
-                        // Strict sizing to prevent vertical stacking
                         card.style.flex = "0 0 auto"; 
                         card.style.width = "260px"; 
                         card.style.minWidth = "260px";
@@ -718,10 +702,8 @@
                         card.style.justifyContent = "center";
                         card.style.alignItems = "center";
                         card.style.textAlign = "center";
-                        
                         card.onclick = () => openPDF(file.file_url || "#");
                         
-                        // Beautiful purple gradient thumbnail for the PDF
                         card.innerHTML = `
                             <div style="width: 100%; height: 120px; background: linear-gradient(135deg, #a855f7, #6d28d9); border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 15px rgba(109, 40, 217, 0.3);">
                                 <i class="ph-bold ph-file-pdf" style="font-size: 3rem;"></i>
@@ -753,7 +735,7 @@
                 if (session) {
                     const user = session.user;
                     const name = user.user_metadata.user_name || user.user_metadata.full_name || "Student";
-                    const avatarUrl = user.user_metadata.avatar_url || "default-avatar.png";
+                    const avatarUrl = user.user_metadata.avatar_url || "https://github.com/github.png";
 
                     const authContainer = document.getElementById('authContainer');
                     if (authContainer) {
@@ -778,10 +760,11 @@
                         `;
                     }
 
-                    const profileAvatar = document.getElementById('profileAvatar');
-                    const profileName = document.getElementById('profileName');
-                    if(profileAvatar) profileAvatar.src = avatarUrl;
-                    if(profileName) profileName.innerText = name;
+                    // Populate Guild Card Data
+                    const profileAvatarGuild = document.getElementById('profileAvatarGuild');
+                    const profileNameGuild = document.getElementById('profileNameGuild');
+                    if(profileAvatarGuild) profileAvatarGuild.src = avatarUrl;
+                    if(profileNameGuild) profileNameGuild.innerText = name;
 
                     syncUserToDatabase(user, name);
                 }
@@ -802,30 +785,31 @@
 
         function updateProfileStats(solvedCount, activityData) {
             const countEl = document.getElementById('totalSolvedCount');
-            const rankEl = document.getElementById('profileRank');
-            
             if (countEl) countEl.innerText = solvedCount;
-            if (rankEl) {
-                let rank = "F";
-                if (solvedCount >= 10) rank = "E";
-                if (solvedCount >= 25) rank = "D";
-                if (solvedCount >= 50) rank = "C";
-                if (solvedCount >= 75) rank = "B";
-                if (solvedCount >= 100) rank = "A";
-                if (solvedCount >= 125) rank = "S";
-                if (solvedCount >= 150) rank = "SS";
-                
-                rankEl.innerText = rank;
-                
-                if (rank === "SS" || rank === "S") {
-                    rankEl.parentElement.style.background = "linear-gradient(135deg, #ef4444, #b91c1c)";
-                } else if (rank === "A" || rank === "B") {
-                    rankEl.parentElement.style.background = "linear-gradient(135deg, #8b5cf6, #6d28d9)";
-                } else if (rank === "C" || rank === "D") {
-                    rankEl.parentElement.style.background = "linear-gradient(135deg, #3b82f6, #1d4ed8)";
-                } else {
-                    rankEl.parentElement.style.background = "linear-gradient(135deg, #64748b, #334155)";
-                }
+            
+            // RPG Guild Card Logic
+            let rank = "F";
+            if (solvedCount >= 10) rank = "E";
+            if (solvedCount >= 25) rank = "D";
+            if (solvedCount >= 50) rank = "C";
+            if (solvedCount >= 75) rank = "B";
+            if (solvedCount >= 100) rank = "A";
+            if (solvedCount >= 125) rank = "S";
+            if (solvedCount >= 150) rank = "SS";
+            
+            const rankTop = document.getElementById('profileRankTop');
+            const rankPermit = document.getElementById('profileRankPermit');
+            const rankLarge = document.getElementById('profileRankLarge');
+            
+            if (rankTop) rankTop.innerText = rank;
+            if (rankPermit) rankPermit.innerText = rank;
+            if (rankLarge) rankLarge.innerText = rank;
+            
+            if (rankLarge) {
+                if (rank === "SS" || rank === "S") rankLarge.style.color = "#b91c1c";
+                else if (rank === "A" || rank === "B") rankLarge.style.color = "#6d28d9";
+                else if (rank === "C" || rank === "D") rankLarge.style.color = "#1d4ed8";
+                else rankLarge.style.color = "#1a1a1a";
             }
 
             const hm = document.getElementById('cal-heatmap');
@@ -839,20 +823,21 @@
                 cal.init({
                     itemSelector: "#cal-heatmap",
                     domain: "month",
-                    subDomain: "x_day", /* x_day forces the GitHub vertical layout */
+                    subDomain: "x_day",
                     data: parsedData, 
                     start: new Date(new Date().setMonth(new Date().getMonth() - 5)), 
-                    cellSize: 13,       /* Exact GitHub square size */
-                    cellPadding: 3,     /* Exact GitHub gap size */
-                    domainGutter: 15,   /* Space between months */
-                    range: 6,           /* Shows 6 months at a time */
+                    cellSize: 13,
+                    cellPadding: 3,
+                    domainGutter: 15,
+                    range: 6,
                     displayLegend: true,
-                    legend: [1, 3, 5, 10], /* The 4 tiers of green */
+                    legend: [1, 3, 5, 10],
                     tooltip: true
                 });
             } catch (err) {
                 console.error("Heatmap failed to load:", err);
             }
+        }
 
         checkSession();
     </script>
