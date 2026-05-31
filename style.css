@@ -644,18 +644,19 @@ svg.cal-heatmap-container text.graph-label {
 /* --- DYNAMIC PDF CARD STYLING --- */
 
 /* The Main Card Container */
+/* Make sure the main card is square */
 .document-card {
     position: relative;
     display: inline-block;
     width: 240px;          
-    height: 240px;         
+    height: 240px; /* <-- CHANGED TO 240px */       
     border-radius: 12px;
     overflow: hidden;      
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-decoration: none; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-right: 15px; /* Adds space between cards in your horizontal scroll */
-    background-color: #f8f9fa; /* Light background while loading */
+    margin-right: 15px; 
+    background-color: #f8f9fa; 
 }
 
 .document-card:hover {
@@ -664,13 +665,13 @@ svg.cal-heatmap-container text.graph-label {
 }
 
 /* The Canvas (where the PDF is drawn) */
+/* Force the PDF to beautifully fill the square without stretching */
 .pdf-preview {
     width: 100%;
     height: 100%;
-    object-fit: cover;     
-    object-position: top;  
+    object-fit: cover; /* <-- This forces it to fill the square perfectly */    
+    object-position: top center; /* <-- This keeps the top of the page visible */ 
 }
-
 /* The Dark Gradient Overlay */
 .document-overlay {
     position: absolute;
