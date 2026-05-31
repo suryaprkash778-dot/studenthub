@@ -140,13 +140,105 @@
             <section class="core-subjects-section" id="coreSubjects">
                 <h2 class="section-heading">Core Subjects</h2>
                 <p class="section-subheading">Master the fundamentals required for top product companies.</p>
-                <div class="subjects-grid">
-                    <div class="subject-card pastel-blue" onclick="showSubjectFiles(null, 'Notes', 'Data Structures')"><div class="subject-icon"><i class="ph ph-code"></i></div><div class="subject-info"><h3>Data Structures</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-mint" onclick="showSubjectFiles(null, 'Notes', 'Database Systems')"><div class="subject-icon"><i class="ph ph-database"></i></div><div class="subject-info"><h3>Database Systems</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-purple" onclick="showSubjectFiles(null, 'Notes', 'Operating Systems')"><div class="subject-icon"><i class="ph ph-cpu"></i></div><div class="subject-info"><h3>Operating Systems</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-peach" onclick="showSubjectFiles(null, 'Notes', 'Computer Networks')"><div class="subject-icon"><i class="ph ph-share-network"></i></div><div class="subject-info"><h3>Computer Networks</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-blue" onclick="showSubjectFiles(null, 'Notes', 'Object-Oriented Programming')"><div class="subject-icon"><i class="ph ph-cube"></i></div><div class="subject-info"><h3>Object-Oriented Prog.</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
-                    <div class="subject-card pastel-mint" onclick="showSubjectFiles(null, 'Notes', 'Aptitude & Reasoning')"><div class="subject-icon"><i class="ph ph-brain"></i></div><div class="subject-info"><h3>Aptitude & Reasoning</h3><span class="explore-link">Explore notes <i class="ph ph-arrow-right"></i></span></div></div>
+                
+                <div style="max-width: 800px; margin: 40px auto;">
+                    
+                    <div class="subject-accordion-item">
+                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <i class="ph-duotone ph-code" style="font-size: 1.8rem; color: #4facfe;"></i>
+                                <span style="font-weight: 600; font-size: 1.2rem;">Data Structures</span>
+                            </div>
+                            <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="subject-dropdown-grid">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Data Structures')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Data Structures')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-accordion-item">
+                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <i class="ph-duotone ph-database" style="font-size: 1.8rem; color: #4facfe;"></i>
+                                <span style="font-weight: 600; font-size: 1.2rem;">Database Systems</span>
+                            </div>
+                            <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="subject-dropdown-grid">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Database Systems')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Database Systems')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-accordion-item">
+                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <i class="ph-duotone ph-cpu" style="font-size: 1.8rem; color: #4facfe;"></i>
+                                <span style="font-weight: 600; font-size: 1.2rem;">Operating Systems</span>
+                            </div>
+                            <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="subject-dropdown-grid">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Operating Systems')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Operating Systems')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-accordion-item">
+                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <i class="ph-duotone ph-share-network" style="font-size: 1.8rem; color: #4facfe;"></i>
+                                <span style="font-weight: 600; font-size: 1.2rem;">Computer Networks</span>
+                            </div>
+                            <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="subject-dropdown-grid">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Computer Networks')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Computer Networks')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-accordion-item">
+                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <i class="ph-duotone ph-cube" style="font-size: 1.8rem; color: #4facfe;"></i>
+                                <span style="font-weight: 600; font-size: 1.2rem;">Object-Oriented Programming</span>
+                            </div>
+                            <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="subject-dropdown-grid">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Object-Oriented Programming')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Object-Oriented Programming')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-accordion-item">
+                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <i class="ph-duotone ph-brain" style="font-size: 1.8rem; color: #4facfe;"></i>
+                                <span style="font-weight: 600; font-size: 1.2rem;">Aptitude & Reasoning</span>
+                            </div>
+                            <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="subject-dropdown-grid">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Aptitude & Reasoning')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Aptitude & Reasoning')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
@@ -169,7 +261,6 @@
                 <button class="btn-primary large" onclick="signInWithGithub()">Get Started Free <i class="ph ph-arrow-right"></i></button>
             </section>
         </div>
-
        <!-- ================= PROFILE / HEATMAP VIEW ================= -->
         <div id="profileView" style="display: none;">
             <div class="back-nav" style="margin-bottom: 20px;"><button class="btn-outline" onclick="showHome()"><i class="ph ph-arrow-left"></i> Back to Dashboard</button></div>
