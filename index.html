@@ -138,103 +138,103 @@
             </section>
 
             <section class="core-subjects-section" id="coreSubjects">
-                <h2 class="section-heading">Core Subjects</h2>
-                <p class="section-subheading">Master the fundamentals required for top product companies.</p>
+                <h2 class="section-heading centered">Core Subjects</h2>
+                <p class="section-subheading centered">Master the fundamentals required for top product companies.</p>
                 
-                <div style="max-width: 800px; margin: 40px auto;">
+                <div class="subjects-grid">
                     
-                    <div class="subject-accordion-item">
-                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                    <div class="subject-card pastel-blue" style="flex-direction: column; align-items: stretch; height: auto; padding: 25px;">
+                        <div onclick="toggleAccordion(this)" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; width: 100%;">
                             <div style="display: flex; align-items: center; gap: 15px;">
-                                <i class="ph-duotone ph-code" style="font-size: 1.8rem; color: #4facfe;"></i>
-                                <span style="font-weight: 600; font-size: 1.2rem;">Data Structures</span>
+                                <div class="subject-icon" style="margin: 0;"><i class="ph ph-code"></i></div>
+                                <h3 style="margin: 0; font-size: 1.1rem; color: #0f172a;">Data Structures</h3>
                             </div>
                             <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="subject-dropdown-grid">
-                                <button onclick="showSubjectFiles(null, 'Notes', 'Data Structures')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
-                                <button onclick="showSubjectFiles(null, 'PYQs', 'Data Structures')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                        </div>
+                        <div class="accordion-content" style="display: none; width: 100%; padding-top: 20px; margin-top: 15px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Data Structures')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-file-text"></i> Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Data Structures')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-files"></i> PYQs</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="subject-accordion-item">
-                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                    <div class="subject-card pastel-mint" style="flex-direction: column; align-items: stretch; height: auto; padding: 25px;">
+                        <div onclick="toggleAccordion(this)" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; width: 100%;">
                             <div style="display: flex; align-items: center; gap: 15px;">
-                                <i class="ph-duotone ph-database" style="font-size: 1.8rem; color: #4facfe;"></i>
-                                <span style="font-weight: 600; font-size: 1.2rem;">Database Systems</span>
+                                <div class="subject-icon" style="margin: 0;"><i class="ph ph-database"></i></div>
+                                <h3 style="margin: 0; font-size: 1.1rem; color: #0f172a;">Database Systems</h3>
                             </div>
                             <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="subject-dropdown-grid">
-                                <button onclick="showSubjectFiles(null, 'Notes', 'Database Systems')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
-                                <button onclick="showSubjectFiles(null, 'PYQs', 'Database Systems')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                        </div>
+                        <div class="accordion-content" style="display: none; width: 100%; padding-top: 20px; margin-top: 15px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Database Systems')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-file-text"></i> Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Database Systems')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-files"></i> PYQs</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="subject-accordion-item">
-                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                    <div class="subject-card pastel-purple" style="flex-direction: column; align-items: stretch; height: auto; padding: 25px;">
+                        <div onclick="toggleAccordion(this)" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; width: 100%;">
                             <div style="display: flex; align-items: center; gap: 15px;">
-                                <i class="ph-duotone ph-cpu" style="font-size: 1.8rem; color: #4facfe;"></i>
-                                <span style="font-weight: 600; font-size: 1.2rem;">Operating Systems</span>
+                                <div class="subject-icon" style="margin: 0;"><i class="ph ph-cpu"></i></div>
+                                <h3 style="margin: 0; font-size: 1.1rem; color: #0f172a;">Operating Systems</h3>
                             </div>
                             <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="subject-dropdown-grid">
-                                <button onclick="showSubjectFiles(null, 'Notes', 'Operating Systems')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
-                                <button onclick="showSubjectFiles(null, 'PYQs', 'Operating Systems')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                        </div>
+                        <div class="accordion-content" style="display: none; width: 100%; padding-top: 20px; margin-top: 15px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Operating Systems')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-file-text"></i> Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Operating Systems')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-files"></i> PYQs</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="subject-accordion-item">
-                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                    <div class="subject-card pastel-peach" style="flex-direction: column; align-items: stretch; height: auto; padding: 25px;">
+                        <div onclick="toggleAccordion(this)" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; width: 100%;">
                             <div style="display: flex; align-items: center; gap: 15px;">
-                                <i class="ph-duotone ph-share-network" style="font-size: 1.8rem; color: #4facfe;"></i>
-                                <span style="font-weight: 600; font-size: 1.2rem;">Computer Networks</span>
+                                <div class="subject-icon" style="margin: 0;"><i class="ph ph-share-network"></i></div>
+                                <h3 style="margin: 0; font-size: 1.1rem; color: #0f172a;">Computer Networks</h3>
                             </div>
                             <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="subject-dropdown-grid">
-                                <button onclick="showSubjectFiles(null, 'Notes', 'Computer Networks')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
-                                <button onclick="showSubjectFiles(null, 'PYQs', 'Computer Networks')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                        </div>
+                        <div class="accordion-content" style="display: none; width: 100%; padding-top: 20px; margin-top: 15px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Computer Networks')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-file-text"></i> Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Computer Networks')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-files"></i> PYQs</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="subject-accordion-item">
-                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                    <div class="subject-card pastel-blue" style="flex-direction: column; align-items: stretch; height: auto; padding: 25px;">
+                        <div onclick="toggleAccordion(this)" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; width: 100%;">
                             <div style="display: flex; align-items: center; gap: 15px;">
-                                <i class="ph-duotone ph-cube" style="font-size: 1.8rem; color: #4facfe;"></i>
-                                <span style="font-weight: 600; font-size: 1.2rem;">Object-Oriented Programming</span>
+                                <div class="subject-icon" style="margin: 0;"><i class="ph ph-cube"></i></div>
+                                <h3 style="margin: 0; font-size: 1.1rem; color: #0f172a;">Object-Oriented Prog.</h3>
                             </div>
                             <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="subject-dropdown-grid">
-                                <button onclick="showSubjectFiles(null, 'Notes', 'Object-Oriented Programming')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
-                                <button onclick="showSubjectFiles(null, 'PYQs', 'Object-Oriented Programming')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                        </div>
+                        <div class="accordion-content" style="display: none; width: 100%; padding-top: 20px; margin-top: 15px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Object-Oriented Programming')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-file-text"></i> Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Object-Oriented Programming')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-files"></i> PYQs</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="subject-accordion-item">
-                        <button class="subject-accordion-header" onclick="toggleAccordion(this)">
+                    <div class="subject-card pastel-mint" style="flex-direction: column; align-items: stretch; height: auto; padding: 25px;">
+                        <div onclick="toggleAccordion(this)" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; width: 100%;">
                             <div style="display: flex; align-items: center; gap: 15px;">
-                                <i class="ph-duotone ph-brain" style="font-size: 1.8rem; color: #4facfe;"></i>
-                                <span style="font-weight: 600; font-size: 1.2rem;">Aptitude & Reasoning</span>
+                                <div class="subject-icon" style="margin: 0;"><i class="ph ph-brain"></i></div>
+                                <h3 style="margin: 0; font-size: 1.1rem; color: #0f172a;">Aptitude & Reasoning</h3>
                             </div>
                             <i class="ph-bold ph-caret-down acc-caret" style="transition: transform 0.3s ease; color: #64748b;"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="subject-dropdown-grid">
-                                <button onclick="showSubjectFiles(null, 'Notes', 'Aptitude & Reasoning')" class="dropdown-action-btn"><i class="ph ph-file-text"></i> View Notes</button>
-                                <button onclick="showSubjectFiles(null, 'PYQs', 'Aptitude & Reasoning')" class="dropdown-action-btn"><i class="ph ph-files"></i> View PYQs</button>
+                        </div>
+                        <div class="accordion-content" style="display: none; width: 100%; padding-top: 20px; margin-top: 15px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <button onclick="showSubjectFiles(null, 'Notes', 'Aptitude & Reasoning')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-file-text"></i> Notes</button>
+                                <button onclick="showSubjectFiles(null, 'PYQs', 'Aptitude & Reasoning')" class="dropdown-action-btn" style="background: white;"><i class="ph ph-files"></i> PYQs</button>
                             </div>
                         </div>
                     </div>
