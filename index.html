@@ -990,5 +990,47 @@
     }
 </script>
 
+<script>
+    // Tell the library where its background worker is located
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+    async function loadAllPDFCovers() {
+        // Find every single card on your website that has the 'pdf-preview' class
+        const canvases = document.querySelectorAll('.pdf-preview');
+        
+        for (let canvas of canvases) {
+            const pdfUrl = canvas.getAttribute('data-pdf-url');
+            if (!pdfUrl) continue;
+
+            try {
+                // Fetch the PDF and get Page 1
+                const loadingTask = pdfjsLib.getDocument(pdfUrl);
+                const pdf = await loadingTask.promise;
+                const page = await pdf.getPage(1);
+                
+                // Set resolution (1.5 is crisp and clear)
+                const viewport = page.getViewport({ scale: 1.5 });
+                const context = canvas.getContext('2d');
+                
+                // Match the canvas size to the PDF page
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                
+                // Draw it!
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                await page.render(renderContext).promise;
+
+            } catch (error) {
+                console.error("Failed to load PDF cover for:", pdfUrl, error);
+            }
+        }
+    }
+
+    // Run this engine the moment the website finishes loading
+    document.addEventListener('DOMContentLoaded', loadAllPDFCovers);
+</script>
 </body>
 </html>
