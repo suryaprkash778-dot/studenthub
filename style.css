@@ -570,3 +570,74 @@ svg.cal-heatmap-container text.graph-label {
 .back-nav {
     display: none !important;
 }
+
+/* =========================================
+   SUBJECT DROPDOWN ACCORDIONS
+========================================= */
+.subject-accordion-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.subject-accordion-item:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.subject-accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    color: #0f172a;
+}
+
+/* Hidden by default, triggered by JS */
+.accordion-content {
+    display: none;
+    padding: 0 25px 25px 25px;
+    background: #ffffff;
+}
+
+.subject-dropdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 5px;
+    padding-top: 15px;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.dropdown-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    border-radius: 8px;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.dropdown-action-btn:hover {
+    background: #f0f9ff;
+    border-color: #4facfe;
+    color: #0284c7;
+}
