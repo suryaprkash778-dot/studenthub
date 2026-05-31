@@ -531,3 +531,34 @@ svg.cal-heatmap-container text.graph-label {
     font-size: 12px !important;
     font-weight: 500 !important;
 }
+
+/* =========================================
+   CIRCULAR DSA FLOATING BUTTON
+========================================= */
+.dsa-circle-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* This makes it a perfect circle */
+    background: linear-gradient(135deg, #a855f7, #6d28d9);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(109, 40, 217, 0.4);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Inter', monospace;
+    z-index: 1000;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect so it pops up slightly when hovered */
+.dsa-circle-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(109, 40, 217, 0.6);
+}
