@@ -641,3 +641,52 @@ svg.cal-heatmap-container text.graph-label {
     border-color: #4facfe;
     color: #0284c7;
 }
+/* --- DYNAMIC PDF CARD STYLING --- */
+
+/* The Main Card Container */
+.document-card {
+    position: relative;
+    display: inline-block;
+    width: 240px;          
+    height: 320px;         
+    border-radius: 12px;
+    overflow: hidden;      
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-decoration: none; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-right: 15px; /* Adds space between cards in your horizontal scroll */
+    background-color: #f8f9fa; /* Light background while loading */
+}
+
+.document-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* The Canvas (where the PDF is drawn) */
+.pdf-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     
+    object-position: top;  
+}
+
+/* The Dark Gradient Overlay */
+.document-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    padding: 40px 15px 15px 15px; 
+    box-sizing: border-box;
+}
+
+/* The Card Title Text */
+.document-overlay h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+}
