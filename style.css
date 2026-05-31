@@ -562,3 +562,11 @@ svg.cal-heatmap-container text.graph-label {
     transform: translateY(-4px) scale(1.05);
     box-shadow: 0 8px 25px rgba(109, 40, 217, 0.6);
 }
+
+
+/* =========================================
+   HIDE "BACK TO DASHBOARD" BUTTONS
+========================================= */
+.back-nav {
+    display: none !important;
+}
