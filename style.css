@@ -691,3 +691,29 @@ svg.cal-heatmap-container text.graph-label {
     font-weight: 600;
     text-align: center;
 }
+/* --- YOUTUBE VIDEO SECTION LAYOUT --- */
+.channel-scroll-container {
+    display: flex;
+    flex-direction: column; /* Forces them into a vertical row/stack */
+    align-items: center;    /* Centers the cards on the screen */
+    gap: 20px;              /* Adds breathing room between each card */
+    max-width: 800px;       /* Stops them from stretching too wide on desktop */
+    margin: 0 auto;         /* Centers the entire container */
+    padding: 20px;
+}
+
+.yt-card {
+    width: 100%;            /* Fills the 800px container nicely */
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    box-sizing: border-box; /* Ensures padding doesn't push it wider */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.yt-card:hover {
+    transform: translateY(-4px); /* Slight lift effect on hover */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+}
