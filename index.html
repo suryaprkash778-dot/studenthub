@@ -851,7 +851,7 @@
                         card.style.cursor = "pointer";
                         card.style.width = "240px";
                         card.style.height = "240px";
-                        card.onclick = () => openPDF(file.file_url || "#");
+                        card.onclick = () => openPDF(file.file_url || "#", subject);
                         
                         card.innerHTML = `
                             <canvas class="pdf-preview" data-pdf-url="${file.file_url || ''}"></canvas>
