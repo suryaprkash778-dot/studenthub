@@ -679,7 +679,7 @@
             drawHeatmap(); 
         }
         
-        // 1. The Actual Viewer (Hidden behind the paywall)
+       // 1. The Actual Viewer (Hidden behind the paywall)
         function viewPDF(file) {
             const viewer = document.getElementById("pdfViewer"); 
             if(viewer) { 
@@ -689,9 +689,14 @@
             }
         }
 
-        // 2. The Interceptor: Opens the popup instead of the PDF
-        function openPDF(file) {
-            // Create a dark overlay and a clean, modern popup box
+        // 2. The Smart Interceptor
+        function openPDF(file, subject = "Premium") {
+            // MAGIC UX FEATURE: Check if they already bought the subject bundle!
+            if (localStorage.getItem('unlocked_subject_' + subject) === 'true') {
+                viewPDF(file); // Instantly open if they own the bundle
+                return;
+            }
+
             const popup = document.createElement("div");
             popup.id = "pdfPaymentPopup";
             popup.style.position = "fixed";
@@ -701,36 +706,59 @@
             popup.style.display = "flex"; 
             popup.style.alignItems = "center"; 
             popup.style.justifyContent = "center";
-            popup.style.backdropFilter = "blur(4px)"; // Adds a premium blur effect
+            popup.style.backdropFilter = "blur(4px)"; 
             
-            // Design the popup to match NoteVerse branding
+            // Design the new dual-option popup
             popup.innerHTML = `
-                <div style="background: white; padding: 40px 30px; border-radius: 16px; max-width: 380px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                <div style="background: white; padding: 35px 30px; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
                     <div style="width: 60px; height: 60px; background: #e0e7ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
                         <i class="ph-fill ph-lock-key" style="font-size: 2rem; color: #4f46e5;"></i>
                     </div>
-                    <h2 style="margin-bottom: 10px; font-family: 'Inter', sans-serif; font-size: 1.5rem; color: #0f172a;">Premium Document</h2>
-                    <p style="color: #64748b; margin-bottom: 30px; line-height: 1.5;">This file requires a one-time payment of <strong>₹10</strong> to unlock and view instantly.</p>
-                    <div style="display: flex; gap: 12px; justify-content: center;">
-                        <button onclick="document.getElementById('pdfPaymentPopup').remove()" style="padding: 12px 20px; border: 1px solid #cbd5e1; background: white; border-radius: 8px; cursor: pointer; color: #475569; font-weight: 500; width: 100%;">Cancel</button>
-                        <button id="pay10Btn" onclick="payForSinglePDF('${file}')" style="padding: 12px 20px; background: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%;">Pay ₹10</button>
+                    <h2 style="margin-bottom: 10px; font-family: 'Inter', sans-serif; font-size: 1.5rem; color: #0f172a;">Unlock Materials</h2>
+                    <p style="color: #64748b; margin-bottom: 25px; line-height: 1.5;">Choose how you want to unlock this content.</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px;">
+                        
+                        <!-- Option 1: Single PDF for ₹10 -->
+                        <button id="pay10Btn" onclick="processPayment(10, '${file}', '${subject}', 'single')" style="padding: 15px; background: #f8fafc; border: 2px solid #e2e8f0; color: #0f172a; border-radius: 12px; cursor: pointer; text-align: left; transition: 0.2s; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong style="display: block; font-size: 1.05rem;">This PDF Only</strong>
+                                <span style="font-size: 0.85rem; color: #64748b;">Unlock just this document</span>
+                            </div>
+                            <span style="font-size: 1.2rem; font-weight: bold; color: #4f46e5;">₹10</span>
+                        </button>
+
+                        <!-- Option 2: Whole Subject Bundle for ₹50 -->
+                        <button id="pay50Btn" onclick="processPayment(50, '${file}', '${subject}', 'subject')" style="padding: 15px; background: #eef2ff; border: 2px solid #4f46e5; color: #0f172a; border-radius: 12px; cursor: pointer; text-align: left; transition: 0.2s; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong style="display: block; font-size: 1.05rem; color: #4f46e5;">Entire ${subject}</strong>
+                                <span style="font-size: 0.85rem; color: #64748b;">Unlock all PDFs in this subject</span>
+                            </div>
+                            <span style="font-size: 1.2rem; font-weight: bold; color: #4f46e5;">₹50</span>
+                        </button>
                     </div>
+
+                    <button onclick="document.getElementById('pdfPaymentPopup').remove()" style="padding: 12px 20px; border: none; background: transparent; cursor: pointer; color: #64748b; font-weight: 500; width: 100%; text-decoration: underline;">Cancel</button>
                 </div>
             `;
             document.body.appendChild(popup);
         }
 
-        // 3. The Micro-Transaction Gateway
-        async function payForSinglePDF(file) {
-            const btn = document.getElementById("pay10Btn");
-            if(btn) { btn.innerText = "Connecting..."; btn.style.opacity = "0.7"; }
+        // 3. The Unified Payment Processor
+        async function processPayment(amount, file, subject, purchaseType) {
+            const btnId = amount === 10 ? 'pay10Btn' : 'pay50Btn';
+            const btn = document.getElementById(btnId);
+            const originalContent = btn.innerHTML; // Save original text
+            
+            // Show loading state
+            if(btn) { btn.innerHTML = "<div style='text-align:center; width:100%; font-weight:bold;'>Connecting...</div>"; btn.style.opacity = "0.7"; }
 
             try {
-                // Call your Supabase backend to create a ₹10 order
+                // Connect to your Supabase backend
                 const response = await fetch('https://tcijpueblweradmiphpd.supabase.co/functions/v1/create-order', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ amount: 10 }) // Sending ₹10 to your backend
+                    body: JSON.stringify({ amount: amount }) 
                 });
 
                 const order = await response.json();
@@ -740,16 +768,24 @@
                         "key": "rzp_test_Svr9dcgbJa0AGO", // Your Razorpay Test Key
                         "amount": order.amount,
                         "currency": "INR",
-                        "name": "NoteVerse Unlock",
-                        "description": "Unlock Premium PDF Document",
+                        "name": "NoteVerse Premium",
+                        "description": purchaseType === 'subject' ? `Unlock All ${subject} Notes` : "Unlock Single Document",
                         "order_id": order.id, 
                         "handler": function (response) {
                             // WHEN PAYMENT SUCCEEDS:
-                            document.getElementById('pdfPaymentPopup').remove(); // Close popup
-                            alert("Payment Successful! Opening your document...");
-                            viewPDF(file); // This finally triggers the hidden viewer!
+                            document.getElementById('pdfPaymentPopup').remove(); 
+                            
+                            if (purchaseType === 'subject') {
+                                // Save the digital receipt in the browser!
+                                localStorage.setItem('unlocked_subject_' + subject, 'true');
+                                alert(`Success! All ${subject} PDFs are now permanently unlocked on this device.`);
+                            } else {
+                                alert("Payment Successful! Opening your document...");
+                            }
+                            
+                            viewPDF(file); // Open the PDF
                         },
-                        "theme": { "color": "#4f46e5" } // Matches your brand purple
+                        "theme": { "color": "#4f46e5" } 
                     };
 
                     const rzp = new Razorpay(options);
@@ -764,7 +800,8 @@
                 console.error("Payment error:", error);
                 alert("Something went wrong connecting to the server.");
             } finally {
-                if(btn) { btn.innerText = "Pay ₹10"; btn.style.opacity = "1"; }
+                // Restore button if payment fails/cancels
+                if(btn) { btn.innerHTML = originalContent; btn.style.opacity = "1"; }
             }
         }
 
