@@ -1031,52 +1031,7 @@
         checkSession();
     </script>
 
-    <script>
-    async function startPayment() {
-        const btn = document.getElementById("buyPremiumBtn");
-        if(btn) btn.innerText = "Loading securely...";
-
-        try {
-            const response = await fetch('https://tcijpueblweradmiphpd.supabase.co/functions/v1/create-order', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: 499 }) 
-            });
-
-            const order = await response.json();
-
-            if (order.id) {
-                const options = {
-                    "key": "rzp_test_Svr9dcgbJa0AGO",
-                     // <-- Make sure your Test Key ID is here!
-                    "amount": order.amount,
-                    "currency": "INR",
-                    "name": "NoteVerse Premium",
-                    "description": "Unlock all premium study materials",
-                    "order_id": order.id, 
-                    "handler": function (response) {
-                        alert("Payment Successful! Welcome to Premium.");
-                        console.log("Payment ID: " + response.razorpay_payment_id);
-                    },
-                    "theme": { "color": "#4facfe" }
-                };
-
-                const rzp = new Razorpay(options);
-                rzp.on('payment.failed', function (response){
-                    alert("Payment Failed. Please try again.");
-                });
-                rzp.open();
-            } else {
-                alert("Failed to connect to the payment gateway.");
-            }
-        } catch (error) {
-            console.error("Payment error:", error);
-            alert("Something went wrong connecting to the server.");
-        } finally {
-            if(btn) btn.innerText = "Get Started Free";
-        }
-    }
-</script>
+    
 
 <script>
     // Tell the library where its background worker is located
