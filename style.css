@@ -435,23 +435,25 @@ section { margin-bottom: 100px; }
 }
 
 /* Signature */
-/* --- HANDWRITTEN SIGNATURE (Black Watermark Style) --- */
+/* --- HANDWRITTEN SIGNATURE (Restored Font + Black Watermark) --- */
 .gc-signature {
-    position: absolute; /* Rips it out of the text flow to overlap the card */
-    bottom: 25px;       /* Pins it to the very bottom */
-    left: 40px;         /* Pins it to the left side */
+    /* Removed absolute positioning so it sits neatly under the details again */
+    margin-top: 25px;
+    margin-left: 40px;
     
-    /* System-safe cursive fonts that look like messy, real handwriting */
-    font-family: 'Segoe Script', 'Brush Script MT', cursive; 
-    font-size: 4.5rem;  /* Massive, sweeping letters */
+    /* Back to the elegant original font */
+    font-family: 'Playfair Display', serif; 
+    font-size: 2.8rem;
+    font-style: italic;
+    font-weight: 700;
     
-    color: #1a1a1a;     /* Deep charcoal/black ink */
-    opacity: 0.35;      /* Low opacity creates that exact faded watermark effect */
+    /* The black watermark effect */
+    color: #1a1a1a; 
+    opacity: 0.35; 
     
-    transform: rotate(-12deg); /* Slanted sharply upwards */
-    pointer-events: none;      /* Ensures you can't accidentally click or highlight it */
-    z-index: 10;               /* Forces it to float above the magic circle */
-    white-space: nowrap;
+    transform: rotate(-8deg); /* Gentle slant */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    pointer-events: none; /* Stops it from interfering with clicks */
 }
 
 /* Right Column - Images */
