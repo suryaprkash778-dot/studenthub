@@ -340,34 +340,29 @@ section { margin-bottom: 100px; }
 }
 
 /* Watermark Seal */
+/* --- AUTHENTIC MAGIC CIRCLE WATERMARK --- */
 .gc-watermark {
     position: absolute;
-    bottom: -160px; /* Pulls it way down to surround the signature */
-    left: -100px;   /* Pulls it exactly to the bottom-left corner */
-    width: 500px;   /* Massively enlarged */
-    height: 500px;  /* Massively enlarged */
-    border: 4px dashed rgba(220, 38, 38, 0.2);
-    border-radius: 50%;
-    z-index: 0; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none; 
+    /* Positioned perfectly behind the left text column */
+    top: 55%;
+    left: 25%; 
+    transform: translate(-50%, -50%);
+    width: 380px;  /* Sized to match the anime reference */
+    height: 380px;
+    opacity: 0.18; /* Just faded enough to not block the text */
+    z-index: 0;
+    pointer-events: none;
+    
+    /* Pure CSS-embedded SVG Magic Circle (Red Hexagram & Runic Rings) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cg stroke='%23b91c1c' fill='none'%3E%3Ccircle cx='250' cy='250' r='240' stroke-width='8'/%3E%3Ccircle cx='250' cy='250' r='220' stroke-width='14' stroke-dasharray='20 15'/%3E%3Ccircle cx='250' cy='250' r='190' stroke-width='4'/%3E%3Ccircle cx='250' cy='250' r='175' stroke-width='2' stroke-dasharray='6 6'/%3E%3Cpolygon points='250,60 414,345 86,345' stroke-width='6'/%3E%3Cpolygon points='250,440 414,155 86,155' stroke-width='6'/%3E%3Ccircle cx='250' cy='250' r='90' stroke-width='4'/%3E%3Ccircle cx='250' cy='250' r='75' stroke-width='2' stroke-dasharray='10 5'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
+/* We hide the old HTML circles because the SVG does all the heavy lifting now */
 .gc-watermark-inner {
-    width: 420px;   /* Massively enlarged */
-    height: 420px;  /* Massively enlarged */
-    border: 2px solid rgba(220, 38, 38, 0.15);
-    border-radius: 50%;
-    background: repeating-radial-gradient(
-        circle at center,
-        transparent,
-        transparent 10px,
-        rgba(220, 38, 38, 0.05) 10px,
-        rgba(220, 38, 38, 0.05) 20px
-    );
-}
+    display: none; 
 }
 
 /* Detail Rows */
