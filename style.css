@@ -788,52 +788,65 @@ svg.cal-heatmap-container text.graph-label {
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
 }
 /* =========================================================
-   DARK MODE OVERRIDE ENGINE
+   DARK MODE OVERRIDE ENGINE (V2)
    ========================================================= */
 
 /* 1. Main Background and Text */
 body, .app-container {
-    background-color: #0b0f19 !important; /* Deep Midnight Blue/Black */
-    color: #94a3b8 !important; /* Soft gray for normal text */
+    background-color: #0b0f19 !important; 
+    color: #94a3b8 !important; 
 }
 
-/* 2. Navigation Bars */
+/* 2. Navigation Bars & Top Menu Pill */
 .navbar, .mobile-menu {
     background-color: rgba(11, 15, 25, 0.85) !important;
     border-bottom: 1px solid #1e293b !important;
 }
-.navbar a, .nav-logo span, .mobile-menu a {
+.nav-links {
+    background-color: #151e2e !important; /* Fixes the white navbar pill */
+    border: 1px solid #1e293b !important;
+}
+.navbar a, .nav-logo span, .mobile-menu a, .nav-dropdown a {
     color: #e2e8f0 !important;
 }
 
-/* 3. Cards, Accordions, and Menus */
-.feature-card, .yt-card, .accordion-item, .accordion-content, .mobile-submenu, .dropdown-menu {
+/* 3. Cards, Accordions, & Subject Cards (Nukes the white & pastel backgrounds) */
+.feature-card, .yt-card, .subject-card, .accordion-item, .accordion-header, .accordion-content, .mobile-submenu, .dropdown-menu {
     background-color: #151e2e !important;
     border: 1px solid #1e293b !important;
+    color: #e2e8f0 !important;
 }
 
-/* 4. Headings and Titles (Making them bright white) */
+/* 4. Headings and Titles */
 h1, h2, h3, h4, .hero-subtitle, .section-heading, .section-subheading, .prob-title, .acc-title, .yt-title-area h3 {
     color: #f8fafc !important;
 }
 
-/* 5. Override hardcoded inline white backgrounds (Subjects & Folders) */
-[style*="background: white"], [style*="background: #f8fafc"], [style*="background: #eef2ff"] {
+/* 5. Fix Subject/Accordion Icons (Pastel circles look bad in dark mode) */
+.subject-icon, .acc-icon {
     background-color: #1e293b !important;
+    color: #38bdf8 !important; /* Neon blue to pop against the dark UI */
+    border: 1px solid #334155 !important;
+}
+
+/* 6. Override hardcoded inline white backgrounds */
+[style*="background: white"], [style*="background: #f8fafc"], [style*="background: #eef2ff"] {
+    background-color: #151e2e !important;
     border-color: #334155 !important;
     color: #f8fafc !important;
 }
 
-/* 6. Buttons */
-.btn-outline {
+/* 7. Buttons (Fixes the Notes/PYQ buttons inside Subject Cards) */
+.btn-outline, .dropdown-action-btn {
+    background-color: transparent !important;
     border-color: #334155 !important;
     color: #e2e8f0 !important;
 }
-.btn-outline:hover {
+.btn-outline:hover, .dropdown-action-btn:hover {
     background-color: #1e293b !important;
 }
 
-/* 7. Floating DSA Button */
+/* 8. Floating DSA Button */
 .dsa-circle-btn {
     box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
 }
@@ -843,8 +856,8 @@ h1, h2, h3, h4, .hero-subtitle, .section-heading, .section-subheading, .prob-tit
    ========================================================= */
 .guild-card, .guild-card * {
     background-color: transparent !important;
-    color: #1a1a1a !important; /* Keeps text dark on the parchment */
-    border-color: #5c3e23 !important; /* Keeps the woody brown */
+    color: #1a1a1a !important; 
+    border-color: #5c3e23 !important; 
 }
 .guild-card {
     background-color: #eaddc3 !important; 
