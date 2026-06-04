@@ -381,24 +381,33 @@ section { margin-bottom: 100px; }
 /* --- AUTHENTIC MAGIC CIRCLE WATERMARK --- */
 .gc-watermark {
     position: absolute;
-    /* Positioned perfectly behind the left text column */
-    top: 55%;
-    left: 25%; 
-    transform: translate(-50%, -50%);
-    width: 380px;  /* Sized to match the anime reference */
-    height: 380px;
-    opacity: 0.18; /* Just faded enough to not block the text */
-    z-index: 0;
-    pointer-events: none;
     
-    /* Pure CSS-embedded SVG Magic Circle (Red Hexagram & Runic Rings) */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cg stroke='%23b91c1c' fill='none'%3E%3Ccircle cx='250' cy='250' r='240' stroke-width='8'/%3E%3Ccircle cx='250' cy='250' r='220' stroke-width='14' stroke-dasharray='20 15'/%3E%3Ccircle cx='250' cy='250' r='190' stroke-width='4'/%3E%3Ccircle cx='250' cy='250' r='175' stroke-width='2' stroke-dasharray='6 6'/%3E%3Cpolygon points='250,60 414,345 86,345' stroke-width='6'/%3E%3Cpolygon points='250,440 414,155 86,155' stroke-width='6'/%3E%3Ccircle cx='250' cy='250' r='90' stroke-width='4'/%3E%3Ccircle cx='250' cy='250' r='75' stroke-width='2' stroke-dasharray='10 5'/%3E%3C/g%3E%3C/svg%3E");
+    /* Pinning it to the extreme bottom-left */
+    bottom: -50px; 
+    left: -50px; 
+    transform: none; /* Removes the old centering math */
+    
+    /* Making it large enough to cover the corner beautifully */
+    width: 450px;  
+    height: 450px;
+    
+    /* Loading your custom dragon seal */
+    background-image: url('/d7.jpeg');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    
+    /* THE MAGIC TRICK: Erases the white background of the JPEG */
+    mix-blend-mode: multiply; 
+    
+    /* Fades the ink so the black text on top remains readable */
+    opacity: 0.15; 
+    
+    z-index: 0;
+    pointer-events: none;
 }
 
-/* We hide the old HTML circles because the SVG does all the heavy lifting now */
+/* Keep this hidden so old borders don't show up */
 .gc-watermark-inner {
     display: none; 
 }
