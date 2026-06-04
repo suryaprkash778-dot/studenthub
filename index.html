@@ -1006,6 +1006,7 @@
                     const name = user.user_metadata.user_name || user.user_metadata.full_name || "Student";
                     const avatarUrl = user.user_metadata.avatar_url || "https://github.com/github.png";
 
+                    // 1. UPDATE THE DESKTOP NAVBAR
                     const authContainer = document.getElementById('authContainer');
                     if (authContainer) {
                         authContainer.innerHTML = `
@@ -1017,6 +1018,25 @@
                             <button class="btn-outline" style="padding: 8px 15px; font-size: 0.85rem;" onclick="signOut()">Sign Out</button>
                         `;
                     }
+
+                    // 2. UPDATE THE MOBILE MENU (This was missing!)
+                    const mobileAuthContainer = document.getElementById('mobileAuthContainer');
+                    if (mobileAuthContainer) {
+                        mobileAuthContainer.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0; cursor: pointer;" onclick="showProfile(); toggleMobileMenu();">
+                                <img src="${avatarUrl}" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #4f46e5; object-fit: cover;">
+                                <div style="display: flex; flex-direction: column;">
+                                    <span style="font-weight: 600; color: #0f172a; font-size: 0.95rem;">${name}</span>
+                                    <span style="font-size: 0.75rem; color: #4f46e5; font-weight: 500;">View Guild Card &rarr;</span>
+                                </div>
+                            </div>
+                            <button class="btn-outline" style="width: 100%; justify-content: center; border-color: #fca5a5; color: #ef4444; margin-top: 5px;" onclick="signOut()">
+                                <i class="ph-bold ph-sign-out"></i> Sign Out
+                            </button>
+                        `;
+                    }
+
+                    // 3. UPDATE THE GUILD CARD
                     const profileAvatarGuild = document.getElementById('profileAvatarGuild');
                     const profileNameGuild = document.getElementById('profileNameGuild');
                     if(profileAvatarGuild) profileAvatarGuild.src = avatarUrl;
@@ -1026,7 +1046,6 @@
                 }
             } catch (err) {}
         }
-
         async function syncUserToDatabase(user, name) {
             try {
                 const { data, error } = await dbClient.from('user_progress').select('*').eq('id', user.id).single();
