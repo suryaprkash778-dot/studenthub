@@ -267,18 +267,32 @@ section { margin-bottom: 100px; }
     margin-top: 10px;
 }
 
+/* --- GUILD CARD BASE & BOUNDARIES --- */
 .guild-card {
-    background-color: #fdf6eb; /* Parchment color */
-    background-image: linear-gradient(#fdf6eb, #f4e8d1);
-    border: 2px solid #3c2a1e;
-    padding: 6px;
+    /* 1. The Old Leather / Parchment Background */
+    background-color: #eaddc3; 
+    background-image: radial-gradient(circle at center, #f4ead5 0%, #eaddc3 100%);
+    
+    /* 2. Make it wider to match the reference */
     width: 100%;
-    max-width: 800px;
+    max-width: 900px; 
+    margin: 0 auto;
+    
+    /* 3. The "Ditto" Boundaries (Thick outer, gap, thin inner) */
+    border: 6px solid #2a2118; /* The thick dark outer leather line */
+    box-shadow: 
+        inset 0 0 0 5px #eaddc3, /* Creates the gap */
+        inset 0 0 0 7px #2a2118, /* Creates the thin inner boundary line */
+        0 20px 40px rgba(0,0,0,0.15); /* Adds a nice drop shadow to the page */
+    
+    /* 4. Formatting */
+    padding: 45px 50px; 
+    border-radius: 4px; /* Just slightly softened corners */
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    outline: 1px solid #3c2a1e;
-    outline-offset: -8px;
-    overflow: hidden;
+    overflow: hidden; /* Keeps the magic circle watermark safely inside the lines */
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Top Rank Badge */
