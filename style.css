@@ -383,8 +383,8 @@ section { margin-bottom: 100px; }
     position: absolute;
     
     /* Pushed further into the bottom-left corner */
-    bottom: -170px; 
-    left: -150px; 
+    bottom: -220px; 
+    left: -200px; 
     
     /* Enlarged significantly */
     width: 550px;  
