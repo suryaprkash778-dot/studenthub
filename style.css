@@ -382,36 +382,29 @@ section { margin-bottom: 100px; }
 .gc-watermark {
     position: absolute;
     
-    /* Pinning it to the extreme bottom-left */
-    bottom: -50px; 
-    left: -50px; 
-    transform: none; /* Removes the old centering math */
+    /* Pushed further into the bottom-left corner */
+    bottom: -120px; 
+    left: -100px; 
     
-    /* Making it large enough to cover the corner beautifully */
-    width: 450px;  
-    height: 450px;
+    /* Enlarged significantly */
+    width: 550px;  
+    height: 550px;
     
-    /* Loading your custom dragon seal */
+    transform: none; 
     background-image: url('/d7.jpeg');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     
-    /* THE MAGIC TRICK: Erases the white background of the JPEG */
+    /* Blends the ink into the parchment */
     mix-blend-mode: multiply; 
     
-    /* Fades the ink so the black text on top remains readable */
-    opacity: 0.15; 
+    /* Doubled the opacity to make it much darker and visible */
+    opacity: 0.35; 
     
     z-index: 0;
     pointer-events: none;
 }
-
-/* Keep this hidden so old borders don't show up */
-.gc-watermark-inner {
-    display: none; 
-}
-
 /* Detail Rows */
 .gc-detail-row {
     display: flex;
