@@ -341,42 +341,57 @@ section { margin-bottom: 100px; }
 }
 
 /* --- GUILD CARD TEXT ROWS & CHEVRONS --- */
+/* --- GUILD CARD TEXT ROWS & CHEVRONS --- */
 .gc-details {
     position: relative;
     margin-top: 20px;
     padding-left: 30px; 
-    border-left: 2px solid #5c3e23; /* Woody brown */
+    border-left: 2px solid #5c3e23 !important; 
+    background: transparent !important;
 }
 
 .gc-detail-row {
     position: relative;
-    padding: 15px 0 15px 15px;
-    border-bottom: 2px solid #5c3e23; /* Woody brown */
+    padding: 15px 0 15px 15px !important;
+    border-bottom: 2px solid #5c3e23 !important; 
+    
+    /* THE FIX: This forces the white boxes to become completely invisible */
+    background: transparent !important; 
+    box-shadow: none !important;
+    margin: 0 !important;
 }
 
 .gc-detail-row:first-of-type {
-    border-top: 2px solid #5c3e23; /* Woody brown */
+    border-top: 2px solid #5c3e23 !important; 
 }
 
-.gc-chevron, .gc-row-chevron {
-    position: absolute;
-    left: -32px; 
-    top: 22px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 16px solid #5c3e23; /* Woody brown triangles */
+/* Ensure the text container doesn't have a hidden background either */
+.gc-row-text {
+    background: transparent !important;
 }
 
 .gc-row-text p {
     margin: 0 0 4px 0;
     font-family: 'Inter', sans-serif;
     font-size: 1.05rem;
-    color: #1a1a1a; /* Keeping text dark for readability */
+    color: #1a1a1a; 
     font-weight: 500;
 }
 
+/* The Single Wooden Chevron (Triangle) */
+.gc-chevron, .gc-row-chevron {
+    position: absolute;
+    left: -32px !important; 
+    top: 22px !important;
+    width: 0 !important;
+    height: 0 !important;
+    border-top: 10px solid transparent !important;
+    border-bottom: 10px solid transparent !important;
+    border-left: 16px solid #5c3e23 !important; 
+    
+    /* Wipes out any leftover white arrow boxes */
+    background: transparent !important; 
+}
 /* Watermark Seal */
 /* --- AUTHENTIC MAGIC CIRCLE WATERMARK --- */
 .gc-watermark {
